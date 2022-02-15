@@ -1,5 +1,5 @@
 import './App.css'
-import { ModelViewPlugin, A } from "@realsee/dnalogel";
+import { ModelViewPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import React, { FC } from "react";
 import { useFetchWork } from "./useFetchWork";
@@ -22,12 +22,9 @@ const App: FC = () => {
     const work = useFetchWork(workURL);
     const size = useWindowDimensions();
 
-    const showValue = A()
-
     return work && <FiveProvider initialWork={work}>
 		<div style={{position: 'absolute', width: '100%', height: '100%'}}><FiveCanvas {...size}/></div>
         <MiniModelPanel/>
-        <h1 style={{position: 'absolute', color: 'red'}}>{showValue}</h1>
 	</FiveProvider>;
 };
 
