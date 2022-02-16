@@ -1,10 +1,12 @@
 import './App.css'
-import { ModelViewPlugin } from "@realsee/dnalogel";
+import { ModelViewPlugin, Test } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import React, { FC } from "react";
 import { useFetchWork } from "./useFetchWork";
 import { useWindowDimensions } from "./useWindowDimensions";
 import MiniModelPanel from "./MinimodelPanel";
+
+console.log(Test)
 
 /** work.json 的数据 URL */
 const workURL = "https://vrlab-public.ljcdn.com/release/static/image/release/five/work-sample/07bdc58f413bc5494f05c7cbb5cbdce4/work.json";
