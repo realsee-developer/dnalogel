@@ -1,4 +1,3 @@
-// import './App.css'
 import { ModelViewPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import React, { FC } from "react";

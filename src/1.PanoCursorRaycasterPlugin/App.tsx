@@ -1,6 +1,6 @@
-import { PanoCursorRaycasterPlugin } from "@realsee/dnalogel";
+// import { PanoCursorRaycasterPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useFetchWork } from "./useFetchWork";
 import { useWindowDimensions } from "./useWindowDimensions";
 
@@ -9,7 +9,7 @@ const workURL = "https://vrlab-public.ljcdn.com/release/static/image/release/fiv
 
 const FiveProvider = createFiveProvider({
   plugins: [
-
+    // [PanoCursorRaycasterPlugin, 'panoCursorRaycasterPlugin']
   ]
 });
 
