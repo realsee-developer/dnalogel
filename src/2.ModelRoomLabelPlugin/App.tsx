@@ -1,5 +1,6 @@
 import { ModelRoomLabelPlugin, ModelRoomLabelController } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
+import { parseWork } from "@realsee/five";
 import React, { FC } from "react";
 import { useFetchWork } from "./useFetchWork";
 import { useWindowDimensions } from "./useWindowDimensions";
@@ -14,16 +15,12 @@ const FiveProvider = createFiveProvider({
   ]
 });
 
-// const roomLabelPlugin = five.plugins.roomLabel as ModelRoomLabelController
-// roomLabelPlugin.appendTo(document.querySelector('#model-room-label-plugin-container')!)
-// roomLabelPlugin.load(modelRoomLabels)
-
 const App: FC = () => {
   // const work = useFetchWork(workURL);
   const work = workData
   const size = useWindowDimensions();
 
-  return work && <FiveProvider initialWork={work}>
+  return work && <FiveProvider initialWork={parseWork(work)}>
     <div style={{position: 'absolute', width: '100%', height: '100%'}}><FiveCanvas {...size}/></div>
     <ModelRoomLabelPluginShow />
   </FiveProvider>;
