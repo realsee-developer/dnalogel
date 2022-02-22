@@ -17,6 +17,7 @@
     "@mui/material": "^5.4.2",
     "@realsee/dnalogel": "0.0.0",
     "@realsee/five": "^5.0.0-alpha.95",
+    "@realsee/open-works": "^0.0.1-alpha.5",
     "@types/offscreencanvas": "^2019.6.4",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
