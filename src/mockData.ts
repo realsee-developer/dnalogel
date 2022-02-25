@@ -4,11 +4,8 @@
  * 不可商用！！！
  * */
 
-import {
-    work,
-    floorplanServerData,
-    modelRoomLabels
-} from "https://cdn.skypack.dev/@realsee/open-works/virtual/81gmMq5a7zbF9leWMk/index";
+// @ts-ignore
+import { work, floorplanServerData, modelRoomLabels } from "https://cdn.skypack.dev/@realsee/open-works/virtual/81gmMq5a7zbF9leWMk/index";
 
 export {
     work,
