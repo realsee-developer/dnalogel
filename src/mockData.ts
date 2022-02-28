@@ -5,10 +5,14 @@
  * */
 
 // @ts-ignore
-import { work, floorplanServerData, modelRoomLabels } from "https://cdn.skypack.dev/@realsee/open-works/virtual/81gmMq5a7zbF9leWMk/index";
+// import { work, floorplanServerData, modelRoomLabels } from "https://cdn.skypack.dev/@realsee/open-works/virtual/81gmMq5a7zbF9leWMk/index";
+import openData from "https://cdn.skypack.dev/@realsee/open-works/virtual/81gmMq5a7zbF9leWMk/index";
+
+const { work, floorplanServerData, modelRoomLabels, modelEntryDoorGuidePluginServerData } = openData
 
 export {
     work,
     floorplanServerData,
-    modelRoomLabels
+    modelRoomLabels,
+    modelEntryDoorGuidePluginServerData
 }
