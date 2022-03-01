@@ -1,15 +1,14 @@
-import { PanoCursorRaycasterPlugin } from "@realsee/dnalogel";
+import { CameraMovementPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import React, { FC } from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
 import { work } from '../mockData'
-import { Box } from "@mui/material";
 import CameraMovementPluginUse from "./CameraMovementPluginUse";
 
 const FiveProvider = createFiveProvider({
   onlyRenderIfNeeds: true,
   plugins: [
-    [PanoCursorRaycasterPlugin, 'panoCursorRaycasterPlugin']
+    [CameraMovementPlugin, 'cameraMovementPlugin', {}]
   ]
 });
 
