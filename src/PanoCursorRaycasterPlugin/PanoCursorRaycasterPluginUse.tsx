@@ -63,6 +63,7 @@ const PanoCursorRaycasterPluginUse = (props: PanoCursorRaycasterPluginUsePropTyp
         if (!pos) {
             return
         }
+        console.log(pos)
         // 添加辅助坐标
         panoCursorRaycasterPlugin.pointAxesHelper(pos.point)
 
