@@ -1,4 +1,4 @@
-import { ModelRoomLabelPlugin, ModelRoomLabelController } from "@realsee/dnalogel";
+import { ModelRoomLabelPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import React, { FC } from "react";

@@ -1,6 +1,0 @@
-/**
- * @todo
- */
-export function PanoDoorLabelPlugin() {
-  //
-}

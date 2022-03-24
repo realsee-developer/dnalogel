@@ -33,7 +33,7 @@ export interface ModelEntryDoorGuidePluginExportType {
 /**
  * 模型入户门引导插件
  */
-const ModelEntryDoorGuidePlugin: FivePlugin<
+export const ModelEntryDoorGuidePlugin: FivePlugin<
   ModelEntryDoorGuidePluginParameterType,
   ModelEntryDoorGuidePluginExportType
 > = (five: Five, params) => {
