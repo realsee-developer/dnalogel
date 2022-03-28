@@ -5,7 +5,6 @@ import { useWindowDimensions } from "./useWindowDimensions";
 import { work } from '../mockData'
 import { parseWork } from "@realsee/five";
 import ModelChassisCompassPluginUse from "./ModelChassisCompassPluginUse";
-import { Box } from "@mui/material";
 
 const FiveProvider = createFiveProvider({
   plugins: [

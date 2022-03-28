@@ -1,5 +1,10 @@
 import * as React from "react";
-import { unsafe__useFiveInstance, useFiveEventCallback, useFiveState } from "@realsee/five/react";
+import {
+    unsafe__useFiveInstance,
+    useFiveEventCallback,
+    useFiveModelReadyState,
+    useFiveState
+} from "@realsee/five/react";
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/material'
 import { floorplanServerData } from "../mockData";
 import { Five, Mode } from "@realsee/five";
@@ -7,11 +12,12 @@ import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 
 // 朝南方向来源于户型图数据
-const NORTH_RAD = floorplanServerData.computed_data.entrance.north_rad
+const NORTH_RAD = floorplanServerData?.computed_data?.entrance?.north_rad
 
 const ModelChassisCompassPluginUse: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
     const five = unsafe__useFiveInstance()
+    const fiveModelReadyState = useFiveModelReadyState()
 
     useFiveEventCallback('modelLoaded', async () => {
 
@@ -37,10 +43,7 @@ const ModelChassisCompassPluginUse: React.FC = () => {
         five.plugins.modelChassisCompassPlugin.enable()
     })
 
-    React.useEffect(() => {
-
-    }, [fiveState.mode])
-
+    if(fiveModelReadyState !== 'Loaded') return null
     return (
         <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0, backgroundColor: 'transparent' }}>
             <BottomNavigation

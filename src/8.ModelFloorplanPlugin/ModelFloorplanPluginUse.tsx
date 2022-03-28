@@ -7,19 +7,23 @@ import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import { floorplanServerData } from '../mockData'
 
 
-interface TopviewFloorplanPluginUsePropTypes {}
+interface ModelFloorplanPluginUsePropTypes {}
 
-const TopviewFloorplanPluginUse = (props: TopviewFloorplanPluginUsePropTypes) => {
+const ModelFloorplanPluginUse = (props: ModelFloorplanPluginUsePropTypes) => {
     const five = unsafe__useFiveInstance()
     const [fiveState, setFiveState] = useFiveState()
     const fiveModelReadyState = useFiveModelReadyState()
 
     React.useEffect(() => {
-        const topviewFloorplanPlugin = five.plugins.topviewFloorplanPlugin
-        topviewFloorplanPlugin.load(floorplanServerData)
-    }, [])
+        if (fiveModelReadyState !== 'Loaded') return
 
-    if(fiveModelReadyState !== 'Loaded') return null
+        const modelFloorplanPlugin = five.plugins.modelFloorplanPlugin
+        Promise.resolve(modelFloorplanPlugin.load(floorplanServerData))
+            .then(() => modelFloorplanPlugin.show())
+    }, [fiveModelReadyState])
+
+
+    if (fiveModelReadyState !== 'Loaded') return null
     return (
         <Paper
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0, backgroundColor: 'transparent' }}
@@ -33,11 +37,11 @@ const TopviewFloorplanPluginUse = (props: TopviewFloorplanPluginUsePropTypes) =>
                 }}
             >
                 <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon/>} value={Five.Mode.Panorama}/>
-                <BottomNavigationAction label="俯视模型" icon={<ViewInArIcon/>} value={Five.Mode.Topview}/>
+                <BottomNavigationAction label="空间总览" icon={<ViewInArIcon/>} value={Five.Mode.Floorplan}/>
             </BottomNavigation>
         </Paper>
     )
 
 };
 
-export default TopviewFloorplanPluginUse;
+export default ModelFloorplanPluginUse;

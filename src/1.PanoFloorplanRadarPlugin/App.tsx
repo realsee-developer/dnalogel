@@ -5,15 +5,23 @@ import { useWindowDimensions } from "./useWindowDimensions";
 import { work } from '../mockData'
 import { parseWork } from "@realsee/five";
 import PanoFloorplanRadarPanel from "./PanoFloorplanRadarPanel";
+import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
+
+const defaultPluginParam = {
+
+}
+
+const initialParamFromUrl = getInitialParamFromUrl()
+
+const pluginParams = (JSON.stringify(initialParamFromUrl) !== '{}') ? initialParamFromUrl : defaultPluginParam
+
 
 const FiveProvider = createFiveProvider({
   plugins: [
     [
       PanoFloorplanRadarPlugin,
       'panoFloorplanRadarPlugin',
-        {
-          hoverEnable: true
-        }
+      { ...pluginParams }
     ]
   ]
 });
@@ -21,7 +29,7 @@ const FiveProvider = createFiveProvider({
 const App: FC = () => {
   const size = useWindowDimensions();
 
-  return work && <FiveProvider initialWork={parseWork(work)}>
+  return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
     <FiveCanvas {...size} />
     <PanoFloorplanRadarPanel />
   </FiveProvider>;

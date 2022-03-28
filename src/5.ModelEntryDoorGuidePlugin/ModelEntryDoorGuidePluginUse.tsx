@@ -1,7 +1,11 @@
 import * as React from "react";
-import { unsafe__useFiveInstance, useFiveEventCallback, useFiveState } from "@realsee/five/react";
+import {
+    unsafe__useFiveInstance,
+    useFiveEventCallback,
+    useFiveModelReadyState,
+    useFiveState
+} from "@realsee/five/react";
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/material'
-import { floorplanServerData } from "../mockData";
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
@@ -11,6 +15,7 @@ import ViewInArIcon from "@mui/icons-material/ViewInAr";
 const ModelEntryDoorGuidePluginUse: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
     const five = unsafe__useFiveInstance()
+    const fiveModelReadyState = useFiveModelReadyState()
 
     useFiveEventCallback('modelLoaded', async () => {
         await five.plugins.modelEntryDoorGuidePlugin.load()
@@ -25,12 +30,12 @@ const ModelEntryDoorGuidePluginUse: React.FC = () => {
         })
 
         // 显示入户门
-        five.plugins.modelEntryDoorGuidePlugin.enable()
+        five.plugins.modelEntryDoorGuidePlugin.enable({animationEnable: false})
     })
 
-    React.useEffect(() => {
-
-    }, [fiveState.mode])
+    if (fiveModelReadyState !== 'Loaded') {
+        return null
+    }
 
     return (
         <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0, backgroundColor: 'transparent' }}>

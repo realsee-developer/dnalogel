@@ -2,9 +2,12 @@ import { PanoCursorRaycasterPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import React, { FC } from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
+
+
 import { work } from '../mockData'
 import { Box } from "@mui/material";
 import PanoCursorRaycasterPluginUse from "./PanoCursorRaycasterPluginUse";
+import { parseWork } from "@realsee/five";
 
 const FiveProvider = createFiveProvider({
   onlyRenderIfNeeds: true,
@@ -24,7 +27,7 @@ const App: FC = () => {
       () => true
   )
 
-  return work && <FiveProvider initialWork={work} ref={ref => Object.assign(window, {$five: ref.five})}>
+  return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, {$five: ref?.five})}>
     <FiveCanvas {...size}/>
     <PluginFullScreenContainer/>
     <PanoCursorRaycasterPluginUse/>

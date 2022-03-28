@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { unsafe__useFiveInstance, useFiveEventCallback, useFiveState } from "@realsee/five/react";
+import {
+    unsafe__useFiveInstance,
+    useFiveEventCallback,
+    useFiveModelReadyState,
+    useFiveState
+} from "@realsee/five/react";
 import { modelRoomLabels } from '../mockData'
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
 import { Five, Mode } from "@realsee/five";
@@ -13,6 +18,7 @@ interface ModelRoomLabelPluginShowPropTypes {
 const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
     const [fiveState, setFiveState] = useFiveState()
     const five = unsafe__useFiveInstance()
+    const fiveModeReadyState = useFiveModelReadyState()
 
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
@@ -25,6 +31,7 @@ const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
         five.plugins.modelRoomLabelPlugin.load(modelRoomLabels)
     })
 
+    if (fiveModeReadyState !== 'Loaded') return null
     return (
         <Paper
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0, backgroundColor: 'transparent' }}
