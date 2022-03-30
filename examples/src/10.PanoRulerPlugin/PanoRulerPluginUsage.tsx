@@ -23,7 +23,6 @@ const PanoRulerPluginUsage=(props: PanoRulerPluginUsePropTypes)=> {
     <button
         style={{ position: 'absolute', right: '36px', top: '24px',background: '#0078e7', color: '#fff', padding:'7px 14px', border:'none', borderRadius:'2px'  }}
         onClick={() => {
-          console.log('-->', panoRulerPlugin)
           panoRulerPlugin[panoRulerPlugin.state.enable ? 'disable' : 'enable']()
           setState(panoRulerPlugin.state.enable)
         }}
