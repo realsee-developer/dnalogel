@@ -60,7 +60,6 @@ export { default as CameraMovementPlugin } from './CameraMovementPlugin'
 
 export type {
     PanoSpatialTagPluginParameterType,
-    PanoSpatialTagPluginData,
     PanoSpatialTagPluginExportType
 } from './PanoSpatialTagPlugin'
 export { default as PanoSpatialTagPlugin } from './PanoSpatialTagPlugin'

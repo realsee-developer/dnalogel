@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { PanoSpatialTagPluginOrigin } from '../typings'
-  export let origins: PanoSpatialTagPluginOrigin
+  import PanoSpatialTagPluginOriginElement from '../typings'
+  export let origins: Array<PanoSpatialTagPluginOriginElement>
 </script>
 
 {#each origins as origin (origin.id)}

@@ -3,14 +3,15 @@ import CSS3DRenderPlugin from '../CSS3DRenderPlugin'
 import type { FivePlugin } from '@realsee/five'
 import { Five } from '@realsee/five'
 import { nextFrame } from '../shared-utils/nextFrame'
+import Origins from './Components/origins.svelte'
+import Tag from './Components/tag.svelte'
 import { pluginStyle } from './style'
-import Origins from './Components/origin.svelte'
 
 import {
   PanoSpatialTagPluginDataElement,
-  PanoSpatialTagPluginTag,
-  PanoSpatialTagPluginOrigin,
-} from './typing'
+  PanoSpatialTagPluginTagElement,
+  PanoSpatialTagPluginOriginElement,
+} from './typings'
 
 export interface PanoSpatialTagPluginParameterType {
   container?: Element
@@ -18,11 +19,8 @@ export interface PanoSpatialTagPluginParameterType {
   minDistance?: number
   maxDistance?: number
 }
-export interface PanoSpatialTagPluginData {
-  [index: number]: PanoSpatialTagPluginDataElement
-}
 export interface PanoSpatialTagPluginExportType {
-  load: (data?: PanoSpatialTagPluginData, enabled?: boolean) => void
+  load: (data?: Array<PanoSpatialTagPluginDataElement>, enabled?: boolean) => void
   enable: () => void
   disable: () => void
   dispose: () => void
@@ -30,9 +28,9 @@ export interface PanoSpatialTagPluginExportType {
 
 interface PanoSpatialTagPluginState {
   timeoutId?: NodeJS.Timeout
-  data: PanoSpatialTagPluginData
-  origins: PanoSpatialTagPluginOrigin
-  tags: PanoSpatialTagPluginTag
+  data: Array<PanoSpatialTagPluginDataElement>
+  origins: Array<PanoSpatialTagPluginOriginElement>
+  tags: Array<PanoSpatialTagPluginTagElement>
   enabled: boolean // 用户控制启用禁止状态
   forbidden: boolean // 插件控制启用禁止状态
 }
@@ -66,24 +64,6 @@ export const PanoSpatialTagPlugin: FivePlugin<
     target: container,
     props: { origins: state.origins },
   })
-
-  if (five?.model?.loaded) {
-    if (!wrapper) wrapper = five.getElement().parentElement
-    wrapper.appendChild(container)
-    state.forbidden = false
-    five.on('panoWillArrive', () => {}) // TODO
-    five.on('modeChange', () => {}) // TODO
-    five.on('cameraUpdate', onCameraUpdate)
-  } else {
-    five.once('modelBvhLoaded', () => {
-      if (!wrapper) wrapper = five.getElement().parentElement
-      wrapper.appendChild(container)
-      state.forbidden = false
-      five.on('panoWillArrive', () => {}) // TODO
-      five.on('modeChange', () => {}) // TODO
-      five.on('cameraUpdate', onCameraUpdate) // TODO
-    })
-  }
 
   const onCameraUpdate = ({ offset }, userAction) => {
     updateOrigins()
@@ -195,7 +175,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       const [intersect] = five.model.intersectRaycaster(raycaster)
       if (!intersect) continue
       if (points[i].distance - intersect.distance < 0.01) {
-        const { position, normal, name, id, price } = points[i]
+        const { position, normal, id, content } = points[i]
         const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(normal, position)
         const right = position.clone().sub(camera.position)
           .cross(new THREE.Vector3(0, 1, 0)).setLength(0.001)
@@ -205,13 +185,22 @@ export const PanoSpatialTagPlugin: FivePlugin<
           position.clone().add(new THREE.Vector3(0, 0.001, 0)).add(right),
           position.clone().add(new THREE.Vector3(0, 0.001, 0)),
         ].map(v => plane.projectPoint(v, new THREE.Vector3()))
-        const { container, dispose } = css3DRender.create3DDomContainer(square)
+        const { container, dispose } = css3DRender.create3DDomContainer(square) || {}
+        const app = new Tag({ 
+          target: container, 
+          props: {
+            content,
+            lineZoom: 0.4 * (0.01 + camera.position.distanceTo(position) / maxDistance),
+            contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
+            upsideDown: position.y > 1.6,
+          },
+        })
         tags.push({
           position,
           normal,
           square,
           id,
-          container,
+          app,
           dispose,
         })
       }
@@ -220,10 +209,10 @@ export const PanoSpatialTagPlugin: FivePlugin<
     return tags
   }
 
-  const load = (data?: PanoSpatialTagPluginData, enabled?: boolean=true) => {
+  const load = (data?: Array<PanoSpatialTagPluginDataElement>, enabled: boolean=true) => {
      state.data = data.map(one => {
-       one.position = new THREE.Vector3(one.position.x, one.position.y, one.position.z)
-       one.normal = new THREE.Vector3(one.normal.x, one.normal.y, one.normal.z)
+       one.position = new THREE.Vector3(one.position.x, one.position.y, one.position.z) // TODO
+       one.normal = new THREE.Vector3(one.normal.x, one.normal.y, one.normal.z) // TODO
        return one
      })
      state.enabled = enabled
@@ -239,6 +228,24 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
   const dispose = () => {
     css3DRender.disposeAll()
+  }
+
+  if (five?.model?.loaded) {
+    if (!wrapper) wrapper = five.getElement().parentElement
+    wrapper.appendChild(container)
+    state.forbidden = false
+    five.on('panoWillArrive', () => {}) // TODO
+    five.on('modeChange', () => {}) // TODO
+    five.on('cameraUpdate', onCameraUpdate)
+  } else {
+    five.once('modelBvhLoaded', () => {
+      if (!wrapper) wrapper = five.getElement().parentElement
+      wrapper.appendChild(container)
+      state.forbidden = false
+      five.on('panoWillArrive', () => {}) // TODO
+      five.on('modeChange', () => {}) // TODO
+      five.on('cameraUpdate', onCameraUpdate) // TODO
+    })
   }
 
   five.on('dispose', dispose)

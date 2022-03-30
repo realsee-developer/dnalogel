@@ -1,7 +1,7 @@
 export const pluginStyle: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
-  top: 0,
-  left: 0,
+  top: '0px',
+  left: '0px',
   width: '100%',
   height: '100%',
   pointerEvents: 'none',

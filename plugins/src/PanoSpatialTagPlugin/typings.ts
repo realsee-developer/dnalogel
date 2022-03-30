@@ -1,16 +1,16 @@
 import * as THREE from 'three'
 
-interface PanoSpatialTagPluginTagElement {
+export interface PanoSpatialTagPluginTagElement {
 	id: string | number
 	position: THREE.Vector3
   normal: THREE.Vector3
   square: Array<THREE.Vector3>
   hidden?: boolean
-  container: Element
-  dispose: void
+  app: any
+  dispose: () => void
 }
 
-interface PanoSpatialTagPluginOriginElement {
+export interface PanoSpatialTagPluginOriginElement {
 	id: string | number
 	position: THREE.Vector3
   normal: THREE.Vector3
@@ -20,18 +20,10 @@ interface PanoSpatialTagPluginOriginElement {
   top: number
 }
 
-export interface PanoSpatialTagPluginTag {
-  [index: number]: PanoSpatialTagPluginTagElement
-}
-
-export interface PanoSpatialTagPluginOrigin {
-  [index: number]: PanoSpatialTagPluginOriginElement
-}
-
 export interface PanoSpatialTagPluginDataElement {
 	id: string | number
 	position: THREE.Vector3
 	normal: THREE.Vector3
 	weight?: number
-	slot: string
+	content: string
 }
