@@ -106,7 +106,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
     enable: false,
     loaded: false,
     options: params.options || {
-      distanceText: (distance) => `约${distance.toFixed(1)}米`,
+      distanceText: (distance) => `${distance.toFixed(1)}m`,
     },
   }
 
@@ -421,7 +421,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
 
       const $label = $line.querySelector('.PanoRulerPlugin-rule-label') as HTMLDivElement
 
-      // 线的长度小于标签时隐藏
+      // 线的长度小于标签的宽度时隐藏
       if ($label.children[0].clientWidth >= distance) {
         $line.style.display = 'none'
       } else {
