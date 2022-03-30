@@ -27,7 +27,8 @@ const getRoomHeightInfo = (roomInfo: RoomInfo, five: Five) => {
     const point = new Vector3(position.x, position.y, position.z)
     raycaster.set(point, new Vector3(0, 1, 0))
     const [intersection] = five.model.intersectRaycaster(raycaster)
-    const verticalY = intersection ? intersection.point.y : null
+    // ！！！未来家没有天花板碰撞射线无相交，默认固定层高2.7m 
+    const verticalY = intersection ? intersection.point.y : 2.7
 
     const id = observers[index]
     if (!id) return roomHeightInfo
@@ -114,8 +115,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
       <div class="PanoRulerPlugin-rule-line">
         <em></em>
         <div class="PanoRulerPlugin-rule-label">
-          <div class="PanoRulerPlugin-rule-label-point"></div>
-          <span class="PanoRulerPlugin-rule-label-name">${state.options.distanceText!(distance)}</span>
+          <div class="PanoRulerPlugin-rule-label-name">${state.options.distanceText!(distance)}</div>
         </div>
       </div>
     `
@@ -133,6 +133,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
     `position: absolute;pointer-events: none;width: 100%;height: 100%;left: 0;top: 0;overflow: hidden;`,
   )
   
+  // 添加标尺样式
   const style = document.createElement('div')
   style.innerHTML = PanoRulerStyle
   $rule.appendChild(style)
@@ -283,7 +284,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
   }
 
   const freshRule = () => {
-    const element = five.getElement()
+    const element = five.getElement()?.parentElement
     if (!element) return
     if (!state.loaded) return
     if (Object.keys(__rule).length <= 0) return
@@ -300,8 +301,8 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
     const cameraPosition = camera.position
     const cameraDirection = camera.getWorldDirection(new Vector3())
 
-    const width = element.width
-    const height = element.height
+    const width = element.clientWidth
+    const height = element.clientHeight
 
     // 非全景模式下隐藏所有标尺
     if (currentMode !== Five.Mode.Panorama) {
@@ -418,23 +419,18 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
 
       const deg = (rad / Math.PI) * 180
 
-      $line.style.width = distance + 'px'
-      $line.style.left = startLeft + 'px'
-      $line.style.top = startTop + 'px'
-      $line.style.transform = `rotate(${-deg}deg)`
-
       const $label = $line.querySelector('.PanoRulerPlugin-rule-label') as HTMLDivElement
 
-      const reverse = endLeft - startLeft > 0
-      const rotateY = reverse ? ' rotateY(180deg)' : ''
-
-      $label.style.transform = `rotate(${deg}deg)` + rotateY
-      $label.style.left = `${labelOffset}%`
-
-      if (reverse) {
-        $label.setAttribute('class', 'PanoRulerPlugin-rule-label reverse')
+      // 线的长度小于标签时隐藏
+      if ($label.children[0].clientWidth >= distance) {
+        $line.style.display = 'none'
       } else {
-        $label.setAttribute('class', 'PanoRulerPlugin-rule-label')
+        $line.style.width = distance + 'px'
+        $line.style.left = startLeft + 'px'
+        $line.style.top = startTop + 'px'
+        $line.style.transform = `rotate(${-deg}deg)`
+
+        $label.style.left = `${labelOffset}%`
       }
     }
   }
