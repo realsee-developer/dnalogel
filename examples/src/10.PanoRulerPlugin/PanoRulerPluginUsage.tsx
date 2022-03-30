@@ -1,5 +1,4 @@
 import { PanoRulerPlugin } from '@realsee/dnalogel'
-import { FivePlugin } from '@realsee/five'
 import { unsafe__useFiveInstance, useFiveEventCallback } from '@realsee/five/react'
 import * as React from 'react'
 import { roomInfo, roomRules } from './mockData'
@@ -22,8 +21,7 @@ const PanoRulerPluginUsage=(props: PanoRulerPluginUsePropTypes)=> {
 
   return (
     <button
-        style={{ position: 'absolute', right: '36px', top: '24px' }}
-        className="pure-button pure-button-primary"
+        style={{ position: 'absolute', right: '36px', top: '24px',background: '#0078e7', color: '#fff', padding:'7px 14px', border:'none', borderRadius:'2px'  }}
         onClick={() => {
           console.log('-->', panoRulerPlugin)
           panoRulerPlugin[panoRulerPlugin.state.enable ? 'disable' : 'enable']()
