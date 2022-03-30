@@ -12,7 +12,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'dnalogel',
-      // formats: ['es'],
+      formats: ['es', 'umd', 'cjs'],
       fileName: (format) => `dnalogel.${format}.js`
     },
     rollupOptions: {
