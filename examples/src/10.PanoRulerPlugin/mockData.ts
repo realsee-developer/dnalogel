@@ -55,7 +55,7 @@ export const roomRules: RoomRules = {
     { x: 0.579375, z: -3.037, observers: [1] },
     { x: 1.6959087429091377, z: -3.037, observers: [1] },
   ],
-  '4, 5, 6': [
+  '4,5,6': [
     { x: -1.147, z: 2.473625, observers: [4, 5, 6] },
     { x: -1.147, z: -3.037, observers: [4, 5, 6] },
     { x: 0.459375, z: -3.037, observers: [4, 5, 6] },
@@ -85,7 +85,7 @@ export const roomRules: RoomRules = {
     { x: 4.643, z: 1.348, observers: [11, 12] },
     { x: 4.643, z: -1.573, observers: [11, 12] },
   ],
-  '13, 14': [
+  '13,14': [
     { x: 7.391, z: 8.441, observers: [13, 14] },
     { x: 6.561, z: 8.441, observers: [13, 14] },
     { x: 6.561, z: 9.19, observers: [13, 14] },
