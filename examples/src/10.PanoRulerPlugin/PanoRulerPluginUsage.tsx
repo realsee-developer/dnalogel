@@ -4,8 +4,6 @@ import { unsafe__useFiveInstance, useFiveEventCallback } from '@realsee/five/rea
 import * as React from 'react'
 import { roomInfo, roomRules } from './mockData'
 
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface PanoRulerPluginUsePropTypes {}
 
 const OPERATE_OPTIONS = {
@@ -18,9 +16,10 @@ const PanoRulerPluginUsage = (props: PanoRulerPluginUsePropTypes) => {
   const panoRulerPlugin = five.plugins.panoRulerPlugin as ReturnType<typeof PanoRulerPlugin>
   // 标尺状态
   const [state, setState] = React.useState(panoRulerPlugin.state.enable)
+
   useFiveEventCallback('modelLoaded', async () => {
     await panoRulerPlugin.load(roomInfo, roomRules, {
-      distanceText: (distance) => `约${distance.toFixed(1)}米`,
+      distanceText: (distance) => `约 ${distance}米`,
     })
     setState(panoRulerPlugin.state.enable)
   })

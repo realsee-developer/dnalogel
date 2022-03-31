@@ -27,9 +27,8 @@ const getRoomHeightInfo = (roomInfo: RoomInfo, five: Five) => {
     const point = new Vector3(position.x, position.y, position.z)
     raycaster.set(point, new Vector3(0, 1, 0))
     const [intersection] = five.model.intersectRaycaster(raycaster)
-    // ！！！未来家没有天花板碰撞射线无相交，默认固定层高2.7m 
+    // 虚景 VR 没有天花板碰撞射线无相交，默认固定层高2.7m
     const verticalY = intersection ? intersection.point.y : 2.7
-
     const id = observers[index]
     if (!id) return roomHeightInfo
 
@@ -132,7 +131,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
     'style',
     `position: absolute;pointer-events: none;width: 100%;height: 100%;left: 0;top: 0;overflow: hidden;`,
   )
-  
+
   // 添加标尺样式
   const style = document.createElement('div')
   style.innerHTML = PanoRulerStyle
