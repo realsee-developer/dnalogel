@@ -420,8 +420,13 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
 
       const $label = $line.querySelector('.PanoRulerPlugin-rule-label') as HTMLDivElement
 
-      // 线的长度小于标签的宽度时隐藏
-      if ($label.children[0].clientWidth >= distance) {
+     // 线的长度小于标签时或者标签与线两端点重合时隐藏,
+     const labelWidth = $label.children[0].clientWidth
+     if (
+       labelWidth >= distance ||
+       labelWidth / 2 >= (labelOffset / 100) * distance ||
+       labelWidth / 2 >= (1 - labelOffset / 100) * distance
+     ) {
         $line.style.display = 'none'
       } else {
         $line.style.width = distance + 'px'

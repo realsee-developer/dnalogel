@@ -57,7 +57,6 @@ const PanoRulerStyle =
   backdrop-filter: blur(0.25rem);
   border-radius: 6.25rem;
   border: 0.0625rem solid rgba(255,255,255,0.6);
-  transform: translate(-50%, -50%);
   white-space: nowrap;
   overflow: hidden;
   color: #FFFFFF;
@@ -76,7 +75,7 @@ const PanoRulerStyle =
 }
 
 @keyframes viewport-rule-label {
-  0% { opacity: 0; transform: translate(-50%, -50%) scaleX(0); }
+  0% { opacity: 0; transform: scaleX(0); }
   100% { opacity: 1; transform: translate(-50%, -50%) scaleX(1); }
 }
 
