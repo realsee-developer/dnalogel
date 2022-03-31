@@ -6,8 +6,8 @@ export interface PanoSpatialTagPluginTagElement {
   normal: THREE.Vector3
   square: Array<THREE.Vector3>
   hidden?: boolean
+  destroying?: boolean
   app: any
-  dispose: () => void
 }
 
 export interface PanoSpatialTagPluginOriginElement {
@@ -16,6 +16,7 @@ export interface PanoSpatialTagPluginOriginElement {
   normal: THREE.Vector3
   front: boolean
   hidden?: boolean
+  destroying?: boolean
   left: number
   top: number
 }

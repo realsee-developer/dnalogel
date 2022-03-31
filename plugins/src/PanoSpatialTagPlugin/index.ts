@@ -47,7 +47,6 @@ export const PanoSpatialTagPlugin: FivePlugin<
   const minDistance = params?.minDistance || 1.2
   const maxDistance = params?.maxDistance || 3.5
 
-  const css3DRender = CSS3DRenderPlugin(five)
   const container = document.createElement('div')
   container.classList.add('PanoSpatialTagPlugin')
   Object.assign(container.style, pluginStyle)
@@ -70,6 +69,70 @@ export const PanoSpatialTagPlugin: FivePlugin<
     if (userAction) updateTags()
   }
 
+  const onPanoArrived = () => {
+    if (state.forbidden) {
+      state.forbidden = false
+      updateTags()
+    }
+  }
+
+  const onPanoWillArrive = (pano, pose) => {
+    if (state.tags.length === 0) return
+    const rad = pose.longitude - five.state.longitude
+    const camera = five.camera.clone()
+    camera.position.copy(pose.offset)
+    camera.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), rad)
+    camera.updateProjectionMatrix()
+    camera.updateMatrixWorld(true)
+    const frustum = new THREE.Frustum()
+    const projScreenMatrix = new THREE.Matrix4()
+    const direction = camera.getWorldDirection(new THREE.Vector3())
+    projScreenMatrix.multiplyMatrices(
+      camera.projectionMatrix,
+      camera.matrixWorldInverse
+    )
+    frustum.setFromProjectionMatrix(projScreenMatrix)
+
+    state.tags.forEach(tag => {
+      const distance = camera.position.clone().setY(1.4).distanceTo(tag.position)
+      if (distance < minDistance || distance > maxDistance) return tag.destroying = true
+      if (!frustum.containsPoint(tag.position)) return tag.destroying = true
+      const v = tag.position.clone().sub(camera.position).setY(0)
+      if (
+        v.angleTo(tag.normal) > Math.PI * 1 / 4 &&
+        v.angleTo(tag.normal) < Math.PI * 3 / 4
+      ) return tag.destroying = true
+    })
+    state.tags.forEach(tag => {
+      if (tag.destroying) {
+        tag.app.$set({
+          destroying: tag.destroying
+        })
+      }
+    })
+    setTimeout(() => {
+      state.tags.forEach(tag => {
+        if (tag.destroying) {
+          tag.app.$destroy()
+        }
+      })
+      state.tags = state.tags.filter(tag => !tag.destroying)
+      updateOrigins()
+    }, 1900)
+  }
+
+  const onModeChange = mode => {
+    if (mode !== Five.Mode.Panorama && !state.forbidden) {
+      origins.$set({ origins: [] })
+      state.tags.forEach(tag => {
+        tag.app.$destroy()
+      })
+      state.origins = []
+      state.tags = []
+      state.forbidden = true
+    }
+  }
+
   const updateOrigins = () => {
     if (state.forbidden || !state.enabled) return
     const camera = five.camera
@@ -84,7 +147,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
         front,  
         left: (   mouse.x + 1 ) / 2 * 100,
         top:  ( - mouse.y + 1 ) / 2 * 100,
-        hidden: tag.hidden,
+        destroying: tag.destroying,
       }
     })
     origins.$set({ origins: state.origins })
@@ -120,7 +183,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     frustum.setFromProjectionMatrix(projScreenMatrix)
 
     const points = state.data.reduce((result, point) => {
-      if (state.tags.find(_point => point.id === _point.id)) return result
+      if (tags.find(_point => point.id === _point.id)) return result
       const distance = camera.position.clone().setY(1.4).distanceTo(point.position)
 
       const _point = Object.assign({}, point, { distance })
@@ -185,14 +248,18 @@ export const PanoSpatialTagPlugin: FivePlugin<
           position.clone().add(new THREE.Vector3(0, 0.001, 0)).add(right),
           position.clone().add(new THREE.Vector3(0, 0.001, 0)),
         ].map(v => plane.projectPoint(v, new THREE.Vector3()))
+
+        const css3DRender = CSS3DRenderPlugin(five)
         const { container, dispose } = css3DRender.create3DDomContainer(square) || {}
         const app = new Tag({ 
           target: container, 
           props: {
+            id,
             content,
             lineZoom: 0.4 * (0.01 + camera.position.distanceTo(position) / maxDistance),
             contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
             upsideDown: position.y > 1.6,
+            dispose,
           },
         })
         tags.push({
@@ -201,7 +268,6 @@ export const PanoSpatialTagPlugin: FivePlugin<
           square,
           id,
           app,
-          dispose,
         })
       }
     }
@@ -210,12 +276,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   const load = (data?: Array<PanoSpatialTagPluginDataElement>, enabled: boolean=true) => {
-     state.data = data.map(one => {
-       one.position = new THREE.Vector3(one.position.x, one.position.y, one.position.z) // TODO
-       one.normal = new THREE.Vector3(one.normal.x, one.normal.y, one.normal.z) // TODO
-       return one
-     })
-     state.enabled = enabled
+    state.data = data
+    state.enabled = enabled
   }
 
   const enable = () => {
@@ -227,24 +289,29 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   const dispose = () => {
-    css3DRender.disposeAll()
+    five.off('panoWillArrive', onPanoWillArrive)
+    five.off('panoArrived', onPanoArrived)
+    five.off('modeChange', onModeChange)
+    five.off('cameraUpdate', onCameraUpdate)
   }
 
   if (five?.model?.loaded) {
     if (!wrapper) wrapper = five.getElement().parentElement
     wrapper.appendChild(container)
     state.forbidden = false
-    five.on('panoWillArrive', () => {}) // TODO
-    five.on('modeChange', () => {}) // TODO
+    five.on('panoWillArrive', onPanoWillArrive)
+    five.on('panoArrived', onPanoArrived)
+    five.on('modeChange', onModeChange)
     five.on('cameraUpdate', onCameraUpdate)
   } else {
     five.once('modelBvhLoaded', () => {
       if (!wrapper) wrapper = five.getElement().parentElement
       wrapper.appendChild(container)
       state.forbidden = false
-      five.on('panoWillArrive', () => {}) // TODO
-      five.on('modeChange', () => {}) // TODO
-      five.on('cameraUpdate', onCameraUpdate) // TODO
+      five.on('panoWillArrive', onPanoWillArrive)
+      five.on('panoArrived', onPanoArrived)
+      five.on('modeChange', onModeChange)
+      five.on('cameraUpdate', onCameraUpdate)
     })
   }
 

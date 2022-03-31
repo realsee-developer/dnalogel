@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as THREE from 'three';
 import { Five, Mode } from "@realsee/five"
 import { unsafe__useFiveInstance } from "@realsee/five/react"
 
@@ -672,7 +673,14 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                     "z": -1
                 }
             }
-        ])
+        ].map(one => {
+          one.position = new THREE.Vector3(one.position.x, one.position.y, one.position.z) // TODO
+          one.normal = new THREE.Vector3(one.normal.x, one.normal.y, one.normal.z) // TODO
+          one.content = `
+            <span className="tag-name">${one.name}</span><br/>
+            <span className="tag-price">￥${one.price}</span>`
+          return one
+        }))
     }, [])
     
     return null

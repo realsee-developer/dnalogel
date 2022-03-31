@@ -1,15 +1,37 @@
 <script lang="ts">
+  import { onMount, onDestroy, afterUpdate } from 'svelte'
+  import { currentTarget } from '../store'
+  export let id: number | string
   export let upsideDown: boolean
   export let content: string
   export let contentZoom: number
   export let lineZoom: number
+  export let destroying: boolean | undefined
+  export let dispose: () => void
+
+  let show = false
+  let hidden
+  const unsubscribe = currentTarget.subscribe(str => {
+    if (str === null) return
+    const [currentId, date] = str.split('-PanoSpatialTagPlugin-')
+  })
+
+  onMount(() => setTimeout(() => hidden = false, 100))
+  afterUpdate(() => {
+    if (hidden === true) show = false
+    else if (hidden === false) show = true
+  })
+  onDestroy(() => {
+    unsubscribe()
+    dispose()
+  })
 </script>
 
 <div 
   class:PanoSpatialTagPlugin__tag-x={true}
   class:PanoSpatialTagPlugin__tag-upside-down={upsideDown}
-  class:PanoSpatialTagPlugin__tag-show={true}
-  class:PanoSpatialTagPlugin__tag-hide={false}
+  class:PanoSpatialTagPlugin__tag-show={show}
+  class:PanoSpatialTagPlugin__tag-hide={hidden || destroying}
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
