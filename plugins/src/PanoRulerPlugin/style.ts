@@ -63,8 +63,8 @@ const PanoRulerStyle =
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 1;
-  -webkit-animation: viewport-rule-label 0.5s ease 1s;
-  animation: viewport-rule-label 0.5s ease 1s;
+  -webkit-animation: viewport-rule-label 0.25s ease 1s;
+  animation: viewport-rule-label 0.25s ease 1s;
   animation-fill-mode: both;
   box-shadow: inset 0 0 0.625rem 0 rgba(255,255,255,0.30);
 }
