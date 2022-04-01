@@ -206,7 +206,7 @@ export const CSS3DRenderPlugin: FivePlugin<CSS3DRenderPluginParameterType, CSS3D
      * [0,0,1] => [0,1,0]  为rolate Worldy正方向
      * [0,1,1] => [-1,0,0] 为rolate Worldz正方向
      */
-    const rotateX = (vector12.z > 0 ? 1 : -1) * rotateXAngle
+    const rotateX = (vector12.z > 0 ? -1 : 1) * rotateXAngle
     const rotateY = (vector01.z < 0 ? 1 : -1) * rotateYAngle
     const rotateZ = ((vector01.x > 0 && vector01.y < 0) || (vector01.x < 0 && vector01.y > 0) ? -1 : 1) * rotateZAngle
 
