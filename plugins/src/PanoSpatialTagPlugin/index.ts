@@ -58,12 +58,12 @@ export const PanoSpatialTagPlugin: FivePlugin<
   PanoSpatialTagPluginExportType
 > = (five: Five, params) => {
   let wrapper = params?.container
-  const wait = params?.wait || 200
-  const minDistance = params?.minDistance || 1.2
-  const maxDistance = params?.maxDistance || 3.5
-  const maxFrontTagLength = params?.maxFrontTagLength || 3
-  const minRad = params?.minRad || Math.PI / 4
-  const upsideHeight = params?.upsideHeight || 1.6
+  const wait = params?.wait ?? 200
+  const minDistance = params?.minDistance ?? 1.2
+  const maxDistance = params?.maxDistance ?? 3.5
+  const maxFrontTagLength = params?.maxFrontTagLength ?? 3
+  const minRad = params?.minRad ?? Math.PI / 4
+  const upsideHeight = params?.upsideHeight ?? 1.6
 
   const css3DRender = CSS3DRenderPlugin(five)
   const container = document.createElement('div')
@@ -137,6 +137,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       state.tags.forEach(tag => {
         if (tag.destroying) {
           tag.app.$destroy()
+          tag = null
         }
       })
       state.tags = state.tags.filter(tag => !tag.destroying)
@@ -149,6 +150,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       origins.$set({ origins: [] })
       state.tags.forEach(tag => {
         tag.app.$destroy()
+        tag = null
       })
       state.origins = []
       state.tags = []
@@ -231,7 +233,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
         position: point.position,
         normal: point.normal,
         content: point.content,
-        weight: point.weight || 0,
+        weight: point.weight ?? 0,
         distance,
       }
 
@@ -332,6 +334,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     origins.$set({ origins: [] })
     state.tags.forEach(tag => {
       tag.app.$destroy()
+      tag = null
     })
     state.origins = []
     state.tags = []
@@ -354,6 +357,14 @@ export const PanoSpatialTagPlugin: FivePlugin<
   const dispose = (): void => {
     blurImage = null
     css3DRender.disposeAll()
+
+    origins.$destroy()
+    state.tags.forEach(tag => {
+      tag.app.$destroy()
+      tag = null
+    })
+    state.origins = []
+    state.tags = []
 
     five.off('panoWillArrive', onPanoWillArrive)
     five.off('panoArrived', onPanoArrived)
