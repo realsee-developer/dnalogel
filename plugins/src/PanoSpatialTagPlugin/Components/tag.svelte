@@ -6,21 +6,33 @@
   export let content: string
   export let contentZoom: number
   export let lineZoom: number
-  export let destroying: boolean | undefined
+  export let destroying: boolean
+  export let folded: boolean
   export let dispose: () => void
 
-  let show = false
-  let hidden
+  let show: boolean
+  let timeoutId: NodeJS.Timeout | undefined = setTimeout(() => {
+    if (!folded) show = true
+    timeoutId = undefined
+  }, 100)
+
   const unsubscribe = currentTarget.subscribe(str => {
     if (str === null) return
     const [currentId, date] = str.split('-PanoSpatialTagPlugin-')
+    if (id === currentId && !timeoutId) {
+      show = folded
+      folded = !folded
+      timeoutId = setTimeout(() => {
+        timeoutId = undefined
+      }, 1500)
+    }
   })
 
-  onMount(() => setTimeout(() => hidden = false, 100))
   afterUpdate(() => {
-    if (hidden === true) show = false
-    else if (hidden === false) show = true
+    if (timeoutId) return
+    show = !folded
   })
+
   onDestroy(() => {
     unsubscribe()
     dispose()
@@ -31,7 +43,7 @@
   class:PanoSpatialTagPlugin__tag-x={true}
   class:PanoSpatialTagPlugin__tag-upside-down={upsideDown}
   class:PanoSpatialTagPlugin__tag-show={show}
-  class:PanoSpatialTagPlugin__tag-hide={hidden || destroying}
+  class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
@@ -70,6 +82,8 @@
     z-index: -1;
     opacity: 0;
     transition: opacity .8s .6s;
+    background: url('https://vrlab-image4.ljcdn.com/release/web/PanoSpatialTagPlugin__blur.png');
+    background-size: 30rem 30rem;
   }
 
   .PanoSpatialTagPlugin__tag-flagpole {
