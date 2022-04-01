@@ -70,4 +70,4 @@ export type {
   PanoCompassPluginExportType,
   PanoCompassPluginData,
 } from './PanoCompassPlugin'
-export { default as PanoCompassPluginPlugin } from './PanoCompassPlugin'
+export { default as PanoCompassPlugin } from './PanoCompassPlugin'
