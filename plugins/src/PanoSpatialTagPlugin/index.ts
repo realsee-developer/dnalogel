@@ -32,6 +32,7 @@ export interface PanoSpatialTagPluginParameterType {
   maxDistance?: number
   maxNumberOnScreen?: number
   minRad?: number
+  nearTolerance?: number
   upsideHeight?: number
 }
 
@@ -78,6 +79,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
   const maxDistance = params?.maxDistance ?? 3.5
   const maxNumberOnScreen = params?.maxNumberOnScreen ?? 3
   const minRad = params?.minRad ?? Math.PI / 4
+  const nearTolerance = params?.nearTolerance ?? 100
   const upsideHeight = params?.upsideHeight ?? 1.6
 
   const css3DRender = CSS3DRenderPlugin(five)
@@ -136,7 +138,6 @@ export const PanoSpatialTagPlugin: FivePlugin<
     camera.updateMatrixWorld(true)
     const frustum = new THREE.Frustum()
     const projScreenMatrix = new THREE.Matrix4()
-    const direction = camera.getWorldDirection(new THREE.Vector3())
     projScreenMatrix.multiplyMatrices(
       camera.projectionMatrix,
       camera.matrixWorldInverse
@@ -229,7 +230,9 @@ export const PanoSpatialTagPlugin: FivePlugin<
       camera.matrixWorldInverse
     )
     frustum.setFromProjectionMatrix(projScreenMatrix)
-    const frontTagLength = state.tags.filter(tag => frustum.containsPoint(tag.position)).length
+    const frontTagLength = state.tags.filter(
+      tag => frustum.containsPoint(tag.position) && !tag.destroying
+    ).length
 
     const points: Array<PanoSpatialTagPluginPointElement> = state.points.reduce((result, point) => {
       if (state.tags.find(tag => point.id === tag.id && !tag.destroying)) return result
@@ -252,7 +255,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
         return Math.sqrt(
           Math.pow((mouse.x - _mouse.x) / 2 * clientWidth, 2) + 
           Math.pow((mouse.y - _mouse.y) / 2 * clientHeight, 2)
-        ) > 100
+        ) > nearTolerance
       })) return result
 
       const newPoint: PanoSpatialTagPluginPointElement = {
