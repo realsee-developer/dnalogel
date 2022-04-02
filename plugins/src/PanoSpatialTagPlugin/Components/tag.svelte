@@ -29,7 +29,7 @@
     if (str === null) return
     const [currentId, date] = str.split('-PanoSpatialTagPlugin-')
     if (id === currentId) {
-      hooks.emit('clickOrigin', { id, date, folded })
+      hooks.emit('clickOrigin', { id, date, show })
       if (!timeoutId) {
         show = folded
         folded = !folded
