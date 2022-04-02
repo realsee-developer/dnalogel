@@ -33,6 +33,16 @@
     pointer-events: auto;
   }
 
+  .PanoSpatialTagPlugin__tag-origin:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 50%;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(-50%, -50%);
+  }
+
   .PanoSpatialTagPlugin__tag-origin-destroy {
     transform: translate(-50%, -50%) scale(0.6);
     animation: PanoSpatialTagPlugin__tag-origin-destroy 1.2s forwards .7s;
