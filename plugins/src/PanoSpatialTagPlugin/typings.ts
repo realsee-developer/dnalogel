@@ -1,7 +1,9 @@
 import * as THREE from 'three'
 
+export type PanoSpatialTagPluginId = string | number;
+
 export interface PanoSpatialTagPluginDataElement {
-	id: string | number
+	id: PanoSpatialTagPluginId
 	position: THREE.Vector3
 	normal: THREE.Vector3
 	content: string
@@ -9,7 +11,7 @@ export interface PanoSpatialTagPluginDataElement {
 }
 
 export interface PanoSpatialTagPluginTagElement {
-	id: string | number
+	id: PanoSpatialTagPluginId
 	position: THREE.Vector3
   normal: THREE.Vector3
   square: Array<THREE.Vector3>
@@ -18,7 +20,7 @@ export interface PanoSpatialTagPluginTagElement {
 }
 
 export interface PanoSpatialTagPluginOriginElement {
-	id: string | number
+	id: PanoSpatialTagPluginId
   front: boolean
   left: number
   top: number
@@ -26,7 +28,7 @@ export interface PanoSpatialTagPluginOriginElement {
 }
 
 export interface PanoSpatialTagPluginPointElement {
-	id: string | number
+	id: PanoSpatialTagPluginId
 	position: THREE.Vector3
 	normal: THREE.Vector3
 	content: string

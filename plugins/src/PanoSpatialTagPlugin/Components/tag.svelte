@@ -11,7 +11,7 @@
   export let dispose: () => void
 
   let show: boolean
-  let timeoutId: NodeJS.Timeout | undefined = setTimeout(() => {
+  let timeoutId: NodeJS.Timeout = setTimeout(() => {
     if (!folded) show = true
     timeoutId = undefined
   }, 100)
@@ -191,6 +191,10 @@
   .PanoSpatialTagPlugin__tag-hide .PanoSpatialTagPlugin__tag-content {
     transform: translate(-100%, 0);
     transition: transform .6s cubic-bezier(.53,.06,.88,.59);
+  }
+
+  .PanoSpatialTagPlugin__tag-hide .PanoSpatialTagPlugin__tag-content * {
+    pointer-events: none;
   }
 
   .PanoSpatialTagPlugin__tag-hide .PanoSpatialTagPlugin__tag-line1 {
