@@ -675,13 +675,31 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                     }
                 }
             ].map(one => {
-              one.position = new THREE.Vector3(one.position.x, one.position.y, one.position.z) // TODO
-              one.normal = new THREE.Vector3(one.normal.x, one.normal.y, one.normal.z) // TODO
-              one.content = `
-                <span className="tag-name">${one.name}</span><br/>
-                <span className="tag-price">￥${one.price}</span>`
+              one.position = [one.position.x, one.position.y, one.position.z]
+              one.normal = [one.normal.x, one.normal.y, one.normal.z]
+              one.replacement = {
+                name: one.name,
+                price: one.price,
+              }
+              one.weight = 0
               return one
             }),
+            template: `
+            <div>
+                <span className="tag-name" style="pointer-events: auto">{{name}}</span><br/>
+                <span className="tag-price">{{price}}</span>
+            </div>`,
+            render: (template, replacement) => {
+              const evaluate = /{{([\s\S]+?)}}/g
+              const keys = Object.keys(replacement)
+              const values = keys.map(key => replacement[key])
+              return template.replace(evaluate, (_, target) => {
+                return (new Function(...keys.concat('return ' + target)))(...values)
+              })
+            },
+            events: {
+                'tag-name': id => panoSpatialTagPlugin.fold(id)
+            },
             folded: false,
             enabled: true,     
         })

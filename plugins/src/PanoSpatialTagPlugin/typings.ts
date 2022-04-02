@@ -2,11 +2,15 @@ import * as THREE from 'three'
 
 export type PanoSpatialTagPluginId = string | number;
 
+export interface PanoSpatialTagPluginContentReplacement {
+	[key: string]: string
+}
+
 export interface PanoSpatialTagPluginDataElement {
 	id: PanoSpatialTagPluginId
-	position: THREE.Vector3
-	normal: THREE.Vector3
-	content: string
+	position: number[]
+	normal: number[]
+	replacement: PanoSpatialTagPluginContentReplacement
 	weight?: number
 }
 
@@ -27,11 +31,15 @@ export interface PanoSpatialTagPluginOriginElement {
   destroying?: boolean
 }
 
+export interface PanoSpatialTagPluginContentEvent {
+	[className: string]: (id: PanoSpatialTagPluginId) => any
+}
+
 export interface PanoSpatialTagPluginPointElement {
 	id: PanoSpatialTagPluginId
 	position: THREE.Vector3
 	normal: THREE.Vector3
-	content: string
+	replacement: PanoSpatialTagPluginContentReplacement
 	weight: number
-  distance: number,
+  distance?: number
 }

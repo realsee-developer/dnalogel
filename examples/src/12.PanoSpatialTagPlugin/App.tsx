@@ -37,7 +37,7 @@ const App: FC = () => {
 
   return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
     <FiveCanvas {...size} />
-    <PanoSpacialTagPluginUse/>
+    <PanoSpacialTagPluginUse />
     <PanoFloorplanRadarPanel />
   </FiveProvider>;
 };

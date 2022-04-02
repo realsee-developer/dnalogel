@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy, afterUpdate } from 'svelte'
+  import { PanoSpatialTagPluginContentEvent } from '../typings'
   import { currentTarget } from '../store'
   export let id: number | string
   export let upsideDown: boolean
@@ -9,6 +10,8 @@
   export let destroying: boolean
   export let folded: boolean
   export let dispose: () => void
+  export let events: PanoSpatialTagPluginContentEvent
+  export let hooks
 
   let show: boolean
   let timeoutId: NodeJS.Timeout = setTimeout(() => {
@@ -16,15 +19,24 @@
     timeoutId = undefined
   }, 100)
 
-  const unsubscribe = currentTarget.subscribe(str => {
+  const handleClickContent = event => {
+    Object.keys(events).forEach(key => {
+      if (event.target.getAttribute('className').includes(key)) events[key](id)
+    })
+  }
+
+  const unsubscribe = currentTarget.subscribe((str: string) => {
     if (str === null) return
     const [currentId, date] = str.split('-PanoSpatialTagPlugin-')
-    if (id === currentId && !timeoutId) {
-      show = folded
-      folded = !folded
-      timeoutId = setTimeout(() => {
-        timeoutId = undefined
-      }, 1500)
+    if (id === currentId) {
+      hooks.emit('clickOrigin', { id, date, folded })
+      if (!timeoutId) {
+        show = folded
+        folded = !folded
+        timeoutId = setTimeout(() => {
+          timeoutId = undefined
+        }, 1500)
+      }
     }
   })
 
@@ -53,7 +65,7 @@
     <i class="PanoSpatialTagPlugin__tag-line2"/>
   </div>
   <div class="PanoSpatialTagPlugin__tag-animate" style="transform: scale({contentZoom * 3})">
-    <div class="PanoSpatialTagPlugin__tag-content">
+    <div class="PanoSpatialTagPlugin__tag-content" on:click="{handleClickContent}">
       {@html content}
     </div>
   </div>

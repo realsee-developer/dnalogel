@@ -1,23 +1,28 @@
 import * as THREE from 'three'
-import CSS3DRenderPlugin from '../CSS3DRenderPlugin'
 import type { FivePlugin } from '@realsee/five'
-import { Five } from '@realsee/five'
+import { Five, Subscribe } from '@realsee/five'
+import CSS3DRenderPlugin from '../CSS3DRenderPlugin'
 import Origins from './Components/origins.svelte'
 import Tag from './Components/tag.svelte'
 import { pluginStyle } from './style'
 
-import {
+import type {
   PanoSpatialTagPluginId,
   PanoSpatialTagPluginDataElement,
   PanoSpatialTagPluginTagElement,
   PanoSpatialTagPluginOriginElement,
   PanoSpatialTagPluginPointElement,
+  PanoSpatialTagPluginContentReplacement,
+  PanoSpatialTagPluginContentEvent,
 } from './typings'
 
 export interface PanoSpatialTagPluginData {
   folded?: boolean
   enabled?: boolean
   points: Array<PanoSpatialTagPluginDataElement>
+  template: string
+  events?: PanoSpatialTagPluginContentEvent
+  render?: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => string
 }
 
 export interface PanoSpatialTagPluginParameterType {
@@ -29,6 +34,7 @@ export interface PanoSpatialTagPluginParameterType {
   minRad?: number
   upsideHeight?: number
 }
+
 export interface PanoSpatialTagPluginExportType {
   load: (data: PanoSpatialTagPluginData) => void
   unfoldAll: () => void
@@ -42,9 +48,12 @@ export interface PanoSpatialTagPluginExportType {
 
 interface PanoSpatialTagPluginState {
   timeoutId?: NodeJS.Timeout
-  points: Array<PanoSpatialTagPluginDataElement>
+  points: Array<PanoSpatialTagPluginPointElement>
   origins: Array<PanoSpatialTagPluginOriginElement>
   tags: Array<PanoSpatialTagPluginTagElement>
+  render: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => string
+  events: PanoSpatialTagPluginContentEvent
+  template: string
   folded: boolean // 标签初始收起展开状态
   enabled: boolean // 用户控制启用禁止状态
   forbidden: boolean // 插件控制启用禁止状态
@@ -62,6 +71,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
   PanoSpatialTagPluginParameterType,
   PanoSpatialTagPluginExportType
 > = (five: Five, params) => {
+
   let wrapper = params?.container
   const wait = params?.wait ?? 200
   const minDistance = params?.minDistance ?? 1.2
@@ -75,6 +85,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
   container.classList.add('PanoSpatialTagPlugin')
   Object.assign(container.style, pluginStyle)
 
+  const hooks = new Subscribe()
+
   let blurImage = new Image()
   blurImage.src = BLUR_IMAGE_URL
 
@@ -82,6 +94,16 @@ export const PanoSpatialTagPlugin: FivePlugin<
     points: [],
     origins: [],
     tags: [],
+    template: '',
+    events: {},
+    render: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => {
+      const evaluate = /{{([\s\S]+?)}}/g
+      const keys = Object.keys(replacement)
+      const values = keys.map(key => replacement[key])
+      return template.replace(evaluate, (_, target) => {
+        return (new Function(...keys.concat('return ' + target)))(...values)
+      })
+    },
     folded: false,
     enabled: true,
     forbidden: true,
@@ -237,8 +259,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
         id: point.id,
         position: point.position,
         normal: point.normal,
-        content: point.content,
-        weight: point.weight ?? 0,
+        replacement: point.replacement,
+        weight: point.weight,
         distance,
       }
 
@@ -286,7 +308,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       const [intersect] = five.model.intersectRaycaster(raycaster)
       if (!intersect) continue
       if (point.distance - intersect.distance < RAY_TOLERANT_DISTANCE) {
-        const { position, normal, id, content } = point
+        const { position, normal, id, replacement } = point
         const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(normal, position)
         const right = position.clone().sub(camera.position)
           .cross(new THREE.Vector3(0, 1, 0)).setLength(MESH_SIZE)
@@ -302,11 +324,13 @@ export const PanoSpatialTagPlugin: FivePlugin<
           target: container, 
           props: {
             id,
-            content,
+            content: state.render(state.template, replacement),
             lineZoom: 0.4 * (0.01 + camera.position.distanceTo(position) / maxDistance),
             contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
             upsideDown: position.y > upsideHeight,
             folded: state.folded,
+            events: state.events,
+            hooks,
             dispose,
           },
         })
@@ -329,7 +353,18 @@ export const PanoSpatialTagPlugin: FivePlugin<
   * @param data.folded {Boolean} 标签是否默认展开
   */
   const load = (data: PanoSpatialTagPluginData): void => {
-    state.points = data.points
+    state.points = data.points.map(point => {
+      return {
+        id: point.id,
+        position: new THREE.Vector3().fromArray(point.position),
+        normal: new THREE.Vector3().fromArray(point.normal),
+        replacement: point.replacement ?? {},
+        weight: point.weight ?? 0,
+      }
+    })
+    if (data.render) state.render = data.render
+    if (data.template) state.template = data.template
+    if (data.events) state.events = data.events
     if (data.enabled === false) state.enabled = data.enabled
     if (data.folded === true) state.folded = data.folded
   }
@@ -445,6 +480,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     fold,
     enable,
     disable,
+    hooks,
     dispose,
   }
 }

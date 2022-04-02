@@ -1,10 +1,10 @@
 <script lang="ts">
   import { currentTarget } from '../store'
-  import PanoSpatialTagPluginOriginElement from '../typings'
+  import type { PanoSpatialTagPluginOriginElement, PanoSpatialTagPluginId } from '../typings'
   export let origins: Array<PanoSpatialTagPluginOriginElement>
 
-  function handleClick (id) {
-    currentTarget.update(() => `${id}-PanoSpatialTagPlugin-${Date.now()}`)
+  const handleClick = (id: PanoSpatialTagPluginId): void => {
+    currentTarget.update((): string => `${id}-PanoSpatialTagPlugin-${Date.now()}`)
   }
 </script>
 
@@ -15,7 +15,7 @@
     style:top="{origin.top}%"
     style:left="{origin.left}%"
     style:visibility="{origin.front ? 'visible' : 'hidden'}"
-    on:click={() => handleClick(origin.id)}
+    on:click="{() => handleClick(origin.id)}"
   />
 {/each}
 
