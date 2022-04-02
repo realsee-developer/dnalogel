@@ -18,7 +18,6 @@ export interface PanoSpatialTagPluginTagElement {
 	id: PanoSpatialTagPluginId
 	position: THREE.Vector3
   normal: THREE.Vector3
-  square: Array<THREE.Vector3>
   app: any
   destroying?: boolean
 }

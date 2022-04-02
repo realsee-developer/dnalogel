@@ -340,7 +340,6 @@ export const PanoSpatialTagPlugin: FivePlugin<
         newTags.push({
           position,
           normal,
-          square,
           id,
           app,
         })
