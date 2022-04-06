@@ -8,6 +8,7 @@ import { omit } from '../../shared-utils/filter'
 import getPxmm from '../../shared-utils/getPxmm'
 import Main from "../ModelFloorplanPlugin/Components/Main.svelte"
 import changeModelCanvasOpacity from '../../shared-utils/changeModelCanvasOpacity'
+import { FLOOR_PLAN_ATTACHED_TO } from '../constant'
 
 export interface TopviewFloorplanPluginParameterType {
   selector?: string | Element
@@ -20,6 +21,7 @@ export interface TopviewFloorplanPluginParameterType {
   ruleLabelsEnable?: boolean
   roomLabelsEnable?: boolean
   preventRoomClick?: boolean
+  attachedTo?: FLOOR_PLAN_ATTACHED_TO
   getLabelElement?: (room: FloorplanRoomItem) => Element | null
 }
 type Configs = Omit<TopviewFloorplanPluginParameterType, 'selector' | 'scale'>
@@ -91,6 +93,7 @@ export class TopviewFloorplanPluginController {
   private onModelShownFloorChange = (shownFloor: number | null) => {
     if (shownFloor === null) return
     this.floorIndex = shownFloor
+    this.updateSize()
     this.render()
   }
 
@@ -137,8 +140,8 @@ export class TopviewFloorplanPluginController {
 
   private show() {
     this.visible = true
-    this.updateSize()
     this.five.model.show(this.floorIndex)
+    this.updateSize()
 
     const renderDuration = 500
     const modelOpacity = this.configs.modelOpacity
@@ -173,7 +176,8 @@ export class TopviewFloorplanPluginController {
     const width = max.x - min.x
     const height = max.y - min.y
     // 每毫米对应的 px 值
-    const pxmm = getPxmm(this.five, this.wrapper)
+    const options = this.configs.attachedTo ? { attachedTo: this.configs.attachedTo } : undefined
+    const pxmm = getPxmm(this.five, this.wrapper, this.floorIndex, options)
     const _width = Math.ceil(width * pxmm)
     const _height = Math.ceil(height * pxmm)
     this.pxmm = pxmm
@@ -195,7 +199,6 @@ export class TopviewFloorplanPluginController {
       ruleLabelsEnable,
     } = this.configs
     const handleClick = preventRoomClick ? () => false : undefined
-    console.log('🚀 ~ TopviewFloorplanPluginController ~ handleClick', handleClick)
     const props = {
       five: this.five,
       pxmm: this.pxmm,
