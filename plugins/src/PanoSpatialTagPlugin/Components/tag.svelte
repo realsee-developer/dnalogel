@@ -25,11 +25,13 @@
     })
   }
 
+  onMount(() => hooks.emit('initTag', { id }))
+
   const unsubscribe = currentTarget.subscribe((str: string) => {
     if (str === null) return
     const [currentId, date] = str.split('-PanoSpatialTagPlugin-')
     if (id === currentId) {
-      hooks.emit('clickOrigin', { id, date, show })
+      hooks.emit('clickOrigin', { id, show })
       if (!timeoutId) {
         show = folded
         folded = !folded
@@ -46,6 +48,7 @@
   })
 
   onDestroy(() => {
+    hooks.emit('destroyTag', { id })
     unsubscribe()
     dispose()
   })
