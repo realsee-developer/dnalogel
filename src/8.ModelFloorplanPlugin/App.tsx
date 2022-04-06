@@ -9,11 +9,10 @@ import { work } from '../mockData'
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 
 const defaultPluginParam = {
+    attachedTo: FLOOR_PLAN_ATTACHED_TO.CEILING // 户型图吸附至天花板，默认吸附至几何中心
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()
-
-console.log(initialParamFromUrl)
 
 const pluginParams = (JSON.stringify(initialParamFromUrl) !== '{}') ? initialParamFromUrl : defaultPluginParam
 
@@ -23,7 +22,6 @@ const FiveProvider = createFiveProvider({
             ModelFloorplanPlugin,
             'modelFloorplanPlugin',
             {
-                attachedTo: FLOOR_PLAN_ATTACHED_TO.CEILING,
                 selector: '.plugin-full-screen-container',
                 ...pluginParams
             }
