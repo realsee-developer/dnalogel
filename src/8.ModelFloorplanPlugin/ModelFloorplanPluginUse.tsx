@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Five, Mode } from "@realsee/five"
+import * as THREE from 'three'
 import { unsafe__useFiveInstance, useFiveModelReadyState, useFiveState } from "@realsee/five/react";
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
@@ -16,7 +17,7 @@ const ModelFloorplanPluginUse = (props: ModelFloorplanPluginUsePropTypes) => {
 
     React.useEffect(() => {
         if (fiveModelReadyState !== 'Loaded') return
-
+        Object.assign(window, { five, THREE })
         const modelFloorplanPlugin = five.plugins.modelFloorplanPlugin
         Promise.resolve(modelFloorplanPlugin.load(floorplanServerData))
             .then(() => modelFloorplanPlugin.show())
