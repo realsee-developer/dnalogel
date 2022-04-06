@@ -55,6 +55,7 @@ const PanoRulerStyle =
   padding: 0.1875rem 0.375rem;
   background: rgba(195,195,195,0.30);
   backdrop-filter: blur(0.25rem);
+  -webkit-backdrop-filter: blur(0.25rem);
   border-radius: 6.25rem;
   border: 0.0625rem solid rgba(255,255,255,0.6);
   white-space: nowrap;

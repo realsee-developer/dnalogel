@@ -431,6 +431,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
             ) {
                 $line.style.display = 'none'
             } else {
+                $line.style.display = 'block'
                 $line.style.width = distance + 'px'
                 $line.style.left = startLeft + 'px'
                 $line.style.top = startTop + 'px'
