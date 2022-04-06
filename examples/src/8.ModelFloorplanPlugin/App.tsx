@@ -1,4 +1,4 @@
-import { ModelFloorplanPlugin } from "@realsee/dnalogel";
+import { ModelFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import React, { FC } from "react";
@@ -23,6 +23,7 @@ const FiveProvider = createFiveProvider({
             ModelFloorplanPlugin,
             'modelFloorplanPlugin',
             {
+                attachedTo: FLOOR_PLAN_ATTACHED_TO.CEILING,
                 selector: '.plugin-full-screen-container',
                 ...pluginParams
             }

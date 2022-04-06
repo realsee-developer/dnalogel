@@ -11,7 +11,7 @@ export interface PanoCompassPluginParameterType {
   entryDoorImageUrl?: string
 }
 export interface PanoCompassPluginData {
-  entrance: {
+  entrance: null | {
     north_rad: number
     position: { x: number; y: number; z: number }
   }

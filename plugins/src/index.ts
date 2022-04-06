@@ -17,6 +17,8 @@ export { default as ModelRoomLabelPlugin } from './ModelRoomLabelPlugin'
 
 // floorplan
 
+export * from './floorplan/constant'
+
 export type {
   TopviewFloorplanPluginReturnType,
   TopviewFloorplanPluginParameterType,

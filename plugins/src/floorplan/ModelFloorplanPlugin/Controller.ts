@@ -12,6 +12,7 @@ import type { FloorplanEventHandlers } from './typings/events.type'
 import type { FloorplanServerData } from '../typings/floorplanServerData'
 import type { FloorplanData, FloorplanRoomItem } from '../typings/floorplanData'
 import { FloorplanErrorType, FIVE_CAMERA_DEFAULT_FOV, SHOW_ANIME_DURATION } from './utils/constant'
+import { FLOOR_PLAN_ATTACHED_TO } from '../constant'
 
 export interface ModelFloorplanParameterType {
   selector?: string | Element
@@ -23,6 +24,7 @@ export interface ModelFloorplanParameterType {
   ruleLabelsEnable?: boolean
   roomLabelsEnable?: boolean
   cameraImageUrl?: string
+  attachedTo?: FLOOR_PLAN_ATTACHED_TO
   getLabelElement?: (room: FloorplanRoomItem) => Element | null
 }
 
@@ -132,7 +134,8 @@ export default class ModelFloorplanPluginController {
     const width = max.x - min.x
     const height = max.y - min.y
     // 每毫米对应的 px 值
-    const pxmm = getPxmm(this.five, this.wrapper)
+    const options = this.configs.attachedTo ? { attachedTo: this.configs.attachedTo } : undefined
+    const pxmm = getPxmm(this.five, this.wrapper, this.floorIndex, options)
     const _width = Math.ceil(width * pxmm)
     const _height = Math.ceil(height * pxmm)
     if (this.size.width === _width && this.size.height === _height) return
@@ -259,6 +262,7 @@ export default class ModelFloorplanPluginController {
   private onModelShownFloorChange = (shownFloor: number | null) => {
     if (shownFloor === null) return
     this.floorIndex = shownFloor
+    this.updateSize()
     this.render()
   }
 
