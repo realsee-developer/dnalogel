@@ -28,7 +28,10 @@
     class="floorplan__camera-rotate"
     style:width="{domSizeStyle}"
     style:height="{domSizeStyle}"
+    style:left="{'-' + domSizeStyle}"
+    style:top="{'-' + domSizeStyle}"
     style:transform="{`rotate(${rotate}deg)`}"
+    style:transform-origin="{`${domSizeStyle} ${domSizeStyle}`}"
     style="background-image: {`url(${cameraImageUrl || CAMERA_IMAGE})`}"
   ></div>
 </div>
@@ -42,9 +45,6 @@
 
   .floorplan__camera-rotate {
     position: absolute;
-    left: 15px;
-    top: 15px;
-    transform-origin: 15px 15px;
     background-repeat: no-repeat;
     background-size: 100%;
   }
