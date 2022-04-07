@@ -11,11 +11,16 @@ export interface PanoCompassPluginParameterType {
   entryDoorImageUrl?: string
 }
 export interface PanoCompassPluginData {
-  entrance: null | {
-    north_rad: number
-    position: { x: number; y: number; z: number }
-  }
-  room_observers: { index: number; floor_index: number; room: FloorplanServerRoomItem }[]
+  north_rad: null | number
+  entrance:
+    | null
+    | undefined
+    | {
+        position: { x: number; y: number; z: number }
+      }
+  room_observers:
+    | undefined
+    | { index: number; floor_index: number; room: FloorplanServerRoomItem }[]
 }
 export type PanoCompassPluginExportType = PanoCompassController
 
@@ -24,10 +29,12 @@ export const panoCompassPluginServerParams = {
   version: 0,
 }
 
-export const PanoCompassPlugin: FivePlugin<PanoCompassPluginParameterType | undefined, PanoCompassController> =
-  function (five, config) {
-    return new PanoCompassController(five, config)
-  }
+export const PanoCompassPlugin: FivePlugin<
+  PanoCompassPluginParameterType | undefined,
+  PanoCompassController
+> = function (five, config) {
+  return new PanoCompassController(five, config)
+}
 
 export default PanoCompassPlugin
 
@@ -75,24 +82,30 @@ class PanoCompassController {
 
   private async init() {
     if (!this.data || !this.modelLoaded) return
-    this.compassMesh = await this.loadCompassMesh()
-    this.entryDoorMesh = await this.loadEntryDoorMesh()
-    this.roomInfoWrapperInstance = this.loadRoomInfo()
-    this.roomInfoInstance = getRoomInfoInstance()
-    this.compassMesh.rotateX(-Math.PI / 2)
-    this.entryDoorMesh.rotateX(-Math.PI / 2)
-    const northRad = this.data.entrance.north_rad
-    this.compassMesh.rotateZ(northRad - Math.PI / 2)
+    const northRad = this.data.north_rad
+    if (northRad != null) {
+      this.compassMesh = await this.loadCompassMesh()
+      this.compassMesh.rotateX(-Math.PI / 2)
+      this.compassMesh.rotateZ(northRad - Math.PI / 2)
+      this.group.add(this.compassMesh)
+    }
+    if (this.data.entrance != null) {
+      this.entryDoorMesh = await this.loadEntryDoorMesh()
+      this.roomInfoWrapperInstance = this.loadRoomInfo()
+      this.roomInfoInstance = getRoomInfoInstance()
+      this.entryDoorMesh.rotateX(-Math.PI / 2)
+      if (this.roomInfoWrapperInstance)
+        this.roomInfoInstance.appendTo(this.roomInfoWrapperInstance.container)
+      this.group.add(this.entryDoorMesh)
+    }
     this.onFivePanoArrived(this.five.panoIndex || 0)
-    this.group.add(this.compassMesh)
-    this.group.add(this.entryDoorMesh)
-    if (this.roomInfoWrapperInstance) this.roomInfoInstance.appendTo(this.roomInfoWrapperInstance.container)
     this.five.needsRender = true
   }
 
   private async loadCompassMesh() {
     const compassImageUrl =
-      this.config?.compassImageUrl || '//vrlab-image4.ljcdn.com/release/web/v3/north-point-circle.96498e69.png'
+      this.config?.compassImageUrl ||
+      '//vrlab-image4.ljcdn.com/release/web/v3/north-point-circle.96498e69.png'
     const compassTexture = await loadTexture(compassImageUrl)
     const compassGeometry = new THREE.CircleGeometry(0.7, 32)
     const compassMaterial = new THREE.MeshBasicMaterial({
@@ -108,7 +121,8 @@ class PanoCompassController {
 
   private async loadEntryDoorMesh() {
     const entryDoorImageUrl =
-      this.config?.entryDoorImageUrl || '//vrlab-image4.ljcdn.com/release/web/enterDoor.831b8208.png'
+      this.config?.entryDoorImageUrl ||
+      '//vrlab-image4.ljcdn.com/release/web/enterDoor.831b8208.png'
     const entryDoorTexture = await loadTexture(entryDoorImageUrl)
     const entryDoorGeometry = new THREE.PlaneGeometry(0.2, 0.16)
     const entryDoorMaterial = new THREE.MeshBasicMaterial({
@@ -141,44 +155,60 @@ class PanoCompassController {
   }
 
   private onFivePanoArrived = (panoIndex: number) => {
-    if (!this.compassMesh || !this.entryDoorMesh || !this.roomInfoInstance || !this.roomInfoWrapperInstance) return
-    if (!this.data) return
     // ======== fix compass position ========
     const standingPosition = this.five.work.observers[panoIndex].standingPosition
-    // 指南针上移 0.01m，防止与地板重合
-    this.compassMesh.position.copy(standingPosition.clone().setY(standingPosition.y + 0.01))
+    if (this.compassMesh) {
+      // 指南针上移 0.01m，防止与地板重合
+      this.compassMesh.position.copy(standingPosition.clone().setY(standingPosition.y + 0.01))
+      if (this.compassMesh.material.opacity !== 0) return
+      this.compassMeshTween?.dispose()
+      this.compassMeshTween = tweenProgress(1000)
+        .onUpdate(({ progress }) => {
+          this.compassMesh?.material.setValues({ opacity: progress })
+          this.five.needsRender = true
+        })
+        .play()
+    }
     // ======== fix entry door label position and rotation ========
-    const entryDoorPosition = new THREE.Vector3(
-      this.data.entrance.position.x,
-      this.data.entrance.position.y,
-      this.data.entrance.position.z,
-    )
-    const panoToEntryDoorVector = entryDoorPosition.clone().setY(standingPosition.y).sub(standingPosition).normalize()
-    const compassEntryDoorPosition = standingPosition
-      .clone()
-      .add(panoToEntryDoorVector.clone().multiplyScalar(0.7))
-      .setY(standingPosition.y + 0.01)
-    this.entryDoorMesh.rotation.z = new THREE.Vector3(0, 0, -1).angleTo(panoToEntryDoorVector)
-    this.entryDoorMesh.position.copy(compassEntryDoorPosition)
+    if (this.entryDoorMesh) {
+      const entryDoorPosition = new THREE.Vector3(
+        this.data.entrance.position.x,
+        this.data.entrance.position.y,
+        this.data.entrance.position.z,
+      )
+      const panoToEntryDoorVector = entryDoorPosition
+        .clone()
+        .setY(standingPosition.y)
+        .sub(standingPosition)
+        .normalize()
+      const compassEntryDoorPosition = standingPosition
+        .clone()
+        .add(panoToEntryDoorVector.clone().multiplyScalar(0.7))
+        .setY(standingPosition.y + 0.01)
+      this.entryDoorMesh.rotation.z = new THREE.Vector3(0, 0, -1).angleTo(panoToEntryDoorVector)
+      this.entryDoorMesh.position.copy(compassEntryDoorPosition)
+      // 不是客厅时，隐藏入户门指引
+      this.data?.room_observers[panoIndex].room.type === 1
+        ? this.entryDoorMesh?.material.setValues({ opacity: 1 })
+        : this.entryDoorMesh?.material.setValues({ opacity: 0 })
+    }
     // ======== fix room info ========
-    this.roomInfoWrapperInstance.css3DObject.position.copy(standingPosition.clone().setY(standingPosition.y + 0.01))
-    this.roomInfoInstance.setRoom(this.data.room_observers[panoIndex].room)
-    // 不是客厅时，隐藏入户门指引
-    this.data?.room_observers[panoIndex].room.type === 1
-      ? this.entryDoorMesh?.material.setValues({ opacity: 1 })
-      : this.entryDoorMesh?.material.setValues({ opacity: 0 })
+    if (this.roomInfoInstance && this.roomInfoWrapperInstance) {
+      this.roomInfoWrapperInstance.css3DObject.position.copy(
+        standingPosition.clone().setY(standingPosition.y + 0.01),
+      )
+      this.roomInfoInstance.setRoom(this.data.room_observers[panoIndex].room)
+    }
     this.five.needsRender = true
-    if (this.compassMesh.material.opacity !== 0) return
-    this.compassMeshTween?.dispose()
-    this.compassMeshTween = tweenProgress(1000)
-      .onUpdate(({ progress }) => {
-        this.compassMesh?.material.setValues({ opacity: progress })
-        this.five.needsRender = true
-      })
-      .play()
   }
 
-  private onFiveCameraDirectionUpdate = ({ longitude, latitude }: { longitude: number; latitude: number }) => {
+  private onFiveCameraDirectionUpdate = ({
+    longitude,
+    latitude,
+  }: {
+    longitude: number
+    latitude: number
+  }) => {
     if (!this.roomInfoWrapperInstance) return
     this.roomInfoWrapperInstance.css3DObject.rotation.z = longitude
     latitude > 0.66 && this.five.getCurrentState().mode === 'Panorama'
