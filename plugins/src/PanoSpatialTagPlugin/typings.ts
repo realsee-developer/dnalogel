@@ -6,12 +6,14 @@ export interface PanoSpatialTagPluginContentReplacement {
 	[key: string]: string
 }
 
+interface PanoSpatialTagPluginDataElement {
+	replacement: PanoSpatialTagPluginContentReplacement // 模板替换数据
+	weight?: number // 权重，数字越大权重越大，默认为0
+}
 export interface PanoSpatialTagPluginDataElement {
 	id: PanoSpatialTagPluginId
-	position: number[]
-	normal: number[]
-	replacement: PanoSpatialTagPluginContentReplacement
-	weight?: number
+	position: number[] // 点xyz数组
+	normal: number[] // 点所在平面法向xyz数组
 }
 
 export interface PanoSpatialTagPluginTagElement {
