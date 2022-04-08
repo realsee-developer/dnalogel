@@ -16,6 +16,7 @@
     "bootstrap": "lerna bootstrap && lerna link",
     "start:plugins": "cd plugins && yarn run build:dev",
     "start:examples": "yarn workspace examples start",
-    "docs": "cd plugins && yarn run build:docs"
+    "docs": "cd plugins && yarn run build:docs",
+    "deploy": "sh deploy.sh"
   }
 }
