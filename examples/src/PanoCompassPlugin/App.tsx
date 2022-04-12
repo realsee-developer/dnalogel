@@ -1,6 +1,6 @@
 import { PanoCompassPlugin } from '@realsee/dnalogel/libs/PanoCompassPlugin'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
-import React, { FC } from 'react'
+import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
 import { work } from '../mockData'
 import { Box } from '@mui/material'
@@ -14,13 +14,13 @@ const FiveProvider = createFiveProvider({
       PanoCompassPlugin,
       'panoCompassPlugin',
       {
-        // compassImageUrl: ''
+        compassImageUrl: 'http://s1.ljcdn.com/ke-ones/favicon.ico'
       },
     ],
   ],
 })
 
-const App: FC = () => {
+const App: React.FC = () => {
   const size = useWindowDimensions()
 
   return (
