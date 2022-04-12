@@ -1,7 +1,7 @@
 import { ModelFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
-import React, { FC } from "react";
+import * as React from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
 import ModelFloorplanPluginUse from "./ModelFloorplanPluginUse";
 import { Box } from '@mui/material'
@@ -30,7 +30,7 @@ const FiveProvider = createFiveProvider({
     ]
 });
 
-const App: FC = () => {
+const App: React.FC = () => {
     const size = useWindowDimensions();
 
     return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
