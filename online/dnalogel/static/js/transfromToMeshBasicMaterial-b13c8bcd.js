@@ -1,1 +1,0 @@
-import{ao as n}from"./vendor-9221c96b.js";function o(e,t){e.traverse(r=>{if(r.type==="Mesh"){const a=r,s=Object.assign({map:a.material.map||{}},t);a.material=new n(s),a.renderOrder=1,r.parent?.type==="Mesh"&&(r.renderOrder=r.parent.renderOrder+1)}})}export{o as t};

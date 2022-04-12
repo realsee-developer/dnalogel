@@ -14,7 +14,7 @@ const FiveProvider = createFiveProvider({
       PanoCompassPlugin,
       'panoCompassPlugin',
       {
-        compassImageUrl: 'http://s1.ljcdn.com/ke-ones/favicon.ico'
+        // compassImageUrl: ''
       },
     ],
   ],

@@ -56,4 +56,3 @@ export {
     roomInfo,
     roomRules
 }
-
