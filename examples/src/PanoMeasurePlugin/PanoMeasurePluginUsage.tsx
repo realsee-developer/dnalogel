@@ -20,14 +20,22 @@ const PanoMeasurePluginUsage = (props: PanoRulerPluginUsePropTypes) => {
     }, [])
 
     useFiveEventCallback('modelLoaded', async () => {
-        panoMeasurePlugin.open()
+        panoMeasurePlugin.enable()
         panoMeasurePlugin.hook.on("modeChange", (mode) => {
             console.log("__mode__", mode)
+        })
+
+        panoMeasurePlugin.hook.on("enable", () => {
+            console.log('开启测量工具')
+        })
+
+        panoMeasurePlugin.hook.on("disable", () => {
+            console.log('关闭测量工具')
         })
     })
 
     const handleMeasureEnable = () => {
-        panoMeasurePlugin.open()
+        panoMeasurePlugin.enable()
         setMeasureEnableBtn(false)
     }
 

@@ -24,7 +24,7 @@ export class ShortcutKeyController {
   }
 
   private escape() {
-    if (this.measureController.getCurrentMode() === 'Watch') return this.measureController.close()
+    if (this.measureController.getCurrentMode() === 'Watch') return this.measureController.disable()
     return this.measureController.changeMode('Watch')
   }
 
