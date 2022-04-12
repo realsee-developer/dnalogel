@@ -2,7 +2,7 @@ import { Box, Paper, ButtonGroup, Button } from '@mui/material'
 import { PanoRulerPlugin } from '@realsee/dnalogel'
 import { unsafe__useFiveInstance, useFiveEventCallback, useFiveModelReadyState } from '@realsee/five/react'
 import * as React from 'react'
-import { roomInfo, roomRules } from './mockData'
+import { roomInfo, roomRules } from '../mockData'
 
 interface PanoRulerPluginUsePropTypes {}
 

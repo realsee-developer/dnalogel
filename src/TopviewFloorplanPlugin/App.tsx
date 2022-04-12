@@ -1,15 +1,15 @@
-import { ModelFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from "@realsee/dnalogel";
+import { TopviewFloorplanPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
-import React, { FC } from "react";
+import * as React from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
-import ModelFloorplanPluginUse from "./ModelFloorplanPluginUse";
+import TopviewFloorplanPluginUse from "./TopviewFloorplanPluginUse";
 import { Box } from '@mui/material'
 import { work } from '../mockData'
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 
 const defaultPluginParam = {
-    attachedTo: FLOOR_PLAN_ATTACHED_TO.CEILING // 户型图吸附至天花板，默认吸附至几何中心
+    hoverEnable: true
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()
@@ -19,18 +19,17 @@ const pluginParams = (JSON.stringify(initialParamFromUrl) !== '{}') ? initialPar
 const FiveProvider = createFiveProvider({
     plugins: [
         [
-            ModelFloorplanPlugin,
-            'modelFloorplanPlugin',
+            TopviewFloorplanPlugin,
+            'topviewFloorplanPlugin',
             {
                 selector: '.plugin-full-screen-container',
                 ...pluginParams
             }
-
         ]
     ]
 });
 
-const App: FC = () => {
+const App: React.FC = () => {
     const size = useWindowDimensions();
 
     return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
@@ -39,7 +38,7 @@ const App: FC = () => {
 		    className="plugin-full-screen-container"
 		    sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
 	    />
-		<ModelFloorplanPluginUse />
+		<TopviewFloorplanPluginUse />
 	</FiveProvider>;
 };
 

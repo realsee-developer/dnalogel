@@ -1,4 +1,4 @@
-mock 数据列举
+mock 数据列举:
 
 数据更换通过改变 url 参数进行配置，参数格式：`renderCode=`
 
