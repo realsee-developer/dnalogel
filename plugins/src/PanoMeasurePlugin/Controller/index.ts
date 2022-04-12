@@ -82,7 +82,7 @@ export default class MeasureController {
   }
 
   public dispose() {
-    this.close()
+    this.disable()
     this.useUIController?.dispose()
     this.magnifier?.dispose()
     this.five.needsRender = true
@@ -101,7 +101,7 @@ export default class MeasureController {
    * @description 会隐藏鼠标的默认聚焦环
    * @description 会隐藏当前 VR 内的点位展示
    */
-  public open(): void {
+  public enable(): void {
     if (this.hasOpen) return
     this.hasOpen = true
     this.five.scene.add(this.group)
@@ -111,13 +111,14 @@ export default class MeasureController {
     this.useUIController?.show()
     this.useGuideController?.show()
     this.shortcutKeyController = new ShortcutKeyController(this, this.five)
+    this.hook.emit('enable', true)
   }
 
   /** 关闭插件功能
    * @description 清除标尺线条
    * @description 还原点位展示和默认鼠标 UI
    */
-  public close(): void {
+  public disable(): void {
     this.hasOpen = false
     // 展示点位和鼠标聚焦环
     this.controller?.dispose()
@@ -128,6 +129,7 @@ export default class MeasureController {
     this.five.helperVisible = true
     this.five.scene.remove(this.group)
     this.five.needsRender = true
+    this.hook.emit('disable', true)
   }
 
   public getCurrentMode = (): Mode | null => {
