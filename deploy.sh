@@ -8,6 +8,9 @@ rm -rf online
 # 构建
 yarn run build:examples
 
+# 移动数据文件夹
+cp -r examples/dnalogel/open-works online/dnalogel/
+
 # 进入构建文件夹
 cd online/dnalogel
 
