@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Five, Mode } from "@realsee/five"
 import {
-    unsafe__useFiveInstance, useFiveCurrentState,
+    unsafe__useFiveInstance,
     useFiveEventCallback,
     useFiveModelReadyState,
     useFiveState
 } from "@realsee/five/react";
-import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
+import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-import { floorplanServerData } from '../mockData'
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 interface ModelFloorplanPluginUsePropTypes {}
 
@@ -17,12 +17,14 @@ const ModelFloorplanPluginUse = (props: ModelFloorplanPluginUsePropTypes) => {
     const five = unsafe__useFiveInstance()
     const [fiveState, setFiveState] = useFiveState()
     const fiveModelReadyState = useFiveModelReadyState()
+    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
 
     useFiveEventCallback("modelLoaded", () => {
+        if(!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return
         Promise.resolve(five.plugins.modelFloorplanPlugin.load(floorplanServerData)).then(() => {
             five.plugins.modelFloorplanPlugin.show()
         })
-    })
+    }, [floorplanServerData])
 
     useFiveEventCallback("initAnimationEnded", () => {
         if (fiveState.mode === Five.Mode.Floorplan) {
