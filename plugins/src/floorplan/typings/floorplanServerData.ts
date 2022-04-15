@@ -165,6 +165,10 @@ export interface FloorplanServerRoomItem {
    * @description 单位是平方毫米
    */
   size: number
+  /** 房屋类型
+   * @description 对应关系参考上方 ROOM_DETAILS_TYPE_MAP
+   */
+  type: number
   name: string
   /** 围成房间区域的坐标路径
    * @description 坐标类型是户型图坐标
@@ -183,7 +187,10 @@ export interface FloorplanServerRoomItem {
   observer_indexs: number[]
 }
 
-export type FloorplanServerRuleLabels = Record<'top' | 'right' | 'bottom' | 'left', FloorplanServerPosition[][]>
+export type FloorplanServerRuleLabels = Record<
+  'top' | 'right' | 'bottom' | 'left',
+  FloorplanServerPosition[][]
+>
 
 /** 当前楼层的数据 */
 export interface FloorplanServerFloorData {

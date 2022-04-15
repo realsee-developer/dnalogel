@@ -77,7 +77,7 @@ export class UIController {
     const onMouseEnter = () => (exitItem.style.opacity = '1')
     const onMouseLeave = () => (exitItem.style.opacity = '0.7')
     const handleClick = () => {
-      this.measureController.close()
+      this.measureController.disable()
     }
 
     exitIcon.addEventListener('click', handleClick)

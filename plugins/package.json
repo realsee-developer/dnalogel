@@ -2,11 +2,10 @@
   "name": "@realsee/dnalogel",
   "main": "libs/index.js",
   "type": "module",
-  "module": "dist/dnalogel.es.js",
   "author": "REALSEE-DEVELOPER",
   "repository": "https://github.com/realsee-developer/dnalogel.git",
   "private": false,
-  "version": "0.0.0",
+  "version": "2.0.0-alpha.7",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
     "build:dev": "yarn tsb && vite build --watch",
@@ -19,7 +18,9 @@
   },
   "files": [
     "libs",
-    "dist"
+    "dist",
+    "docs",
+    "TERMS.txt"
   ],
   "devDependencies": {
     "@babel/core": "^7.17.5",

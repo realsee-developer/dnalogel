@@ -1,10 +1,9 @@
+export { default as ModelViewPlugin } from './ModelViewPlugin'
 
-export { default as ModelViewPlugin } from "./ModelViewPlugin"
-
-export { default as CSS3DRenderPlugin } from "./CSS3DRenderPlugin"
+export { default as CSS3DRenderPlugin } from './CSS3DRenderPlugin'
 
 export type { PanoCursorRaycasterPluginExportType } from './PanoCursorRaycasterPlugin'
-export { default as PanoCursorRaycasterPlugin } from "./PanoCursorRaycasterPlugin"
+export { default as PanoCursorRaycasterPlugin } from './PanoCursorRaycasterPlugin'
 
 // 模型房屋标签
 export type {
@@ -12,21 +11,23 @@ export type {
     ModelRoomLabelPluginData,
     RoomLabel,
     ModelRoomLabelPluginReturnType,
-    ModelRoomLabelPluginParameters
+    ModelRoomLabelPluginParameters,
 } from './ModelRoomLabelPlugin'
 export { default as ModelRoomLabelPlugin } from './ModelRoomLabelPlugin'
 
 // floorplan
 
+export * from './floorplan/constant'
+
 export type {
     TopviewFloorplanPluginReturnType,
-    TopviewFloorplanPluginParameterType
+    TopviewFloorplanPluginParameterType,
 } from './floorplan/TopviewFloorplanPlugin'
 export { default as TopviewFloorplanPlugin } from './floorplan/TopviewFloorplanPlugin'
 
 export type {
     PanoFloorplanRadarPluginReturnType,
-    PanoFloorplanRadarPluginParameterType
+    PanoFloorplanRadarPluginParameterType,
 } from './floorplan/PanoFloorplanRadarPlugin'
 export { default as PanoFloorplanRadarPlugin } from './floorplan/PanoFloorplanRadarPlugin'
 
@@ -36,7 +37,7 @@ export type {
     ModelFloorplanErrorType,
     ModelFloorplanPluginsConfigs,
     ModelFloorplanEventHandlers,
-    ModelFloorplanViewEvent
+    ModelFloorplanViewEvent,
 } from './floorplan/ModelFloorplanPlugin'
 export { default as ModelFloorplanPlugin } from './floorplan/ModelFloorplanPlugin'
 
@@ -44,7 +45,7 @@ export { default as ModelFloorplanPlugin } from './floorplan/ModelFloorplanPlugi
 export type {
     ModelChassisCompassPluginParameterType,
     ModelChassisCompassPluginData,
-    ModelChassisCompassPluginExportType
+    ModelChassisCompassPluginExportType,
 } from './ModelChassisCompassPlugin'
 export { default as ModelChassisCompassPlugin } from './ModelChassisCompassPlugin'
 
@@ -52,15 +53,33 @@ export { default as ModelChassisCompassPlugin } from './ModelChassisCompassPlugi
 export type {
     ModelEntryDoorGuidePluginParameterType,
     ModelEntryDoorGuidePluginData,
-    ModelEntryDoorGuidePluginExportType
+    ModelEntryDoorGuidePluginExportType,
 } from './ModelEntryDoorGuidePlugin'
 export { default as ModelEntryDoorGuidePlugin } from './ModelEntryDoorGuidePlugin'
 
 export { default as CameraMovementPlugin } from './CameraMovementPlugin'
 
+// 全景标尺
 export type {
-    PanoSpatialTagPluginParameterType,
-    PanoSpatialTagPluginData,
-    PanoSpatialTagPluginExportType
-} from './PanoSpatialTagPlugin'
-export { default as PanoSpatialTagPlugin } from './PanoSpatialTagPlugin'
+    PanoRulerPluginParameterType,
+    PanoRulerPluginExportType,
+    PanoRulerPluginOptions,
+} from './PanoRulerPlugin'
+export { default as PanoRulerPlugin } from './PanoRulerPlugin'
+
+// 全景指南针
+export type {
+    PanoCompassPluginParameterType,
+    PanoCompassPluginExportType,
+    PanoCompassPluginData,
+} from './PanoCompassPlugin'
+export { default as PanoCompassPlugin } from './PanoCompassPlugin'
+
+// pc 全景测量工具
+export type {
+    PluginReturns,
+    PluginEvent,
+    LineJson,
+    PointJson
+} from './PanoMeasurePlugin'
+export { default as PanoMeasurePlugin } from './PanoMeasurePlugin'

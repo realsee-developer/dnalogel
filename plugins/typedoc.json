@@ -1,4 +1,4 @@
 {
-  "entryPoints": ["src/plugin/index.ts"],
-  "out": "../docs"
+  "entryPoints": ["src/index.ts"],
+  "out": "./docs"
 }

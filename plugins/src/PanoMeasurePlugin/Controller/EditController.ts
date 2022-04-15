@@ -215,7 +215,7 @@ export default class EditController extends BaseController {
   private onWantsToMoveToPano = () => false
 
   /** 存在长按点时不能移动全景 */
-  private onWantsPanGesture = (): void | false => (this.pressPoint ? false : undefined)
+  private onWantsPanGesture = (): false | void => (this.pressPoint ? false : undefined)
 
   /** 移动全景时更新 distanceItem 在屏幕上的位置 */
   private onCameraUpdate = () => {

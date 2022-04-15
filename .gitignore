@@ -14,6 +14,8 @@ dist-ssr
 *.local
 package-lock.json
 yarn.lock
+online
+test
 
 # Editor directories and files
 .vscode/*
@@ -25,3 +27,5 @@ yarn.lock
 *.njsproj
 *.sln
 *.sw?
+
+
