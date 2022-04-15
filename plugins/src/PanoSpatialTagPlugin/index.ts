@@ -16,24 +16,24 @@ import type {
   PanoSpatialTagPluginContentEvent,
 } from './typings'
 
-export interface PanoSpatialTagPluginData {
-  folded?: boolean
-  enabled?: boolean
+export interface PanoSpatialTagPluginData { // 插件load数据
+  folded?: boolean // 标签初始是否收起
+  enabled?: boolean // 插件初始是否启用
   points: Array<PanoSpatialTagPluginDataElement>
-  template: string
+  template: string // dom模板
   events?: PanoSpatialTagPluginContentEvent
-  render?: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => string
+  render?: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => string // 模板数据映射函数
 }
 
 export interface PanoSpatialTagPluginParameterType {
-  container?: Element
-  wait?: number
-  minDistance?: number
-  maxDistance?: number
-  maxNumberOnScreen?: number
-  minRad?: number
-  nearTolerance?: number
-  upsideHeight?: number
+  container?: Element // 标签容器
+  wait?: number // debounce延迟
+  minDistance?: number // 最小显示距离
+  maxDistance?: number // 最大显示距离
+  maxNumberOnScreen?: number // 屏幕内标签最大展示数量
+  minRad?: number // 视角和标签平面最小夹角
+  nearTolerance?: number // 标签映射到屏幕之间最小间距
+  upsideHeight?: number // 标签反向高度
 }
 
 export interface PanoSpatialTagPluginExportType {

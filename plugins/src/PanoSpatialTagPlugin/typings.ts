@@ -1,13 +1,13 @@
 import * as THREE from 'three'
 
-export type PanoSpatialTagPluginId = string | number;
+export type PanoSpatialTagPluginId = string | number; // 标签唯一ID
 
-export interface PanoSpatialTagPluginContentReplacement {
+export interface PanoSpatialTagPluginContentReplacement { // 模板替换数据
 	[key: string]: string
 }
 
-interface PanoSpatialTagPluginAppData {
-	replacement: PanoSpatialTagPluginContentReplacement // 模板替换数据
+interface PanoSpatialTagPluginAppData { // 业务配置数据
+	replacement: PanoSpatialTagPluginContentReplacement
 	weight?: number // 权重，数字越大权重越大，默认为0
 }
 
@@ -33,7 +33,7 @@ export interface PanoSpatialTagPluginOriginElement {
   destroying?: boolean
 }
 
-export interface PanoSpatialTagPluginContentEvent {
+export interface PanoSpatialTagPluginContentEvent { // 自定义标签内容中className对应的点击事件
 	[className: string]: (id: PanoSpatialTagPluginId) => any
 }
 
