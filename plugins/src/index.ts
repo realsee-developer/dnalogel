@@ -83,3 +83,6 @@ export type {
     PointJson
 } from './PanoMeasurePlugin'
 export { default as PanoMeasurePlugin } from './PanoMeasurePlugin'
+
+// 模型物品标签插件
+export { default as ModelItemLabelPlugin } from './ModelItemLabelPlugin'

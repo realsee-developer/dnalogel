@@ -27,6 +27,7 @@ export default defineConfig({
         PanoCompassPlugin: resolve(__dirname, './src/PanoCompassPlugin/index.html'),
         PanoRulerPlugin: resolve(__dirname, './src/PanoRulerPlugin/index.html'),
         PanoMeasurePlugin: resolve(__dirname, './src/PanoMeasurePlugin/index.html'),
+        ModelItemLabelPlugin: resolve(__dirname, './src/ModelItemLabelPlugin/index.html'),
       },
       output: {
         chunkFileNames: 'static/js/[name]-[hash].js',
