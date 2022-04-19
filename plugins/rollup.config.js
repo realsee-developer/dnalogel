@@ -20,12 +20,12 @@ const external = [
   'three/examples/jsm/renderers/CSS3DRenderer',
   'three/examples/jsm/loaders/FBXLoader',
 
-  'svelte',
-  'svelte/internal',
-  'svelte/easing',
-  'svelte/transition',
+  // 'svelte',
+  // 'svelte/internal',
+  // 'svelte/easing',
+  // 'svelte/transition',
 
-  '@tweenjs/tween.js',
+  // '@tweenjs/tween.js',
 
 ]
 const config = plugins.map((plugin) => {

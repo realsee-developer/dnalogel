@@ -8,6 +8,7 @@
   "version": "2.0.0-alpha.7",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
+    "build:rollup": " rollup --config rollup.config.js",
     "build": "yarn tsb && vite build && yarn build:docs",
     "build:dev": "yarn tsb && vite build --watch",
     "tsb": "tsc && yarn build:svelte && ./bin/svelte-compile.js",

@@ -11,8 +11,6 @@ const __dirname = path.resolve()
 
 const libsPath = path.resolve(__dirname, 'libs')
 
-console.log('__dirname', __dirname, libsPath)
-
 replace({
   regex: /\.svelte/,
   replacement: "",
@@ -27,7 +25,6 @@ const run = async () => {
     const code = (await readFile(svelte)).toString()
     const { js } = compile(code, { css: true })
     await writeFile(svelte.replace('.svelte', '.js'), js.code)
-
   })
 }
 
