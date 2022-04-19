@@ -685,9 +685,9 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
               return one
             }),
             template: `
-            <div>
-                <span className="tag-name" style="pointer-events: auto">{{name}}</span><br/>
-                <span className="tag-price">{{price}}</span>
+            <div class="tag-wrapper" style="pointer-events: auto">
+                <span class="tag-name">{{name}}</span><br/>
+                <span>{{price}}</span>
             </div>`,
             render: (template, replacement) => {
               const evaluate = /{{([\s\S]+?)}}/g
@@ -698,7 +698,7 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
               })
             },
             events: {
-                'tag-name': id => panoSpatialTagPlugin.fold(id)
+                'tag-wrapper': id => panoSpatialTagPlugin.fold(id)
             },
             folded: false,
             enabled: true,     

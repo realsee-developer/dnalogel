@@ -7,7 +7,7 @@
   export let content: string
   export let contentZoom: number
   export let lineZoom: number
-  export let destroying: boolean
+  export let destroying: boolean = false
   export let folded: boolean
   export let dispose: () => void
   export let events: PanoSpatialTagPluginContentEvent
@@ -20,9 +20,23 @@
   }, 100)
 
   const handleClickContent = event => {
-    Object.keys(events).forEach(key => {
-      if (event.target.getAttribute('className').includes(key)) events[key](id)
-    })
+    const eventsName = Object.keys(events)
+    let node = event.target
+    while (node) {
+      const classNames = node.getAttribute('class')
+      if (!classNames) {
+        node = node.parentNode
+        continue
+      }
+      if (classNames.includes('PanoSpatialTagPlugin__tag-content')) {
+        node = null
+        break
+      }
+      eventsName.forEach(key => {
+        if (classNames.includes(key)) events[key](id)
+      })
+      node = node.parentNode
+    }
   }
 
   onMount(() => hooks.emit('initTag', { id }))
