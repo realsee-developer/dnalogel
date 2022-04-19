@@ -20,6 +20,57 @@ const PluginShow = (props: PluginShowPropTypes) => {
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
     // const modelItemLabels = useFetchDatas(DATATYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
+    const modelItemLabels = {
+        "model_item_labels": [
+            {
+                "id": "u-0E2X34Kv9q7K29",
+                "name": "\u4e09\u4eba\u6c99\u53d1",
+                "center": [0.011001, 41.978, -0.019002],
+                "position": {
+                    "x": -0.00406,
+                    "y": -0.818605,
+                    "z": -0.55034
+                },
+                "type": ["furniture", "sofa", "siamesed_sofa"]
+            },
+            {
+                "id": "u-s5YwhMKv9Q7KfN",
+                "name": "\u8336\u51e0",
+                "center": [0, 28.503649, 0],
+                "position": {
+                    "x": 0.005735,
+                    "y": -0.818592,
+                    "z": 0.398252
+                },
+                "type": [
+                    "furniture",
+                    "table",
+                    "coffee_table",
+                    "coffee_table_4"
+                ],
+            },
+            {
+                "id": "u-5A3b6IKV9q7iUg",
+                "name": "\u5e8a\u5934\u67dc",
+                "center": [
+                    -0.00965,
+                    27.65765,
+                    0.2111
+                ],
+                "position": {
+                    "x": 4.39022,
+                    "y": 0,
+                    "z": 8.642688
+                },
+                "type": [
+                    "furniture",
+                    "cabinet",
+                    "beside_table"
+                ],
+            }
+        ]
+
+    }
 
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
@@ -28,10 +79,10 @@ const PluginShow = (props: PluginShowPropTypes) => {
         }
     }, [])
 
-    // useFiveEventCallback('modelLoaded', () => {
-    //     if (!modelItemLabels) return
-    //     five.plugins.modelItemLabelPlugin.load(modelItemLabels)
-    // }, [modelItemLabels])
+    useFiveEventCallback('modelLoaded', () => {
+        if (!modelItemLabels) return
+        five.plugins.modelItemLabelPlugin.load(modelItemLabels)
+    }, [modelItemLabels])
 
     if (fiveModeReadyState !== 'Loaded') return null
     return (
@@ -46,8 +97,8 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     setFiveState({ mode: newValue });
                 }}
             >
-                <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon/>} value={Five.Mode.Panorama}/>
-                <BottomNavigationAction label="空间总览" icon={<ViewInArIcon/>} value={Five.Mode.Floorplan}/>
+                <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon />} value={Five.Mode.Panorama} />
+                <BottomNavigationAction label="空间总览" icon={<ViewInArIcon />} value={Five.Mode.Floorplan} />
             </BottomNavigation>
         </Paper>
     )

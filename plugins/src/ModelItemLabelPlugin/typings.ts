@@ -10,7 +10,6 @@ export interface  ModelItemLabelPluginData {
     model_item_labels: Readonly<{
         id: string
         name: string
-        longitude: number
         center: [number, number, number]
         position: { x: number, y: number, z: number }
         type: string[]
@@ -21,7 +20,6 @@ export interface  ModelItemLabelPluginData {
 export interface ItemLabel {
     id: string
     name: string
-    longitude: number
     center: [number, number, number]
     position: { x: number, y: number, z: number }
     type: string[]

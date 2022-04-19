@@ -8,7 +8,6 @@ import {
     ModelItemLabelPluginParametersType
 } from "./typings";
 
-
 export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType, ModelItemLabelPluginExportReturnsType> = (
     five: Five,
     params
