@@ -81,7 +81,7 @@
     white-space: nowrap;
     box-sizing: border-box;
     width: 25rem;
-    height: 10rem;
+    height: 11rem;
     color: #FFF;
     transform: translate(0, -100%);
   }
@@ -105,7 +105,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 7rem;
+    height: 9.5rem;
     width: .15rem;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, .1));
     box-shadow: 0 .1rem .5rem rgba(0, 0, 0, .2);
@@ -152,7 +152,7 @@
   }
 
   .PanoSpatialTagPlugin__tag-upside-down .PanoSpatialTagPlugin__tag-line {
-    transform: translate(0, 10rem) scaleY(-1);
+    transform: translate(0, 11rem) scaleY(-1);
   }
 
   .PanoSpatialTagPlugin__tag-animate {

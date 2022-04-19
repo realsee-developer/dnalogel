@@ -328,7 +328,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
           props: {
             id,
             content: state.render(state.template, replacement),
-            lineZoom: 0.4 * (0.01 + camera.position.distanceTo(position) / maxDistance),
+            lineZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / maxDistance),
             contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
             upsideDown: position.y > upsideHeight,
             folded: state.folded,
@@ -456,6 +456,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     if (!wrapper) wrapper = five.getElement().parentElement
     wrapper.appendChild(container)
     state.forbidden = false
+    updateTags()
     five.on('panoWillArrive', onPanoWillArrive)
     five.on('panoArrived', onPanoArrived)
     five.on('modeChange', onModeChange)
@@ -465,6 +466,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       if (!wrapper) wrapper = five.getElement().parentElement
       wrapper.appendChild(container)
       state.forbidden = false
+      updateTags()
       five.on('panoWillArrive', onPanoWillArrive)
       five.on('panoArrived', onPanoArrived)
       five.on('modeChange', onModeChange)
