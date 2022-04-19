@@ -25,7 +25,7 @@ const sveltes = glob.sync('**/*.svelte', { cwd: libsPath })
 const run = async () => {
   sveltes.map((svelte) => path.resolve(libsPath, svelte)).forEach(async (svelte) => {
     const code = (await readFile(svelte)).toString()
-    const { js } = compile(code, { css: false })
+    const { js } = compile(code, { css: true })
     await writeFile(svelte.replace('.svelte', '.js'), js.code)
 
   })

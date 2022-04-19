@@ -31,6 +31,35 @@ yarn docs
 
 **提示：** 若要使用实时测试功能，请确保 examples 文件夹下 package.json中 @realsee/dnalogel 的版本号与 plugins 文件夹下 package.json 的版本号一致。
 
+
+## 插件发包
+
+1、填写更新日历
+路径：/plugins/CHANGELOG.md
+
+2、更改 package.json 版本号
+
+3、插件打包
+```bash
+cd plugins
+
+yarn build
+```
+
+4、发包
+确认更新日志、版本号、打包无误后进行发包
+```bash
+npm publish
+```
+
+## 示例发布
+
+```bash
+yarn deploy
+```
+
+进入 https://realsee.js.org/dnalogel/ 查看是否发布成功。
+
 ## 测试/上线部署
 
 ```bash

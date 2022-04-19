@@ -153,9 +153,11 @@ export const ModelEntryDoorGuidePlugin: FivePlugin<
   const disable = () => {
     if (!state.enabled) return true
     state.enabled = false
+    hide()
     five.off('modeChange', modeChangeHandler)
     return true
   }
+
   return { load, enable, disable }
 }
 

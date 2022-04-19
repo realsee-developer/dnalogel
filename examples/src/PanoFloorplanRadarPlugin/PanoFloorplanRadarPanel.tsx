@@ -1,11 +1,12 @@
 import * as React from "react";
 import {unsafe__useFiveInstance, useFiveState} from "@realsee/five/react";
 import { Box } from '@mui/material'
-import { floorplanServerData } from "../mockData";
 import { Five } from "@realsee/five";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 const PanoFloorplanRadarPanel: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
+    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
     const five = unsafe__useFiveInstance()
     const panoFloorplanRadarPanelRef = React.useRef<HTMLDivElement>(null)
     const [visible, setVisible] = React.useState<boolean>(false)
@@ -13,8 +14,12 @@ const PanoFloorplanRadarPanel: React.FC = () => {
     React.useEffect(() => {
         if (!panoFloorplanRadarPanelRef.current || fiveState.mode !== Five.Mode.Panorama) return
         five.plugins.panoFloorplanRadarPlugin.appendTo(panoFloorplanRadarPanelRef.current)
-        five.plugins.panoFloorplanRadarPlugin.load(floorplanServerData)
     }, [])
+
+    React.useEffect(() => {
+        if(!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return
+        five.plugins.panoFloorplanRadarPlugin.load(floorplanServerData)
+    }, [floorplanServerData])
 
     React.useEffect(() => {
         if (fiveState.mode === Five.Mode.Panorama) {
