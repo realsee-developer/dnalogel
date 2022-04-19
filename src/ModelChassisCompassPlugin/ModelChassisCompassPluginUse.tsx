@@ -10,16 +10,18 @@ import { floorplanServerData } from "../mockData";
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-
-// 朝北方向来源于户型图数据
-const NORTH_RAD = floorplanServerData?.computed_data?.entrance?.north_rad
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 const ModelChassisCompassPluginUse: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
     const five = unsafe__useFiveInstance()
     const fiveModelReadyState = useFiveModelReadyState()
+    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
 
     useFiveEventCallback('modelLoaded', async () => {
+        if(!floorplanServerData ||  JSON.stringify(floorplanServerData) === '{}') return
+        // 朝北方向来源于户型图数据
+        const NORTH_RAD = floorplanServerData?.computed_data?.entrance?.north_rad
 
         // 数据载入格式
         // {
@@ -27,7 +29,7 @@ const ModelChassisCompassPluginUse: React.FC = () => {
         //     fbx_url: '//vrlab-static.ljcdn.com/release/web/v3/dipan3/dipan.FBX'
         // }
 
-        // 载入朝南数据
+        // 载入朝北数据
         await five.plugins.modelChassisCompassPlugin.load({north_rad: NORTH_RAD})
 
         // 为了显示效果，将 five state 置为较好观察模型底盘的角度
@@ -41,7 +43,7 @@ const ModelChassisCompassPluginUse: React.FC = () => {
 
         // 显示模型底盘
         five.plugins.modelChassisCompassPlugin.enable()
-    })
+    }, [floorplanServerData])
 
     if(fiveModelReadyState !== 'Loaded') return null
     return (

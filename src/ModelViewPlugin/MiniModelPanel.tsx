@@ -11,7 +11,7 @@ const MiniModelPanel: React.FC = () => {
 
     React.useEffect(() => {
         if (!miniModeRef.current || fiveState.mode !== Five.Mode.Panorama) return
-        five.plugins.modelViewPlugin.appendTo(miniModeRef.current)
+        five.plugins.modelViewPlugin.appendTo(miniModeRef.current, { width: 90, height: 120 })
     }, [fiveState.mode, fiveModeReadyState])
 
     if (fiveState.mode !== Five.Mode.Panorama) return null
@@ -20,17 +20,18 @@ const MiniModelPanel: React.FC = () => {
         <Box
             onClick={() => setFiveState({ mode: "Floorplan" })}
             sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: "absolute",
-            top: '60px',
-            right: '20px',
-            padding: '10px',
-            width: '90px',
-            height: '120px',
-            backgroundColor: 'rgba(0, 0, 0, .2)',
-        }}
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: "absolute",
+                top: '60px',
+                right: '20px',
+                padding: '10px', // 注意: 插件内部无法获知 padding 值，如有需要，请务必传入 size
+                width: '110px',
+                height: '140px',
+                boxSizing: 'border-box',
+                backgroundColor: 'rgba(0, 0, 0, .2)',
+            }}
             ref={miniModeRef}
         />
     )

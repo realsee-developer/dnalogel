@@ -5,20 +5,29 @@ import {
     useFiveModelReadyState,
     useFiveState
 } from "@realsee/five/react";
-import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/material'
+import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import { modelEntryDoorGuidePluginServerData } from "../mockData";
 
 
 const ModelEntryDoorGuidePluginUse: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
     const five = unsafe__useFiveInstance()
     const fiveModelReadyState = useFiveModelReadyState()
+    const modelEntryDoorGuidePluginServerData = useFetchDatas(DATATYPES.MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA)
 
     useFiveEventCallback('modelLoaded', async () => {
-        await five.plugins.modelEntryDoorGuidePlugin.load()
+        if (!modelEntryDoorGuidePluginServerData || JSON.stringify(modelEntryDoorGuidePluginServerData) === '{}') return
+
+        const pluginData = {
+            fbx_url: '//vrlab-image4.ljcdn.com/release/web/entryDoorMini/Anim_Door1.fbx',
+            position: modelEntryDoorGuidePluginServerData?.position,
+            rad: modelEntryDoorGuidePluginServerData?.rad
+        }
+        await five.plugins.modelEntryDoorGuidePlugin.load(pluginData)
 
         // 为了显示效果，将 five state 置为较好观察模型底盘的角度
         setFiveState({
@@ -31,7 +40,7 @@ const ModelEntryDoorGuidePluginUse: React.FC = () => {
 
         // 显示入户门
         five.plugins.modelEntryDoorGuidePlugin.enable({animationEnable: false})
-    })
+    }, [modelEntryDoorGuidePluginServerData])
 
     if (fiveModelReadyState !== 'Loaded') {
         return null

@@ -5,11 +5,11 @@ import {
     useFiveModelReadyState,
     useFiveState
 } from "@realsee/five/react";
-import { modelRoomLabels } from '../mockData'
-import { BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 interface ModelRoomLabelPluginShowPropTypes {
 
@@ -19,6 +19,7 @@ const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
     const [fiveState, setFiveState] = useFiveState()
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
+    const modelRoomLabels = useFetchDatas(DATATYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
 
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
@@ -28,8 +29,9 @@ const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
     }, [])
 
     useFiveEventCallback('modelLoaded', () => {
+        if (!modelRoomLabels) return
         five.plugins.modelRoomLabelPlugin.load(modelRoomLabels)
-    })
+    }, [modelRoomLabels])
 
     if (fiveModeReadyState !== 'Loaded') return null
     return (
