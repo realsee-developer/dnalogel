@@ -8,7 +8,7 @@
   }
 </script>
 
-{#each origins as origin (origin.id)}
+{#each origins as origin}
   <i 
     class:PanoSpatialTagPlugin__tag-origin={true}
     class:PanoSpatialTagPlugin__tag-origin-destroy={origin.destroying}

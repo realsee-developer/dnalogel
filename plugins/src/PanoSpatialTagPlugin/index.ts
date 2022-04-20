@@ -35,6 +35,7 @@ export interface PanoSpatialTagPluginParameterType {
   minRad?: number // 视角和标签平面最小夹角
   nearTolerance?: number // 标签映射到屏幕之间最小间距
   upsideHeight?: number // 标签反向高度
+  // foldPercent?: number // 标签折叠屏幕百分比
 }
 
 export interface PanoSpatialTagPluginExportType {
@@ -82,6 +83,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
   const minRad = params?.minRad ?? Math.PI / 4
   const nearTolerance = params?.nearTolerance ?? 100
   const upsideHeight = params?.upsideHeight ?? 1.6
+  // const foldPercent = params?.foldPercent ?? 20
 
   const css3DRender = CSS3DRenderPlugin(five)
   const container = document.createElement('div')
@@ -112,7 +114,13 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
   const onCameraUpdate = (pose, userAction): void => {
     updateOrigins()
-    if (userAction) updateTags()
+    if (userAction) {
+      updateTags()
+      // state.tags.forEach(tag => {
+      //   const mouse = tag.position.clone().project(five.camera)
+      //   const top = ( - mouse.y + 1 ) / 2 * 100
+      // })
+    }
   }
 
   const onPanoArrived = () => {
@@ -151,7 +159,14 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.tags.forEach(tag => {
       if (tag.destroying) {
         tag.app.$set({
-          destroying: tag.destroying
+          lineZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
+          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
+          destroying: tag.destroying,
+        })
+      } else {
+        tag.app.$set({
+          lineZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
+          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
         })
       }
     })

@@ -119,21 +119,29 @@
   .PanoSpatialTagPlugin__tag-flagpole {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 1rem;
     height: 9.5rem;
     width: .15rem;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, .1));
     box-shadow: 0 .1rem .5rem rgba(0, 0, 0, .2);
     opacity: 0;
     transform: translate(-50%, 60%) scaleY(0);
-    transition: transform .4s cubic-bezier(.44,.44,.74,.98) , opacity .4s cubic-bezier(.44,.44,.74,.98) ;
+    transition: transform .4s cubic-bezier(.44,.44,.74,.98) , opacity .4s cubic-bezier(.44,.44,.74,.98), width .5s linear ;
     transform-origin: center bottom;
+  }
+
+  .PanoSpatialTagPlugin__tag-line {
+    position: absolute;
+    left: -1rem;
+    width: 2rem;
+    height: 100%;
+    overflow: hidden;
   }
 
   .PanoSpatialTagPlugin__tag-line1 {
     position: absolute;
     top: 0;
-    left: -0.5rem;
+    left: 0.5rem;
     height: 1.8rem;
     width: .1rem;
     background: #fff;
@@ -145,7 +153,7 @@
   .PanoSpatialTagPlugin__tag-line2 {
     position: absolute;
     top: 0;
-    left: -0.3rem;
+    left: 0.3rem;
     height: 1.8rem;
     width: .1rem;
     background: #fff;
@@ -167,7 +175,7 @@
   }
 
   .PanoSpatialTagPlugin__tag-upside-down .PanoSpatialTagPlugin__tag-line {
-    transform: translate(0, 11rem) scaleY(-1);
+    transform: scaleY(-1);
   }
 
   .PanoSpatialTagPlugin__tag-animate {
@@ -175,6 +183,7 @@
     height: 100%;
     overflow: hidden;
     transform-origin: left top;
+    transition: transform .5s linear;
   }
 
   .PanoSpatialTagPlugin__tag-upside-down .PanoSpatialTagPlugin__tag-animate{
