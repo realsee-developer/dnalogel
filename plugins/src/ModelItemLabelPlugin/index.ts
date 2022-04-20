@@ -7,6 +7,7 @@ import {
     ModelItemLabelPluginExportReturnsType,
     ModelItemLabelPluginParametersType
 } from "./typings";
+import { parseModelItemLabelPluginData } from "./utils/parseData";
 
 export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType, ModelItemLabelPluginExportReturnsType> = (
     five: Five,
@@ -36,12 +37,15 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
     const appendTo = (wrapper: Element) => {
         pluginState.wrapper = wrapper
         wrapper.appendChild(pluginState.container)
+
+        window.addEventListener('resize', render)
+
         render()
         return true
     }
 
     const load = (data: ModelItemLabelPluginData) => {
-        pluginState.itemLabels = data.model_item_labels
+        pluginState.itemLabels = parseModelItemLabelPluginData(data)
         render()
     }
 
@@ -61,6 +65,7 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
 
     const dispose = () => {
         removeListener4Five()
+        window.removeEventListener('resize', render)
         pluginState.container.remove()
     }
 

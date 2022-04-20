@@ -2,8 +2,11 @@
     import type { Five } from '@realsee/five'
     import type { ItemLabel } from './typings'
     import { onDestroy, onMount } from "svelte";
-    import { Raycaster, Vector2, Vector3 } from "three";
+    import * as THREE from 'three'
+    // import { Raycaster, Vector2, Vector3 } from "three";
     import ItemLabelItem from './ItemLabelItem.svelte'
+
+    const { Raycaster, Vector2, Vector3 } = THREE
 
     export let five: Five
     export let itemLabels: ItemLabel[]
@@ -16,27 +19,67 @@
      * 1、当前楼层(假设先不考虑多楼层)
      * 2、模型未被遮挡（一个 box 有没有被遮挡的计算？ TODO）
      * */
+    // 画辅助线
+    function addHelper(x: number, y: number, z: number, type: string, helper?: boolean) {
+        // const point = new THREE.Vector3();
+        let geometry, materials, mesh: any
+
+        if (type === 'box') {
+            geometry = new THREE.BoxGeometry(
+                0.6,
+                2.5,
+                1.010696,
+            )
+
+            let mats = []
+            for (let i = 0; i < geometry.faces.length; i++) {
+                const material = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color(Math.random() * 0xffffff)
+                })
+                mats.push(material)
+            }
+            materials = mats
+        } else if (type === 'ball') {
+            geometry = new THREE.SphereGeometry(0.02, 0.02, 64);
+            materials = new THREE.MeshBasicMaterial({
+                color: new THREE.Color(0xffffff)
+            })
+        }
+        mesh = new THREE.Mesh(geometry, materials)
+        // y 轴需要加一半的高度，因为position是从地面开始的，或者我应该算偏移更合理
+        mesh.position.set(x, y, z)
+
+        if (helper) {
+            const helper = new THREE.AxesHelper(5);
+            mesh.add(helper)
+        }
+
+        five.scene.add(mesh);
+
+    }
+
     const getLabelVisible = (five: Five, itemLabel: ItemLabel) => {
         // TODO 当前没有楼层数据
         // const isLabelInCurFloor = five.model.shownFloor === null || itemLabel.floorIndex === five.model.shownFloor
-	    // if (!isLabelInCurFloor) return false
+        // if (!isLabelInCurFloor) return false
 
-	    const raycaster = new Raycaster()
-	    const cameraPosition = five.camera.position.clone()
-	    const modelPosition = new Vector3(itemLabel.position.x, itemLabel.position.y, itemLabel.position.z)
-	    // 计算点到相机的位置
-	    const vectorDistance = modelPosition.distanceTo(cameraPosition)
-	    raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
-	    const [intersection] = five.model.intersectRaycaster(raycaster)
-	    return !(intersection && intersection.distance + 1 < vectorDistance) // 这里这个 + 1 是干嘛用的呢
+        const raycaster = new Raycaster()
+        const cameraPosition = five.camera.position.clone()
+        const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
+        // 计算点到相机的位置
+        const vectorDistance = modelPosition.distanceTo(cameraPosition)
+        raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
+        const [intersection] = five.model.intersectRaycaster(raycaster)
+        return !(intersection && intersection.distance + 1 < vectorDistance) // 这里这个 + 1 是干嘛用的呢
     }
 
     // 位置获取
     const getLabelTransform = (five: Five, itemLabel: ItemLabel) => {
-        const modelPosition = new Vector3(itemLabel.position.x, itemLabel.position.y, itemLabel.position.z)
-	    const cssPosition: Vector2 | null = five.project2d(modelPosition)
-	    const xOffset = cssPosition.x
-	    const yOffest = cssPosition.y
+        const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
+        addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
+        const cssPosition: Vector2 | null = five.project2d(modelPosition)
+        const xOffset = cssPosition?.x
+        const yOffest = cssPosition?.y
         return `translate(${xOffset}px, ${yOffest}px)`
     }
 
@@ -44,8 +87,8 @@
         // 计算位置 & 可见性
         const newLabels = labels.map(label => {
             // 可见性，不可见则不计算位置，节省算力
-            // const visible = getLabelVisible(five, label)
-	        const visible = true
+            const visible = getLabelVisible(five, label)
+            // const visible = true
             if (!visible) return { ...label, visible }
 
             // position
@@ -57,14 +100,14 @@
             .filter(({ visible }) => visible)
             .map(label => ({
                 itemLabelItem: label,
-                distance: new Vector3(...Object.values(label.position)).clone().distanceTo(five.camera.position)
+                distance: new Vector3(...Object.values(label.modelPosition)).clone().distanceTo(five.camera.position)
             }))
             .sort((a, b) => a.distance - b.distance)
 
         return newLabels.map(label => {
             const sortIndex = sortedItemLabelItems.findIndex(item => item.itemLabelItem.id === label.id)
-	        if (sortIndex !== undefined) return { ...label, zIndex: sortIndex * 10 }
-	        return label
+            if (sortIndex !== undefined) return { ...label, zIndex: sortIndex * 10 }
+            return label
         })
     }
 
@@ -73,14 +116,13 @@
     }
 
     onMount(() => {
+        five.on('cameraUpdate', onFiveCameraUpdate)
         onFiveCameraUpdate()
     })
 
     onDestroy(() => {
         five.off('cameraUpdate', onFiveCameraUpdate)
     })
-
-    five.on('cameraUpdate', onFiveCameraUpdate)
 
 
 </script>

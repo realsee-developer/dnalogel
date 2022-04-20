@@ -10,8 +10,9 @@ export interface  ModelItemLabelPluginData {
     model_item_labels: Readonly<{
         id: string
         name: string
+        size: [number, number, number]
         center: [number, number, number]
-        position: { x: number, y: number, z: number }
+        position: [number, number, number]
         type: string[]
     }>[]
 }
@@ -20,8 +21,10 @@ export interface  ModelItemLabelPluginData {
 export interface ItemLabel {
     id: string
     name: string
+    size: [number, number, number]
     center: [number, number, number]
-    position: { x: number, y: number, z: number }
+    position: [number, number, number]
+    modelPosition: [number, number, number]
     type: string[]
 }
 
