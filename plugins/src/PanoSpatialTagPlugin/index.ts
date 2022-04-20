@@ -5,6 +5,7 @@ import CSS3DRenderPlugin from '../CSS3DRenderPlugin'
 import Origins from './Components/origins.svelte'
 import Tag from './Components/tag.svelte'
 import { pluginStyle } from './style'
+import render from '../shared-utils/tinyEJSrender'
 
 import type {
   PanoSpatialTagPluginId,
@@ -98,14 +99,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     tags: [],
     template: '',
     events: {},
-    render: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => {
-      const evaluate = /{{([\s\S]+?)}}/g
-      const keys = Object.keys(replacement)
-      const values = keys.map(key => replacement[key])
-      return template.replace(evaluate, (_, target) => {
-        return (new Function(...keys.concat('return ' + target)))(...values)
-      })
-    },
+    render,
     folded: false,
     enabled: true,
     forbidden: true,

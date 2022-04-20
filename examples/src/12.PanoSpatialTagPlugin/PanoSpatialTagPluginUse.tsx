@@ -16,7 +16,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
             points: [
                 {
                     "id": "u-jqn1fNRBTXzytd",
-                    "price": 5096,
                     "name": "双开门灶台",
                     "position": {
                         "x": -1.9109770000000001,
@@ -31,7 +30,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-jqn1fNRBTXzytd",
-                    "price": 5096,
                     "name": "双开门灶台",
                     "position": {
                         "x": -2.8109770000000003,
@@ -46,7 +44,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-jqn1fNRBTXzytd",
-                    "price": 5096,
                     "name": "双开门灶台",
                     "position": {
                         "x": -2.8109770000000003,
@@ -61,7 +58,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-jqn1fNRBTXzytd",
-                    "price": 5096,
                     "name": "双开门灶台",
                     "position": {
                         "x": -1.9109770000000001,
@@ -76,7 +72,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-157nQQ1jhcBoH0",
-                    "price": 5096,
                     "name": "双开门水槽",
                     "position": {
                         "x": -0.21040699999999996,
@@ -91,7 +86,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-157nQQ1jhcBoH0",
-                    "price": 5096,
                     "name": "双开门水槽",
                     "position": {
                         "x": -0.9460816047723384,
@@ -106,7 +100,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-157nQQ1jhcBoH0",
-                    "price": 5096,
                     "name": "双开门水槽",
                     "position": {
                         "x": -1.11022,
@@ -121,7 +114,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-157nQQ1jhcBoH0",
-                    "price": 5096,
                     "name": "双开门水槽",
                     "position": {
                         "x": -0.21040699999999996,
@@ -136,7 +128,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-amGMvDzEiyeg35",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -2.660437,
@@ -151,7 +142,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-amGMvDzEiyeg35",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -2.0615069999999998,
@@ -166,7 +156,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-hS7KAc1mJdeS7P",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -0.9597720000000001,
@@ -181,7 +170,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-hS7KAc1mJdeS7P",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -0.36084199999999994,
@@ -196,7 +184,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-15hYRuWXi9AiAM",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -1.810105,
@@ -211,7 +198,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-15hYRuWXi9AiAM",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -1.211175,
@@ -226,7 +212,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-BYWBQqEkiD3gGp",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -0.21976265812521656,
@@ -241,7 +226,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-BYWBQqEkiD3gGp",
-                    "price": 5096,
                     "name": "挡水",
                     "position": {
                         "x": -0.21083134187478342,
@@ -256,7 +240,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-XC0SCyrtiDsUt2",
-                    "price": 5096,
                     "name": "挂墙层板",
                     "position": {
                         "x": -0.825938,
@@ -271,7 +254,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-XC0SCyrtiDsUt2",
-                    "price": 5096,
                     "name": "挂墙层板",
                     "position": {
                         "x": -2.024192,
@@ -286,7 +268,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-XC0SCyrtiDsUt2",
-                    "price": 5096,
                     "name": "挂墙层板",
                     "position": {
                         "x": -2.024192,
@@ -301,7 +282,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-XC0SCyrtiDsUt2",
-                    "price": 5096,
                     "name": "挂墙层板",
                     "position": {
                         "x": -0.825938,
@@ -316,7 +296,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-JChf5gVMRdcgXH",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.534445,
@@ -331,7 +310,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-JChf5gVMRdcgXH",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.8105119243715012,
@@ -346,7 +324,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-JChf5gVMRdcgXH",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.981945,
@@ -361,7 +338,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-JChf5gVMRdcgXH",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.531945,
@@ -376,7 +352,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-EKyEpFeJBbArJp",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.17001999999999998,
@@ -391,7 +366,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-EKyEpFeJBbArJp",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.4460869243715012,
@@ -406,7 +380,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-EKyEpFeJBbArJp",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.61752,
@@ -421,7 +394,6 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
                 },
                 {
                     "id": "u-EKyEpFeJBbArJp",
-                    "price": 5096,
                     "name": "上翻吊柜",
                     "position": {
                         "x": -0.16751999999999997,
@@ -686,17 +658,9 @@ const PanoSpatialTagPluginUse = (props: PanoSpatialTagPluginUsePropTypes) => {
             }),
             template: `
             <div class="tag-wrapper" style="pointer-events: auto">
-                <span class="tag-name">{{name}}</span><br/>
-                <span>{{price}}</span>
+                <span class="tag-name"><%= name %></span>
+                <% if (price) { %><br/><span><%= price %></span><% } %>
             </div>`,
-            render: (template, replacement) => {
-              const evaluate = /{{([\s\S]+?)}}/g
-              const keys = Object.keys(replacement)
-              const values = keys.map(key => replacement[key])
-              return template.replace(evaluate, (_, target) => {
-                return (new Function(...keys.concat('return ' + target)))(...values)
-              })
-            },
             events: {
                 'tag-wrapper': id => panoSpatialTagPlugin.fold(id)
             },
