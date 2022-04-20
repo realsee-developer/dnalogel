@@ -73,6 +73,7 @@
   class:PanoSpatialTagPlugin__tag-upside-down={upsideDown}
   class:PanoSpatialTagPlugin__tag-show={show}
   class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
+  id={'PanoSpatialTagPlugin__' + id}
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"

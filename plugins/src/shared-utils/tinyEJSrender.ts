@@ -1,22 +1,22 @@
-const _DEFAULT_OPEN_DELIMITER = '<'
-const _DEFAULT_CLOSE_DELIMITER = '>'
-const _DEFAULT_DELIMITER = '%'
-const _REGEX_STRING = '(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)'
-const _ENCODE_HTML_RULES = {
+const DEFAULT_OPEN_DELIMITER = '<'
+const DEFAULT_CLOSE_DELIMITER = '>'
+const DEFAULT_DELIMITER = '%'
+const DEFAULT_LOCALS_NAME = 'locals'
+const REGEX_STRING = '(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)'
+const ENCODE_HTML_RULES = {
   '&': '&amp',
   '<': '&lt',
   '>': '&gt',
   '"': '&#34',
   "'": '&#39'
 }
-const TemplateModes = {
+const TEMPLATE_MODES = {
   EVAL: 'eval',
   ESCAPED: 'escaped',
   RAW: 'raw',
   COMMENT: 'comment',
   LITERAL: 'literal',
 }
-const _DEFAULT_LOCALS_NAME = 'locals'
 
 interface RenderData {
 	[key: string]: string
@@ -37,7 +37,7 @@ class Template {
 	private truncate = false
 	private currentLine = 1
 	private source = ''
-	private regex = new RegExp(_REGEX_STRING)
+	private regex = new RegExp(REGEX_STRING)
 
 	constructor (text) {
 	  this.templateText = text
@@ -48,14 +48,14 @@ class Template {
     const prepended = 
     	'  var __output = "";\n' +
       '  function __append(s) { if (s !== undefined && s !== null) __output += s }\n' +
-    	'  with (' + _DEFAULT_LOCALS_NAME + ' || {}) {' + '\n'
+    	'  with (' + DEFAULT_LOCALS_NAME + ' || {}) {' + '\n'
     const appended = '  }' + '\n  return __output;' + '\n'
     const escapeFn = function (markup) {
 		  return markup == undefined
 		    ? ''
 		    : String(markup)
 		      .replace(/[&<>'"]/g, function (c) {
-			  return _ENCODE_HTML_RULES[c] || c
+			  return ENCODE_HTML_RULES[c] || c
 			})
 		}
 
@@ -65,7 +65,7 @@ class Template {
     src = this.source
     src = 'escapeFn = escapeFn || ' + escapeFn.toString() + ';' + '\n' + src
 
-    return new Function(_DEFAULT_LOCALS_NAME + ', escapeFn', src)
+    return new Function(DEFAULT_LOCALS_NAME + ', escapeFn', src)
   }
 
   private _generateSource () {
@@ -73,9 +73,9 @@ class Template {
       this.templateText.replace(/[ \t]*<%_/gm, '<%_').replace(/_%>[ \t]*/gm, '_%>')
 
     const matches = this._parseTemplateText()
-    const d = _DEFAULT_DELIMITER
-    const o = _DEFAULT_OPEN_DELIMITER
-    const c = _DEFAULT_CLOSE_DELIMITER
+    const d = DEFAULT_DELIMITER
+    const o = DEFAULT_OPEN_DELIMITER
+    const c = DEFAULT_CLOSE_DELIMITER
 
     if (matches && matches.length) {
       matches.forEach((line, index) => {
@@ -134,37 +134,37 @@ class Template {
   }
 
   private _scanLine (line) {
-    const d = _DEFAULT_DELIMITER
-    const o = _DEFAULT_OPEN_DELIMITER
-    const c = _DEFAULT_CLOSE_DELIMITER
+    const d = DEFAULT_DELIMITER
+    const o = DEFAULT_OPEN_DELIMITER
+    const c = DEFAULT_CLOSE_DELIMITER
     const newLineCount = line.split('\n').length - 1
 
     switch (line) {
 	    case o + d:
 	    case o + d + '_':
-	      this.mode = TemplateModes.EVAL
+	      this.mode = TEMPLATE_MODES.EVAL
 	      break
 	    case o + d + '=':
-	      this.mode = TemplateModes.ESCAPED
+	      this.mode = TEMPLATE_MODES.ESCAPED
 	      break
 	    case o + d + '-':
-	      this.mode = TemplateModes.RAW
+	      this.mode = TEMPLATE_MODES.RAW
 	      break
 	    case o + d + '#':
-	      this.mode = TemplateModes.COMMENT
+	      this.mode = TEMPLATE_MODES.COMMENT
 	      break
 	    case o + d + d:
-	      this.mode = TemplateModes.LITERAL
+	      this.mode = TEMPLATE_MODES.LITERAL
 	      this.source += '    ; __append("' + line.replace(o + d + d, o + d) + '")' + '\n'
 	      break
 	    case d + d + c:
-	      this.mode = TemplateModes.LITERAL
+	      this.mode = TEMPLATE_MODES.LITERAL
 	      this.source += '    ; __append("' + line.replace(d + d + c, d + c) + '")' + '\n'
 	      break
 	    case d + c:
 	    case '-' + d + c:
 	    case '_' + d + c:
-	      if (this.mode == TemplateModes.LITERAL) {
+	      if (this.mode == TEMPLATE_MODES.LITERAL) {
 	        this._addOutput(line)
 	      }
 
@@ -174,26 +174,26 @@ class Template {
 	    default:
 	      if (this.mode) {
 	        switch (this.mode) {
-	        case TemplateModes.EVAL:
-	        case TemplateModes.ESCAPED:
-	        case TemplateModes.RAW:
+	        case TEMPLATE_MODES.EVAL:
+	        case TEMPLATE_MODES.ESCAPED:
+	        case TEMPLATE_MODES.RAW:
 	          if (line.lastIndexOf('//') > line.lastIndexOf('\n')) {
 	            line += '\n'
 	          }
 	        }
 	        switch (this.mode) {
-	        case TemplateModes.EVAL:
+	        case TEMPLATE_MODES.EVAL:
 	          this.source += '    ; ' + line + '\n'
 	          break
-	        case TemplateModes.ESCAPED:
+	        case TEMPLATE_MODES.ESCAPED:
 	          this.source += '    ; __append(escapeFn(' + stripSemi(line) + '))' + '\n'
 	          break
-	        case TemplateModes.RAW:
+	        case TEMPLATE_MODES.RAW:
 	          this.source += '    ; __append(' + stripSemi(line) + ')' + '\n'
 	          break
-	        case TemplateModes.COMMENT:
+	        case TEMPLATE_MODES.COMMENT:
 	          break
-	        case TemplateModes.LITERAL:
+	        case TEMPLATE_MODES.LITERAL:
 	          this._addOutput(line)
 	          break
 	        }
