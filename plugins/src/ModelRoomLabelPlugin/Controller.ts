@@ -91,7 +91,7 @@ export class ModelRoomLabelController {
 
   private render() {
     if (!this.wrapper) return
-    if (!this.enable || !this.fiveModeEnabled) {
+    if (!this.enabled || !this.fiveModeEnabled) {
       this.app?.$destroy()
       this.app = undefined
       return

@@ -60,18 +60,18 @@
     })
   }
 
-  function onFiveCameraDirectionUpdate() {
+  function onFiveCameraUpdate() {
     roomLabels = getFormatedRoomLabels(five, roomLabels)
   }
 
-  five.on('cameraDirectionUpdate', onFiveCameraDirectionUpdate)
+  five.on('cameraUpdate', onFiveCameraUpdate)
 
   onDestroy(() => {
-    five.off('cameraDirectionUpdate', onFiveCameraDirectionUpdate)
+    five.off('cameraUpdate', onFiveCameraUpdate)
   })
 
   onMount(() => {
-    onFiveCameraDirectionUpdate()
+    onFiveCameraUpdate()
   })
 </script>
 

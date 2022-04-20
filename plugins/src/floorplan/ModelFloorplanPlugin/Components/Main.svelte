@@ -1,10 +1,10 @@
 <script lang="ts">
   import Camera from './Camera.svelte'
   import Compass from './Compass.svelte'
+  import CurrentFloor from './CurrentFloor/CurrentFloor.svelte'
   import type { Five } from '@realsee/five'
   import { linear } from 'svelte/easing'
   import { fade } from 'svelte/transition'
-  import CurrentFloor from './CurrentFloor/CurrentFloor.svelte'
   import type { FloorplanData, FloorplanRoomItem } from '../../typings/floorplanData'
 
   export let pxmm: number
