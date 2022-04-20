@@ -1,8 +1,10 @@
 import * as THREE from 'three'
 import type { FivePlugin } from '@realsee/five'
 import { Five } from '@realsee/five'
+
 export interface ModelViewPluginExportType {
     appendTo(element: HTMLElement, size?: { width?: number; height?: number }): void
+
     refresh(size?: { width?: number; height?: number }): void
 }
 
@@ -12,6 +14,7 @@ export interface ModelViewPluginExportType {
  */
 export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (five: Five) => {
     let needsRender = true
+    let renderer: THREE.WebGLRenderer | null = null
 
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000)
@@ -34,7 +37,6 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
 
     scene.add(model)
 
-    let renderer: THREE.WebGLRenderer | null = null
     const initRendererIfNeeds = () => {
         if (!five.renderer) return
         if (!renderer) {
@@ -47,7 +49,7 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
         return renderer
     }
 
-    const modelWillLoad = () => {
+    const handleModelWillLoad = () => {
         model.traverse((object) => {
             if (object instanceof THREE.Mesh) {
                 const materials = ([] as THREE.Material[]).concat(object.material)
@@ -60,7 +62,7 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
         update()
     }
 
-    const modelLoaded = () => {
+    const handleModelLoaded = () => {
         function cloneMaterial(material: THREE.ShaderMaterial) {
             material = material.clone()
             material.uniforms.modelAlpha.value = 1
@@ -87,6 +89,7 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
                 return object3D
             }
         }
+
         scene.remove(model)
         model = cloneModel(five.model)
         scene.add(model)
@@ -113,13 +116,15 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
         const element = renderer.domElement
         const container = element.parentNode as HTMLElement
         if (container && container.nodeName) {
+
             const { width = container.offsetWidth, height = container.offsetHeight } = size
             renderer.setSize(width, height)
             // 修改摄像机 aspect 比值
             camera.aspect = width / height
             camera.updateProjectionMatrix()
         }
-        needsRender = true
+
+        update()
     }
 
     const cameraDistance = () => {
@@ -169,8 +174,8 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
         renderer = null
     }
 
-    five.on('modelLoaded', modelLoaded)
-    five.on('modelWillLoad', modelWillLoad)
+    five.on('modelLoaded', handleModelLoaded)
+    five.on('modelWillLoad', handleModelWillLoad)
     five.on('cameraDirectionUpdate', update)
     five.on('dispose', dispose)
     five.on('renderFrame', render)

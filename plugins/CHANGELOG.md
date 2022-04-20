@@ -19,3 +19,9 @@
 - 1.fix: PanoCompassPlugin 向下兼容；
 - 2.feat: 新增 PC 全景测量插件：PanoMeasurePlugin；
 - 3.docs: 修改 README.md；
+
+## 2.0.0-alpha.8
+- 1.fix: 修复 ModelViewPlugin 实景 VR 模型不居中问题；
+- 2.fix: 修复 ModelRoomLabelPlugin fov 更新未 rerender 问题；
+- 2.fix: 修复 ModelRoomLabelPlugin enable 判断问题；
+- 4.fix: 修改 ModelFloorplanPlugin 在全景态满足户型图的俯仰角时会自动切换户型图问题。

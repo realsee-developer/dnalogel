@@ -88,7 +88,6 @@ export default class ModelFloorplanPluginController {
 
     five.once('dispose', this.dispose)
     five.on('modeChange', this.handleModeChange)
-    five.on('panGesture', this.handlePanGesture)
     five.on('panoArrived', this.handlePanoArrived)
     five.on('wantsChangeMode', this.handleWantsChangeMode)
     five.on('wantsInteriaPan', this.handleWantsInteriaPan)

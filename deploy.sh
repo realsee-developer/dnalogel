@@ -8,12 +8,11 @@ rm -rf online
 # 构建
 yarn run build:examples
 
-# 创建 test 目录并移动 build 后的代码到 test 目录
-mkdir -p test
-mv -f online test
+# 移动数据文件夹
+cp -r examples/dnalogel/open-works online/dnalogel/
 
 # 进入构建文件夹
-cd test
+cd online/dnalogel
 
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
@@ -21,12 +20,12 @@ cd test
 git init
 git checkout -b main
 git add -A
-git commit -m 'test'
+git commit -m 'deploy'
 
 # 如果你要部署在 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
 
 # 如果你要部署在 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:realsee-developer/dnalogel.git main:online
+git push -f git@github.com:realsee-developer/dnalogel.git main:gh-pages
 
 cd -

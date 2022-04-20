@@ -13,7 +13,7 @@ const getInitialParamFromUrl = (): Record<string, any> => {
     if (!queryArr) return {}
     queryArr.forEach(query => {
         const queryKeyValue = query.split('=')
-        if( queryKeyValue[0] !== 'renderCode'){
+        if( queryKeyValue[0] !== 'renderCode' && queryKeyValue[0] !== 'spaceType'){
             let obj: Record<string, any> = {}
             obj[queryKeyValue[0]] = JSON.parse(queryKeyValue[1])
             Object.assign(initialParam, obj)
