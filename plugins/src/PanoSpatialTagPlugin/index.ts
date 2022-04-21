@@ -338,7 +338,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
             id,
             content: state.render(state.template, replacement),
             lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / maxDistance),
-            lineHeightZoom: 0.6 + (camera.position.distanceTo(position) - minDistance) / maxDistance * 0.4,
+            lineHeightZoom: 0.4 + (camera.position.distanceTo(position) - minDistance) / maxDistance * 0.6,
             contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
             upsideDown: position.y > upsideHeight,
             folded: state.folded,
