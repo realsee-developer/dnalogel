@@ -74,6 +74,7 @@
   class:PanoSpatialTagPlugin__tag-show={show}
   class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
   id={'PanoSpatialTagPlugin__' + id}
+  style="height: {11 + lineZoom * 3}rem"
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
@@ -99,6 +100,7 @@
     height: 11rem;
     color: #FFF;
     transform: translate(0, -100%);
+    transition: height .5s linear;
   }
 
   .PanoSpatialTagPlugin__tag-x:before {
