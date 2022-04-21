@@ -31,6 +31,7 @@ const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
     useFiveEventCallback('modelLoaded', () => {
         if (!modelRoomLabels) return
         five.plugins.modelRoomLabelPlugin.load(modelRoomLabels)
+        setFiveState({ mode: Five.Mode.Floorplan })
     }, [modelRoomLabels])
 
     if (fiveModeReadyState !== 'Loaded') return null
