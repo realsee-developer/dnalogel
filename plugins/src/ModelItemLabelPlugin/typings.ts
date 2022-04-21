@@ -6,7 +6,7 @@ export interface ModelItemLabelPluginParametersType {
 }
 
 // 插件 load 数据
-export interface  ModelItemLabelPluginData {
+export interface ModelItemLabelPluginData {
     model_item_labels: Readonly<{
         id: string
         name: string
@@ -43,7 +43,7 @@ export interface ModelItemLabelPluginState {
     data: ModelItemLabelPluginData | null
     enabled: boolean,
     itemLabels: ItemLabel[],
-    wrapper: Element | null,
+    wrapper: HTMLElement | null,
     fiveModeEnabled: boolean,
     app?: ItemLabelComponent | undefined
 }

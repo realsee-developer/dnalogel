@@ -17,8 +17,8 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
     const pluginState: ModelItemLabelPluginState = {
         container: document.createElement('div'),
         data: null,
-        enabled: false,
-        fiveModeEnabled: false, // TODO 不一定单独管理这个状态，存疑，看是否能够和 enabled 状态保持一致
+        enabled: true,
+        fiveModeEnabled: undefined, // TODO 不一定单独管理这个状态，存疑，看是否能够和 enabled 状态保持一致
         itemLabels: [],
         wrapper: null,
         app: undefined
@@ -35,14 +35,12 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
     `
 
     const appendTo = (wrapper: Element) => {
-        pluginState.wrapper = wrapper
+        pluginState.wrapper = wrapper as HTMLElement
         wrapper.appendChild(pluginState.container)
-
-        window.addEventListener('resize', render)
-
         render()
         return true
     }
+
 
     const load = (data: ModelItemLabelPluginData) => {
         pluginState.itemLabels = parseModelItemLabelPluginData(data)
@@ -65,7 +63,6 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
 
     const dispose = () => {
         removeListener4Five()
-        window.removeEventListener('resize', render)
         pluginState.container.remove()
     }
 
@@ -75,6 +72,7 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         if (!pluginState.enabled || !pluginState.fiveModeEnabled) {
             pluginState.app?.$destroy()
             pluginState.app = undefined
+            return
         }
         // 正常显示时，分为 app 存在和不存在两种情况，如果存在，传值，不存在则初始化并传值
         if (!pluginState.app) {
@@ -82,7 +80,8 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
                 target: pluginState.container,
                 props: {
                     five: five,
-                    itemLabels: pluginState.itemLabels
+                    itemLabels: pluginState.itemLabels,
+                    wrapper: pluginState.wrapper
                 }
             })
         } else {
@@ -112,8 +111,9 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
 
     const onFiveModeChange = (mode: Mode) => {
         if (mode !== Five.Mode.Floorplan) {
-            pluginState.enabled = false
+            pluginState.fiveModeEnabled = false
             render()
+            return
         }
 
         five.once('initAnimationEnded', () => {

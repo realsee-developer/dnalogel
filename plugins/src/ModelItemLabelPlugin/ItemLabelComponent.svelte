@@ -3,13 +3,19 @@
     import type { ItemLabel } from './typings'
     import { onDestroy, onMount } from "svelte";
     import * as THREE from 'three'
-    // import { Raycaster, Vector2, Vector3 } from "three";
     import ItemLabelItem from './ItemLabelItem.svelte'
+    import { beforeUpdate, afterUpdate } from 'svelte';
 
-    const { Raycaster, Vector2, Vector3 } = THREE
+    const { Raycaster, Vector3 } = THREE
 
     export let five: Five
     export let itemLabels: ItemLabel[]
+    export let wrapper: HTMLElement | null
+
+    let wrapperSize: {
+        width: number,
+	    height: number
+    }
 
     let containerWidth: number
     let containerHeight: number
@@ -21,7 +27,6 @@
      * */
     // 画辅助线
     function addHelper(x: number, y: number, z: number, type: string, helper?: boolean) {
-        // const point = new THREE.Vector3();
         let geometry, materials, mesh: any
 
         if (type === 'box') {
@@ -59,10 +64,7 @@
     }
 
     const getLabelVisible = (five: Five, itemLabel: ItemLabel) => {
-        // TODO 当前没有楼层数据
-        // const isLabelInCurFloor = five.model.shownFloor === null || itemLabel.floorIndex === five.model.shownFloor
-        // if (!isLabelInCurFloor) return false
-
+        // 虚拟 VR 仅有一层，不考虑楼层信息
         const raycaster = new Raycaster()
         const cameraPosition = five.camera.position.clone()
         const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
@@ -70,17 +72,19 @@
         const vectorDistance = modelPosition.distanceTo(cameraPosition)
         raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
         const [intersection] = five.model.intersectRaycaster(raycaster)
-        return !(intersection && intersection.distance + 1 < vectorDistance) // 这里这个 + 1 是干嘛用的呢
+        if (intersection && intersection.distance + 1 < vectorDistance) return false
+
+        return true
     }
 
     // 位置获取
     const getLabelTransform = (five: Five, itemLabel: ItemLabel) => {
         const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
-        addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
-        const cssPosition: Vector2 | null = five.project2d(modelPosition)
+        // addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
+        const cssPosition: THREE.Vector2 | null = five.project2d(modelPosition)
         const xOffset = cssPosition?.x
-        const yOffest = cssPosition?.y
-        return `translate(${xOffset}px, ${yOffest}px)`
+        const yOffset = cssPosition?.y
+        return `translate(${xOffset}px, ${yOffset}px)`
     }
 
     const getFormatedItemLabels = (five: Five, labels: ItemLabel[]) => {
@@ -100,7 +104,7 @@
             .filter(({ visible }) => visible)
             .map(label => ({
                 itemLabelItem: label,
-                distance: new Vector3(...Object.values(label.modelPosition)).clone().distanceTo(five.camera.position)
+                distance: new Vector3(label.modelPosition[0], label.modelPosition[1], label.modelPosition[2]).clone().distanceTo(five.camera.position)
             }))
             .sort((a, b) => a.distance - b.distance)
 
@@ -116,12 +120,37 @@
     }
 
     onMount(() => {
-        five.on('cameraUpdate', onFiveCameraUpdate)
         onFiveCameraUpdate()
+        five.on('cameraUpdate', onFiveCameraUpdate)
+	    addResizeListener()
+    })
+
+    const addResizeListener = () => {
+        wrapperSize = {
+            width: wrapper.clientWidth,
+            height: wrapper.clientHeight
+        }
+        resizeObserver.observe(wrapper)
+    }
+
+    const resizeObserver = new ResizeObserver(entries => {
+        const entry = entries[0]
+        const target = entry.target as HTMLElement
+        const curWidth = target.clientWidth
+        const curHeight = target.clientHeight
+        if (wrapperSize.width !== curWidth || wrapperSize.height !== curHeight) {
+            wrapperSize = {
+                width: curWidth,
+                height: curHeight
+            }
+
+            onFiveCameraUpdate()
+        }
     })
 
     onDestroy(() => {
         five.off('cameraUpdate', onFiveCameraUpdate)
+        resizeObserver.unobserve(wrapper)
     })
 
 
