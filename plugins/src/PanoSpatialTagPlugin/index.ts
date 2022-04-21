@@ -165,7 +165,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       } else {
         tag.app.$set({
           lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
-          lineHeightZoom: 0.6 + (camera.position.distanceTo(tag.position) - minDistance) / maxDistance * 0.4,
+          lineHeightZoom: 0.4 + (camera.position.distanceTo(tag.position) - minDistance) / maxDistance * 0.6,
           contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
         })
       }

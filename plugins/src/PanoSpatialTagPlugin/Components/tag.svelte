@@ -75,7 +75,7 @@
   class:PanoSpatialTagPlugin__tag-show={show}
   class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
   id={'PanoSpatialTagPlugin__' + id}
-  style="height: {14 * lineHeightZoom}rem"
+  style="height: {16 * lineHeightZoom}rem"
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
