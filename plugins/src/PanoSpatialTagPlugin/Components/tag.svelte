@@ -78,7 +78,7 @@
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
-      style="width: {lineZoom}rem"
+      style="width: {lineZoom}rem; height: {9.5 + lineZoom * 3}rem"
     />
     <i class="PanoSpatialTagPlugin__tag-line1"/>
     <i class="PanoSpatialTagPlugin__tag-line2"/>
@@ -128,7 +128,7 @@
     box-shadow: 0 .1rem .5rem rgba(0, 0, 0, .2);
     opacity: 0;
     transform: translate(-50%, 60%) scaleY(0);
-    transition: transform .4s cubic-bezier(.44,.44,.74,.98) , opacity .4s cubic-bezier(.44,.44,.74,.98), width .5s linear ;
+    transition: transform .4s cubic-bezier(.44,.44,.74,.98) , opacity .4s cubic-bezier(.44,.44,.74,.98), width .5s linear, height .5s linear ;
     transform-origin: center bottom;
   }
 
