@@ -6,7 +6,8 @@
   export let upsideDown: boolean
   export let content: string
   export let contentZoom: number
-  export let lineZoom: number
+  export let lineWidthZoom: number
+  export let lineHeightZoom: number
   export let destroying: boolean = false
   export let folded: boolean
   export let dispose: () => void
@@ -74,11 +75,11 @@
   class:PanoSpatialTagPlugin__tag-show={show}
   class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
   id={'PanoSpatialTagPlugin__' + id}
-  style="height: {11 + lineZoom * 3}rem"
+  style="height: {14 * lineHeightZoom}rem"
 >
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
-      style="width: {lineZoom}rem; height: {9.5 + lineZoom * 3}rem"
+      style="width: {lineWidthZoom}rem;"
     />
     <i class="PanoSpatialTagPlugin__tag-line1"/>
     <i class="PanoSpatialTagPlugin__tag-line2"/>
@@ -97,7 +98,7 @@
     white-space: nowrap;
     box-sizing: border-box;
     width: 25rem;
-    height: 11rem;
+    height: 14rem;
     color: #FFF;
     transform: translate(0, -100%);
     transition: height .5s linear;
@@ -118,11 +119,19 @@
     background-size: 30rem 30rem;
   }
 
+  .PanoSpatialTagPlugin__tag-line {
+    position: absolute;
+    left: -1rem;
+    width: 2rem;
+    height: 100%;
+    overflow: hidden;
+  }
+
   .PanoSpatialTagPlugin__tag-flagpole {
     position: absolute;
     top: 0;
     left: 1rem;
-    height: 9.5rem;
+    height: calc(100% - 1.5rem);
     width: .15rem;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, .1));
     box-shadow: 0 .1rem .5rem rgba(0, 0, 0, .2);
@@ -130,14 +139,6 @@
     transform: translate(-50%, 60%) scaleY(0);
     transition: transform .4s cubic-bezier(.44,.44,.74,.98) , opacity .4s cubic-bezier(.44,.44,.74,.98), width .5s linear, height .5s linear ;
     transform-origin: center bottom;
-  }
-
-  .PanoSpatialTagPlugin__tag-line {
-    position: absolute;
-    left: -1rem;
-    width: 2rem;
-    height: 100%;
-    overflow: hidden;
   }
 
   .PanoSpatialTagPlugin__tag-line1 {

@@ -159,13 +159,13 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.tags.forEach(tag => {
       if (tag.destroying) {
         tag.app.$set({
-          lineZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
           contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
           destroying: tag.destroying,
         })
       } else {
         tag.app.$set({
-          lineZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
+          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
+          lineHeightZoom: 0.6 + (camera.position.distanceTo(tag.position) - minDistance) / maxDistance * 0.4,
           contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
         })
       }
@@ -337,7 +337,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
           props: {
             id,
             content: state.render(state.template, replacement),
-            lineZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / maxDistance),
+            lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / maxDistance),
+            lineHeightZoom: 0.6 + (camera.position.distanceTo(position) - minDistance) / maxDistance * 0.4,
             contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
             upsideDown: position.y > upsideHeight,
             folded: state.folded,
