@@ -1,5 +1,5 @@
 import type { FivePlugin, Mode } from "@realsee/five";
-import { Five } from "@realsee/five"
+import { Five, Subscribe } from "@realsee/five"
 import ItemLabelComponent from './ItemLabelComponent.svelte'
 import {
     ModelItemLabelPluginState,
@@ -8,6 +8,7 @@ import {
     ModelItemLabelPluginParametersType
 } from "./typings";
 import { parseModelItemLabelPluginData } from "./utils/parseData";
+import { PluginEvent } from "./events.type";
 
 export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType, ModelItemLabelPluginExportReturnsType> = (
     five: Five,
@@ -21,7 +22,8 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         fiveModeEnabled: undefined, // TODO 不一定单独管理这个状态，存疑，看是否能够和 enabled 状态保持一致
         itemLabels: [],
         wrapper: null,
-        app: undefined
+        app: undefined,
+        hooks: new Subscribe<PluginEvent>()
     }
 
     pluginState.container.setAttribute('class', 'model-item-label-plugin-container')
@@ -81,7 +83,8 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
                 props: {
                     five: five,
                     itemLabels: pluginState.itemLabels,
-                    wrapper: pluginState.wrapper
+                    wrapper: pluginState.wrapper,
+                    hooks: pluginState.hooks
                 }
             })
         } else {
@@ -129,7 +132,8 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         load,
         enable,
         disable,
-        dispose
+        dispose,
+        hooks: pluginState.hooks
     }
 }
 

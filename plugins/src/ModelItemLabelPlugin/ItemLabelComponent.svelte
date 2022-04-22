@@ -4,18 +4,21 @@
     import { onDestroy, onMount } from "svelte";
     import * as THREE from 'three'
     import ItemLabelItem from './ItemLabelItem.svelte'
-    import { beforeUpdate, afterUpdate } from 'svelte';
+    import type { Subscribe } from "@realsee/five";
+    import { PluginEvent } from "./events.type";
+    import { beforeUpdate } from "svelte";
 
     const { Raycaster, Vector3 } = THREE
 
     export let five: Five
     export let itemLabels: ItemLabel[]
     export let wrapper: HTMLElement | null
+    export let hooks: Subscribe<PluginEvent>
 
-    let wrapperSize: {
-        width: number,
-	    height: number
-    }
+    let curItemLabels: ItemLabel[] = null
+    let renderItemLabels: ItemLabel[] = null
+
+    let wrapperSize: { width: number, height: number } = { width: 0, height: 0 }
 
     let containerWidth: number
     let containerHeight: number
@@ -72,9 +75,7 @@
         const vectorDistance = modelPosition.distanceTo(cameraPosition)
         raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
         const [intersection] = five.model.intersectRaycaster(raycaster)
-        if (intersection && intersection.distance + 1 < vectorDistance) return false
-
-        return true
+        return !(intersection && intersection.distance + 1 < vectorDistance);
     }
 
     // 位置获取
@@ -115,14 +116,20 @@
         })
     }
 
-    const onFiveCameraUpdate = () => {
-        itemLabels = getFormatedItemLabels(five, itemLabels)
+    const onItemLabelUpdate = () => {
+        renderItemLabels = getFormatedItemLabels(five, renderItemLabels)
     }
 
+    beforeUpdate(() => {
+        addDataUpdateListener()
+    })
+
     onMount(() => {
-        onFiveCameraUpdate()
-        five.on('cameraUpdate', onFiveCameraUpdate)
-	    addResizeListener()
+        renderItemLabels = itemLabels
+        curItemLabels = itemLabels
+        onItemLabelUpdate()
+        five.on('cameraUpdate', onItemLabelUpdate)
+        addResizeListener()
     })
 
     const addResizeListener = () => {
@@ -131,6 +138,15 @@
             height: wrapper.clientHeight
         }
         resizeObserver.observe(wrapper)
+    }
+
+    const addDataUpdateListener = () => {
+        if (curItemLabels !== itemLabels) {
+            renderItemLabels = itemLabels
+            curItemLabels = itemLabels
+            console.log('--debug--update--')
+            onItemLabelUpdate()
+        }
     }
 
     const resizeObserver = new ResizeObserver(entries => {
@@ -144,21 +160,24 @@
                 height: curHeight
             }
 
-            onFiveCameraUpdate()
+            onItemLabelUpdate()
         }
     })
 
     onDestroy(() => {
-        five.off('cameraUpdate', onFiveCameraUpdate)
+        five.off('cameraUpdate', onItemLabelUpdate)
         resizeObserver.unobserve(wrapper)
+        curItemLabels = null
+        renderItemLabels = null
+        wrapperSize = { width: 0, height: 0 }
     })
 
 
 </script>
 
 <div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}">
-	{#each itemLabels as itemLabelItem (itemLabelItem.id)}
-		<ItemLabelItem itemLabel="{itemLabelItem}" five="{five}" />
+	{#each renderItemLabels as itemLabelItem (itemLabelItem.id)}
+		<ItemLabelItem itemLabel="{itemLabelItem}" hooks="{hooks}" />
 	{/each}
 </div>
 

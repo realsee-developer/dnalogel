@@ -3426,6 +3426,9 @@ const PluginShow = (props: PluginShowPropTypes) => {
     useFiveEventCallback('modelLoaded', () => {
         if (!modelItemLabels) return
         five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
+        five.plugins.modelItemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
+            console.log('🐶---🐶： ', itemLabel)
+        })
         setFiveState({ mode: Five.Mode.Floorplan })
         // addHelper(7.04986,
         //     -1.1e-05 + 0.70497,

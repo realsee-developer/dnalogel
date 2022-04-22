@@ -1,4 +1,6 @@
 import ItemLabelComponent from './ItemLabelComponent.svelte'
+import type { Subscribe } from "@realsee/five";
+import { PluginEvent } from "./events.type";
 
 // 插件入口参数
 export interface ModelItemLabelPluginParametersType {
@@ -45,5 +47,6 @@ export interface ModelItemLabelPluginState {
     itemLabels: ItemLabel[],
     wrapper: HTMLElement | null,
     fiveModeEnabled: boolean,
-    app?: ItemLabelComponent | undefined
+    app?: ItemLabelComponent | undefined,
+    hooks: Subscribe<PluginEvent>
 }
