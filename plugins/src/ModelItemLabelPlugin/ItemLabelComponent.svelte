@@ -23,6 +23,12 @@
     let containerWidth: number
     let containerHeight: number
 
+    // 计算重叠
+    let cssOffsetLists: number[][] = []
+    let cssHeight: number = 21
+    // let cssWidth: number = 20
+    let basicWidth: number = 8
+
     /**
      * 可见性策略：
      * 1、当前楼层(假设先不考虑多楼层)
@@ -78,26 +84,59 @@
         return !(intersection && intersection.distance + 1 < vectorDistance);
     }
 
-    // 位置获取
-    const getLabelTransform = (five: Five, itemLabel: ItemLabel) => {
+    // cssOffset 获取
+    const getLabelCssOffset = (five: Five, itemLabel: ItemLabel) => {
         const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
         // addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
         const cssPosition: THREE.Vector2 | null = five.project2d(modelPosition)
         const xOffset = cssPosition?.x
         const yOffset = cssPosition?.y
-        return `translate(${xOffset}px, ${yOffset}px)`
+	    return [xOffset, yOffset]
     }
+
+    // 位置获取
+    // const getLabelTransform = (five: Five, itemLabel: ItemLabel) => {
+    //     const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
+    //     // addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
+    //     const cssPosition: THREE.Vector2 | null = five.project2d(modelPosition)
+    //     const xOffset = cssPosition?.x
+    //     const yOffset = cssPosition?.y
+    //     return `translate(${xOffset}px, ${yOffset}px)`
+    // }
+
+    const getLabelTransform = (cssOffset: [number, number]) => {
+        return `translate(${cssOffset[0]}px, ${cssOffset[1]}px)`
+    }
+
+    // 重叠计算
+	const isOverlap = (cssOffset: [number, number], widthOffset: number): boolean => {
+        if (cssOffsetLists.length === 0) {
+            return false
+        }
+
+        const hasOverlapPoint = cssOffsetLists.find(item => (
+            (cssOffset[0] >= item[0] - widthOffset && cssOffset[0] <= item[0] + widthOffset)
+	        || (cssOffset[1] >= item[1] - cssHeight && cssOffset[1] <= item[1] + cssHeight)
+        ))
+
+		return !!hasOverlapPoint
+	}
 
     const getFormatedItemLabels = (five: Five, labels: ItemLabel[]) => {
         // 计算位置 & 可见性
         const newLabels = labels.map(label => {
-            // 可见性，不可见则不计算位置，节省算力
-            const visible = getLabelVisible(five, label)
-            // const visible = true
+            const cssOffset = getLabelCssOffset(five, label)
+
+	        const curLabelWidth = label.name.length * basicWidth
+
+            const visible = getLabelVisible(five, label) && !isOverlap(cssOffset, curLabelWidth)
+
             if (!visible) return { ...label, visible }
 
+            cssOffsetLists.push(cssOffset)
+
             // position
-            const transform = getLabelTransform(five, label)
+            const transform = getLabelTransform(cssOffset)
             return { ...label, visible, transform }
         })
 
@@ -117,6 +156,7 @@
     }
 
     const onItemLabelUpdate = () => {
+        cssOffsetLists = []
         renderItemLabels = getFormatedItemLabels(five, renderItemLabels)
     }
 
