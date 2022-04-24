@@ -168,7 +168,7 @@
         renderItemLabels = itemLabels
         curItemLabels = itemLabels
         onItemLabelUpdate()
-        five.on('cameraUpdate', onItemLabelUpdate)
+        // five.on('cameraUpdate', onItemLabelUpdate)
         addResizeListener()
     })
 
@@ -205,7 +205,7 @@
     })
 
     onDestroy(() => {
-        five.off('cameraUpdate', onItemLabelUpdate)
+        // five.off('cameraUpdate', onItemLabelUpdate)
         resizeObserver.unobserve(wrapper)
         curItemLabels = null
         renderItemLabels = null
@@ -226,6 +226,5 @@
         width: 100%;
         height: 100%;
         position: relative;
-        color: #EAD09A;
     }
 </style>

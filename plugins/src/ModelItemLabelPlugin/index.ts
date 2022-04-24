@@ -69,6 +69,25 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         pluginState.container.remove()
     }
 
+    const handleRerender = () => {
+        if (!pluginState.enabled || !pluginState.fiveModeEnabled) return
+        disable()
+    }
+
+    const rerender = (a, b, c) => {
+        if (!pluginState.fiveModeEnabled) return
+        if(!c) return
+        enable()
+        render()
+    }
+
+    const handleInteriaPanRerender = (a, b) => {
+        if (!pluginState.fiveModeEnabled) return
+        if(!b) return
+        enable()
+        render()
+    }
+
     const render = () => {
         if (!pluginState.wrapper) return
         // 只要不可展示，销毁容器
@@ -96,16 +115,29 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         }
     }
 
-    // 添加监听
+    // 添加 five 监听
     const addListener4Five = () => {
         five.on('modeChange', onFiveModeChange)
         five.once('dispose', dispose)
+        five.on('wantsGesture', handleRerender)
+        five.on('gesture', rerender)
+        five.on('wantsMouseWheel', handleRerender)
+        five.on('mouseWheel', rerender)
+        five.on('wantsInteriaPan', handleRerender)
+        five.on('interiaPan', handleInteriaPanRerender)
     }
 
-    // 取消监听
+    // 取消 five 监听
     const removeListener4Five = () => {
         five.off('modeChange', onFiveModeChange)
+        five.off('wantsGesture', handleRerender)
+        five.off('gesture', rerender)
+        five.off('wantsMouseWheel', handleRerender)
+        five.off('mouseWheel', rerender)
+        five.off('wantsInteriaPan', handleRerender)
+        five.off('interiaPan', handleInteriaPanRerender)
     }
+
 
     const onFiveModeChange = (mode: Mode) => {
         if (mode !== Five.Mode.Floorplan) {

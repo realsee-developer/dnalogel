@@ -29,13 +29,24 @@
 <style>
     .item-label-item {
         position: absolute;
-        /*font-size: 8px;*/
 	    font-size: 10px;
+	    font-weight: bold;
+        color: #FFEAC0;
         z-index: 0;
         transform: none;
         cursor: pointer;
         pointer-events: none;
         user-select: none;
+    }
+
+    .item-label-item__text::before {
+        /*content: '';*/
+        /*width: 84px;*/
+        /*height: 44px;*/
+        /*position: absolute;*/
+        /*background-color: rgba(0, 0, 0, .4);*/
+        /*filter: blur(16px);*/
+	    /*z-index: -1;*/
     }
 
     .item-label-item__text {
@@ -52,11 +63,10 @@
         background-repeat: no-repeat;
         white-space: nowrap;
         line-height: 10px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.70);
+        /*text-shadow: 0 2px 8px rgba(0, 0, 0, 0.70);*/
         border-top: 0 solid;
 	    border-left: 0 solid;
 	    border-right: 0 solid;
-        /* 稿子是0.5 */
         border-bottom: 1px solid;
         border-image: linear-gradient(to right, rgba(234, 208, 142, 0), rgba(234, 208, 142, 100), rgba(234, 208, 142, 0)) 4.5 1 4.5;
     }
