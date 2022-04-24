@@ -1,4 +1,4 @@
-import Hammer from 'hammerjs'
+import * as Hammer from 'hammerjs'
 import { Model } from '../Model'
 import Line from '../Model/line'
 import Point from '../Model/point'

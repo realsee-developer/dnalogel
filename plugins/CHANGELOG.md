@@ -25,3 +25,6 @@
 - 2.fix: 修复 ModelRoomLabelPlugin fov 更新未 rerender 问题；
 - 2.fix: 修复 ModelRoomLabelPlugin enable 判断问题；
 - 4.fix: 修改 ModelFloorplanPlugin 在全景态满足户型图的俯仰角时会自动切换户型图问题。
+
+## 2.0.0-alpha.9
+- 1.refactor: 增加插件独立 js 输出及对 svelte 的编译。
