@@ -125,7 +125,7 @@
     width: 30rem;
     height: 30rem;
     top: -15rem;
-    left: -14.5rem;
+    left: -15rem;
     z-index: -1;
     opacity: 0;
     transition: opacity .8s .6s;
