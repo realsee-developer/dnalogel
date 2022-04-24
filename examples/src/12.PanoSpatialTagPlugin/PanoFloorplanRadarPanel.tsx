@@ -6,7 +6,7 @@ import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 const PanoFloorplanRadarPanel: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
-    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    const floorplanServerData = {}
     const five = unsafe__useFiveInstance()
     const panoFloorplanRadarPanelRef = React.useRef<HTMLDivElement>(null)
     const [visible, setVisible] = React.useState<boolean>(false)

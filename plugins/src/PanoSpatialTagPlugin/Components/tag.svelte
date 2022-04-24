@@ -66,9 +66,8 @@
     if (timeoutId) return
     show = !folded
     if (show) {
-      const { width, height } = contentDom.getBoundingClientRect()
-      contentWidth = width
-      contentHeight = height
+      contentWidth = contentDom.offsetWidth
+      contentHeight = contentDom.offsetHeight
     }
   })
 
@@ -88,8 +87,8 @@
   style="height: {20 * lineHeightZoom}rem"
 > 
   <div class="PanoSpatialTagPlugin__tag-shadow"
-    style="transform: translate({contentWidth / 2}px, {
-      contentHeight / 2 * (upsideDown ? -1 : 1)
+    style="transform: translate({contentWidth / 2 * contentZoom * 3}px, {
+      contentHeight / 2 * (upsideDown ? -1 : 1) * contentZoom * 3
     }px)"
   />
   <div class="PanoSpatialTagPlugin__tag-line">
