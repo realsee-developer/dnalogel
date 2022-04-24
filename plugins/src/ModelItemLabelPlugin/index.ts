@@ -45,6 +45,7 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
 
 
     const load = (data: ModelItemLabelPluginData) => {
+        console.log('🐶--当前标签总条数： ', data.model_item_labels.length)
         pluginState.itemLabels = parseModelItemLabelPluginData(data)
         render()
     }
@@ -98,18 +99,12 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
     // 添加监听
     const addListener4Five = () => {
         five.on('modeChange', onFiveModeChange)
-        // five.on('cameraUpdate', render)
-        // five.on('mouseWheel', render)
-        // five.on('pinchGesture', render)
         five.once('dispose', dispose)
     }
 
     // 取消监听
     const removeListener4Five = () => {
         five.off('modeChange', onFiveModeChange)
-        // five.off('cameraUpdate', render)
-        // five.off('mouseWheel', render)
-        // five.off('pinchGesture', render)
     }
 
     const onFiveModeChange = (mode: Mode) => {

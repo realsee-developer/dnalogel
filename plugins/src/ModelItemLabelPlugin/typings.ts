@@ -10,12 +10,14 @@ export interface ModelItemLabelPluginParametersType {
 // 插件 load 数据
 export interface ModelItemLabelPluginData {
     model_item_labels: Readonly<{
-        id: string
+        id: string,
+        library: string,
         name: string
         size: [number, number, number]
         center: [number, number, number]
         position: [number, number, number]
-        type: string[]
+        type: string[],
+        [key: string]: any
     }>[]
 }
 
@@ -26,8 +28,10 @@ export interface ItemLabel {
     size: [number, number, number]
     center: [number, number, number]
     position: [number, number, number]
-    modelPosition: [number, number, number]
     type: string[]
+    //
+    modelPosition: [number, number, number]
+    [key: string]: any
 }
 
 // 插件返回类型
