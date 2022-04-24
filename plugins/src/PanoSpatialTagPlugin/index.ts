@@ -160,6 +160,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
       if (tag.destroying) {
         tag.app.$set({
           contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
+          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
           destroying: tag.destroying,
         })
       } else {

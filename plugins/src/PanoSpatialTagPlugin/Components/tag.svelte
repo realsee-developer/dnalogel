@@ -14,10 +14,16 @@
   export let events: PanoSpatialTagPluginContentEvent
   export let hooks
 
+  let contentWidth = 0
+  let contentHeight = 0
+  let contentDom: Element
   let show: boolean
-  let timeoutId: NodeJS.Timeout = setTimeout(() => {
+  let timeoutId = setTimeout(() => {
     if (!folded) show = true
     timeoutId = undefined
+    const { width, height } = contentDom.getBoundingClientRect()
+    contentWidth = width
+    contentHeight = height
   }, 100)
 
   const handleClickContent = event => {
@@ -40,7 +46,9 @@
     }
   }
 
-  onMount(() => hooks.emit('initTag', { id }))
+  onMount(() => {
+    hooks.emit('initTag', { id })
+  })
 
   const unsubscribe = currentTarget.subscribe((str: string) => {
     if (str === null) return
@@ -76,7 +84,12 @@
   class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
   id={'PanoSpatialTagPlugin__' + id}
   style="height: {20 * lineHeightZoom}rem"
->
+> 
+  <div class="PanoSpatialTagPlugin__tag-shadow"
+    style="transform: translate({contentWidth / 2}px, {
+      contentHeight / 2 * (upsideDown ? -1 : 1)
+    }px)"
+  />
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
       style="width: {lineWidthZoom}rem;"
@@ -85,7 +98,7 @@
     <i class="PanoSpatialTagPlugin__tag-line2"/>
   </div>
   <div class="PanoSpatialTagPlugin__tag-animate" style="transform: scale({contentZoom * 3})">
-    <div class="PanoSpatialTagPlugin__tag-content" on:click="{handleClickContent}">
+    <div class="PanoSpatialTagPlugin__tag-content" on:click="{handleClickContent}" bind:this={contentDom}>
       {@html content}
     </div>
   </div>
@@ -104,14 +117,13 @@
     transition: height .5s linear;
   }
 
-  .PanoSpatialTagPlugin__tag-x:before {
+  .PanoSpatialTagPlugin__tag-shadow {
     content: '';
     position: absolute;
     width: 30rem;
     height: 30rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-65%, -55%);
+    top: -15rem;
+    left: -14.5rem;
     z-index: -1;
     opacity: 0;
     transition: opacity .8s .6s;
@@ -211,7 +223,12 @@
     transform: translate(-50%, 0) scaleY(1);
   }
 
-  .PanoSpatialTagPlugin__tag-show:before {
+  .PanoSpatialTagPlugin__tag-upside-down .PanoSpatialTagPlugin__tag-shadow {
+    top: unset;
+    bottom: -15rem;
+  }
+
+  .PanoSpatialTagPlugin__tag-show .PanoSpatialTagPlugin__tag-shadow {
     opacity: .32;
   }
 
@@ -225,7 +242,7 @@
     transition: transform .5s .55s, opacity .4s .55s;
   }
 
-  .PanoSpatialTagPlugin__tag-hide:before {
+  .PanoSpatialTagPlugin__tag-hide .PanoSpatialTagPlugin__tag-shadow {
     opacity: 0;
     transition: opacity .8s;
   }
