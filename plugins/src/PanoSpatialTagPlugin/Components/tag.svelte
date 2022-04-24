@@ -21,9 +21,6 @@
   let timeoutId = setTimeout(() => {
     if (!folded) show = true
     timeoutId = undefined
-    const { width, height } = contentDom.getBoundingClientRect()
-    contentWidth = width
-    contentHeight = height
   }, 100)
 
   const handleClickContent = event => {
@@ -68,6 +65,11 @@
   afterUpdate(() => {
     if (timeoutId) return
     show = !folded
+    if (show) {
+      const { width, height } = contentDom.getBoundingClientRect()
+      contentWidth = width
+      contentHeight = height
+    }
   })
 
   onDestroy(() => {
