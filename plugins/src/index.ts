@@ -83,3 +83,11 @@ export type {
     PointJson
 } from './PanoMeasurePlugin'
 export { default as PanoMeasurePlugin } from './PanoMeasurePlugin'
+
+// 模型电视插件
+export type {
+    ModelTVVideoPluginData,
+    ModelTVVideoPluginParameterType,
+    ModelTVVideoPluginExportType
+} from './ModelTVVideoPlugin'
+export { default as ModelTVVideoPlugin } from './ModelTVVideoPlugin'
