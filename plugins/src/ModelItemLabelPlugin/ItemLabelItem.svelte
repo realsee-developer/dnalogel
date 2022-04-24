@@ -29,7 +29,8 @@
 <style>
     .item-label-item {
         position: absolute;
-        font-size: 8px;
+        /*font-size: 8px;*/
+	    font-size: 10px;
         z-index: 0;
         transform: none;
         cursor: pointer;
@@ -53,6 +54,8 @@
         line-height: 10px;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.70);
         border-top: 0 solid;
+	    border-left: 0 solid;
+	    border-right: 0 solid;
         /* 稿子是0.5 */
         border-bottom: 1px solid;
         border-image: linear-gradient(to right, rgba(234, 208, 142, 0), rgba(234, 208, 142, 100), rgba(234, 208, 142, 0)) 4.5 1 4.5;
@@ -67,7 +70,7 @@
     }
 
     .wide {
-        font-size: 10px;
+        /*font-size: 10px;*/
     }
 </style>
 
