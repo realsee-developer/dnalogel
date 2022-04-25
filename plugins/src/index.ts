@@ -89,5 +89,5 @@ export type {
     ModelTVVideoPluginData,
     ModelTVVideoPluginParameterType,
     ModelTVVideoPluginExportType
-} from './ModelTVVideoPlugin'
+} from './ModelTVVideoPlugin/typings'
 export { default as ModelTVVideoPlugin } from './ModelTVVideoPlugin'
