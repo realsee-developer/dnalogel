@@ -307,7 +307,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
         return Math.sqrt(
           Math.pow((mouse.x - _mouse.x) / 2 * clientWidth, 2) + 
           Math.pow((mouse.y - _mouse.y) / 2 * clientHeight, 2)
-        ) > 100
+        ) > nearTolerance
       })) continue
 
       const raycaster = new THREE.Raycaster(
