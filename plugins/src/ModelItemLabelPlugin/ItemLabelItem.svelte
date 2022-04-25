@@ -13,25 +13,22 @@
 </script>
 
 <div
-		class="item-label-item"
-		style:z-index="{itemLabel.zIndex}"
-		style:transform="{itemLabel.transform}"
-		style:opacity="{itemLabel.visible ? 1 : 0}"
+	class="item-label-item"
+	style:z-index="{itemLabel.zIndex}"
+	style:transform="{itemLabel.transform}"
+	style:opacity="{itemLabel.visible ? 1 : 0}"
 >
-  <span
-		  class="item-label-item__text"
-		  class:wide="{itemLabel.name.length > 3}"
-		  on:click="{onClick}">{itemLabel.name}</span
-  >
+	<span
+			class="item-label-item__text"
+			class:wide="{itemLabel.name.length > 6}"
+			on:click="{onClick}"
+	>{itemLabel.name.length > 6 ? `${itemLabel.name.slice(0, 6)}...` : itemLabel.name}</span>
 	<div class="item-label-item__bar"></div>
 </div>
 
 <style>
     .item-label-item {
         position: absolute;
-	    font-size: 10px;
-	    font-weight: bold;
-        color: #FFEAC0;
         z-index: 0;
         transform: none;
         cursor: pointer;
@@ -40,13 +37,13 @@
     }
 
     .item-label-item__text::before {
-        /*content: '';*/
-        /*width: 84px;*/
-        /*height: 44px;*/
-        /*position: absolute;*/
-        /*background-color: rgba(0, 0, 0, .4);*/
-        /*filter: blur(16px);*/
-	    /*z-index: -1;*/
+        content: '';
+        width: 84px;
+        height: 44px;
+        position: absolute;
+        background-color: rgba(0, 0, 0, .4);
+        filter: blur(16px);
+        z-index: -1;
     }
 
     .item-label-item__text {
@@ -63,12 +60,16 @@
         background-repeat: no-repeat;
         white-space: nowrap;
         line-height: 10px;
-        /*text-shadow: 0 2px 8px rgba(0, 0, 0, 0.70);*/
+        /*filter: blur(6px);*/
+        /*text-shadow: rgba(0, 0, 0, .5);*/
         border-top: 0 solid;
-	    border-left: 0 solid;
-	    border-right: 0 solid;
+        border-left: 0 solid;
+        border-right: 0 solid;
         border-bottom: 1px solid;
         border-image: linear-gradient(to right, rgba(234, 208, 142, 0), rgba(234, 208, 142, 100), rgba(234, 208, 142, 0)) 4.5 1 4.5;
+        font-size: 10px;
+        font-weight: bold;
+        color: #FFEAC0;
     }
 
     .item-label-item__bar {
