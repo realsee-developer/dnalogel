@@ -84,5 +84,13 @@ export type {
 } from './PanoMeasurePlugin'
 export { default as PanoMeasurePlugin } from './PanoMeasurePlugin'
 
+// 空间三维标签
+export type {
+    PanoSpatialTagPluginParameterType,
+    PanoSpatialTagPluginData,
+    PanoSpatialTagPluginExportType
+} from './PanoSpatialTagPlugin'
+export { default as PanoSpatialTagPlugin } from './PanoSpatialTagPlugin'
+
 // 模型物品标签插件
 export { default as ModelItemLabelPlugin } from './ModelItemLabelPlugin'
