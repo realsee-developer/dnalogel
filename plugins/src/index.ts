@@ -83,3 +83,11 @@ export type {
     PointJson
 } from './PanoMeasurePlugin'
 export { default as PanoMeasurePlugin } from './PanoMeasurePlugin'
+
+// 空间三维标签
+export type {
+    PanoSpatialTagPluginParameterType,
+    PanoSpatialTagPluginData,
+    PanoSpatialTagPluginExportType
+} from './PanoSpatialTagPlugin'
+export { default as PanoSpatialTagPlugin } from './PanoSpatialTagPlugin'
