@@ -1,1 +1,0 @@
-const o=()=>{let e=window.location.search;if(!e)return{};e.slice(-1)==="/"&&(e=e.slice(0,-1));const t=e.slice(1)?.split("&");let r={};return t?(t.forEach(n=>{const i=n.split("=");if(i[0]!=="renderCode"){let l={};l[i[0]]=JSON.parse(i[1]),Object.assign(r,l)}}),console.log("__debug__: ",r),r):{}};export{o as g};

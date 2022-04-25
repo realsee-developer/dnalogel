@@ -10,7 +10,7 @@ rm -rf test
 yarn run build:examples
 
 # 移动数据文件夹
-cp -r examples/dnalogel/open-works online/dnalogel/
+cp -r examples/open-works online/dnalogel/
 
 # 创建 test 目录并移动 build 后的代码到 test 目录
 mkdir -p test

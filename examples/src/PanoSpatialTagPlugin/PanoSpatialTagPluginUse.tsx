@@ -9,7 +9,7 @@ interface PanoSpatialTagPluginUsePropTypes {}
 
 const PanoSpatialTagPluginUse: React.FC = () => {
     const five = unsafe__useFiveInstance()
-    const model_tag = useFetchDatas(DATATYPES.MODEL_TAG)
+    const model_tag = useFetchDatas(DATATYPES.MODEL_TAG, '81gmMq5eXl5I9y7JMk')
 
     React.useEffect(() => {
         if (!model_tag) return
