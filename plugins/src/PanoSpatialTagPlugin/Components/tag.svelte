@@ -63,12 +63,10 @@
   })
 
   afterUpdate(() => {
+    contentWidth = contentDom.offsetWidth
+    contentHeight = contentDom.offsetHeight
     if (timeoutId) return
     show = !folded
-    if (show) {
-      contentWidth = contentDom.offsetWidth
-      contentHeight = contentDom.offsetHeight
-    }
   })
 
   onDestroy(() => {

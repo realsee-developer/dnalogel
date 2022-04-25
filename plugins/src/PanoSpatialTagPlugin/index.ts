@@ -410,7 +410,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
   * 2. 新标签会默认展开
   */
   const unfoldAll = (): void => {
-    state.folded = true
+    state.folded = false
     state.tags.forEach(tag => {
       tag.app.$set({ folded: state.folded })
     })
@@ -421,7 +421,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
   * 2. 新标签会默认收起
   */
   const foldAll = (): void => {
-    state.folded = false
+    state.folded = true
     state.tags.forEach(tag => {
       tag.app.$set({ folded: state.folded })
     })
