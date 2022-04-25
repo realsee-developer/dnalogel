@@ -8,7 +8,7 @@ export interface PanoSpatialTagPluginContentReplacement { // 模板替换数据
 
 interface PanoSpatialTagPluginAppData { // 业务配置数据
 	replacement: PanoSpatialTagPluginContentReplacement
-	weight?: number // 权重，数字越大权重越大，默认为0
+	weight?: number // 权重，数字越大权重越大，默认为-1
 }
 
 export interface PanoSpatialTagPluginDataElement extends PanoSpatialTagPluginAppData {

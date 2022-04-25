@@ -29,8 +29,6 @@ export interface PanoSpatialTagPluginData { // 插件load数据
 export interface PanoSpatialTagPluginParameterType {
   container?: Element // 标签容器
   wait?: number // debounce延迟
-  minDistance?: number // 最小显示距离
-  maxDistance?: number // 最大显示距离
   maxNumberOnScreen?: number // 屏幕内标签最大展示数量
   minRad?: number // 视角和标签平面最小夹角
   nearTolerance?: number // 标签映射到屏幕之间最小间距
@@ -66,6 +64,8 @@ const MESH_SIZE = 0.001
 const RAY_ORIGIN_Y = 1.4
 const RAY_TOLERANT_DISTANCE = 0.01
 const BLUR_IMAGE_URL = 'https://vrlab-image4.ljcdn.com/release/web/PanoSpatialTagPlugin__blur.png'
+const MIN_DISTANCE = 1.2
+const MAX_DISTANCE = 3.5
 
 /**
  * 空间游走标签插件
@@ -77,8 +77,6 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
   let wrapper = params?.container
   const wait = params?.wait ?? 200
-  const minDistance = params?.minDistance ?? 1.2
-  const maxDistance = params?.maxDistance ?? 3.5
   const maxNumberOnScreen = params?.maxNumberOnScreen ?? 3
   const minRad = params?.minRad ?? Math.PI / 4
   const nearTolerance = params?.nearTolerance ?? 100
@@ -148,7 +146,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
     state.tags.forEach(tag => {
       const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(tag.position)
-      if (distance < minDistance || distance > maxDistance) return tag.destroying = true
+      if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return tag.destroying = true
       if (!frustum.containsPoint(tag.position)) return tag.destroying = true
       const v = tag.position.clone().sub(camera.position).setY(0)
       if (
@@ -159,15 +157,15 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.tags.forEach(tag => {
       if (tag.destroying) {
         tag.app.$set({
-          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
-          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
+          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / MAX_DISTANCE,
+          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / MAX_DISTANCE),
           destroying: tag.destroying,
         })
       } else {
         tag.app.$set({
-          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
-          lineHeightZoom: 0.4 + (camera.position.distanceTo(tag.position) - minDistance) / maxDistance * 0.6,
-          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
+          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / MAX_DISTANCE),
+          lineHeightZoom: 0.4 + (camera.position.distanceTo(tag.position) - MIN_DISTANCE) / MAX_DISTANCE * 0.6,
+          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / MAX_DISTANCE,
         })
       }
     })
@@ -247,7 +245,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     const points: Array<PanoSpatialTagPluginPointElement> = state.points.reduce((result, point) => {
       if (state.tags.find(tag => point.id === tag.id && !tag.destroying)) return result
       const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(point.position)
-      if (distance < minDistance || distance > maxDistance) return result
+      if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return result
       if (!frustum.containsPoint(point.position)) return result
       
       const v = point.position.clone().sub(camera.position).setY(0)
@@ -338,9 +336,9 @@ export const PanoSpatialTagPlugin: FivePlugin<
           props: {
             id,
             content: state.render(state.template, replacement),
-            lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / maxDistance),
-            lineHeightZoom: 0.4 + (camera.position.distanceTo(position) - minDistance) / maxDistance * 0.6,
-            contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
+            lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / MAX_DISTANCE),
+            lineHeightZoom: 0.4 + (camera.position.distanceTo(position) - MIN_DISTANCE) / MAX_DISTANCE * 0.6,
+            contentZoom: 0.1 + camera.position.distanceTo(position) / MAX_DISTANCE,
             upsideDown: position.y > upsideHeight,
             folded: state.folded,
             events: state.events,
@@ -372,7 +370,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
         position: new THREE.Vector3().fromArray(point.position),
         normal: new THREE.Vector3().fromArray(point.normal),
         replacement: point.replacement ?? {},
-        weight: point.weight ?? 0,
+        weight: point.weight ?? -1,
       }
     })
     if (data.render) state.render = data.render

@@ -49,8 +49,6 @@ const PanoSpatialTagPluginUse: React.FC = () => {
                 five.plugins.panoSpatialTagPlugin.fold(id)
             },
           },
-          folded: false,
-          enabled: true,
         })
     }, [model_tag])
     

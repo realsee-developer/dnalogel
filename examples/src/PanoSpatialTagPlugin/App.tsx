@@ -23,12 +23,13 @@ const FiveProvider = createFiveProvider({
   plugins: [
     [
       PanoSpatialTagPlugin,
-      'panoSpatialTagPlugin'
+      'panoSpatialTagPlugin',
+      { ...pluginParams },
     ],
     [
       ModelViewPlugin,
       'modelViewPlugin',
-      { ...pluginParams }
+      { ...pluginParams },
     ]
   ]
 });
