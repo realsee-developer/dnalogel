@@ -155,7 +155,7 @@
   .PanoSpatialTagPlugin__tag-line1 {
     position: absolute;
     top: 0;
-    left: 0.5rem;
+    left: 0.3rem;
     height: 1.8rem;
     width: .1rem;
     background: #fff;
@@ -167,7 +167,7 @@
   .PanoSpatialTagPlugin__tag-line2 {
     position: absolute;
     top: 0;
-    left: 0.3rem;
+    left: 0.5rem;
     height: 1.8rem;
     width: .1rem;
     background: #fff;
