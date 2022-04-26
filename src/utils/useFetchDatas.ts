@@ -21,7 +21,8 @@ export enum DATATYPES {
     MODEL_ROOM_LABEL_PLUGIN_DATA = 'modelRoomLabels',
     MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA = 'modelEntryDoorGuidePluginServerData',
     ROOM_INFO = 'roomInfo',
-    ROOM_RULES = 'roomRules'
+    ROOM_RULES = 'roomRules',
+    MODEL_TAG = 'modelTag',
 }
 
 const useFetchDatas = (dataType: DATATYPES, renderCode?: string, spaceType?: 'real') => {
