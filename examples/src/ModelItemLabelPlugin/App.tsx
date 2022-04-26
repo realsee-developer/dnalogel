@@ -7,6 +7,7 @@ import PluginShow from "./PluginShow";
 import { Box } from "@mui/material";
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import ModelRoomLabelPluginShow from "../ModelRoomLabelPlugin/ModelRoomLabelPluginShow";
 
 const defaultPluginParam = {}
 
@@ -37,6 +38,7 @@ const App: React.FC = () => {
 			className="plugin-full-screen-container"
 			sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
 		/>
+	    <ModelRoomLabelPluginShow />
 		<PluginShow />
 	</FiveProvider>;
 };
