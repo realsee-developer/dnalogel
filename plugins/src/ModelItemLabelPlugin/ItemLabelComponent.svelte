@@ -27,7 +27,7 @@
     let cssOffsetLists: number[][] = []
     let cssHeight: number = 21
     // let cssWidth: number = 20
-    let basicWidth: number = 8
+    let basicWidth: number = 11
 
     /**
      * 可见性策略：

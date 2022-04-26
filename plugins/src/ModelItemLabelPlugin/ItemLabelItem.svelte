@@ -2,6 +2,7 @@
     import type { ItemLabel } from './typings'
     import type { Subscribe } from "@realsee/five";
     import { PluginEvent } from "./events.type";
+    import classNames from 'classnames'
 
     export let itemLabel: ItemLabel
     export let hooks: Subscribe<PluginEvent>
@@ -11,18 +12,18 @@
         hooks.emit('onLabelClick', itemLabel)
     }
 </script>
-
+<!--style:opacity="{itemLabel.visible ? 1 : 0}"-->
 <div
-	class="item-label-item"
-	style:z-index="{itemLabel.zIndex}"
-	style:transform="{itemLabel.transform}"
-	style:opacity="{itemLabel.visible ? 1 : 0}"
+		class={classNames("item-label-item", { visible: itemLabel.visible })}
+		style:z-index="{itemLabel.zIndex}"
+		style:transform="{itemLabel.transform}"
 >
-	<span
-			class="item-label-item__text"
-			class:wide="{itemLabel.name.length > 6}"
-			on:click="{onClick}"
-	>{itemLabel.name.length > 6 ? `${itemLabel.name.slice(0, 6)}...` : itemLabel.name}</span>
+	<div class="item-label-item__text-wrap">
+			<span
+					class="item-label-item__text"
+					on:click="{onClick}"
+			>{itemLabel.name.length > 6 ? `${itemLabel.name.slice(0, 6)}...` : itemLabel.name}</span>
+	</div>
 	<div class="item-label-item__bar"></div>
 </div>
 
@@ -34,42 +35,51 @@
         cursor: pointer;
         pointer-events: none;
         user-select: none;
+	    opacity: 0;
     }
 
-    .item-label-item__text::before {
+    .item-label-item.visible {
+	    opacity: 1;
+        /*transition: all 1.5s ease-in 1s;*/
+	    animation: fadeIn .3s ease-in;
+    }
+
+    .item-label-item__text-wrap::before {
         content: '';
-        width: 84px;
-        height: 44px;
         position: absolute;
-        background-color: rgba(0, 0, 0, .4);
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .3);
         filter: blur(16px);
         z-index: -1;
     }
 
-    .item-label-item__text {
+    .item-label-item__text-wrap {
+        padding: 6px 6px 0;
         position: absolute;
-        left: 0;
-        top: -64px;
-        transform: translate(-50%, 0);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        top: -74px;
         height: 20px;
         pointer-events: all;
         background-size: 100% 100%;
         background-repeat: no-repeat;
         white-space: nowrap;
         line-height: 10px;
-        /*filter: blur(6px);*/
-        /*text-shadow: rgba(0, 0, 0, .5);*/
+        font-size: 11px;
+        font-weight: bold;
+        color: #FFEAC0;
+        transform: translate(-50%, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item-label-item__text {
+        padding-bottom: 4px;
         border-top: 0 solid;
         border-left: 0 solid;
         border-right: 0 solid;
         border-bottom: 1px solid;
-        border-image: linear-gradient(to right, rgba(234, 208, 142, 0), rgba(234, 208, 142, 100), rgba(234, 208, 142, 0)) 4.5 1 4.5;
-        font-size: 10px;
-        font-weight: bold;
-        color: #FFEAC0;
+        border-image: linear-gradient(to right, rgba(234, 208, 154, 0), rgba(234, 208, 154, 100), rgba(234, 208, 154, 0)) 4.5 1 4.5;
     }
 
     .item-label-item__bar {
@@ -77,11 +87,12 @@
         top: -44px;
         height: 48px;
         width: 1px;
-        background-image: linear-gradient(to bottom, rgba(234, 208, 142, 0), rgba(234, 208, 142, 1));
+        background-image: linear-gradient(to bottom, rgba(234, 208, 154, 0), rgba(234, 208, 154, 1));
     }
 
-    .wide {
-        /*font-size: 10px;*/
+    @keyframes fadeIn {
+	    from { opacity: 0 }
+	    to { opacity: 1 }
     }
 </style>
 

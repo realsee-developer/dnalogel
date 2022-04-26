@@ -54,6 +54,7 @@ npm publish
 
 ## 示例发布
 
+** 示例链接同时应用于文档中心，请确保无误后再发布 **
 ```bash
 yarn deploy
 ```
@@ -61,6 +62,12 @@ yarn deploy
 进入 https://realsee.js.org/dnalogel/ 查看是否发布成功。
 
 ## 测试/上线部署
+
+developer 启动命令：
+```bash
+yarn test
+```
+此命令会自动构建 examples 静态资源，并 push 到 online 分支，测试人员拉取 online 分支，进行如下操作：
 
 ```bash
 #进入静态资源目录

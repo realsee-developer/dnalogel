@@ -2,7 +2,7 @@
 
 ## 2.0.0-alpha.10
 - 1.feat: 新增空间三维标签插件 PanoSpatialTagPlugin
-- 2.feat: 新增轻量ejs渲染模板函数 shared-utils/tinyEJSrender.js
+- 2.feat: 新增轻量 ejs 渲染模板函数 shared-utils/tinyEJSrender.js
 
 ## 2.0.0-alpha.9
 - 1.refactor: 增加插件独立 js 输出及对 svelte 的编译。

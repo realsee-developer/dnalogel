@@ -1,6 +1,7 @@
 import { PanoSpatialTagPlugin } from "@realsee/dnalogel";
 import { ModelViewPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
+// @ts-ignore
 import React, { FC } from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
 import { parseWork } from "@realsee/five";
