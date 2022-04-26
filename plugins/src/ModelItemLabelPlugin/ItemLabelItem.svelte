@@ -40,7 +40,6 @@
 
     .item-label-item.visible {
 	    opacity: 1;
-        /*transition: all 1.5s ease-in 1s;*/
 	    animation: fadeIn .3s ease-in;
     }
 
