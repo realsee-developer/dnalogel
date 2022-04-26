@@ -6,7 +6,7 @@
   "author": "REALSEE-DEVELOPER",
   "repository": "https://github.com/realsee-developer/dnalogel.git",
   "private": false,
-  "version": "2.0.0-alpha.9",
+  "version": "2.0.0-alpha.10",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
     "build": "yarn run tsb && yarn run build:rollup && yarn build:docs",
