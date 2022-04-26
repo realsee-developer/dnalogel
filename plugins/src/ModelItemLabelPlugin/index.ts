@@ -88,6 +88,18 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         render()
     }
 
+    const handleWantsPanGesture = (pose, final) => {
+        if (pose) {
+            handleRerender()
+        }
+    }
+    const handlePanGesture = (pose, final) => {
+        if (!pluginState.fiveModeEnabled) return
+        if(!final) return
+        enable()
+        render()
+    }
+
     const render = () => {
         if (!pluginState.wrapper) return
         // 只要不可展示，销毁容器
@@ -119,23 +131,33 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
     const addListener4Five = () => {
         five.on('modeChange', onFiveModeChange)
         five.once('dispose', dispose)
-        five.on('wantsGesture', handleRerender)
-        five.on('gesture', rerender)
+        // five.on('wantsGesture', handleRerender)
+        // five.on('gesture', rerender)
         five.on('wantsMouseWheel', handleRerender)
         five.on('mouseWheel', rerender)
         five.on('wantsInteriaPan', handleRerender)
         five.on('interiaPan', handleInteriaPanRerender)
+
+        five.on('wantsPanGesture', handleWantsPanGesture)
+        five.on('panGesture', handlePanGesture)
+        five.on('wantsPinchGesture', handleRerender)
+        five.on('pinchGesture', rerender)
     }
 
     // 取消 five 监听
     const removeListener4Five = () => {
         five.off('modeChange', onFiveModeChange)
-        five.off('wantsGesture', handleRerender)
-        five.off('gesture', rerender)
+        // five.off('wantsGesture', handleRerender)
+        // five.off('gesture', rerender)
         five.off('wantsMouseWheel', handleRerender)
         five.off('mouseWheel', rerender)
         five.off('wantsInteriaPan', handleRerender)
         five.off('interiaPan', handleInteriaPanRerender)
+
+        five.off('wantsPanGesture', handleWantsPanGesture)
+        five.off('panGesture', handlePanGesture)
+        five.off('wantsPinchGesture', handleRerender)
+        five.off('pinchGesture', rerender)
     }
 
 
