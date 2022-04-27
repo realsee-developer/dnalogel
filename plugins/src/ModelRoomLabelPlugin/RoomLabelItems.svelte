@@ -65,9 +65,11 @@
   }
 
   five.on('cameraUpdate', onFiveCameraUpdate)
+  five.on('modelShownFloorChange', onFiveCameraUpdate)
 
   onDestroy(() => {
     five.off('cameraUpdate', onFiveCameraUpdate)
+    five.off('modelShownFloorChange', onFiveCameraUpdate)
   })
 
   onMount(() => {
