@@ -9,7 +9,8 @@ import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
-    hoverEnable: true
+    hoverEnable: true,
+    northDesc: 'N'
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()
