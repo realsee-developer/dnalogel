@@ -126,10 +126,12 @@
 
     function getCssHeight(itemSpaceHeight) {
         // const itemSpaceHeight = itemLabel.modelPosition[1]
-        if (itemSpaceHeight <= 60)  return 50
-        else if(itemSpaceHeight <= 100) return 40
-        else if (itemSpaceHeight <=150) return 30
-        else return 20
+        // if (itemSpaceHeight <= 60)  return 50
+        // else if(itemSpaceHeight <= 100) return 40
+        // else if (itemSpaceHeight <=150) return 30
+        // else return 20
+
+        return Math.ceil(-27.78 * itemSpaceHeight + 85)
     }
 
     const getFormatedItemLabels = (five: Five, labels: ItemLabel[]) => {
