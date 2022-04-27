@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.0.0-alpha.10
+## 2.0.0-alpha.11
 - 1.feat: 修复 ModelRoomLabelPlugin 未监听多楼层切换 rerender 问题。
 
 ## 2.0.0-alpha.10
