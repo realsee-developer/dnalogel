@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## 2.0.0-alpha.10
+- 1.feat: 修复 ModelRoomLabelPlugin 未监听多楼层切换 rerender 问题。
+
+## 2.0.0-alpha.10
 - 1.feat: 新增空间三维标签插件 PanoSpatialTagPlugin
 - 2.feat: 新增轻量 ejs 渲染模板函数 shared-utils/tinyEJSrender.js
 
