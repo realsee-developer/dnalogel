@@ -11,20 +11,44 @@
         console.log('__onclick___: ', itemLabel)
         hooks.emit('onLabelClick', itemLabel)
     }
+
+    function getHeight() {
+        const baseHeight = 140
+	    const floorHeight = 2.7
+        return (floorHeight - itemLabel.modelPosition[1]) * baseHeight / floorHeight
+    }
+
+    function getCssHeight() {
+        const itemSpaceHeight = itemLabel.modelPosition[1]
+        if (itemSpaceHeight <= 60)  return 50
+	    else if(itemSpaceHeight <= 100) return 40
+	    else if (itemSpaceHeight <=150) return 30
+	    else return 20
+    }
+
 </script>
-<!--style:opacity="{itemLabel.visible ? 1 : 0}"-->
+
 <div
 		class={classNames("item-label-item", { visible: itemLabel.visible })}
 		style:z-index="{itemLabel.zIndex}"
 		style:transform="{itemLabel.transform}"
 >
-	<div class="item-label-item__text-wrap">
+	<div
+			class="item-label-item__text-wrap"
+			style="top: {`-${getCssHeight() + 26}px`}" >
+		<!--
+			style="top: {`-${itemLabel.modelPosition[1] >= 1.4 ? 56 : 76}px`}"		-->
 			<span
 					class="item-label-item__text"
 					on:click="{onClick}"
 			>{itemLabel.name.length > 6 ? `${itemLabel.name.slice(0, 6)}...` : itemLabel.name}</span>
 	</div>
-	<div class="item-label-item__bar"></div>
+	<div
+			class="item-label-item__bar"
+			style="height: {`${getCssHeight()}px`}">
+<!--
+			style="height: {`${itemLabel.modelPosition[1] >= 1.4 ? 20 : 50}px`}"-->
+	</div>
 </div>
 
 <style>
@@ -56,7 +80,7 @@
     .item-label-item__text-wrap {
         padding: 6px 6px 0;
         position: absolute;
-        top: -74px;
+        /*top: -74px;*/
         height: 20px;
         pointer-events: all;
         background-size: 100% 100%;
@@ -83,8 +107,9 @@
 
     .item-label-item__bar {
         position: absolute;
-        top: -44px;
-        height: 48px;
+        /*top: -44px;*/
+        /*height: 48px;*/
+	    bottom: 0;
         width: 1px;
         background-image: linear-gradient(to bottom, rgba(234, 208, 154, 0), rgba(234, 208, 154, 1));
     }

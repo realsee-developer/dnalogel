@@ -3,7 +3,7 @@
     import type { ItemLabel } from './typings'
     import { onDestroy, onMount } from "svelte";
     import * as THREE from 'three'
-    import ItemLabelItem from './ItemLabelItem.svelte'
+    import ItemLabelItem, { itemLabel } from './ItemLabelItem.svelte'
     import type { Subscribe } from "@realsee/five";
     import { PluginEvent } from "./events.type";
     import { beforeUpdate } from "svelte";
@@ -25,7 +25,7 @@
 
     // 计算重叠
     let cssOffsetLists: number[][] = []
-    let cssHeight: number = 21
+    let cssHeight: number = 26
     // let cssWidth: number = 20
     let basicWidth: number = 11
 
@@ -71,6 +71,8 @@
         five.scene.add(mesh);
 
     }
+
+    // addHelper(...five.camera.position, 'ball', true)
 
     const getLabelVisible = (five: Five, itemLabel: ItemLabel) => {
         // 虚拟 VR 仅有一层，不考虑楼层信息
@@ -122,14 +124,24 @@
 		return !!hasOverlapPoint
 	}
 
+    function getCssHeight(itemSpaceHeight) {
+        // const itemSpaceHeight = itemLabel.modelPosition[1]
+        if (itemSpaceHeight <= 60)  return 50
+        else if(itemSpaceHeight <= 100) return 40
+        else if (itemSpaceHeight <=150) return 30
+        else return 20
+    }
+
     const getFormatedItemLabels = (five: Five, labels: ItemLabel[]) => {
         // 计算位置 & 可见性
         const newLabels = labels.map(label => {
             const cssOffset = getLabelCssOffset(five, label)
-
 	        const curLabelWidth = label.name.length * basicWidth
 
-            const visible = getLabelVisible(five, label) && !isOverlap(cssOffset, curLabelWidth)
+
+			const cssHeight = getCssHeight(label.modelPosition[1])
+            const visible = getLabelVisible(five, label) && !isOverlap([cssOffset[0], cssOffset[1] + cssHeight], curLabelWidth)
+            // const visible = getLabelVisible(five, label) && !isOverlap(cssOffset, curLabelWidth)
 
             if (!visible) return { ...label, visible }
 
