@@ -41,7 +41,7 @@
     />
     <Camera {...{ panoIndex, floorplanData, lastPanoramaLongitude, cameraImageUrl }} />
     {#if compassEnable}
-      <Compass floorplanData="{floorplanData}" />
+      <Compass floorplanData="{floorplanData}"/>
     {/if}
   </div>
 {/if}
