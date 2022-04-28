@@ -1,7 +1,7 @@
 import { SubscribeEventMap } from '@realsee/five'
 import { ItemLabel } from "./typings";
 
-interface ItemLabelEvent extends SubscribeEventMap {
+export interface ItemLabelEvent extends SubscribeEventMap {
   /**
    * 点击标签
    */

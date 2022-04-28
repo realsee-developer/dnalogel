@@ -1,19 +1,20 @@
 <script lang="ts">
-    import type { Five } from '@realsee/five'
+    import type { Five, Subscribe } from '@realsee/five'
     import type { ItemLabel } from './typings'
-    import { onDestroy, onMount } from "svelte";
+    import { DISPLAY_STRATEGY_TYPE } from "./typings";
+    import { beforeUpdate, onDestroy, onMount } from "svelte";
     import * as THREE from 'three'
-    import ItemLabelItem, { itemLabel } from './ItemLabelItem.svelte'
-    import type { Subscribe } from "@realsee/five";
+    import ItemLabelItem from './ItemLabelItem.svelte'
     import { PluginEvent } from "./events.type";
-    import { beforeUpdate } from "svelte";
 
     const { Raycaster, Vector3 } = THREE
 
     export let five: Five
+    export let modelOcclusionEnable: boolean
     export let itemLabels: ItemLabel[]
     export let wrapper: HTMLElement | null
     export let hooks: Subscribe<PluginEvent>
+    export let displayStrategyType: DISPLAY_STRATEGY_TYPE
 
     let curItemLabels: ItemLabel[] = null
     let renderItemLabels: ItemLabel[] = null
@@ -26,7 +27,6 @@
     // 计算重叠
     let cssOffsetLists: number[][] = []
     let cssHeight: number = 26
-    // let cssWidth: number = 20
     let basicWidth: number = 11
 
     /**
@@ -72,8 +72,6 @@
 
     }
 
-    // addHelper(...five.camera.position, 'ball', true)
-
     const getLabelVisible = (five: Five, itemLabel: ItemLabel) => {
         // 虚拟 VR 仅有一层，不考虑楼层信息
         const raycaster = new Raycaster()
@@ -89,22 +87,11 @@
     // cssOffset 获取
     const getLabelCssOffset = (five: Five, itemLabel: ItemLabel) => {
         const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
-        // addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
         const cssPosition: THREE.Vector2 | null = five.project2d(modelPosition)
         const xOffset = cssPosition?.x
         const yOffset = cssPosition?.y
 	    return [xOffset, yOffset]
     }
-
-    // 位置获取
-    // const getLabelTransform = (five: Five, itemLabel: ItemLabel) => {
-    //     const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
-    //     // addHelper(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2], 'ball', true)
-    //     const cssPosition: THREE.Vector2 | null = five.project2d(modelPosition)
-    //     const xOffset = cssPosition?.x
-    //     const yOffset = cssPosition?.y
-    //     return `translate(${xOffset}px, ${yOffset}px)`
-    // }
 
     const getLabelTransform = (cssOffset: [number, number]) => {
         return `translate(${cssOffset[0]}px, ${cssOffset[1]}px)`
@@ -124,14 +111,15 @@
 		return !!hasOverlapPoint
 	}
 
-    function getCssHeight(itemSpaceHeight) {
-        // const itemSpaceHeight = itemLabel.modelPosition[1]
-        // if (itemSpaceHeight <= 60)  return 50
-        // else if(itemSpaceHeight <= 100) return 40
-        // else if (itemSpaceHeight <=150) return 30
-        // else return 20
-
-        return Math.ceil(-27.78 * itemSpaceHeight + 85)
+    function getStrokeLength(itemSpaceHeight: number, type: DISPLAY_STRATEGY_TYPE) {
+        switch (type) {
+            case DISPLAY_STRATEGY_TYPE.SMALL:
+                return Math.ceil(-27.78 * itemSpaceHeight + 85)
+            case DISPLAY_STRATEGY_TYPE.MIDLLE:
+                return Math.ceil(-38.9 * itemSpaceHeight + 130)
+            case DISPLAY_STRATEGY_TYPE.LARGE:
+                return Math.ceil(-44.44 * itemSpaceHeight + 140)
+        }
     }
 
     const getFormatedItemLabels = (five: Five, labels: ItemLabel[]) => {
@@ -139,11 +127,11 @@
         const newLabels = labels.map(label => {
             const cssOffset = getLabelCssOffset(five, label)
 	        const curLabelWidth = label.name.length * basicWidth
+			const strokeLength = getStrokeLength(label.modelPosition[1], displayStrategyType)
 
-
-			const cssHeight = getCssHeight(label.modelPosition[1])
-            const visible = getLabelVisible(five, label) && !isOverlap([cssOffset[0], cssOffset[1] + cssHeight], curLabelWidth)
-            // const visible = getLabelVisible(five, label) && !isOverlap(cssOffset, curLabelWidth)
+	        // 是否加入碰撞检测
+	        const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : true
+            const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
 
             if (!visible) return { ...label, visible }
 
@@ -151,7 +139,7 @@
 
             // position
             const transform = getLabelTransform(cssOffset)
-            return { ...label, visible, transform }
+            return { ...label, visible, transform, strokeLength }
         })
 
         const sortedItemLabelItems = newLabels

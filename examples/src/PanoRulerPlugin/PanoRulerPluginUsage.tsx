@@ -16,8 +16,10 @@ const PanoRulerPluginUsage = (props: PanoRulerPluginUsePropTypes) => {
     const fiveModelReadyState = useFiveModelReadyState()
     const five = unsafe__useFiveInstance()
     const panoRulerPlugin = five.plugins.panoRulerPlugin as ReturnType<typeof PanoRulerPlugin>
-    const roomInfo = useFetchDatas(DATATYPES.ROOM_INFO, 'pWLy9nekmQdMXqja')
-    const roomRules = useFetchDatas(DATATYPES.ROOM_RULES, 'pWLy9nekmQdMXqja')
+    // const roomInfo = useFetchDatas(DATATYPES.ROOM_INFO, 'pWLy9nekmQdMXqja')
+    const roomInfo = useFetchDatas(DATATYPES.ROOM_INFO, 'testdata')
+    const roomRules = useFetchDatas(DATATYPES.ROOM_RULES, 'testdata')
+    // const roomRules = useFetchDatas(DATATYPES.ROOM_RULES, 'pWLy9nekmQdMXqja')
 
     // 标尺状态
     const [rulerEnable, setRulerEnable] = React.useState(panoRulerPlugin.state.enable)

@@ -5,12 +5,15 @@ import {
     ModelItemLabelPluginState,
     ModelItemLabelPluginData,
     ModelItemLabelPluginExportReturnsType,
-    ModelItemLabelPluginParametersType
+    ModelItemLabelPluginParametersType, DISPLAY_STRATEGY_TYPE
 } from "./typings";
 import { parseModelItemLabelPluginData } from "./utils/parseData";
 import { PluginEvent } from "./events.type";
 
-export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType, ModelItemLabelPluginExportReturnsType> = (
+export const ModelItemLabelPlugin: FivePlugin<
+    ModelItemLabelPluginParametersType,
+    ModelItemLabelPluginExportReturnsType
+> = (
     five: Five,
     params
 ) => {
@@ -19,11 +22,13 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         container: document.createElement('div'),
         data: null,
         enabled: true,
-        fiveModeEnabled: undefined, // TODO 不一定单独管理这个状态，存疑，看是否能够和 enabled 状态保持一致
+        fiveModeEnabled: undefined,
         itemLabels: [],
         wrapper: null,
         app: undefined,
-        hooks: new Subscribe<PluginEvent>()
+        hooks: new Subscribe<PluginEvent>(),
+        modelOcclusionEnable: params?.modelOcclusionEnable ?? true,
+        displayStrategyType: params?.displayStrategyType ?? DISPLAY_STRATEGY_TYPE.SMALL
     }
 
     pluginState.container.setAttribute('class', 'model-item-label-plugin-container')
@@ -42,7 +47,6 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
         render()
         return true
     }
-
 
     const load = (data: ModelItemLabelPluginData) => {
         console.log('🐶--当前标签总条数： ', data.model_item_labels.length)
@@ -76,14 +80,14 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
 
     const rerender = (a, b, c) => {
         if (!pluginState.fiveModeEnabled) return
-        if(!c) return
+        if (!c) return
         enable()
         render()
     }
 
     const handleInteriaPanRerender = (a, b) => {
         if (!pluginState.fiveModeEnabled) return
-        if(!b) return
+        if (!b) return
         enable()
         render()
     }
@@ -93,9 +97,10 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
             handleRerender()
         }
     }
+
     const handlePanGesture = (pose, final) => {
         if (!pluginState.fiveModeEnabled) return
-        if(!final) return
+        if (!final) return
         enable()
         render()
     }
@@ -114,9 +119,11 @@ export const ModelItemLabelPlugin: FivePlugin<ModelItemLabelPluginParametersType
                 target: pluginState.container,
                 props: {
                     five: five,
+                    modelOcclusionEnable: pluginState.modelOcclusionEnable,
                     itemLabels: pluginState.itemLabels,
                     wrapper: pluginState.wrapper,
-                    hooks: pluginState.hooks
+                    hooks: pluginState.hooks,
+                    displayStrategyType: pluginState.displayStrategyType
                 }
             })
         } else {

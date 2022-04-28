@@ -2,9 +2,15 @@ import ItemLabelComponent from './ItemLabelComponent.svelte'
 import type { Subscribe } from "@realsee/five";
 import { PluginEvent } from "./events.type";
 
+export enum DISPLAY_STRATEGY_TYPE {
+    SMALL= 'small',
+    MIDLLE= 'middle',
+    LARGE= 'large'
+}
 // 插件入口参数
 export interface ModelItemLabelPluginParametersType {
-
+    modelOcclusionEnable?: boolean
+    displayStrategyType?: Partial<DISPLAY_STRATEGY_TYPE>
 }
 
 // 插件 load 数据
@@ -21,15 +27,16 @@ export interface ModelItemLabelPluginData {
     }>[]
 }
 
-// 插件 render 数据 TODO 暂时这样写，需要流转为内部使用数据格式
+// 插件内部 render 数据
 export interface ItemLabel {
     id: string
+    library: string
     name: string
     size: [number, number, number]
     center: [number, number, number]
     position: [number, number, number]
     type: string[]
-    //
+    // 实际展示 position
     modelPosition: [number, number, number]
     [key: string]: any
 }
@@ -37,10 +44,11 @@ export interface ItemLabel {
 // 插件返回类型
 export interface ModelItemLabelPluginExportReturnsType {
     appendTo: (wrapper: Element) => void
-    load: (data: ModelItemLabelPluginParametersType) => void
+    load: (data: ModelItemLabelPluginData) => void
     disable: () => void
     enable: () => void
     dispose: () => void
+    hooks: Subscribe<PluginEvent>
 }
 
 // 插件状态
@@ -53,4 +61,6 @@ export interface ModelItemLabelPluginState {
     fiveModeEnabled: boolean,
     app?: ItemLabelComponent | undefined,
     hooks: Subscribe<PluginEvent>
+    modelOcclusionEnable: boolean
+    displayStrategyType: Partial<DISPLAY_STRATEGY_TYPE>
 }

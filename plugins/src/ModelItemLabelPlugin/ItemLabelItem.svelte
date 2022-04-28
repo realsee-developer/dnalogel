@@ -12,21 +12,6 @@
         hooks.emit('onLabelClick', itemLabel)
     }
 
-    function getHeight() {
-        const baseHeight = 140
-	    const floorHeight = 2.7
-        return (floorHeight - itemLabel.modelPosition[1]) * baseHeight / floorHeight
-    }
-
-    function getCssHeight() {
-        const itemSpaceHeight = itemLabel.modelPosition[1]
-        // if (itemSpaceHeight <= 60)  return 50
-	    // else if(itemSpaceHeight <= 100) return 40
-	    // else if (itemSpaceHeight <=150) return 30
-	    // else return 20
-        return Math.ceil(-27.78 * itemSpaceHeight + 85)
-    }
-
 </script>
 
 <div
@@ -36,9 +21,8 @@
 >
 	<div
 			class="item-label-item__text-wrap"
-			style="top: {`-${getCssHeight() + 26}px`}" >
-		<!--
-			style="top: {`-${itemLabel.modelPosition[1] >= 1.4 ? 56 : 76}px`}"		-->
+			style="top: {`-${itemLabel.strokeLength + 26}px`}"
+	>
 			<span
 					class="item-label-item__text"
 					on:click="{onClick}"
@@ -46,9 +30,7 @@
 	</div>
 	<div
 			class="item-label-item__bar"
-			style="height: {`${getCssHeight()}px`}">
-<!--
-			style="height: {`${itemLabel.modelPosition[1] >= 1.4 ? 20 : 50}px`}"-->
+			style="height: {`${itemLabel.strokeLength}px`}">
 	</div>
 </div>
 
@@ -60,12 +42,12 @@
         cursor: pointer;
         pointer-events: none;
         user-select: none;
-	    opacity: 0;
+        opacity: 0;
     }
 
     .item-label-item.visible {
-	    opacity: 1;
-	    animation: fadeIn .3s ease-in;
+        opacity: 1;
+        animation: fadeIn .3s ease-in;
     }
 
     .item-label-item__text-wrap::before {
@@ -81,7 +63,6 @@
     .item-label-item__text-wrap {
         padding: 6px 6px 0;
         position: absolute;
-        /*top: -74px;*/
         height: 20px;
         pointer-events: all;
         background-size: 100% 100%;
@@ -108,16 +89,18 @@
 
     .item-label-item__bar {
         position: absolute;
-        /*top: -44px;*/
-        /*height: 48px;*/
-	    bottom: 0;
+        bottom: 0;
         width: 1px;
         background-image: linear-gradient(to bottom, rgba(234, 208, 154, 0), rgba(234, 208, 154, 1));
     }
 
     @keyframes fadeIn {
-	    from { opacity: 0 }
-	    to { opacity: 1 }
+        from {
+            opacity: 0
+        }
+        to {
+            opacity: 1
+        }
     }
 </style>
 

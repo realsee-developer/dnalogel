@@ -1,0 +1,254 @@
+{
+  "_signature": "lZnFnXfXQMI3DsLXmQPOArj1MGhpEOI22LsDRHThAw+yFXo6YsETZP5odlpn/KQPvuevBF5WJ2IyjylRkhS2XChFdSKLxYrISwTMl+d81OIhiq39ancPvWLB+Y2zqW6kFG9opm2g+ELW37VPcERgg9aVtt+yQZP97/ajfOH9HMs=",
+  "allow_hosts": [
+    "realsee.com",
+    "realsee.cn",
+    "rushivr.com",
+    "rushivr.cn"
+  ],
+  "base_url": "https://test-vr-public.realsee-cdn.com/test/auto3dhd/6e16f89bed25f4e52d7323f22c20e372/",
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMzCCAhsCCQDYAS/7ATZRmTANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMC\nQ04xEDAOBgNVBAgMB0JlaWppbmcxEDAOBgNVBAcMB0JlaWppbmcxFDASBgNVBAoM\nC2xpYW5qaWEuY29tMRAwDgYDVQQLDAdSZWFsc2VlMREwDwYDVQQDDAhIYXJkd2Fy\nZTElMCMGCSqGSIb3DQEJARYWbml1aGFpcWluZ0BsaWFuamlhLmNvbTAeFw0yMTA5\nMTAwNTIwMDBaFw0zMTA5MDgwNTIwMDBaMIGmMQswCQYDVQQGEwJDTjEQMA4GA1UE\nCAwHQmVpSmluZzEQMA4GA1UEBwwHQmVpSmluZzEQMA4GA1UECgwHUmVhbHNlZTEZ\nMBcGA1UECwwQUmVhbHNlZUFwcEdldHdheTEgMB4GA1UEAwwXYXBwLWdhdGV3YXku\ncmVhbHNlZS5jb20xJDAiBgkqhkiG9w0BCQEWFWRldmVsb3BlckByZWFsc2VlLmNv\nbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAuv/y3Ezsy/wh3LCA8vomPbgI\nSO9iO5kyR+oAetklD+epMU6J/ZbvTDEomZxuS5iyyKGBupzAh2ZFLIy7tsE71Vx1\nIIvT7Kdyq66lMU4YzdrpKUcxv7oOQnO8DA1orKluNa4jkyXBywHKs/Q+20LVc+RD\ngKXqFGJUdo8mAxEScs0CAwEAATANBgkqhkiG9w0BAQsFAAOCAgEAkMxsU4VLPd4J\n0rElBNBIyqPtvnlTs6VkhIK0l4oM58wtDKc1uG9UPSX5j29NguZM6LOe0jCsU2Vg\nEpUseMWQjx4o2yBg7MokQyjWc1zu6PppKhQ+RqHQy/biJ2zsIMpX3oMASXffvnW5\nn4Bjyo1JdDJiLm1fLvLlVVxQoraJD+rtpqWDEYixGVREUo5OIL5Y5dVjkHG2r9RQ\nQuu3yEiyr9gAW8yhz3YR6/sJ6boyGK8NC0v8Jih7NnCdT+9ML+3jn3P5F3TeXdSf\nVeYIm5oWAOTe3AjjKP8ARMb2RYACjg80/AcowD/dvRRjbwQmyucUNug2pXJynXpD\nNfx1IBmUmzSAT1Z5yNuY/f3VRBJvmIQ6Jpmef+g0/wUJpyS4SObguItyYlFPLqRH\nK1oKqNX/uV0GWWEQl6Lml986TzlHxc4ljtHBhjzlKYIYYZLWWipk4JiB8hxJcTK+\ncrgvclEQSxFlmAyoqxYFClrOOsPqZJdBhDTvoUWnnWuJLQt7DLHpyInp+S75Gg3o\n0zgHpt9m26B3YbjQGYMQlYmhl2VLQa+Ey0W8UZQXLcTvoRT4p+8crqr6cNNsxCyZ\nm08vBbEMIMvhBeLQvpM75oaMBmelegipFl2eelxVIHdGJWoyJSZQUdXN0uSidhZp\nI7AIgzhqK1Ku/IXK0OSXJonn+/9X/VI=\n-----END CERTIFICATE-----",
+  "create_time": "2022-04-27T18:58:49+08:00",
+  "expire_at": "1651121385731",
+  "initial": {
+    "fov": 100,
+    "heading": 0,
+    "latitude": 0,
+    "longitude": 0,
+    "pano": 0,
+    "pano_index": 0
+  },
+  "model": {
+    "file_url": "model/cyclops-7AGzV3dDx57ZXe6Q.at3d",
+    "material_base_url": "materials/",
+    "material_textures": [
+      "texture_0.jpg",
+      "texture_1.jpg",
+      "texture_2.jpg"
+    ],
+    "modify_time": "2022-04-27T19:06:47+08:00",
+    "type": 0
+  },
+  "observers": [
+    {
+      "accessible_nodes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "floor_index": 0,
+      "index": 0,
+      "offset_point_count": 0,
+      "position": [
+        -0.34294000267982483,
+        0.3691900056600571,
+        -0.3370929956436157
+      ],
+      "quaternion": {
+        "w": -0.629169254533747,
+        "x": 5.828578975681564e-33,
+        "y": -0.777268338978483,
+        "z": 9.518791834085791e-17
+      },
+      "standing_position": [
+        -0.34294000267982483,
+        -1.1101021831349125,
+        -0.3370929956436157
+      ],
+      "visible_nodes": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "accessible_nodes": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "floor_index": 0,
+      "index": 1,
+      "offset_point_count": 0,
+      "position": [
+        -1.6079399585723877,
+        0.38137200295925144,
+        -1.640570044517517
+      ],
+      "quaternion": {
+        "w": -0.7278690222894887,
+        "x": -0.0018517960596268828,
+        "y": -0.6856910365157078,
+        "z": 0.005570631705649501
+      },
+      "standing_position": [
+        -1.6079399585723877,
+        -1.110976042220396,
+        -1.640570044517517
+      ],
+      "visible_nodes": [
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "accessible_nodes": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "floor_index": 0,
+      "index": 2,
+      "offset_point_count": 0,
+      "position": [
+        -0.0023698199074715376,
+        0.3611900043487549,
+        -2.790329933166504
+      ],
+      "quaternion": {
+        "w": -0.7420756350572671,
+        "x": -0.006309507350368191,
+        "y": -0.6702434460321474,
+        "z": 0.007593828915475431
+      },
+      "standing_position": [
+        -0.0023698199074715376,
+        -1.1107778152749765,
+        -2.790329933166504
+      ],
+      "visible_nodes": [
+        0,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "accessible_nodes": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "floor_index": 0,
+      "index": 3,
+      "offset_point_count": 0,
+      "position": [
+        -2.0513598918914795,
+        0.3691900056600571,
+        1.194200038909912
+      ],
+      "quaternion": {
+        "w": -0.7173872214658681,
+        "x": 5.224223019021968e-33,
+        "y": -0.6966746380876708,
+        "z": 8.531803655812068e-17
+      },
+      "standing_position": [
+        -2.0513598918914795,
+        -1.1109675363255946,
+        1.194200038909912
+      ],
+      "visible_nodes": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "accessible_nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "floor_index": 0,
+      "index": 4,
+      "offset_point_count": 0,
+      "position": [
+        -1.520740032196045,
+        0.3691900056600571,
+        -2.6608800888061523
+      ],
+      "quaternion": {
+        "w": -0.9998646584953761,
+        "x": 1.2336751809008587e-34,
+        "y": -0.016451637057652766,
+        "z": 2.0147444663388518e-18
+      },
+      "standing_position": [
+        -1.520740032196045,
+        -1.1106487480992069,
+        -2.6608800888061523
+      ],
+      "visible_nodes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "panorama": {
+    "count": 5,
+    "list": [
+      {
+        "back": "images/cube_2048/0/4e14a9425eea2e02e115eaafb6381bcd/0_b.jpg",
+        "down": "images/cube_2048/0/4e14a9425eea2e02e115eaafb6381bcd/0_d.jpg",
+        "front": "images/cube_2048/0/4e14a9425eea2e02e115eaafb6381bcd/0_f.jpg",
+        "index": 0,
+        "left": "images/cube_2048/0/4e14a9425eea2e02e115eaafb6381bcd/0_l.jpg",
+        "right": "images/cube_2048/0/4e14a9425eea2e02e115eaafb6381bcd/0_r.jpg",
+        "up": "images/cube_2048/0/4e14a9425eea2e02e115eaafb6381bcd/0_u.jpg"
+      },
+      {
+        "back": "images/cube_2048/1/50f02bb4cc9a13ba79773915127aafb2/1_b.jpg",
+        "down": "images/cube_2048/1/50f02bb4cc9a13ba79773915127aafb2/1_d.jpg",
+        "front": "images/cube_2048/1/50f02bb4cc9a13ba79773915127aafb2/1_f.jpg",
+        "index": 1,
+        "left": "images/cube_2048/1/50f02bb4cc9a13ba79773915127aafb2/1_l.jpg",
+        "right": "images/cube_2048/1/50f02bb4cc9a13ba79773915127aafb2/1_r.jpg",
+        "up": "images/cube_2048/1/50f02bb4cc9a13ba79773915127aafb2/1_u.jpg"
+      },
+      {
+        "back": "images/cube_2048/2/2e03117adb6d365f62d0ce3fc072a7f6/2_b.jpg",
+        "down": "images/cube_2048/2/2e03117adb6d365f62d0ce3fc072a7f6/2_d.jpg",
+        "front": "images/cube_2048/2/2e03117adb6d365f62d0ce3fc072a7f6/2_f.jpg",
+        "index": 2,
+        "left": "images/cube_2048/2/2e03117adb6d365f62d0ce3fc072a7f6/2_l.jpg",
+        "right": "images/cube_2048/2/2e03117adb6d365f62d0ce3fc072a7f6/2_r.jpg",
+        "up": "images/cube_2048/2/2e03117adb6d365f62d0ce3fc072a7f6/2_u.jpg"
+      },
+      {
+        "back": "images/cube_2048/3/6bf7b244bf35d9813b2c8170d318d642/3_b.jpg",
+        "down": "images/cube_2048/3/6bf7b244bf35d9813b2c8170d318d642/3_d.jpg",
+        "front": "images/cube_2048/3/6bf7b244bf35d9813b2c8170d318d642/3_f.jpg",
+        "index": 3,
+        "left": "images/cube_2048/3/6bf7b244bf35d9813b2c8170d318d642/3_l.jpg",
+        "right": "images/cube_2048/3/6bf7b244bf35d9813b2c8170d318d642/3_r.jpg",
+        "up": "images/cube_2048/3/6bf7b244bf35d9813b2c8170d318d642/3_u.jpg"
+      },
+      {
+        "back": "images/cube_2048/4/cca152c4744c878904b3b1f6a17dbb2a/4_b.jpg",
+        "down": "images/cube_2048/4/cca152c4744c878904b3b1f6a17dbb2a/4_d.jpg",
+        "front": "images/cube_2048/4/cca152c4744c878904b3b1f6a17dbb2a/4_f.jpg",
+        "index": 4,
+        "left": "images/cube_2048/4/cca152c4744c878904b3b1f6a17dbb2a/4_l.jpg",
+        "right": "images/cube_2048/4/cca152c4744c878904b3b1f6a17dbb2a/4_r.jpg",
+        "up": "images/cube_2048/4/cca152c4744c878904b3b1f6a17dbb2a/4_u.jpg"
+      }
+    ]
+  },
+  "picture_url": "https://test-vr-public.realsee-cdn.com/test/auto3dhd/6e16f89bed25f4e52d7323f22c20e372/screenshot/672749564_0/pc0_yujxtAIrF.jpg",
+  "title_picture_url": "https://test-vr-public.realsee-cdn.com/test/auto3dhd/6e16f89bed25f4e52d7323f22c20e372/screenshot/672749564_0/pc1_exqILWVvs.jpg",
+  "vr_code": "80Lykj3NYwJKlDrG06",
+  "vr_type": "reality"
+}
+
