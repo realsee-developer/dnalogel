@@ -15,6 +15,7 @@ import { FloorplanErrorType, FIVE_CAMERA_DEFAULT_FOV, SHOW_ANIME_DURATION } from
 import { FLOOR_PLAN_ATTACHED_TO } from '../constant'
 
 export interface ModelFloorplanParameterType {
+  northDesc?: string
   selector?: string | Element
   scale?: number
   modelOpacity?: number
@@ -356,9 +357,10 @@ export default class ModelFloorplanPluginController {
   private render(duration?: number) {
     if (!this.container || !this.floorplanData) return
     if (this.size.width === 0) return
-    const { hoverEnable, cameraImageUrl, getLabelElement, roomLabelsEnable, compassEnable, ruleLabelsEnable } =
+    const { northDesc, hoverEnable, cameraImageUrl, getLabelElement, roomLabelsEnable, compassEnable, ruleLabelsEnable } =
       this.configs
     const props = {
+      northDesc: northDesc ?? '北',
       five: this.five,
       pxmm: this.pxmm,
       cameraImageUrl,

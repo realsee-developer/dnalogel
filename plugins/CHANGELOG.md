@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2.0.0-alpha.12
+- 1.feat: 新增 ModelItemLabelPlugin
+
+## 2.0.0-alpha.11
+- 1.fix: 修复 ModelRoomLabelPlugin 未监听多楼层切换 rerender 问题。
+- 2.feat: ModelFloorplanPlugin & TopviewFloorplanPlugin 新增 `northDesc?: string` 配置项，支持用户修改指北针名称。
+
 ## 2.0.0-alpha.10
 - 1.feat: 新增空间三维标签插件 PanoSpatialTagPlugin
 - 2.feat: 新增轻量 ejs 渲染模板函数 shared-utils/tinyEJSrender.js

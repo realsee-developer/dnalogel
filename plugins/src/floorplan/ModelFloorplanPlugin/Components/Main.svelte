@@ -7,6 +7,7 @@
   import { fade } from 'svelte/transition'
   import type { FloorplanData, FloorplanRoomItem } from '../../typings/floorplanData'
 
+  export let northDesc: string
   export let pxmm: number
   export let five: Five
   export let duration = 0
@@ -41,7 +42,7 @@
     />
     <Camera {...{ panoIndex, floorplanData, lastPanoramaLongitude, cameraImageUrl }} />
     {#if compassEnable}
-      <Compass floorplanData="{floorplanData}" />
+      <Compass floorplanData="{floorplanData}" northDesc="{northDesc}"/>
     {/if}
   </div>
 {/if}

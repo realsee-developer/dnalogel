@@ -7,6 +7,7 @@
     }
 
     export let floorplanData: FloorplanData
+    export let northDesc: string
 
     const northRad = floorplanData.entrance?.northRad
     const rotate = !northRad ? 0 : rad2Deg(northRad)
@@ -16,7 +17,7 @@
 {#if northRad}
   <div class="floorplan-plugin__compass" style:transform="{compassTransformStyle}">
     <div class="floorplan-plugin__compass-image" style="background-image: {`url(${COMPASS_IMAGE})`}"></div>
-    <span class="floorplan-plugin__compass-text"> 北 </span>
+    <span class="floorplan-plugin__compass-text"> {northDesc} </span>
   </div>
 {/if}
 
