@@ -39,7 +39,7 @@
 
   function getFormatedRoomLabels(five: Five, labels: RoomLabel[]) {
     const newLabels = labels.map((roomLabelItem) => {
-      // 计算是否可见，入股不可见，不会更新位置
+      // 计算是否可见，如果不可见，不会更新位置
       const visible = getLabelVisible(five, roomLabelItem)
       if (!visible) return { ...roomLabelItem, visible }
       // 更新位置
