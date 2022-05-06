@@ -11,6 +11,7 @@ import changeModelCanvasOpacity from '../../shared-utils/changeModelCanvasOpacit
 import { FLOOR_PLAN_ATTACHED_TO } from '../constant'
 
 export interface TopviewFloorplanPluginParameterType {
+  northDesc?: string
   selector?: string | Element
   scale?: number
   modelOpacity?: number
@@ -190,6 +191,7 @@ export class TopviewFloorplanPluginController {
     if (!this.container || !this.floorplanData) return
     if (this.size.width === 0) return
     const {
+      northDesc,
       getLabelElement,
       cameraImageUrl,
       preventRoomClick,
@@ -200,6 +202,7 @@ export class TopviewFloorplanPluginController {
     } = this.configs
     const handleClick = preventRoomClick ? () => false : undefined
     const props = {
+      northDesc: northDesc ?? '北',
       five: this.five,
       pxmm: this.pxmm,
       cameraImageUrl,

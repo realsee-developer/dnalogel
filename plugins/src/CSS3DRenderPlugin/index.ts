@@ -44,10 +44,12 @@ interface CSS3DRenderPluginState {
   frontMode?: {
     scene: Scene
     css3DRenderer: CSS3DRenderer
+    requestAnimationFrameId?: number
   }
   behindMode?: {
     scene: Scene
     css3DRenderer: CSS3DRenderer
+    requestAnimationFrameId?: number
   }
 }
 
@@ -92,8 +94,6 @@ export const CSS3DRenderPlugin: FivePlugin<CSS3DRenderPluginParameterType, CSS3D
     const frontModeUnInited = mode === 'front' && !state.frontMode
     const behindModeUnInited = mode === 'behind' && !state.behindMode
     const inited = !(frontModeUnInited || behindModeUnInited)
-    let stopRenderFlag = false
-    let requestAnimationFrameId: number | null = null
 
     if (behindModeUnInited) {
       state.behindMode = { scene: new Scene(), css3DRenderer: new CSS3DRenderer() }
@@ -101,7 +101,8 @@ export const CSS3DRenderPlugin: FivePlugin<CSS3DRenderPluginParameterType, CSS3D
     if (frontModeUnInited) {
       state.frontMode = { scene: new Scene(), css3DRenderer: new CSS3DRenderer() }
     }
-    const { scene, css3DRenderer } = mode === 'behind' ? state.behindMode! : state.frontMode!
+    const stateMode = mode === 'behind' ? state.behindMode! : state.frontMode!
+    const { scene, css3DRenderer } = stateMode
 
     const render = (() => {
       if (!inited) {
@@ -120,8 +121,8 @@ export const CSS3DRenderPlugin: FivePlugin<CSS3DRenderPluginParameterType, CSS3D
         css3DRenderer.domElement.style.pointerEvents = 'none'
 
         const renderEveryFrame = () => {
-          if (stopRenderFlag) return
-          requestAnimationFrameId = requestAnimationFrame(renderEveryFrame)
+          const requestAnimationFrameId = requestAnimationFrame(renderEveryFrame)
+          stateMode.requestAnimationFrameId = requestAnimationFrameId
           css3DRenderer.render(scene!, five.camera)
         }
         return () => {
@@ -150,11 +151,12 @@ export const CSS3DRenderPlugin: FivePlugin<CSS3DRenderPluginParameterType, CSS3D
     // ======= INIT END =======
 
     const dispose = () => {
-      stopRenderFlag = true
       disposers.forEach((d) => d?.())
       scene.remove(css3DObject)
-      if (typeof requestAnimationFrameId === 'number') cancelAnimationFrame(requestAnimationFrameId)
       if (scene.children.length === 0) {
+        if (typeof stateMode.requestAnimationFrameId === 'number') {
+          cancelAnimationFrame(stateMode.requestAnimationFrameId)
+        }
         css3DRenderer.domElement.remove()
         if (mode === 'front') state.frontMode = undefined
         if (mode === 'behind') state.behindMode = undefined
@@ -202,9 +204,9 @@ export const CSS3DRenderPlugin: FivePlugin<CSS3DRenderPluginParameterType, CSS3D
     const rotateYAngle = new Vector3(1, 0, 0).angleTo(new Vector3(vector01.x, 0, vector01.z))
     const rotateZAngle = vector01.angleTo(new Vector3(vector01.x, 0, vector01.z))
     /**
-     * [0,1,0] => [0,0,1]  为rolate Worldx正方向
-     * [0,0,1] => [0,1,0]  为rolate Worldy正方向
-     * [0,1,1] => [-1,0,0] 为rolate Worldz正方向
+     * [0,1,0] => [0,0,1]  为rotate Worldx正方向
+     * [0,0,1] => [0,1,0]  为rotate Worldy正方向
+     * [0,1,1] => [-1,0,0] 为rotate Worldz正方向
      */
     const rotateX = (vector12.z > 0 ? -1 : 1) * rotateXAngle
     const rotateY = (vector01.z < 0 ? 1 : -1) * rotateYAngle

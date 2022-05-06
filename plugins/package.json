@@ -6,7 +6,7 @@
   "author": "REALSEE-DEVELOPER",
   "repository": "https://github.com/realsee-developer/dnalogel.git",
   "private": false,
-  "version": "2.0.0-alpha.9",
+  "version": "2.0.0-alpha.13",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
     "build": "yarn run tsb && yarn run build:rollup && yarn build:docs",
@@ -26,7 +26,7 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.17.5",
-    "@realsee/five": "^5.0.0-alpha.119",
+    "@realsee/five": "^5.0.0-alpha.120",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-typescript": "^8.3.2",

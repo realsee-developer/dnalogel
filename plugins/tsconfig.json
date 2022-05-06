@@ -3,7 +3,7 @@
   "compilerOptions": {
     "isolatedModules": true,
     "importsNotUsedAsValues": "remove",
-    "target": "esnext",
+    "target": "es6",
     "useDefineForClassFields": true,
     "module": "esnext",
     "resolveJsonModule": true,

@@ -80,7 +80,8 @@ const ShowPlugin = (props: ShowPluginPropTypes) => {
         if (!videoRef.current) return
 
         const modelTVVideoPlugin = five.plugins.modelTVVideoPlugin as ReturnType<typeof ModelTVVideoPlugin>
-        await modelTVVideoPlugin.load(TEST_DATA, videoRef.current)
+        await modelTVVideoPlugin.load(TEST_DATA)
+        // await modelTVVideoPlugin.load(TEST_DATA, videoRef.current)
         modelTVVideoPlugin.enable()
 
         // 为了优质的视觉效果，手动游走至可看到电视的视角

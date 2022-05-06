@@ -15,7 +15,11 @@ const getInitialParamFromUrl = (): Record<string, any> => {
         const queryKeyValue = query.split('=')
         if( queryKeyValue[0] !== 'renderCode' && queryKeyValue[0] !== 'spaceType'){
             let obj: Record<string, any> = {}
-            obj[queryKeyValue[0]] = JSON.parse(queryKeyValue[1])
+            try {
+                obj[queryKeyValue[0]] = JSON.parse(queryKeyValue[1])
+            } catch(e) {
+                obj[queryKeyValue[0]] = queryKeyValue[1]
+            }
             Object.assign(initialParam, obj)
         }
     })
