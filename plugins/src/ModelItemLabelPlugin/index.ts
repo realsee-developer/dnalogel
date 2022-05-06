@@ -28,7 +28,8 @@ export const ModelItemLabelPlugin: FivePlugin<
         app: undefined,
         hooks: new Subscribe<PluginEvent>(),
         modelOcclusionEnable: params?.modelOcclusionEnable ?? true,
-        displayStrategyType: params?.displayStrategyType ?? DISPLAY_STRATEGY_TYPE.SMALL
+        displayStrategyType: params?.displayStrategyType ?? DISPLAY_STRATEGY_TYPE.SMALL,
+        pending: false
     }
 
     pluginState.container.setAttribute('class', 'model-item-label-plugin-container')
@@ -38,8 +39,8 @@ export const ModelItemLabelPlugin: FivePlugin<
         top: 0;
         width: 100%;
         height: 100%;
-        pointerEvents: none;
     `
+    pluginState.container.style.pointerEvents = 'none' // 写到 cssText 里不生效
 
     const appendTo = (wrapper: Element) => {
         pluginState.wrapper = wrapper as HTMLElement
@@ -49,7 +50,6 @@ export const ModelItemLabelPlugin: FivePlugin<
     }
 
     const load = (data: ModelItemLabelPluginData) => {
-        console.log('🐶--当前标签总条数： ', data.model_item_labels.length)
         pluginState.itemLabels = parseModelItemLabelPluginData(data)
         render()
     }
@@ -74,20 +74,25 @@ export const ModelItemLabelPlugin: FivePlugin<
     }
 
     const handleRerender = () => {
-        if (!pluginState.enabled || !pluginState.fiveModeEnabled) return
+        if (!pluginState.enabled || !pluginState.fiveModeEnabled || pluginState.pending) return
+        pluginState.pending = true
         disable()
     }
 
     const rerender = (a, b, c) => {
+        if (!pluginState.pending) return
         if (!pluginState.fiveModeEnabled) return
         if (!c) return
+        pluginState.pending = false
         enable()
         render()
     }
 
     const handleInteriaPanRerender = (a, b) => {
+        if (!pluginState.pending) return
         if (!pluginState.fiveModeEnabled) return
         if (!b) return
+        pluginState.pending = false
         enable()
         render()
     }
@@ -99,8 +104,10 @@ export const ModelItemLabelPlugin: FivePlugin<
     }
 
     const handlePanGesture = (pose, final) => {
+        if (!pluginState.pending) return
         if (!pluginState.fiveModeEnabled) return
         if (!final) return
+        pluginState.pending = false
         enable()
         render()
     }
@@ -167,8 +174,8 @@ export const ModelItemLabelPlugin: FivePlugin<
         five.off('pinchGesture', rerender)
     }
 
-
     const onFiveModeChange = (mode: Mode) => {
+        if (!pluginState.enabled || pluginState.pending) return
         if (mode !== Five.Mode.Floorplan) {
             pluginState.fiveModeEnabled = false
             render()

@@ -53,14 +53,15 @@ export interface ModelItemLabelPluginExportReturnsType {
 
 // 插件状态
 export interface ModelItemLabelPluginState {
-    container: HTMLDivElement,
+    container: HTMLDivElement
     data: ModelItemLabelPluginData | null
-    enabled: boolean,
-    itemLabels: ItemLabel[],
-    wrapper: HTMLElement | null,
-    fiveModeEnabled: boolean,
-    app?: ItemLabelComponent | undefined,
+    enabled: boolean
+    itemLabels: ItemLabel[]
+    wrapper: HTMLElement | null
+    fiveModeEnabled: boolean
+    app?: ItemLabelComponent | undefined
     hooks: Subscribe<PluginEvent>
     modelOcclusionEnable: boolean
     displayStrategyType: Partial<DISPLAY_STRATEGY_TYPE>
+    pending: boolean
 }
