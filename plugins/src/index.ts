@@ -93,6 +93,11 @@ export type {
 export { default as PanoSpatialTagPlugin } from './PanoSpatialTagPlugin'
 
 // 模型物品标签插件
+export type {
+    ModelItemLabelPluginData,
+    ModelItemLabelPluginExportReturnsType,
+    ModelItemLabelPluginParametersType
+} from './ModelItemLabelPlugin/typings'
 export { default as ModelItemLabelPlugin } from './ModelItemLabelPlugin'
 
 // 模型电视插件
