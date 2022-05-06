@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.0-alpha.14
+- 1.feat: 新增 ModelTVVideoPlugin 插件；
+- 2.fix: 修复 ModelItemLabelPlugin disable & enable 方法逻辑；
+- 3.refactor: 增加 ModelItemLabelPlugin 类型导出。
+
 ## 2.0.0-alpha.13
 - 1.chore: 修改 tsconfig.json target 配置项为 es6。
 
