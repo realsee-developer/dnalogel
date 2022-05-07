@@ -6,6 +6,7 @@
     import * as THREE from 'three'
     import ItemLabelItem from './ItemLabelItem.svelte'
     import { PluginEvent } from "./events.type";
+    import debounce from '../shared-utils/debounce'
 
     const { Raycaster, Vector3 } = THREE
 
@@ -28,6 +29,8 @@
     let cssOffsetLists: number[][] = []
     let cssHeight: number = 26
     let basicWidth: number = 11
+
+    let itemsVisible = true
 
     /**
      * 可见性策略：
@@ -170,9 +173,18 @@
         renderItemLabels = itemLabels
         curItemLabels = itemLabels
         onItemLabelUpdate()
-        // five.on('cameraUpdate', onItemLabelUpdate)
         addResizeListener()
+
+	    five.on('cameraUpdate', () => {
+            itemsVisible = false
+            handleCameraUpdate()
+	    })
     })
+
+    const handleCameraUpdate = debounce(() => {
+        itemsVisible = true
+        onItemLabelUpdate()
+    }, 300)
 
     const addResizeListener = () => {
         wrapperSize = {
@@ -186,7 +198,6 @@
         if (curItemLabels !== itemLabels) {
             renderItemLabels = itemLabels
             curItemLabels = itemLabels
-            console.log('--debug--update--')
             onItemLabelUpdate()
         }
     }
@@ -207,7 +218,7 @@
     })
 
     onDestroy(() => {
-        // five.off('cameraUpdate', onItemLabelUpdate)
+        five.off('cameraUpdate')
         resizeObserver.unobserve(wrapper)
         curItemLabels = null
         renderItemLabels = null
@@ -217,7 +228,7 @@
 
 </script>
 
-<div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}">
+<div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}" style:opacity="{itemsVisible ? 1 : 0}">
 	{#each renderItemLabels as itemLabelItem (itemLabelItem.id)}
 		<ItemLabelItem itemLabel="{itemLabelItem}" hooks="{hooks}" />
 	{/each}
