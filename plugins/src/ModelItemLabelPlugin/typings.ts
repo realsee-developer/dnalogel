@@ -63,5 +63,4 @@ export interface ModelItemLabelPluginState {
     hooks: Subscribe<PluginEvent>
     modelOcclusionEnable: boolean
     displayStrategyType: Partial<DISPLAY_STRATEGY_TYPE>
-    pending: boolean
 }

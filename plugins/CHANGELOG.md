@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.15
+- 1.refactor: 优化 ModelItemLabelPlugin 在调用 five.setState() 时的动画显示。
+
 ## 2.0.0-alpha.14
 - 1.feat: 新增 ModelTVVideoPlugin 插件；
 - 2.fix: 修复 ModelItemLabelPlugin disable & enable 方法逻辑；

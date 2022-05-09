@@ -29,7 +29,6 @@ export const ModelItemLabelPlugin: FivePlugin<
         hooks: new Subscribe<PluginEvent>(),
         modelOcclusionEnable: params?.modelOcclusionEnable ?? true,
         displayStrategyType: params?.displayStrategyType ?? DISPLAY_STRATEGY_TYPE.SMALL,
-        pending: false
     }
 
     pluginState.container.setAttribute('class', 'model-item-label-plugin-container')
@@ -73,45 +72,6 @@ export const ModelItemLabelPlugin: FivePlugin<
         pluginState.container.remove()
     }
 
-    const handleRerender = () => {
-        if (!pluginState.enabled || !pluginState.fiveModeEnabled || pluginState.pending) return
-        pluginState.pending = true
-        disable()
-    }
-
-    const rerender = (a, b, c) => {
-        if (!pluginState.pending) return
-        if (!pluginState.fiveModeEnabled) return
-        if (!c) return
-        pluginState.pending = false
-        enable()
-        render()
-    }
-
-    const handleInteriaPanRerender = (a, b) => {
-        if (!pluginState.pending) return
-        if (!pluginState.fiveModeEnabled) return
-        if (!b) return
-        pluginState.pending = false
-        enable()
-        render()
-    }
-
-    const handleWantsPanGesture = (pose, final) => {
-        if (pose) {
-            handleRerender()
-        }
-    }
-
-    const handlePanGesture = (pose, final) => {
-        if (!pluginState.pending) return
-        if (!pluginState.fiveModeEnabled) return
-        if (!final) return
-        pluginState.pending = false
-        enable()
-        render()
-    }
-
     const render = () => {
         if (!pluginState.wrapper) return
         // 只要不可展示，销毁容器
@@ -145,35 +105,15 @@ export const ModelItemLabelPlugin: FivePlugin<
     const addListener4Five = () => {
         five.on('modeChange', onFiveModeChange)
         five.once('dispose', dispose)
-
-        // five.on('wantsMouseWheel', handleRerender)
-        // five.on('mouseWheel', rerender)
-        // five.on('wantsInteriaPan', handleRerender)
-        // five.on('interiaPan', handleInteriaPanRerender)
-        //
-        // five.on('wantsPanGesture', handleWantsPanGesture)
-        // five.on('panGesture', handlePanGesture)
-        // five.on('wantsPinchGesture', handleRerender)
-        // five.on('pinchGesture', rerender)
     }
 
     // 取消 five 监听
     const removeListener4Five = () => {
         five.off('modeChange', onFiveModeChange)
-
-        // five.off('wantsMouseWheel', handleRerender)
-        // five.off('mouseWheel', rerender)
-        // five.off('wantsInteriaPan', handleRerender)
-        // five.off('interiaPan', handleInteriaPanRerender)
-        //
-        // five.off('wantsPanGesture', handleWantsPanGesture)
-        // five.off('panGesture', handlePanGesture)
-        // five.off('wantsPinchGesture', handleRerender)
-        // five.off('pinchGesture', rerender)
     }
 
     const onFiveModeChange = (mode: Mode) => {
-        if (!pluginState.enabled || pluginState.pending) return
+        if (!pluginState.enabled) return
         if (mode !== Five.Mode.Floorplan) {
             pluginState.fiveModeEnabled = false
             render()
