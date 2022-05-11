@@ -25,6 +25,7 @@ export class ModelRoomLabelController {
     this.container.style.pointerEvents = 'none'
     this.container.style.left = '0'
     this.container.style.top = '0'
+    this.container.style.zIndex = '5'
     // five listener
     this.five.once('dispose', () => this.dispose())
     this.five.on('modeChange', this.onFiveModeChange)

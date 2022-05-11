@@ -38,6 +38,7 @@ export const ModelItemLabelPlugin: FivePlugin<
         top: 0;
         width: 100%;
         height: 100%;
+        z-index: 5;
     `
     pluginState.container.style.pointerEvents = 'none' // 写到 cssText 里不生效
 
