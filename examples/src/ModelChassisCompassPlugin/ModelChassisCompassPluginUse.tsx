@@ -6,7 +6,6 @@ import {
     useFiveState
 } from "@realsee/five/react";
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/material'
-import { floorplanServerData } from "../mockData";
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
