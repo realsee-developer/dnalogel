@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.17
+- 1.fix: 修复构建输出 px2rem 失效问题。
+
 ## 2.0.0-alpha.16
 - 1.fix: 修复 z-index 问题；
 - 2.fix: 修复 ModelItemLabelPlugin 事件监听问题。
