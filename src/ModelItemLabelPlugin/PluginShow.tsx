@@ -3421,6 +3421,10 @@ const PluginShow = (props: PluginShowPropTypes) => {
         if (wrapper) {
             five.plugins.modelItemLabelPlugin.appendTo(wrapper)
         }
+
+        five.on('cameraUpdate', (pose) => {
+            console.log('---监听到cameraUpdate了')
+        })
     }, [])
 
     useFiveEventCallback('modelLoaded', () => {
