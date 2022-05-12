@@ -7,7 +7,7 @@
   "repository": "https://github.com/realsee-developer/dnalogel.git",
   "description": "如视 VR 看房插件合集",
   "private": false,
-  "version": "2.0.0-alpha.15",
+  "version": "2.0.0-alpha.16",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
     "build": "yarn run tsb && yarn run build:rollup && yarn build:docs",
@@ -31,6 +31,7 @@
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-typescript": "^8.3.2",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.44",
     "@tsconfig/svelte": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",

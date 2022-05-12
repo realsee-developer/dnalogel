@@ -5,7 +5,8 @@ import { PluginEvent } from "./events.type";
 export enum DISPLAY_STRATEGY_TYPE {
     SMALL= 'small',
     MIDLLE= 'middle',
-    LARGE= 'large'
+    LARGE= 'large',
+    EXTRA_LARGE = 'x-large'
 }
 // 插件入口参数
 export interface ModelItemLabelPluginParametersType {

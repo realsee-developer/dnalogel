@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0-alpha.16
+- 1.fix: 修复 z-index 问题；
+- 2.fix: 修复 ModelItemLabelPlugin 事件监听问题。
+
 ## 2.0.0-alpha.15
 - 1.refactor: 优化 ModelItemLabelPlugin 在调用 five.setState() 时的动画显示。
 

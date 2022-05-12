@@ -86,6 +86,8 @@
                 return Math.ceil(-38.9 * itemSpaceHeight + 130)
             case DISPLAY_STRATEGY_TYPE.LARGE:
                 return Math.ceil(-44.44 * itemSpaceHeight + 140)
+	        case DISPLAY_STRATEGY_TYPE.EXTRA_LARGE:
+                return Math.ceil(-92.59 * itemSpaceHeight + 300)
         }
     }
 
@@ -133,16 +135,18 @@
         addDataUpdateListener()
     })
 
+    const handleCameraUpdateCallback = () => {
+        itemsVisible = false
+        handleCameraUpdate()
+    }
+
     onMount(() => {
         renderItemLabels = itemLabels
         curItemLabels = itemLabels
         onItemLabelUpdate()
         addResizeListener()
 
-	    five.on('cameraUpdate', () => {
-            itemsVisible = false
-            handleCameraUpdate()
-	    })
+	    five.on('cameraUpdate', handleCameraUpdateCallback)
     })
 
     const handleCameraUpdate = debounce(() => {
@@ -182,11 +186,11 @@
     })
 
     onDestroy(() => {
-        five.off('cameraUpdate')
+        five.off('cameraUpdate', handleCameraUpdateCallback)
         resizeObserver.unobserve(wrapper)
-        curItemLabels = null
-        renderItemLabels = null
-        wrapperSize = { width: 0, height: 0 }
+        // curItemLabels = null
+        // renderItemLabels = null
+        // wrapperSize = { width: 0, height: 0 }
     })
 
 
