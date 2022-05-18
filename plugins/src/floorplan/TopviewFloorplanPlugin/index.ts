@@ -1,4 +1,4 @@
-import { FivePlugin } from '@realsee/five'
+import type { FivePlugin } from '@realsee/five'
 import {
   TopviewFloorplanPluginController,
   TopviewFloorplanPluginParameterType,
