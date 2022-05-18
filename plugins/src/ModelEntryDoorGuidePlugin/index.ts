@@ -1,9 +1,9 @@
 import type { Five, FivePlugin, Mode } from '@realsee/five'
+import type { Vector3Position } from '../typings/math.type'
 import { AnimationMixer, MeshBasicMaterial } from 'three'
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import createCanvasTextTexture from '../shared-utils/createCanvasTextTexture'
-import { Vector3Position } from '../typings/math.type'
 import transformPositionToVector3 from '../shared-utils/three/transformPositionToVector3'
 import transfromToMeshBasicMaterial from '../shared-utils/three/transfromToMeshBasicMaterial'
 

@@ -1,13 +1,12 @@
-import Line from '../Model/line'
-import Magnifier from '../Modules/Magnifier'
-import FiveHelper from '../Modules/FiveHelper'
-
-import { Group } from 'three'
-import { Model } from '../Model'
+import type Line from '../Model/line'
+import type Magnifier from '../Modules/Magnifier'
+import type FiveHelper from '../Modules/FiveHelper'
+import type { Group } from 'three'
+import type { Model } from '../Model'
+import type { PluginEvent } from '../typings/event.type'
+import type { UserDistanceItem } from '../utils/distanceDom'
+import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import { preventDefault } from '../utils/ironbox'
-import { PluginEvent } from '../typings/event.type'
-import { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
-import { UserDistanceItem } from '../utils/distanceDom'
 
 export interface IControllerParams {
   five: Five

@@ -1,6 +1,6 @@
-import ItemLabelComponent from './ItemLabelComponent.svelte'
 import type { Subscribe } from "@realsee/five";
-import { PluginEvent } from "./events.type";
+import type { PluginEvent } from "./events.type";
+import type ItemLabelComponent from './ItemLabelComponent.svelte'
 
 export enum DISPLAY_STRATEGY_TYPE {
     SMALL= 'small',

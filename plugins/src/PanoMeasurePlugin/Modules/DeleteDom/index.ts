@@ -1,10 +1,9 @@
-import Line from '../../Model/line'
+import type Line from '../../Model/line'
+import type { Five } from '@realsee/five'
+import type Point from '../../Model/point'
 import deleteSvg from './_Assets/delete.svg'
 import deleteBg from './_Assets/delete_bg.png'
 import deleteHoverBg from './_Assets/delete_hover_bg.png'
-
-import { Five } from '@realsee/five'
-import Point from '../../Model/point'
 
 export default class DeleteDom {
   public visible = false

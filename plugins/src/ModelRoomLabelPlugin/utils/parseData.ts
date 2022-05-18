@@ -1,4 +1,4 @@
-import { ModelRoomLabelPluginData, RoomLabel } from '../typings'
+import type { ModelRoomLabelPluginData, RoomLabel } from '../typings'
 
 /** @description 下划线转驼峰 */
 export function parseModelRoomLabelPluginData(data: ModelRoomLabelPluginData): RoomLabel[] {

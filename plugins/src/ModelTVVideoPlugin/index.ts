@@ -1,6 +1,6 @@
-import * as THREE from 'three'
 import type { FivePlugin } from '@realsee/five'
-import { ModelTVVideoPluginData, ModelTVVideoPluginExportType, ModelTVVideoPluginParameterType } from "./typings";
+import type { ModelTVVideoPluginData, ModelTVVideoPluginExportType, ModelTVVideoPluginParameterType } from "./typings";
+import * as THREE from 'three'
 import { parseModelTVVideoPoints } from "./utils/parseData";
 
 type ModelTVVideoPluginPoints = THREE.Vector3[][]

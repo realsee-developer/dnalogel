@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import type * as THREE from 'three'
 import { formatRad } from './formatRad'
 
 /** 单位向量转换成坐标 */

@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import type * as THREE from 'three'
 
 export type PanoSpatialTagPluginId = string | number; // 标签唯一ID
 

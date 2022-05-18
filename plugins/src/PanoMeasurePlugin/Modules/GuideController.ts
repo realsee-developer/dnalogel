@@ -1,5 +1,5 @@
-import MeasureController from '../Controller'
-import { PluginEvent } from '../typings/event.type'
+import type MeasureController from '../Controller'
+import type { PluginEvent } from '../typings/event.type'
 
 export interface GuideControllerParams {
   container: Element

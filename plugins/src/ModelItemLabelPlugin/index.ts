@@ -1,3 +1,4 @@
+import type { PluginEvent } from "./events.type";
 import type { FivePlugin, Mode } from "@realsee/five";
 import { Five, Subscribe } from "@realsee/five"
 import ItemLabelComponent from './ItemLabelComponent.svelte'
@@ -8,7 +9,6 @@ import {
     ModelItemLabelPluginParametersType, DISPLAY_STRATEGY_TYPE
 } from "./typings";
 import { parseModelItemLabelPluginData } from "./utils/parseData";
-import { PluginEvent } from "./events.type";
 
 export const ModelItemLabelPlugin: FivePlugin<
     ModelItemLabelPluginParametersType,

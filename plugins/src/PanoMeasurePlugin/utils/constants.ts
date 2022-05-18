@@ -1,5 +1,5 @@
+import type { ICreatLineOpts } from './line'
 import { TextureLoader, Color } from 'three'
-import { ICreatLineOpts } from './line'
 
 const lineWidth = 2
 const lightLineWidth = 4

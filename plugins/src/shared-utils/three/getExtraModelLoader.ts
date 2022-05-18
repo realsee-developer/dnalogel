@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import type * as THREE from 'three'
 import { loadFbxObj } from './loadFbxObj'
 
 /** 模型资源加载器，用于满足资源共用 */
