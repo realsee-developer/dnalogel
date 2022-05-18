@@ -6,7 +6,7 @@ import { useWindowDimensions } from "./useWindowDimensions";
 import ModelFloorplanPluginUse from "./ModelFloorplanPluginUse";
 import { Box } from '@mui/material'
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
-import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
     attachedTo: FLOOR_PLAN_ATTACHED_TO.CEILING // 户型图吸附至天花板，默认吸附至几何中心
@@ -34,7 +34,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
     const size = useWindowDimensions();
-    const work = useFetchDatas(DATATYPES.WORK)
+    const work = useFetchDatas(DATA_TYPES.WORK)
 
     return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
 		<FiveCanvas {...size} />

@@ -6,7 +6,7 @@ import { useWindowDimensions } from "./useWindowDimensions";
 import ModelRoomLabelPluginShow from "./ModelRoomLabelPluginShow";
 import { Box } from "@mui/material";
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
-import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
 
@@ -31,7 +31,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions();
-  const work = useFetchDatas(DATATYPES.WORK)
+  const work = useFetchDatas(DATA_TYPES.WORK)
 
   return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
     <FiveCanvas {...size}/>

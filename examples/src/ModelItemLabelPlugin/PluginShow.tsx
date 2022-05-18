@@ -10,7 +10,7 @@ import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 import * as THREE from "three";
 
 interface PluginShowPropTypes {
@@ -22,7 +22,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
     const [labelType, setLabelType] = React.useState<number>(0)
-    // const modelItemLabels = useFetchDatas(DATATYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
+    // const modelItemLabels = useFetchDatas(DATA_TYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
     const modelItemLabels = [
         { "model_item_labels": [
                 // {
@@ -3380,7 +3380,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
     // 画辅助线
     function addHelper(x: number, y: number, z: number, type: string, helper?: boolean) {
         // const point = new THREE.Vector3();
-        let geometry, materials, mesh: any
+        let geometry; let materials; let mesh: any
 
         if (type === 'box') {
             geometry = new THREE.BoxGeometry(
