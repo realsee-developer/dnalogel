@@ -1,4 +1,4 @@
-import type Hammer from 'hammerjs'
+import Hammer from 'hammerjs'
 import { Vector2 } from 'three'
 
 /**

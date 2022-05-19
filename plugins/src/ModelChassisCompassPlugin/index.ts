@@ -1,6 +1,7 @@
-import type { Five, FivePlugin } from '@realsee/five'
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import type { FivePlugin } from '@realsee/five'
+import { Five } from '@realsee/five'
 import object3d2LocalMatrix from '../shared-utils/object3d2LocalMatrix'
 import transfromToMeshBasicMaterial from '../shared-utils/three/transfromToMeshBasicMaterial'
 

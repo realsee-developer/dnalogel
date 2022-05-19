@@ -2,6 +2,8 @@
   "extends": "../node_modules/@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "isolatedModules": true,
+    "importsNotUsedAsValues": "remove",
+    "target": "es6",
     "useDefineForClassFields": true,
     "module": "esnext",
     "resolveJsonModule": true,

@@ -1,7 +1,7 @@
-import type MeasureController from '../../Controller'
-import type { PluginEvent } from '../../typings/event.type'
 import TWEEN from '@tweenjs/tween.js'
+import MeasureController from '../../Controller'
 import { mainIconStyle as mainIconStyle, mainItemStyle as mainItemStyle } from './style'
+import { PluginEvent } from '../../typings/event.type'
 import { BetterTween, tweenProgress } from '../../../shared-utils/animationFrame/BetterTween'
 import { MAIN_NORMAL_PATH, MAIN_DONE_PATH, MAIN_MOUSE_ENTER_FILL, MAIN_MOUSE_LEAVE_FILL } from './HTML'
 

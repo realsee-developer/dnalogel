@@ -1,5 +1,5 @@
-import type { SubscribeEventMap } from '@realsee/five'
-import type { ItemLabel } from "./typings";
+import { SubscribeEventMap } from '@realsee/five'
+import { ItemLabel } from "./typings";
 
 export interface ItemLabelEvent extends SubscribeEventMap {
   /**

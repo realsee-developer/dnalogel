@@ -1,6 +1,6 @@
 <script lang="ts">
   import RoomLabel from './RoomLabel.svelte'
-  import type { FloorplanData, FloorplanRoomItem } from '../../typings/floorplanData'
+  import type { FloorplanData, FloorplanRoomItem } from '../../../typings/floorplanData'
 
   export let floorIndex: number
   export let floorplanData: FloorplanData
@@ -25,6 +25,5 @@
     left: 0;
     top: 0;
     z-index: 20;
-    pointer-events: none;
   }
 </style>

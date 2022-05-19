@@ -1,12 +1,5 @@
 # CHANGELOG
 
-## 2.0.0-alpha.19
-- 1.fix: 修复在模型切换全部楼层，切换回户型图，展示的是上一次展示时的楼层。
-- 2.fix: 修复户型图界面切换楼层时，图片与SVG渲染有时间差导致闪烁的问题。
-- 3.feat: TopviewFloorplanPlugin 插件支持放大缩小。
-- 4.feat: ModelFloorplanPlugin 插件，autoShowEnable 和 hoverEnable 能同时支持。
-- 5.chore: 设置 tsconfig.json importsNotUsedAsValues 为 error，在引用类型时，必须显示写为 import type。
-
 ## 2.0.0-alpha.18
 - 1.fix: 修复 PanoMeasurePlugin 使用时 hammerjs 报错问题。
 

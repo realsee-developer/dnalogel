@@ -1,6 +1,6 @@
-import type { Five } from '@realsee/five'
-import type { FivePlugin } from '@realsee/five'
 import * as THREE from 'three'
+import type { FivePlugin } from '@realsee/five'
+import { Five } from '@realsee/five'
 
 export interface ModelViewPluginExportType {
     appendTo(element: HTMLElement, size?: { width?: number; height?: number }): void

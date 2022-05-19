@@ -1,4 +1,4 @@
-import type { ModelItemLabelPluginData, ItemLabel } from '../typings'
+import { ModelItemLabelPluginData, ItemLabel } from '../typings'
 
 /** @description 转成内部所需数据 */
 export function parseModelItemLabelPluginData(data: ModelItemLabelPluginData): ItemLabel[] {

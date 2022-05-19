@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FloorplanRoomItem } from '../../typings/floorplanData'
+  import type { FloorplanRoomItem } from '../../../typings/floorplanData'
 
   export let room: FloorplanRoomItem
   export let getLabelElement: undefined | ((room: FloorplanRoomItem) => Element | null)

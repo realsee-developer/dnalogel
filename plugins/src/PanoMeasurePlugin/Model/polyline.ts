@@ -1,7 +1,7 @@
-import type Line from './line'
-import type Point from './point'
-import type { PolylineJson, PolylineCompletelyJson } from '../typings/data'
+import Line from './line'
+import Point from './point'
 import uuid from '../../shared-utils/uuid'
+import { PolylineJson, PolylineCompletelyJson } from '../typings/data'
 
 export class Polyline {
   public readonly id = uuid()

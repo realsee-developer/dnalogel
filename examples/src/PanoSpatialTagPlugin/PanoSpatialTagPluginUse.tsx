@@ -2,14 +2,14 @@ import * as React from 'react';
 import * as THREE from 'three';
 import { Five, Mode } from "@realsee/five"
 import { unsafe__useFiveInstance } from "@realsee/five/react"
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 
 interface PanoSpatialTagPluginUsePropTypes {}
 
 const PanoSpatialTagPluginUse: React.FC = () => {
     const five = unsafe__useFiveInstance()
-    const model_tag = useFetchDatas(DATA_TYPES.MODEL_TAG, '81gmMq5eXl5I9y7JMk')
+    const model_tag = useFetchDatas(DATATYPES.MODEL_TAG, '81gmMq5eXl5I9y7JMk')
 
     React.useEffect(() => {
         if (!model_tag) return

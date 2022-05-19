@@ -1,5 +1,5 @@
-import type MeasureController from '../../Controller'
 import htmlString from './HTML'
+import MeasureController from '../../Controller'
 import {
   uiWrapperStyle,
   operatingSpaceStyle,

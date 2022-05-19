@@ -1,17 +1,18 @@
-import type { FLOOR_PLAN_ATTACHED_TO } from '../constant'
-import type { FloorplanEventHandlers } from './typings/events.type'
-import type { FloorplanServerData } from '../typings/floorplanServerData'
-import type { FloorplanData, FloorplanRoomItem } from '../typings/floorplanData'
-import { omit } from '../../shared-utils/filter'
-import { Five, EventCallback, Subscribe } from '@realsee/five'
-import { FloorplanErrorType, FIVE_CAMERA_DEFAULT_FOV, SHOW_ANIME_DURATION } from './utils/constant'
+import Main from './Components/Main.svelte'
 import to from '../../shared-utils/to'
-import Main from '../Components/Main.svelte'
 import formatData from '../utils/formatData'
 import equal from '../../shared-utils/equal'
 import getPxmm from '../../shared-utils/getPxmm'
 import correctFiveState, { checkShowState } from './utils/correctFiveState'
 import changeModelCanvasOpacity from '../../shared-utils/changeModelCanvasOpacity'
+
+import { omit } from '../../shared-utils/filter'
+import { Five, EventCallback, Subscribe } from '@realsee/five'
+import type { FloorplanEventHandlers } from './typings/events.type'
+import type { FloorplanServerData } from '../typings/floorplanServerData'
+import type { FloorplanData, FloorplanRoomItem } from '../typings/floorplanData'
+import { FloorplanErrorType, FIVE_CAMERA_DEFAULT_FOV, SHOW_ANIME_DURATION } from './utils/constant'
+import { FLOOR_PLAN_ATTACHED_TO } from '../constant'
 
 export interface ModelFloorplanParameterType {
   northDesc?: string
@@ -79,10 +80,10 @@ export default class ModelFloorplanPluginController {
       left: '50%',
       top: '50%',
       transform: 'translate(-50%, -50%)',
+      pointerEvents: 'none',
       zIndex: 10,
     })
 
-    this.five.addExtraElement(this.container)
     // 如果初始化的时候模型已经加载完毕了，就不用再等 modelLoaded
     this.five.model.loaded ? this.handleModelLoaded() : five.once('modelLoaded', this.handleModelLoaded)
 
@@ -247,6 +248,8 @@ export default class ModelFloorplanPluginController {
   /** 更改户型图楼层 */
   public changeFloor(floorIndex: number) {
     this.five.model.show(floorIndex)
+    this.floorIndex = floorIndex
+    this.render()
   }
 
   public changeConfigs(params: ModelFloorplanPluginsConfigs) {
@@ -257,12 +260,7 @@ export default class ModelFloorplanPluginController {
 
   /** 模型楼层高亮改变时，自动进行楼层切换 */
   private onModelShownFloorChange = (shownFloor: number | null) => {
-    if (this.floorIndex === shownFloor) return
-    if (shownFloor === null) {
-      const panoIndex = this.five.getCurrentState().panoIndex
-      this.floorIndex = this.five.work.observers[panoIndex].floorIndex
-      return
-    }
+    if (shownFloor === null) return
     this.floorIndex = shownFloor
     this.updateSize()
     this.render()
@@ -328,7 +326,6 @@ export default class ModelFloorplanPluginController {
    * 2. 如何户型图已经展示，滑动时关闭户型图
    */
   private handlePanGesture: EventCallback['panGesture'] = async ({ latitude, longitude }, isFinal) => {
-    if (this.five.getCurrentState().mode !== 'Floorplan') return
     if (this.configs.autoShowEnable === false) return
     // 如果操作结束后，户型图还在展示中，初始化模型状态
     if (isFinal && this.visible) return this.five.setState(this.showState, true)
@@ -363,9 +360,10 @@ export default class ModelFloorplanPluginController {
     const { northDesc, hoverEnable, cameraImageUrl, getLabelElement, roomLabelsEnable, compassEnable, ruleLabelsEnable } =
       this.configs
     const props = {
-      cameraImageUrl,
-      getLabelElement,
       northDesc: northDesc ?? '北',
+      five: this.five,
+      pxmm: this.pxmm,
+      cameraImageUrl,
       visible: this.visible,
       duration: duration ?? 0,
       panoIndex: this.panoIndex,
@@ -376,6 +374,8 @@ export default class ModelFloorplanPluginController {
       ruleLabelsEnable: ruleLabelsEnable ?? true,
       roomLabelsEnable: roomLabelsEnable ?? true,
       lastPanoramaLongitude: this.lastPanoramaLongitude,
+      getLabelElement,
+      onRoomHeightClick: this.handleClick,
     }
     if (!this.app) {
       this.app = new Main({

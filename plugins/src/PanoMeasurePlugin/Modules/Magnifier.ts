@@ -1,4 +1,4 @@
-import type { Five } from '@realsee/five'
+import { Five } from '@realsee/five'
 import { Vector2, Vector3 } from 'three'
 
 /** 交换数组元素 */

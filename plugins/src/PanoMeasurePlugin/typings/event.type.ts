@@ -1,7 +1,7 @@
-import type { SubscribeEventMap } from '@realsee/five'
-import type { Vector3 } from 'three'
-import type { Mode } from '../Controller'
-import type { LineCompletelyJson } from './data'
+import { SubscribeEventMap } from '@realsee/five'
+import { Vector3 } from 'three'
+import { Mode } from '../Controller'
+import { LineCompletelyJson } from './data'
 
 interface ControllerEvent extends SubscribeEventMap {
   /**

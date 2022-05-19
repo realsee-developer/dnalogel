@@ -1,6 +1,6 @@
-import type { Vector2 } from 'three'
-import type Point from '../Model/point'
-import type { Five } from '@realsee/five'
+import { Vector2 } from 'three'
+import Point from '../Model/point'
+import { Five } from '@realsee/five'
 import ndc2Screen from './ndc2Screen'
 import isNDCPointInScreen from './isNDCPointInScreen'
 

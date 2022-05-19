@@ -1,10 +1,10 @@
 import type { FivePlugin } from '@realsee/five'
-import type { RoomInfo, RoomRules } from './typings'
 import { Five } from '@realsee/five'
 import { Raycaster, Vector3 } from 'three'
 import { intersectionOfLine } from '../shared-utils/math/planimetry'
 import { nextFrame } from '../shared-utils/nextFrame'
 import throttle from '../shared-utils/throttle'
+import { RoomInfo, RoomRules } from './typings'
 import PanoRulerStyle from './style'
 
 export interface PanoRulerPluginOptions {

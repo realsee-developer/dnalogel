@@ -1,10 +1,10 @@
-import type { LineJson } from '../typings/data'
-import type { Intersection, IntersectMeshInterface } from '@realsee/five'
 import Hammer from 'hammerjs'
 import { Model } from '../Model'
 import Line from '../Model/line'
 import Point from '../Model/point'
+import { LineJson } from '../typings/data'
 import throttle from '../../shared-utils/throttle'
+import { Intersection, IntersectMeshInterface } from '@realsee/five'
 import BaseController, { IControllerParams } from './BaseController'
 import { getIntersectionFromEvent } from '../utils/getIntersectionFromEvent'
 

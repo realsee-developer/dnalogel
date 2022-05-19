@@ -1,4 +1,4 @@
-import type { Group } from 'three'
+import { Group } from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 
 const loader = new FBXLoader()

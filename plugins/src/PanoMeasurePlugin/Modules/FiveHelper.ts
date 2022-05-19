@@ -1,5 +1,5 @@
-import type { Five, Intersection } from '@realsee/five'
 import { Line3, Vector3 } from 'three'
+import { Five, Intersection } from '@realsee/five'
 
 export default class FiveHelper {
   public edges: Line3[] = []

@@ -1,10 +1,10 @@
-import type { PluginData } from '../typings/data'
-import type { UserDistanceItem } from '../utils/distanceDom'
 import Line from './line'
 import Point from './point'
 import { Subscribe, SubscribeEventMap } from '@realsee/five'
+import { PluginData } from '../typings/data'
 import removeArrayItem from '../../shared-utils/removeArrayItem'
 import { Polyline } from './polyline'
+import { UserDistanceItem } from '../utils/distanceDom'
 
 interface IModelEvent extends SubscribeEventMap {
   /** 新增线条

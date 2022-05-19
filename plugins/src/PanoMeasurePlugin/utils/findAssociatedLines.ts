@@ -1,5 +1,5 @@
-import type Line from '../Model/line'
-import type Point from '../Model/point'
+import Line from '../Model/line'
+import Point from '../Model/point'
 
 export function findAssociatedLines(line: Line) {
   // 找跟这个线段相邻的线

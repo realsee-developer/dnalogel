@@ -1,4 +1,4 @@
-import type * as THREE from 'three'
+import * as THREE from 'three'
 import { loadTexture } from './loadTexture'
 
 /** 贴图加载器，用于满足资源共用 */

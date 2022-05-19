@@ -1,4 +1,4 @@
-import type { Mode, Pose } from '@realsee/five'
+import { Mode, Pose } from '@realsee/five'
 
 // eslint-disable-next-line prettier/prettier
 export interface CameraMovementPluginParameterType { }

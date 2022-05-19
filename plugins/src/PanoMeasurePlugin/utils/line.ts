@@ -1,4 +1,4 @@
-import type Line from '../Model/line'
+import Line from '../Model/line'
 import { Line as FiveLine } from '@realsee/five/line'
 import { lightLineOpts, normalLineOpts } from './constants'
 import { Color, PointsMaterial, Texture, Vector3 } from 'three'

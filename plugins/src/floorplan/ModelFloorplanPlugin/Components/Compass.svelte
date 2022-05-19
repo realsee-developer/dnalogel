@@ -1,6 +1,6 @@
 <script lang="ts">
     import { COMPASS_IMAGE } from '../Assets/compass'
-    import type { FloorplanData } from '../typings/floorplanData'
+    import type { FloorplanData } from '../../typings/floorplanData'
 
     function rad2Deg(rad: number) {
         return (rad / Math.PI) * 180

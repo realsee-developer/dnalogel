@@ -1,5 +1,4 @@
-import type { Mode } from '../../../Controller'
-import type MeasureController from '../../../Controller'
+import MeasureController, { Mode } from '../../../Controller'
 
 export default class Revoke {
   private container: Element

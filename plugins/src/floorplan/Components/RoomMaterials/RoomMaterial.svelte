@@ -6,19 +6,18 @@
   import RoomMaterial_2 from './RoomMaterial_2.svelte'
 
   export let floorIndex: number
+  export let pxmm: number
   export let floorplanData: FloorplanData
-  const boundingWidth = floorplanData.bounding.max.x - floorplanData.bounding.min.x
-  const boundingHeight = floorplanData.bounding.max.y - floorplanData.bounding.min.y
 
   $: rooms = floorplanData.floorDatas[floorIndex].rooms.map((room) => ({
     ...room,
-    path: room.path.map((p) => formatFloorplanPoint(p, floorplanData.bounding)),
+    path: room.path.map((p) => formatFloorplanPoint(p, pxmm, floorplanData.bounding)),
   }))
 </script>
 
 <div class="floorplan-plugin__room-material">
   {#each rooms as room}
-    <svg width="100%" height="100%" viewBox="{`0 0 ${boundingWidth} ${boundingHeight}`}">
+    <svg>
       {#if room.floorType === 1}
         <RoomMaterial_0 path="{room.path}" />
       {:else if room.floorType === 0}

@@ -1,6 +1,6 @@
-import type Line from './line'
-import type { PluginData } from '../typings/data'
+import Line from './line'
 import { Vector3 } from 'three'
+import { PluginData } from '../typings/data'
 import uuid from '../../shared-utils/uuid'
 import removeArrayItem from '../../shared-utils/removeArrayItem'
 
