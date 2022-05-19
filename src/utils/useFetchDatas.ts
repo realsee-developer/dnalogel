@@ -15,7 +15,7 @@ const DEFAULT_SPACE_TYPE = 'virtual'
 const renderCodeFromQuery = getQueryValueByName('renderCode')
 const spaceTypeFromQuery = getQueryValueByName('spaceType')
 
-export enum DATATYPES {
+export enum DATA_TYPES {
     WORK = 'work',
     FLOOR_PLAN_SERVER_PLUGIN_DATA = 'floorplanServerData',
     MODEL_ROOM_LABEL_PLUGIN_DATA = 'modelRoomLabels',
@@ -25,7 +25,7 @@ export enum DATATYPES {
     MODEL_TAG = 'modelTag',
 }
 
-const useFetchDatas = (dataType: DATATYPES, renderCode?: string, spaceType?: 'real') => {
+const useFetchDatas = (dataType: DATA_TYPES, renderCode?: string, spaceType?: 'real') => {
     const [returnDatas, setReturnData] = React.useState(null)
     const dataCode = renderCodeFromQuery || renderCode || DEFAULT_RENDER_CODE
     const space = spaceTypeFromQuery || spaceType || DEFAULT_SPACE_TYPE

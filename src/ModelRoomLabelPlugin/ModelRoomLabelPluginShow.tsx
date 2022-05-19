@@ -9,7 +9,7 @@ import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 interface ModelRoomLabelPluginShowPropTypes {
 
@@ -19,7 +19,7 @@ const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
     const [fiveState, setFiveState] = useFiveState()
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
-    const modelRoomLabels = useFetchDatas(DATATYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
+    const modelRoomLabels = useFetchDatas(DATA_TYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
 
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
