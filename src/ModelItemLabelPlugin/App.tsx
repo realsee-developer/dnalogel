@@ -6,7 +6,7 @@ import { useWindowDimensions } from "./useWindowDimensions";
 import PluginShow from "./PluginShow";
 import { Box } from "@mui/material";
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
-import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 import { DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ModelItemLabelPlugin/typings";
 
 const defaultPluginParam = {
@@ -33,7 +33,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
     const size = useWindowDimensions();
-    const work = useFetchDatas(DATATYPES.WORK, 'pWLy9nekmQdMXqja')
+    const work = useFetchDatas(DATA_TYPES.WORK, 'pWLy9nekmQdMXqja')
 
     return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
 		<FiveCanvas {...size} />

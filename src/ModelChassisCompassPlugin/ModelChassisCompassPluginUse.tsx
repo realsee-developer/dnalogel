@@ -9,13 +9,13 @@ import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/mater
 import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const ModelChassisCompassPluginUse: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
     const five = unsafe__useFiveInstance()
     const fiveModelReadyState = useFiveModelReadyState()
-    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
 
     useFiveEventCallback('modelLoaded', async () => {
         if(!floorplanServerData ||  JSON.stringify(floorplanServerData) === '{}') return
