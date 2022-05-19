@@ -4,14 +4,16 @@ import { unsafe__useFiveInstance, useFiveModelReadyState, useFiveState } from "@
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 
-const TopviewFloorplanPluginUse = () => {
+interface TopviewFloorplanPluginUsePropTypes {}
+
+const TopviewFloorplanPluginUse = (props: TopviewFloorplanPluginUsePropTypes) => {
     const five = unsafe__useFiveInstance()
     const [fiveState, setFiveState] = useFiveState()
     const fiveModelReadyState = useFiveModelReadyState()
-    const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
 
     React.useEffect(() => {
         if(!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return

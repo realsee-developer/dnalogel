@@ -3,7 +3,7 @@ import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import * as React from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
 import CameraMovementPluginUse from "./CameraMovementPluginUse";
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 const FiveProvider = createFiveProvider({
     onlyRenderIfNeeds: true,
@@ -16,7 +16,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
     const size = useWindowDimensions();
-    const work = useFetchDatas(DATA_TYPES.WORK)
+    const work = useFetchDatas(DATATYPES.WORK)
 
     return work && <FiveProvider initialWork={work} ref={ref => Object.assign(window, { $five: ref?.five })}>
 		<FiveCanvas {...size} />

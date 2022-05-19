@@ -2,11 +2,11 @@ import * as React from "react";
 import {unsafe__useFiveInstance, useFiveState} from "@realsee/five/react";
 import { Box } from '@mui/material'
 import { Five } from "@realsee/five";
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 const PanoFloorplanRadarPanel: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
-    const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    const floorplanServerData = useFetchDatas(DATATYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
     const five = unsafe__useFiveInstance()
     const panoFloorplanRadarPanelRef = React.useRef<HTMLDivElement>(null)
     const [visible, setVisible] = React.useState<boolean>(false)

@@ -2,7 +2,7 @@ import { Box, Button, Paper } from '@mui/material'
 import { PanoRulerPlugin } from '@realsee/dnalogel'
 import { unsafe__useFiveInstance, useFiveEventCallback, useFiveModelReadyState } from '@realsee/five/react'
 import * as React from 'react'
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
+import useFetchDatas, { DATATYPES } from "../utils/useFetchDatas";
 
 interface PanoRulerPluginUsePropTypes {
 }
@@ -16,8 +16,8 @@ const PanoRulerPluginUsage = (props: PanoRulerPluginUsePropTypes) => {
     const fiveModelReadyState = useFiveModelReadyState()
     const five = unsafe__useFiveInstance()
     const panoRulerPlugin = five.plugins.panoRulerPlugin as ReturnType<typeof PanoRulerPlugin>
-    const roomInfo = useFetchDatas(DATA_TYPES.ROOM_INFO, 'pWLy9nekmQdMXqja')
-    const roomRules = useFetchDatas(DATA_TYPES.ROOM_RULES, 'pWLy9nekmQdMXqja')
+    const roomInfo = useFetchDatas(DATATYPES.ROOM_INFO, 'pWLy9nekmQdMXqja')
+    const roomRules = useFetchDatas(DATATYPES.ROOM_RULES, 'pWLy9nekmQdMXqja')
 
     // 标尺状态
     const [rulerEnable, setRulerEnable] = React.useState(panoRulerPlugin.state.enable)
