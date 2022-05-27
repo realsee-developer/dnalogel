@@ -1,9 +1,10 @@
 import type { FivePlugin } from '@realsee/five'
 import MeasureController, { MeasurePluginParameter } from './Controller'
 
-const PanoMeasurePlugin: FivePlugin<MeasurePluginParameter, PluginReturns> = function MeasurePlugin(five, params) {
-  return new MeasureController(five, params)
-}
+const PanoMeasurePlugin: FivePlugin<MeasurePluginParameter, PluginReturns> =
+  function PanoMeasurePlugin(five, params) {
+    return new MeasureController(five, params)
+  }
 
 export default PanoMeasurePlugin
 
