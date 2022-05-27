@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0-alpha.23
+- 1.fix: 修复 PanoFloorplanRadarPlugin reload 数据时报错
+- 2.fix: 修复 PanoFloorplanRadarPlugin reload 户型图数据后雷达图标位置没有适配
+
 ## 2.0.0-alpha.22
 - 1.fix: 修复 PanoMeasurePlugin disable 状态下仍有背景色占位问题。
 
