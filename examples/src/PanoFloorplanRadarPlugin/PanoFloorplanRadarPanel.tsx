@@ -3,10 +3,6 @@ import {unsafe__useFiveInstance, useFiveState} from "@realsee/five/react";
 import { Box } from '@mui/material'
 import { Five } from "@realsee/five";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { pluginsData } from "../../mock/Lykj3NrANR63rG06/pluginsData";
-import { work } from "../../mock/Lykj3NrANR63rG06/work";
-
-Object.assign(window, { pluginsData, work })
 
 const PanoFloorplanRadarPanel: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
