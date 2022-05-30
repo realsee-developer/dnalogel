@@ -20,8 +20,7 @@ export enum DATA_TYPES {
     FLOOR_PLAN_SERVER_PLUGIN_DATA = 'floorplanServerData',
     MODEL_ROOM_LABEL_PLUGIN_DATA = 'modelRoomLabels',
     MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA = 'modelEntryDoorGuidePluginServerData',
-    ROOM_INFO = 'roomInfo',
-    ROOM_RULES = 'roomRules',
+    PANO_RULER_PLUGIN_SERVER_DATA = 'panoRulerPluginServerData',
     MODEL_TAG = 'modelTag',
 }
 

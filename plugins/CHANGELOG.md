@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.24
+- 1.feat: PanoRulerPlugin 支持数据 reload。
+
 ## 2.0.0-alpha.23
 - 1.fix: 修复 PanoFloorplanRadarPlugin reload 数据时报错
 - 2.fix: 修复 PanoFloorplanRadarPlugin reload 户型图数据后雷达图标位置没有适配
