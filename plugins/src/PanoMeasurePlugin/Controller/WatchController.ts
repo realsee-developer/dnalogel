@@ -109,7 +109,7 @@ export default class WatchController extends BaseController {
     this.highlightLines(this.editPointState.associatedLines)
     this.editPointState = undefined
 
-    this.magnifier.dispose()
+    this.magnifier.remove()
     this.group.remove(this.mouseGroup)
   }
 
@@ -135,7 +135,7 @@ export default class WatchController extends BaseController {
       line.mesh.setMaterial({ dashed: true })
     })
     this.updateDistanceUI()
-    this.magnifier.updateWithPoint(intersection.point)
+    this.magnifier.renderWithPoint(intersection.point)
     this.mouseGroup.position.copy(intersection.point)
     if (mesh) {
       this.mouseGroup.quaternion.copy(mesh.quaternion)

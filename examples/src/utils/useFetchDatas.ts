@@ -5,8 +5,11 @@
  * */
 
 import * as React from 'react'
+import * as THREE from 'three'
 
 import getQueryValueByName from "./getQueryValueByName";
+
+Object.assign(window, { THREE })
 
 // 根据不同的 query 参数，获取不同版本的数据
 const DEFAULT_RENDER_CODE = '81gmMq5a7zbF9leWMk'

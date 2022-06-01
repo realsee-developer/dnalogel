@@ -75,7 +75,8 @@ export default class MeasureController {
       mouseGroup: getMouseGroup(),
       userDistanceItemCreator: this.params.userDistanceItemCreator,
     }
-    if (this.params.useUIController !== false) this.useUIController = new UIController(this, this.controllerParams)
+    if (this.params.useUIController !== false)
+      this.useUIController = new UIController(this, this.controllerParams)
     if (this.params.useUIController !== false)
       this.useGuideController = new GuideController(this, this.controllerParams)
   }
