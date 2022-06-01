@@ -24,7 +24,6 @@ export const operatingSpaceStyle: Partial<CSSStyleDeclaration> = {
   left: '50%',
   bottom: '32px',
   transform: 'translateX(-50%)',
-  width: '300px',
   height: '89px',
   display: 'flex',
   justifyContent: 'space-between',
@@ -60,6 +59,11 @@ export const mainItemStyle: Partial<CSSStyleDeclaration> = {
   margin: '0 80px',
   opacity: '0.7',
 }
+
+export const newMainItemStyle: Partial<CSSStyleDeclaration> = {
+  margin: '0 80px',
+}
+
 export const exitItemStyle: Partial<CSSStyleDeclaration> = {
   opacity: '0.7',
 }
@@ -68,6 +72,12 @@ export const exitItemStyle: Partial<CSSStyleDeclaration> = {
 export const mainIconStyle: Partial<CSSStyleDeclaration> = {
   width: '60px',
   height: '60px',
+  backgroundSize: '100%',
+  cursor: 'pointer',
+}
+export const newMainIconStyle: Partial<CSSStyleDeclaration> = {
+  width: '72px',
+  height: '72px',
   backgroundSize: '100%',
   cursor: 'pointer',
 }

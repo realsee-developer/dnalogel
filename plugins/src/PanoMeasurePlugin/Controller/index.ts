@@ -1,5 +1,5 @@
 import type BaseController from './BaseController'
-import type { PluginData } from '../typings/data'
+import type { MagnifierParameter, OpenParameter, PluginData } from '../typings/data'
 import type { PluginEvent } from '../typings/event.type'
 import type { UserDistanceItem } from '../utils/distanceDom'
 import Magnifier from '../Modules/Magnifier'
@@ -18,6 +18,8 @@ export type Mode = 'Watch' | 'Edit'
 
 // 参数
 export interface MeasurePluginParameter {
+  openParams?: OpenParameter
+  magnifierParams?: MagnifierParameter
   useUIController?: boolean
   useGuideController?: boolean
   // TODO: 这个参数传递的太恶心了，优化一下
@@ -47,8 +49,8 @@ export default class MeasureController {
     this.model = new Model({ userDistanceItemCreator: this.params.userDistanceItemCreator })
     this.fiveHelper = new FiveHelper(five)
     // magnifier
-    const magnifierSize = 190
-    const magnifierScale = 2
+    const magnifierSize = this.params.magnifierParams?.magnifierSize ?? 190
+    const magnifierScale = this.params.magnifierParams?.magnifierScale ?? 2
     this.magnifier = new Magnifier(five, { scale: magnifierScale, width: magnifierSize, height: magnifierSize })
     // ==================== Group ====================
     this.group = new Group()
@@ -69,6 +71,7 @@ export default class MeasureController {
       magnifier: this.magnifier,
       container: this.container,
       fiveHelper: this.fiveHelper,
+      openParams: this.params.openParams,
       mouseGroup: getMouseGroup(),
       userDistanceItemCreator: this.params.userDistanceItemCreator,
     }

@@ -31,3 +31,15 @@ export interface PluginData {
   points: PointJson[]
   polylines: PolylineJson[]
 }
+
+/** 开放可配置参数 */
+export interface OpenParameter {
+  isMobile?: boolean // true为移动端模式，false为pc端
+  themeColor?: string // 主题色
+}
+
+/** 放大镜配置参数 */
+export interface MagnifierParameter {
+  magnifierSize?: number
+  magnifierScale?: number
+}

@@ -6,6 +6,7 @@ import type { Model } from '../Model'
 import type { PluginEvent } from '../typings/event.type'
 import type { UserDistanceItem } from '../utils/distanceDom'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
+import type { OpenParameter } from '../typings/data'
 import { preventDefault } from '../utils/ironbox'
 
 export interface IControllerParams {
@@ -16,6 +17,7 @@ export interface IControllerParams {
   container: Element
   magnifier: Magnifier
   fiveHelper: FiveHelper
+  openParams?: OpenParameter
   hook: Subscribe<PluginEvent>
   userDistanceItemCreator?: () => UserDistanceItem
 }
