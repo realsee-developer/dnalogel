@@ -13,6 +13,7 @@ import { getMouseGroup } from '../utils/mouseGroup'
 import { UIController } from '../Modules/UIController'
 import { GuideController } from '../Modules/GuideController'
 import { ShortcutKeyController } from './ShortcutKeyController'
+import RangePieceController from '../Modules/rangePiece'
 
 export type Mode = 'Watch' | 'Edit'
 
@@ -38,6 +39,7 @@ export default class MeasureController {
   private useUIController?: UIController
   private params: MeasurePluginParameter
   private useGuideController?: GuideController
+  private rangePieceController?: RangePieceController
   private container = document.createElement('div')
   private shortcutKeyController?: ShortcutKeyController
   private controller: WatchController | EditController | null = null
@@ -114,6 +116,9 @@ export default class MeasureController {
     // 隐藏点位和鼠标聚焦环
     this.five.helperVisible = false
     this.controller = new WatchController(this.controllerParams)
+    if(this.params.openParams.isMobile){
+      this.rangePieceController = new RangePieceController(this.controllerParams)
+    }
     this.useUIController?.show()
     this.useGuideController?.show()
     this.shortcutKeyController = new ShortcutKeyController(this, this.five)
@@ -130,6 +135,7 @@ export default class MeasureController {
     this.container.style.opacity = '0'
     // 展示点位和鼠标聚焦环
     this.controller?.dispose()
+    this.rangePieceController?.dispose()
     this.useUIController?.hide()
     this.useGuideController?.hide()
     this.shortcutKeyController?.dispose()
@@ -200,5 +206,18 @@ export default class MeasureController {
   /** 把当前以保存的数据转换成 JSON 对象 */
   public toJson() {
     return this.model.toJson()
+  }
+
+  /**
+   * @description 改变插件的模式（pc端模式或移动端模式）
+   * @param isMobile true为移动端模式，false为pc端
+   */
+  public changeIsMobile(isMobile: boolean){
+    if(this.params.openParams.isMobile === isMobile) return
+
+    this.params.openParams.isMobile = isMobile
+    if (this.params.useUIController !== false)
+    this.useUIController?.dispose()
+    this.useUIController = new UIController(this, this.controllerParams)   
   }
 }

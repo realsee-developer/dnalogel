@@ -7,7 +7,7 @@ export class NewMainBtnController {
   private measureController: MeasureController
   private mainElement: ReturnType<NewMainBtnController['getMainElement']>
 
-  constructor(measureController: MeasureController, container: Element) {
+  public constructor(measureController: MeasureController, container: Element) {
     this.measureController = measureController
     this.container = container
     this.mainElement = this.getMainElement()
@@ -75,6 +75,8 @@ export class NewMainBtnController {
 
   private onClick = () => {
     const mode = this.measureController.getCurrentMode()
+    const newMode = mode === 'Watch' ? 'Edit' : 'Watch'
+    this.measureController.hook.emit('willChangeMode', mode, newMode)
     mode === 'Watch' ? this.measureController.changeMode('Edit') : this.measureController.save().changeMode('Watch')
   }
 

@@ -54,6 +54,7 @@ export interface MagnifierOptions extends Partial<MagnifierConfig> {
 export default class Magnifier {
   public width: number
   public height: number
+  public visible = false
   public hooks = new Subscribe<MagnifierEvent>()
   public contentDom = document.createElement('canvas')
 
@@ -101,6 +102,7 @@ export default class Magnifier {
   /** 移除放大镜 DOM */
   public remove() {
     this.canvas.remove()
+    this.visible = false
   }
 
   /** 清除放大镜渲染内容 */
@@ -113,6 +115,7 @@ export default class Magnifier {
     this.wrapper = element
     this.initStyle()
     element.append(this.canvas)
+    this.visible = true
   }
 
   /** 放大传入点位周围的内容 */

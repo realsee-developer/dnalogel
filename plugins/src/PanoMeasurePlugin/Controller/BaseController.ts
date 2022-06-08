@@ -27,6 +27,7 @@ export default abstract class BaseController {
   protected group: Group
   protected model: Model
   protected disposed = false
+  protected isMobile: boolean
   protected mouseGroup: Group
   protected container: Element
   protected fiveHelper: FiveHelper
@@ -42,6 +43,7 @@ export default abstract class BaseController {
     this.magnifier = params.magnifier
     this.container = params.container
     this.fiveHelper = params.fiveHelper
+    this.isMobile = params.openParams?.isMobile ?? false 
     this.userDistanceItemCreator = params.userDistanceItemCreator
     // ==================== Groups ====================
     this.group = params.group
