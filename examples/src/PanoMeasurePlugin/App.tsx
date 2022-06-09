@@ -18,7 +18,7 @@ const FiveProvider = createFiveProvider({
       {
         useUIController: true,
         openParams: { isMobile: true },
-        magnifierParams: { height: 120, scale: 3, width: 120,
+        magnifierParams: { height: 120, scale: 2, width: 120,
           dragEnabled: true,
           autoFixPCPosition: true,
           initialPosition: { left: '50%', top: '50%',} },

@@ -137,6 +137,8 @@ export default class MeasureController {
     this.container.style.opacity = '0'
     // 展示点位和鼠标聚焦环
     this.controller?.dispose()
+    // 因为mobile态要求一直保留放大镜，controller?.dispose时没有清，需要单独清
+    this.magnifier.dispose()
     this.rangePieceController?.dispose()
     this.useUIController?.hide()
     this.useGuideController?.hide()

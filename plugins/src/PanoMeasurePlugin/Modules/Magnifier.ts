@@ -150,6 +150,7 @@ export default class Magnifier {
       this.canvas.style.top = -height - 90 + 'px'
     }
     this.canvas.style.transform = `translate3d(${left}px, ${top}px, 10px)`
+    this.offset = { x: left, y: top }
   }
 
   private render() {
@@ -157,9 +158,7 @@ export default class Magnifier {
     const { scale, context, width, height } = this
     const position2d = this.renderCenter.clone().project(this.five.camera)
     const renderSize = this.five.renderer.getSize(new THREE.Vector2())
-    // const pixelRatio = this.five.renderer.getPixelRatio()
-    // 手机模式pixelRatio为3，放大区域不对，改为1OK了
-    const pixelRatio = 1
+    const pixelRatio = this.five.renderer.getPixelRatio()
     // 从 renderTarget 读取区域的大小
     const readPixelsWidth = width / scale
     const readPixelsHeight = height / scale
@@ -206,15 +205,14 @@ export default class Magnifier {
   }
 
   private onPan = (event: typeof Hammer['Input']) => {
-    console.log('-->pan0000000',)
     if (!this.wrapper) return
     const lastDeltaX = this.lastPanEvent?.deltaX ?? 0
     const lastDeltaY = this.lastPanEvent?.deltaY ?? 0
     const deltaX = event.deltaX - lastDeltaX
     const deltaY = event.deltaY - lastDeltaY
     this.lastPanEvent = event.isFinal ? undefined : event
-
     const prevented = this.hooks.emit('wantsPanGesture', { srcEvent: event, deltaX, deltaY })
+    console.log('-->prevented',prevented)
     if (prevented) return
 
     const translateX = this.offset.x + deltaX
@@ -224,7 +222,6 @@ export default class Magnifier {
   }
 
   private onMagnifierWantsPanGesture: MagnifierEvent['wantsPanGesture'] = ({ deltaX, deltaY }) => {
-    console.log('-->333', 22222)
     const magnifierBoundingClientRect = this.contentDom.getBoundingClientRect()
     // 应用了 deltaX 和 deltaY 之后的矩形
     const magnifierRect = new Rectangle(
@@ -244,6 +241,7 @@ export default class Magnifier {
       { x: 16, y: 16 },
       { x: document.body.clientWidth - 16, y: document.body.clientHeight - 16 },
     )
+    console.log('-->',maxRect)
     // 放大镜不能与之重合区域的范围
     const centerRect = new Rectangle(
       {

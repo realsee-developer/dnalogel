@@ -4,9 +4,9 @@ import { TextureLoader, Color } from 'three'
 const lineWidth = 2
 const lightLineWidth = 4
 const lineColor = new Color(0xffffff)
-const lightLineColor = new Color(0x2d7cff)
+const lightLineColor = new Color(0x6386ff)
 const pointColor = new Color(0xffffff)
-const lightPointColor = new Color(0x2d7cff)
+const lightPointColor = new Color(0x6386ff)
 const pointSize = 8
 const lightPointSize = 16
 const pointImage =
@@ -24,7 +24,7 @@ export const normalLineOpts: ICreatLineOpts = {
   pointsRenderOrder: 20,
 }
 
-export const dashLineOpts: ICreatLineOpts = Object.assign({}, normalLineOpts, { dashed: true })
+export const dashLineOpts: ICreatLineOpts = { ...normalLineOpts, dashed: true}
 
 export const lightLineOpts: ICreatLineOpts = {
   pointTexture,

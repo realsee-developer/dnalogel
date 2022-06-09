@@ -106,7 +106,10 @@ export default class EditController extends BaseController {
     this.hammer?.destroy()
     // fiveElement
     this.fiveElement?.removeEventListener('mouseleave', this.onMouseLeave)
-    this.magnifier.remove()
+
+    if(!this.isMobile){
+      this.magnifier.remove()
+    }
     this.dashed.distanceItem.remove()
     this.five.needsRender = true
   }
@@ -258,15 +261,6 @@ export default class EditController extends BaseController {
     this.dashed.distanceItem.update(this.five)
   }
 
-  /** mobile态时更新放大镜和吸附点 */
-  private updateMagnifier = (position) => {
-    if (this.magnifier.visible === false) {
-      this.magnifier.appendTo(this.container)
-    }
-    requestAnimationFrame(() => this.magnifier.renderWithPoint(position))
-    this.five.needsRender = true
-  }
-
   private onGetStartPoint = (point) => {
     this.mobileStartPoint = point
 
@@ -293,7 +287,7 @@ export default class EditController extends BaseController {
   private onNowPointChange = (point) => {
     this.mobileNowPoint = point
     this.updateMobileDashed()
-    this.updateMagnifier(point.position)
+    this.updateMagnifier(point)
     this.five.needsRender = true
   }
 }

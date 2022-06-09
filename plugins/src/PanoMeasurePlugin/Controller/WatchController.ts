@@ -42,6 +42,10 @@ export default class WatchController extends BaseController {
         hammer.on('panend', this.onPanEnd)
       }
     }
+    if (this.isMobile) {
+      this.hook.on('nowPointChange', this.updateMagnifier)
+    }
+
     this.model.hook.on('lineRemoved', this.lineRemoved)
     this.five.on('cameraUpdate', this.onCameraUpdate)
     this.five.on('wantsTapGesture', this.wantsTapGesture)
@@ -52,6 +56,9 @@ export default class WatchController extends BaseController {
   public dispose() {
     super.dispose()
     this.deleteDom.dispose()
+    if (this.isMobile) {
+      this.hook.off('nowPointChange', this.updateMagnifier)
+    }
     this.model.hook.off('lineRemoved', this.lineRemoved)
     this.five.off('cameraUpdate', this.onCameraUpdate)
     this.five.off('wantsPanGesture', this.wantsPanGesture)

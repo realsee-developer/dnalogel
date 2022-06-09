@@ -8,6 +8,7 @@ import type { UserDistanceItem } from '../utils/distanceDom'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import type { OpenParameter } from '../typings/data'
 import { preventDefault } from '../utils/ironbox'
+import type Point from '../Model/point'
 
 export interface IControllerParams {
   five: Five
@@ -85,9 +86,21 @@ export default abstract class BaseController {
     return this.mouseGroup
   }
 
+  /** mobile态时更新放大镜 */
+  protected updateMagnifier = (point: Point) => {
+    if (this.magnifier.visible === false) {
+      this.magnifier.appendTo(this.container)
+    }
+    requestAnimationFrame(() => this.magnifier.renderWithPoint(point.position))
+    this.five.needsRender = true
+  }
+
   protected dispose() {
     this.disposed = true
-    this.magnifier.remove()
+
+    if(!this.isMobile){
+      this.magnifier.remove()
+    }
     this.model.lines.forEach((line) => this.removeLine(line))
 
     const fiveElement = this.five.getElement()
