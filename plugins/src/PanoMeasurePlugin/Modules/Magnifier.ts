@@ -191,8 +191,9 @@ export default class Magnifier {
     canvas.style.position = 'absolute'
     canvas.style.pointerEvents = 'all'
     canvas.style.borderRadius = '50%'
-    canvas.setAttribute('width', this.width.toString())
-    canvas.setAttribute('height', this.height.toString())
+    const pixelRatio = this.five.renderer?.getPixelRatio() ?? 1
+    canvas.setAttribute('width', (this.width * pixelRatio).toString())
+    canvas.setAttribute('height', (this.height * pixelRatio).toString())
     canvas.style.border = '2px solid rgba(255,255,255,0.20)'
     canvas.style.width = this.width + 'px'
     canvas.style.height = this.height + 'px'

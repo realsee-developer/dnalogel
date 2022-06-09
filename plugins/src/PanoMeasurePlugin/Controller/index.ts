@@ -13,6 +13,7 @@ import { getMouseGroup } from '../utils/mouseGroup'
 import { UIController } from '../Modules/UIController'
 import { GuideController } from '../Modules/GuideController'
 import { ShortcutKeyController } from './ShortcutKeyController'
+import { IntersectController } from '../Modules/Intersector'
 import RangePieceController from '../Modules/rangePiece'
 
 export type Mode = 'Watch' | 'Edit'
@@ -83,6 +84,8 @@ export default class MeasureController {
   }
 
   public appendTo(parent: HTMLElement) {
+    // const intersect = new IntersectController(this.five)
+    // intersect.appendTo(parent)
     parent.append(this.container)
   }
 
