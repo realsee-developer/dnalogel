@@ -13,6 +13,7 @@ import { getMouseGroup } from '../utils/mouseGroup'
 import { UIController } from '../Modules/UIController'
 import { GuideController } from '../Modules/GuideController'
 import { ShortcutKeyController } from './ShortcutKeyController'
+import { IntersectController } from '../Modules/Intersector'
 
 export type Mode = 'Watch' | 'Edit'
 
@@ -51,7 +52,11 @@ export default class MeasureController {
     // magnifier
     const magnifierSize = this.params.magnifierParams?.magnifierSize ?? 190
     const magnifierScale = this.params.magnifierParams?.magnifierScale ?? 2
-    this.magnifier = new Magnifier(five, { scale: magnifierScale, width: magnifierSize, height: magnifierSize })
+    this.magnifier = new Magnifier(five, {
+      scale: magnifierScale,
+      width: magnifierSize,
+      height: magnifierSize,
+    })
     // ==================== Group ====================
     this.group = new Group()
     this.group.name = 'plugin-measure-group'
@@ -82,6 +87,8 @@ export default class MeasureController {
   }
 
   public appendTo(parent: HTMLElement) {
+    // const intersect = new IntersectController(this.five)
+    // intersect.appendTo(parent)
     parent.append(this.container)
   }
 
