@@ -36,45 +36,46 @@ export class NewMainBtnController {
 
   private change2Add() {
     const { mainIcon, mainTextDom } = this.mainElement
-    if(mainIcon.className.includes('fpm__main__start')) return
-    if(mainIcon.className.includes('fpm__main__end')){
-      mainIcon.style.transform= `scale(0.8)`
-      if( mainTextDom.className.includes('fpm__main-text__show')){
-        mainTextDom.classList.replace('fpm__main-text__show','fpm__main-text__hide')
-      }else{
+    if (mainIcon.className.includes('fpm__main__start')) return
+    if (mainIcon.className.includes('fpm__main__end')) {
+      mainIcon.style.transform = `scale(0.8)`
+      if (mainTextDom.className.includes('fpm__main-text__show')) {
+        mainTextDom.classList.replace('fpm__main-text__show', 'fpm__main-text__hide')
+      } else {
         mainTextDom.classList.add('fpm__main-text__hide')
       }
-      setTimeout(()=>{
-        mainIcon.classList.replace('fpm__main__end','fpm__main__start')
-        mainIcon.style.transform='scale(1)'
+      setTimeout(() => {
+        mainIcon.classList.replace('fpm__main__end', 'fpm__main__start')
+        mainIcon.style.transform = 'scale(1)'
         mainTextDom.innerText = '开始'
-        mainTextDom.classList.replace('fpm__main-text__hide','fpm__main-text__show')
-      },200)
+        mainTextDom.classList.replace('fpm__main-text__hide', 'fpm__main-text__show')
+      }, 200)
     }
   }
 
   private change2Done() {
     const { mainTextDom, mainIcon } = this.getMainElement()
     if (mainTextDom.innerText === '结束') return
-    if(mainIcon.className.includes('fpm__main__end')) return
-    if(mainIcon.className.includes('fpm__main__start')){
-      mainIcon.style.transform= `scale(0.8)`
-      if( mainTextDom.className.includes('fpm__main-text__show')){
-        mainTextDom.classList.replace('fpm__main-text__show','fpm__main-text__hide')
-      }else{
+    if (mainIcon.className.includes('fpm__main__end')) return
+    if (mainIcon.className.includes('fpm__main__start')) {
+      mainIcon.style.transform = `scale(0.8)`
+      if (mainTextDom.className.includes('fpm__main-text__show')) {
+        mainTextDom.classList.replace('fpm__main-text__show', 'fpm__main-text__hide')
+      } else {
         mainTextDom.classList.add('fpm__main-text__hide')
       }
-      setTimeout(()=>{
-        mainIcon.classList.replace('fpm__main__start','fpm__main__end')
-        mainIcon.style.transform='scale(1)'
+      setTimeout(() => {
+        mainIcon.classList.replace('fpm__main__start', 'fpm__main__end')
+        mainIcon.style.transform = 'scale(1)'
         mainTextDom.innerText = '结束'
-        mainTextDom.classList.replace('fpm__main-text__hide','fpm__main-text__show')
-      },200)
+        mainTextDom.classList.replace('fpm__main-text__hide', 'fpm__main-text__show')
+      }, 200)
     }
   }
 
   private onClick = () => {
     const mode = this.measureController.getCurrentMode()
+    if (!mode) return
     const newMode = mode === 'Watch' ? 'Edit' : 'Watch'
     this.measureController.hook.emit('willChangeMode', mode, newMode)
     mode === 'Watch' ? this.measureController.changeMode('Edit') : this.measureController.save().changeMode('Watch')

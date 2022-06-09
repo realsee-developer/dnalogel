@@ -8,6 +8,7 @@ import Point from '../../Model/point'
 import TWEEN from '@tweenjs/tween.js'
 import htmlString from './html'
 import { requestAnimationFrameInterval } from '../../../shared-utils/animationFrame'
+import noop from '../../../shared-utils/noop'
 import calculateThreeMouse from '../../utils/calculateThreeMouse'
 import { getMouseGroup } from '../../utils/mouseGroup'
 
@@ -29,7 +30,7 @@ export default class RangePieceController {
   private mouseGroup: Group
   private fiveHelper: FiveHelper
   private hook: Subscribe<PluginEvent>
-  private content: HTMLElement
+  private content: HTMLElement | null
   private intersectMesh: Mesh
   private centerMouseXY: any
   private raycaster = new Raycaster()
@@ -49,8 +50,10 @@ export default class RangePieceController {
     this.container.innerHTML = htmlString
     this.container.classList.add('range-piece-controller')
     this.content = this.container.querySelector<HTMLElement>('.range-piece__content')
-    this.content.style.transform = `matrix3d(${this.pieceStyl.matrix3d.toString()}) scale(${this.pieceStyl.scale})`
-    this.content.style.opacity = `${this.pieceStyl.opacity}`
+    if (this.content) {
+      this.content.style.transform = `matrix3d(${this.pieceStyl.matrix3d.toString()}) scale(${this.pieceStyl.scale})`
+      this.content.style.opacity = `${this.pieceStyl.opacity}`
+    }
     this.group.add(this.mouseGroup)
     params.container.append(this.container)
 
@@ -59,18 +62,18 @@ export default class RangePieceController {
       new MeshBasicMaterial({ color: 0x12fffb, opacity: 0, side: DoubleSide, transparent: true }),
     )
 
-    this.container.addEventListener('animationend',this.computedCenterMouseXY)
+    this.container.addEventListener('animationend', this.computedCenterMouseXY)
 
     this.five.on('cameraDirectionUpdate', this.onCameraDirectionUpdate)
     this.hook.on('modeChange', this.onModeChange)
-    this.hook.on('willChangeMode',this.onWillChangeMode)
+    this.hook.on('willChangeMode', this.onWillChangeMode)
   }
 
   public dispose() {
-    this.container.removeEventListener('animationend',this.computedCenterMouseXY)
+    this.container.removeEventListener('animationend', this.computedCenterMouseXY)
     this.five.off('cameraDirectionUpdate', this.onCameraDirectionUpdate)
     this.hook.off('modeChange', this.onModeChange)
-    this.hook.off('willChangeMode',this.onWillChangeMode)
+    this.hook.off('willChangeMode', this.onWillChangeMode)
     this.container.remove()
     this.group.remove(this.mouseGroup)
     this.mouseGroup.remove()
@@ -82,24 +85,24 @@ export default class RangePieceController {
     if (intersection) {
       this.pieceChange(intersection)
       this.updateMouseGroup(intersection)
-      const nowPoint = new Point(intersection.point)
-      this.hook.emit("nowPointChange", nowPoint)
-    } 
+      const nowPoint = new Point(this.mouseGroup.position)
+      this.hook.emit('nowPointChange', nowPoint)
+    }
   }
 
   private onModeChange: PluginEvent['modeChange'] = (mode) => {
     this.dotAnimation()
-    if(mode === 'Edit'){
+    if (mode === 'Edit') {
       const point = this.getIntersection()?.point
-      point && this.hook.emit("getStartPoint",new Point(point))
+      point && this.hook.emit('getStartPoint', new Point(point))
     }
   }
 
-  private onWillChangeMode: PluginEvent['willChangeMode'] = ( mode, newMode) => {
-    if(mode === 'Edit' && newMode === 'Watch'){
+  private onWillChangeMode: PluginEvent['willChangeMode'] = (mode, newMode) => {
+    if (mode === 'Edit' && newMode === 'Watch') {
       const point = this.getIntersection()?.point
-      point && this.hook.emit("getEndPoint", new Point(point))
-    } 
+      point && this.hook.emit('getEndPoint', new Point(point))
+    }
   }
 
   /** 计算目标中心点经纬度 */
@@ -116,7 +119,7 @@ export default class RangePieceController {
 
   /** 计算目标中心点intersection */
   private getIntersection = () => {
-    if(!this.centerMouseXY) return null
+    if (!this.centerMouseXY) return null
     this.raycaster.setFromCamera(this.centerMouseXY, this.five.camera)
     const intersection = this.five.model.intersectRaycaster(this.raycaster)[0]
     if (intersection) return intersection
@@ -136,7 +139,7 @@ export default class RangePieceController {
       this.five.scene.add(this.intersectMesh)
       const matrix = this.intersectMesh.modelViewMatrix.clone().toArray()
       this.changePieceStyl('matrix3d', matrix)
-      const scale = this.calculateSize(intersection.point)
+      const scale = this.calculateSize(point)
       this.changePieceStyl('scale', scale)
     }
   }
@@ -153,11 +156,11 @@ export default class RangePieceController {
   }
 
   /** 点击按钮时圆片动画 */
-  private  dotAnimation() {
+  private dotAnimation() {
     const firstEasing = TWEEN.Easing.Quadratic.InOut
     const from = { opacity: 0.4, scale: this.pieceStyl.scale }
     const to = { opacity: [1, 0.4], scale: [this.pieceStyl.scale * 0.8, this.pieceStyl.scale] }
-    let stop = () => null
+    let stop = noop
 
     const firstTween = new TWEEN.Tween(from)
       .to(to, 500)
@@ -175,8 +178,9 @@ export default class RangePieceController {
       firstTween.update(time)
     })
   }
-  
+
   private changePieceStyl(key, value) {
+    if (!this.content) return
     this.pieceStyl[key] = value
     this.content.style.transform = `matrix3d(${this.pieceStyl.matrix3d.toString()}) scale(${this.pieceStyl.scale})`
     this.content.style.opacity = `${this.pieceStyl.opacity}`

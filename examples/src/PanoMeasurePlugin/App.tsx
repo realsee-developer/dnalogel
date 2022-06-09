@@ -11,7 +11,20 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[PanoMeasurePlugin, 'panoMeasurePlugin', { useUIController: true,openParams: { isMobile:true } }]],
+  plugins: [
+    [
+      PanoMeasurePlugin,
+      'panoMeasurePlugin',
+      {
+        useUIController: true,
+        openParams: { isMobile: true },
+        magnifierParams: { height: 120, scale: 3, width: 120,
+          dragEnabled: true,
+          autoFixPCPosition: true,
+          initialPosition: { left: '50%', top: '50%',} },
+      },
+    ],
+  ],
 })
 
 const App: React.FC = () => {

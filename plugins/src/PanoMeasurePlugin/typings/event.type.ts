@@ -30,7 +30,7 @@ interface DragEvent extends SubscribeEventMap {
 
 /** 移动端专用事件 */
 interface MobileEvent extends SubscribeEventMap {
-  getStartPoint: (position: Point) => void
+  getStartPoint: (point: Point) => void
 
   getEndPoint: (point: Point) => void
 

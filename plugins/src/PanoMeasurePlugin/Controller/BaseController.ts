@@ -17,7 +17,7 @@ export interface IControllerParams {
   container: Element
   magnifier: Magnifier
   fiveHelper: FiveHelper
-  openParams?: OpenParameter
+  openParams: OpenParameter
   hook: Subscribe<PluginEvent>
   userDistanceItemCreator?: () => UserDistanceItem
 }
@@ -43,7 +43,7 @@ export default abstract class BaseController {
     this.magnifier = params.magnifier
     this.container = params.container
     this.fiveHelper = params.fiveHelper
-    this.isMobile = params.openParams?.isMobile ?? false 
+    this.isMobile = params.openParams?.isMobile ?? false
     this.userDistanceItemCreator = params.userDistanceItemCreator
     // ==================== Groups ====================
     this.group = params.group
