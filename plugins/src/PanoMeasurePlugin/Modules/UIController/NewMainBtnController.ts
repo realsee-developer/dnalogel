@@ -1,17 +1,13 @@
-import TWEEN from '@tweenjs/tween.js'
 import type MeasureController from '../../Controller'
-import { newMainIconStyle, newMainItemStyle } from './style'
 import type { PluginEvent } from '../../typings/event.type'
-import { BetterTween, tweenProgress } from '../../../shared-utils/animationFrame/BetterTween'
-import { startSvg, endSvg } from './mobileHTML'
+import { newMainIconStyle, newMainItemStyle } from './style'
 
 export class NewMainBtnController {
   private container: Element
   private measureController: MeasureController
-  private mainIconMaskTween?: BetterTween<{ progress: number }>
   private mainElement: ReturnType<NewMainBtnController['getMainElement']>
 
-  constructor(measureController: MeasureController, container: Element) {
+  public constructor(measureController: MeasureController, container: Element) {
     this.measureController = measureController
     this.container = container
     this.mainElement = this.getMainElement()
@@ -40,26 +36,48 @@ export class NewMainBtnController {
 
   private change2Add() {
     const { mainIcon, mainTextDom } = this.mainElement
-    mainIcon.innerHTML = startSvg
-    mainIcon.style.transition = mainTextDom.innerText === '结束' ? 'none' : 'transform 300ms ease-in-out'
-    mainTextDom.innerText = '开始'
+    if (mainIcon.className.includes('fpm__main__start')) return
+    if (mainIcon.className.includes('fpm__main__end')) {
+      mainIcon.style.transform = `scale(0.8)`
+      if (mainTextDom.className.includes('fpm__main-text__show')) {
+        mainTextDom.classList.replace('fpm__main-text__show', 'fpm__main-text__hide')
+      } else {
+        mainTextDom.classList.add('fpm__main-text__hide')
+      }
+      setTimeout(() => {
+        mainIcon.classList.replace('fpm__main__end', 'fpm__main__start')
+        mainIcon.style.transform = 'scale(1)'
+        mainTextDom.innerText = '开始'
+        mainTextDom.classList.replace('fpm__main-text__hide', 'fpm__main-text__show')
+      }, 200)
+    }
   }
 
   private change2Done() {
     const { mainTextDom, mainIcon } = this.getMainElement()
     if (mainTextDom.innerText === '结束') return
-    mainIcon.innerHTML = endSvg
-    mainIcon.style.transition = 'none'
-    mainTextDom.innerText = '结束'
-    this.mainIconMaskTween?.dispose()
-    this.mainIconMaskTween = tweenProgress()
-      .easing(TWEEN.Easing.Quartic.InOut)
-      .onComplete(() => this.mainIconMaskTween?.dispose())
-      .play()
+    if (mainIcon.className.includes('fpm__main__end')) return
+    if (mainIcon.className.includes('fpm__main__start')) {
+      mainIcon.style.transform = `scale(0.8)`
+      if (mainTextDom.className.includes('fpm__main-text__show')) {
+        mainTextDom.classList.replace('fpm__main-text__show', 'fpm__main-text__hide')
+      } else {
+        mainTextDom.classList.add('fpm__main-text__hide')
+      }
+      setTimeout(() => {
+        mainIcon.classList.replace('fpm__main__start', 'fpm__main__end')
+        mainIcon.style.transform = 'scale(1)'
+        mainTextDom.innerText = '结束'
+        mainTextDom.classList.replace('fpm__main-text__hide', 'fpm__main-text__show')
+      }, 200)
+    }
   }
 
   private onClick = () => {
     const mode = this.measureController.getCurrentMode()
+    if (!mode) return
+    const newMode = mode === 'Watch' ? 'Edit' : 'Watch'
+    this.measureController.hook.emit('willChangeMode', mode, newMode)
     mode === 'Watch' ? this.measureController.changeMode('Edit') : this.measureController.save().changeMode('Watch')
   }
 

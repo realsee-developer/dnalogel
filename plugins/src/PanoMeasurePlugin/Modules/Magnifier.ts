@@ -38,22 +38,26 @@ interface MagnifierConfig {
 }
 
 interface MagnifierEvent extends SubscribeEventMap {
-  wantsPanGesture: (data: {
-    deltaX: number
-    deltaY: number
-    srcEvent: typeof Hammer['Input']
-  }) => boolean
+  wantsPanGesture: (data: { deltaX: number; deltaY: number; srcEvent: typeof Hammer['Input'] }) => boolean
 }
 
-export interface MagnifierOptions extends Partial<MagnifierConfig> {
-  width: number
-  height: number
-  scale: number
+/** 放大镜配置参数 */
+export interface MagnifierParameter {
+  width?: number
+  height?: number
+  scale?: number
+  /** 允许拖动放大镜 */
+  dragEnabled?: boolean
+  /** renderWithPoint 时，是否应该自动更新放大镜的位置 */
+  autoFixPCPosition?: boolean
+  /** 放大镜初始位置应该设置在容器的哪个位置 */
+  initialPosition?: { left: string; top: string }
 }
 
 export default class Magnifier {
   public width: number
   public height: number
+  public visible = false
   public hooks = new Subscribe<MagnifierEvent>()
   public contentDom = document.createElement('canvas')
 
@@ -68,17 +72,17 @@ export default class Magnifier {
   private lastPanEvent?: typeof Hammer.Input
   private hammer?: InstanceType<typeof Hammer>
 
-  public constructor(five: Five, options: MagnifierOptions) {
+  public constructor(five: Five, options: MagnifierParameter) {
     if (!five.renderer) throw new Error('Five Render 未初始化')
 
     this.five = five
-    this.scale = options.scale
-    this.width = options.width
-    this.height = options.height
+    this.scale = options?.scale ?? 2
+    this.width = options?.width ?? 190
+    this.height = options?.height ?? 190
     this.config = {
-      dragEnabled: options.dragEnabled || false,
-      autoFixPCPosition: options.autoFixPCPosition || false,
-      initialPosition: options.initialPosition || { left: '0', top: '0' },
+      dragEnabled: options?.dragEnabled || false,
+      autoFixPCPosition: options?.autoFixPCPosition || false,
+      initialPosition: options?.initialPosition || { left: '0', top: '0' },
     }
 
     const context = this.canvas.getContext('2d')
@@ -101,6 +105,7 @@ export default class Magnifier {
   /** 移除放大镜 DOM */
   public remove() {
     this.canvas.remove()
+    this.visible = false
   }
 
   /** 清除放大镜渲染内容 */
@@ -113,6 +118,7 @@ export default class Magnifier {
     this.wrapper = element
     this.initStyle()
     element.append(this.canvas)
+    this.visible = true
   }
 
   /** 放大传入点位周围的内容 */
@@ -124,6 +130,7 @@ export default class Magnifier {
   }
 
   private autoFixPCPosition() {
+    if (!this.wrapper) return
     const { width, height } = this
     const position2d = this.renderCenter.clone().project(this.five.camera)
     const left = ((position2d.x + 1) / 2) * this.wrapper.clientWidth
@@ -150,7 +157,9 @@ export default class Magnifier {
     const { scale, context, width, height } = this
     const position2d = this.renderCenter.clone().project(this.five.camera)
     const renderSize = this.five.renderer.getSize(new THREE.Vector2())
-    const pixelRatio = this.five.renderer.getPixelRatio()
+    // const pixelRatio = this.five.renderer.getPixelRatio()
+    // 手机模式pixelRatio为3，放大区域不对，改为1OK了
+    const pixelRatio = 1
     // 从 renderTarget 读取区域的大小
     const readPixelsWidth = width / scale
     const readPixelsHeight = height / scale
@@ -185,6 +194,7 @@ export default class Magnifier {
     const pixelRatio = this.five.renderer?.getPixelRatio() ?? 1
     canvas.setAttribute('width', (this.width * pixelRatio).toString())
     canvas.setAttribute('height', (this.height * pixelRatio).toString())
+    canvas.style.border = '2px solid rgba(255,255,255,0.20)'
     canvas.style.width = this.width + 'px'
     canvas.style.height = this.height + 'px'
     canvas.style.top = this.config.initialPosition.top
@@ -196,6 +206,7 @@ export default class Magnifier {
   }
 
   private onPan = (event: typeof Hammer['Input']) => {
+    console.log('-->pan0000000',)
     if (!this.wrapper) return
     const lastDeltaX = this.lastPanEvent?.deltaX ?? 0
     const lastDeltaY = this.lastPanEvent?.deltaY ?? 0
@@ -213,6 +224,7 @@ export default class Magnifier {
   }
 
   private onMagnifierWantsPanGesture: MagnifierEvent['wantsPanGesture'] = ({ deltaX, deltaY }) => {
+    console.log('-->333', 22222)
     const magnifierBoundingClientRect = this.contentDom.getBoundingClientRect()
     // 应用了 deltaX 和 deltaY 之后的矩形
     const magnifierRect = new Rectangle(
@@ -243,6 +255,7 @@ export default class Magnifier {
         y: document.body.clientHeight / 2 + measureIndicatorSize / 2,
       },
     )
+    console.log('-->magnifierRect',magnifierRect)
     return maxRect.containsRect(magnifierRect) && !magnifierRect.isOverlapWithRectangle(centerRect)
   }
 }

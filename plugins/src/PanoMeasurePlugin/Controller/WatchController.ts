@@ -34,11 +34,13 @@ export default class WatchController extends BaseController {
     const fiveElement = this.five.getElement()
     if (fiveElement) {
       this.fiveElement = fiveElement
-      const hammer = new Hammer(fiveElement)
-      this.hammer = hammer
-      hammer.on('pan', this.onPan)
-      hammer.on('panstart', this.onPanStart)
-      hammer.on('panend', this.onPanEnd)
+      if (!this.isMobile) {
+        const hammer = new Hammer(fiveElement)
+        this.hammer = hammer
+        hammer.on('pan', this.onPan)
+        hammer.on('panstart', this.onPanStart)
+        hammer.on('panend', this.onPanEnd)
+      }
     }
     this.model.hook.on('lineRemoved', this.lineRemoved)
     this.five.on('cameraUpdate', this.onCameraUpdate)

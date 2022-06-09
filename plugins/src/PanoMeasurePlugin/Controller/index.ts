@@ -1,8 +1,8 @@
 import type BaseController from './BaseController'
-import type { MagnifierParameter, OpenParameter, PluginData } from '../typings/data'
+import type { OpenParameter, PluginData } from '../typings/data'
 import type { PluginEvent } from '../typings/event.type'
 import type { UserDistanceItem } from '../utils/distanceDom'
-import Magnifier from '../Modules/Magnifier'
+import Magnifier, { MagnifierParameter } from '../Modules/Magnifier'
 import FiveHelper from '../Modules/FiveHelper'
 import EditController from './EditController'
 import WatchController from './WatchController'
@@ -14,6 +14,7 @@ import { UIController } from '../Modules/UIController'
 import { GuideController } from '../Modules/GuideController'
 import { ShortcutKeyController } from './ShortcutKeyController'
 import { IntersectController } from '../Modules/Intersector'
+import RangePieceController from '../Modules/rangePiece'
 
 export type Mode = 'Watch' | 'Edit'
 
@@ -39,6 +40,7 @@ export default class MeasureController {
   private useUIController?: UIController
   private params: MeasurePluginParameter
   private useGuideController?: GuideController
+  private rangePieceController?: RangePieceController
   private container = document.createElement('div')
   private shortcutKeyController?: ShortcutKeyController
   private controller: WatchController | EditController | null = null
@@ -50,13 +52,7 @@ export default class MeasureController {
     this.model = new Model({ userDistanceItemCreator: this.params.userDistanceItemCreator })
     this.fiveHelper = new FiveHelper(five)
     // magnifier
-    const magnifierSize = this.params.magnifierParams?.magnifierSize ?? 190
-    const magnifierScale = this.params.magnifierParams?.magnifierScale ?? 2
-    this.magnifier = new Magnifier(five, {
-      scale: magnifierScale,
-      width: magnifierSize,
-      height: magnifierSize,
-    })
+    this.magnifier = new Magnifier(five, params.magnifierParams)
     // ==================== Group ====================
     this.group = new Group()
     this.group.name = 'plugin-measure-group'
@@ -68,6 +64,8 @@ export default class MeasureController {
     this.container.style.opacity = '0'
     this.container.style.background = 'rgba(0, 0, 0, 0.15)'
 
+    const openParams = this.params.openParams ?? {}
+
     this.controllerParams = {
       five: this.five,
       hook: this.hook,
@@ -76,12 +74,11 @@ export default class MeasureController {
       magnifier: this.magnifier,
       container: this.container,
       fiveHelper: this.fiveHelper,
-      openParams: this.params.openParams,
+      openParams,
       mouseGroup: getMouseGroup(),
       userDistanceItemCreator: this.params.userDistanceItemCreator,
     }
-    if (this.params.useUIController !== false)
-      this.useUIController = new UIController(this, this.controllerParams)
+    if (this.params.useUIController !== false) this.useUIController = new UIController(this, this.controllerParams)
     if (this.params.useUIController !== false)
       this.useGuideController = new GuideController(this, this.controllerParams)
   }
@@ -121,6 +118,9 @@ export default class MeasureController {
     // 隐藏点位和鼠标聚焦环
     this.five.helperVisible = false
     this.controller = new WatchController(this.controllerParams)
+    if (this.params.openParams?.isMobile) {
+      this.rangePieceController = new RangePieceController(this.controllerParams)
+    }
     this.useUIController?.show()
     this.useGuideController?.show()
     this.shortcutKeyController = new ShortcutKeyController(this, this.five)
@@ -137,6 +137,7 @@ export default class MeasureController {
     this.container.style.opacity = '0'
     // 展示点位和鼠标聚焦环
     this.controller?.dispose()
+    this.rangePieceController?.dispose()
     this.useUIController?.hide()
     this.useGuideController?.hide()
     this.shortcutKeyController?.dispose()
@@ -207,5 +208,20 @@ export default class MeasureController {
   /** 把当前以保存的数据转换成 JSON 对象 */
   public toJson() {
     return this.model.toJson()
+  }
+
+  /**
+   * @description 改变插件的模式（pc端模式或移动端模式）
+   * @param isMobile true为移动端模式，false为pc端
+   */
+  public changeIsMobile(isMobile: boolean) {
+    if (this.controllerParams.openParams?.isMobile === undefined) {
+      this.controllerParams.openParams.isMobile = isMobile
+    }
+    if (this.controllerParams.openParams.isMobile === isMobile) return
+
+    this.controllerParams.openParams.isMobile = isMobile
+    if (this.params.useUIController !== false) this.useUIController?.dispose()
+    this.useUIController = new UIController(this, this.controllerParams)
   }
 }

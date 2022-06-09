@@ -1,76 +1,7 @@
-export const startSvg = `
-  <svg width="72px" height="72px" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-      <linearGradient x1="15.5099954%" y1="12.4974121%" x2="85.2654435%" y2="86.1433153%" id="linearGradient-0">
-          <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
-          <stop stop-color="#FFFFFF" stop-opacity="0.3" offset="100%"></stop>
-      </linearGradient>
-      <linearGradient x1="50%" y1="100%" x2="50%" y2="3.88716836e-12%" id="linearGradient-1">
-          <stop stop-color="#FFFFFF" stop-opacity="0.7" offset="0%"></stop>
-          <stop stop-color="#FFFFFF" stop-opacity="0" offset="26.4319096%"></stop>
-          <stop stop-color="#FFFFFF" stop-opacity="0" offset="82.3050714%"></stop>
-          <stop stop-color="#FFFFFF" stop-opacity="0.4" offset="100%"></stop>
-      </linearGradient>
-      <circle id="path-2" cx="36" cy="36" r="28.4444444"></circle>
-      <filter x="-5.3%" y="-5.3%" width="110.5%" height="110.5%" filterUnits="objectBoundingBox" id="filter-3">
-          <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-          <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-          <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
-          <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-      </filter>
-      <filter x="-11.4%" y="-11.4%" width="122.9%" height="122.9%" filterUnits="objectBoundingBox" id="filter-4">
-          <feGaussianBlur stdDeviation="4.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
-          <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
-          <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
-          <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.3 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
-      </filter>
-      <filter x="-126.6%" y="-337.5%" width="353.1%" height="775.0%" filterUnits="objectBoundingBox" id="filter-5">
-          <feGaussianBlur stdDeviation="16" in="SourceGraphic"></feGaussianBlur>
-      </filter>
-      <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-6">
-          <stop stop-color="#FFFFFF" stop-opacity="0.05" offset="0%"></stop>
-          <stop stop-color="#FFFFFF" stop-opacity="0.2" offset="100%"></stop>
-      </linearGradient>
-  </defs>
-  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
-      <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
-      <circle stroke="url(#linearGradient-1)" stroke-width="0.4"  fill-opacity="0.241231425" fill="#FFFFFF" fill-rule="evenodd" stroke-linejoin="square" cx="36" cy="36" r="28.2444444"></circle>
-      <ellipse fill="#FFFFFF" opacity="0.596423921" filter="url(#filter-5)" cx="36" cy="36" rx="18.962963" ry="7.11111111"></ellipse>
-      <path d="M36,0 C16.117749,0 0,16.117749 0,36 C0,55.882251 16.117749,72 36,72 C55.882251,72 72,55.882251 72,36 C72,16.117749 55.882251,0 36,0 Z M36,4.44444444 C53.4276521,4.44444444 67.5555556,18.5723479 67.5555556,36 C67.5555556,53.4276521 53.4276521,67.5555556 36,67.5555556 C18.5723479,67.5555556 4.44444444,53.4276521 4.44444444,36 C4.44444444,18.5723479 18.5723479,4.44444444 36,4.44444444 Z" id="椭圆形" fill="url(#linearGradient-6)" fill-rule="nonzero"></path>
-  </g>
-  </svg>
-`
+const startIconImage = `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxmaWx0ZXIgeD0iLTUuMyUiIHk9Ii01LjMlIiB3aWR0aD0iMTEwLjUlIiBoZWlnaHQ9IjExMC41JSIgZmlsdGVyVW5pdHM9Im9iamVjdEJvdW5kaW5nQm94IiBpZD0icHJlZml4X19hIj48ZmVPZmZzZXQgaW49IlNvdXJjZUFscGhhIiByZXN1bHQ9InNoYWRvd09mZnNldE91dGVyMSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEiIGluPSJzaGFkb3dPZmZzZXRPdXRlcjEiIHJlc3VsdD0ic2hhZG93Qmx1ck91dGVyMSIvPjxmZUNvbXBvc2l0ZSBpbj0ic2hhZG93Qmx1ck91dGVyMSIgaW4yPSJTb3VyY2VBbHBoYSIgb3BlcmF0b3I9Im91dCIgcmVzdWx0PSJzaGFkb3dCbHVyT3V0ZXIxIi8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPSIwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAwLjUgMCIgaW49InNoYWRvd0JsdXJPdXRlcjEiLz48L2ZpbHRlcj48ZmlsdGVyIHg9Ii0xMS40JSIgeT0iLTExLjQlIiB3aWR0aD0iMTIyLjklIiBoZWlnaHQ9IjEyMi45JSIgZmlsdGVyVW5pdHM9Im9iamVjdEJvdW5kaW5nQm94IiBpZD0icHJlZml4X19jIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI0LjUiIGluPSJTb3VyY2VBbHBoYSIgcmVzdWx0PSJzaGFkb3dCbHVySW5uZXIxIi8+PGZlT2Zmc2V0IGluPSJzaGFkb3dCbHVySW5uZXIxIiByZXN1bHQ9InNoYWRvd09mZnNldElubmVyMSIvPjxmZUNvbXBvc2l0ZSBpbj0ic2hhZG93T2Zmc2V0SW5uZXIxIiBpbjI9IlNvdXJjZUFscGhhIiBvcGVyYXRvcj0iYXJpdGhtZXRpYyIgazI9Ii0xIiBrMz0iMSIgcmVzdWx0PSJzaGFkb3dJbm5lcklubmVyMSIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAwIDEgMCAwIDAgMC4zIDAiIGluPSJzaGFkb3dJbm5lcklubmVyMSIvPjwvZmlsdGVyPjxmaWx0ZXIgeD0iLTEyNi42JSIgeT0iLTMzNy41JSIgd2lkdGg9IjM1My4xJSIgaGVpZ2h0PSI3NzUlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIGlkPSJwcmVmaXhfX2UiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE2IiBpbj0iU291cmNlR3JhcGhpYyIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCB4MT0iNTAlIiB5MT0iMTAwJSIgeDI9IjUwJSIgeTI9IjAlIiBpZD0icHJlZml4X19kIj48c3RvcCBzdG9wLWNvbG9yPSIjRkZGIiBzdG9wLW9wYWNpdHk9Ii43IiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0ZGRiIgc3RvcC1vcGFjaXR5PSIwIiBvZmZzZXQ9IjI2LjQzMiUiLz48c3RvcCBzdG9wLWNvbG9yPSIjRkZGIiBzdG9wLW9wYWNpdHk9IjAiIG9mZnNldD0iODIuMzA1JSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGRkYiIHN0b3Atb3BhY2l0eT0iLjQiIG9mZnNldD0iMTAwJSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IHgxPSI1MCUiIHkxPSIwJSIgeDI9IjUwJSIgeTI9IjEwMCUiIGlkPSJwcmVmaXhfX2YiPjxzdG9wIHN0b3AtY29sb3I9IiNGRkYiIHN0b3Atb3BhY2l0eT0iLjA1IiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0ZGRiIgc3RvcC1vcGFjaXR5PSIuMiIgb2Zmc2V0PSIxMDAlIi8+PC9saW5lYXJHcmFkaWVudD48Y2lyY2xlIGlkPSJwcmVmaXhfX2IiIGN4PSIzNiIgY3k9IjM2IiByPSIyOC40NDQiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48dXNlIGZpbGw9IiMwMDAiIGZpbHRlcj0idXJsKCNwcmVmaXhfX2EpIiB4bGluazpocmVmPSIjcHJlZml4X19iIi8+PHVzZSBmaWxsPSIjMDAwIiBmaWx0ZXI9InVybCgjcHJlZml4X19jKSIgeGxpbms6aHJlZj0iI3ByZWZpeF9fYiIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI3ByZWZpeF9fZCkiIHN0cm9rZS13aWR0aD0iLjQiIGZpbGwtb3BhY2l0eT0iLjI0MSIgZmlsbD0iI0ZGRiIgc3Ryb2tlLWxpbmVqb2luPSJzcXVhcmUiIGN4PSIzNiIgY3k9IjM2IiByPSIyOC4yNDQiLz48ZWxsaXBzZSBmaWxsPSIjRkZGIiBvcGFjaXR5PSIuNTk2IiBmaWx0ZXI9InVybCgjcHJlZml4X19lKSIgY3g9IjM2IiBjeT0iMzYiIHJ4PSIxOC45NjMiIHJ5PSI3LjExMSIvPjxwYXRoIGQ9Ik0zNiAwQzE2LjExOCAwIDAgMTYuMTE4IDAgMzZzMTYuMTE4IDM2IDM2IDM2IDM2LTE2LjExOCAzNi0zNlM1NS44ODIgMCAzNiAwem0wIDQuNDQ0YzE3LjQyOCAwIDMxLjU1NiAxNC4xMjggMzEuNTU2IDMxLjU1NlM1My40MjggNjcuNTU2IDM2IDY3LjU1NiA0LjQ0NCA1My40MjggNC40NDQgMzYgMTguNTcyIDQuNDQ0IDM2IDQuNDQ0eiIgZmlsbD0idXJsKCNwcmVmaXhfX2YpIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48L2c+PC9zdmc+`
+const endIconImage = `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IHgxPSIxNS41MSUiIHkxPSIxMi40OTclIiB4Mj0iODUuMjY1JSIgeTI9Ijg2LjE0MyUiIGlkPSJwcmVmaXhfX2IiPjxzdG9wIHN0b3AtY29sb3I9IiM5NUFFRkYiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjNjM4NkZGIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCB4MT0iNTAlIiB5MT0iMTAwJSIgeDI9IjUwJSIgeTI9IjAlIiBpZD0icHJlZml4X19hIj48c3RvcCBzdG9wLWNvbG9yPSIjOTlBRUZGIiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0ZGRiIgc3RvcC1vcGFjaXR5PSIwIiBvZmZzZXQ9IjI2LjQzMiUiLz48c3RvcCBzdG9wLWNvbG9yPSIjRkZGIiBzdG9wLW9wYWNpdHk9IjAiIG9mZnNldD0iODIuMzA1JSIvPjxzdG9wIHN0b3AtY29sb3I9IiM5OUFFRkYiIHN0b3Atb3BhY2l0eT0iLjQiIG9mZnNldD0iMTAwJSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IHgxPSI1MCUiIHkxPSIwJSIgeDI9IjUwJSIgeTI9IjEwMCUiIGlkPSJwcmVmaXhfX2QiPjxzdG9wIHN0b3AtY29sb3I9IiM4Nzk3RDIiIHN0b3Atb3BhY2l0eT0iLjA1IiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzYyNzdDNyIgc3RvcC1vcGFjaXR5PSIuMiIgb2Zmc2V0PSIxMDAlIi8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIHg9Ii02My4zJSIgeT0iLTE2OC44JSIgd2lkdGg9IjIyNi42JSIgaGVpZ2h0PSI0MzcuNSUiIGZpbHRlclVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgaWQ9InByZWZpeF9fYyI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iOCIgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZpbHRlcj48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0idXJsKCNwcmVmaXhfX2EpIiBzdHJva2Utd2lkdGg9Ii40IiBmaWxsPSJ1cmwoI3ByZWZpeF9fYikiIG9wYWNpdHk9Ii43IiBjeD0iMzYiIGN5PSIzNiIgcj0iMjguMjQ0Ii8+PGVsbGlwc2UgZmlsbD0iIzdDOTBEQSIgb3BhY2l0eT0iLjU5NiIgZmlsdGVyPSJ1cmwoI3ByZWZpeF9fYykiIGN4PSIzNiIgY3k9IjM2IiByeD0iMTguOTYzIiByeT0iNy4xMTEiLz48cGF0aCBkPSJNMzYgMEMxNi4xMTggMCAwIDE2LjExOCAwIDM2czE2LjExOCAzNiAzNiAzNiAzNi0xNi4xMTggMzYtMzZTNTUuODgyIDAgMzYgMHptMCA0LjQ0NGMxNy40MjggMCAzMS41NTYgMTQuMTI4IDMxLjU1NiAzMS41NTZTNTMuNDI4IDY3LjU1NiAzNiA2Ny41NTYgNC40NDQgNTMuNDI4IDQuNDQ0IDM2IDE4LjU3MiA0LjQ0NCAzNiA0LjQ0NHoiIGZpbGw9InVybCgjcHJlZml4X19kKSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PC9nPjwvc3ZnPg==`
 
-export const endSvg = `
-  <svg width="72px" height="72px" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <defs>
-          <linearGradient x1="15.5099954%" y1="12.4974121%" x2="85.2654435%" y2="86.1433153%" id="linearGradient-1">
-              <stop stop-color="#95AEFF" offset="0%"></stop>
-              <stop stop-color="#6386FF" offset="100%"></stop>
-          </linearGradient>
-          <linearGradient x1="50%" y1="100%" x2="50%" y2="3.88716836e-12%" id="linearGradient-2">
-              <stop stop-color="#99AEFF" offset="0%"></stop>
-              <stop stop-color="#FFFFFF" stop-opacity="0" offset="26.4319096%"></stop>
-              <stop stop-color="#FFFFFF" stop-opacity="0" offset="82.3050714%"></stop>
-              <stop stop-color="#99AEFF" stop-opacity="0.4" offset="100%"></stop>
-          </linearGradient>
-          <filter x="-63.3%" y="-168.8%" width="226.6%" height="437.5%" filterUnits="objectBoundingBox" id="filter-3">
-              <feGaussianBlur stdDeviation="8" in="SourceGraphic"></feGaussianBlur>
-          </filter>
-          <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
-              <stop stop-color="#8797D2" stop-opacity="0.05" offset="0%"></stop>
-              <stop stop-color="#6277C7" stop-opacity="0.2" offset="100%"></stop>
-          </linearGradient>
-      </defs>
-      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <circle stroke="url(#linearGradient-2)" stroke-width="0.4" fill="url(#linearGradient-1)" opacity="0.699999988" cx="36" cy="36" r="28.2444444"></circle>
-          <ellipse fill="#7C90DA" opacity="0.596423921" filter="url(#filter-3)" cx="36" cy="36" rx="18.962963" ry="7.11111111"></ellipse>
-          <path d="M36,0 C16.117749,0 0,16.117749 0,36 C0,55.882251 16.117749,72 36,72 C55.882251,72 72,55.882251 72,36 C72,16.117749 55.882251,0 36,0 Z M36,4.44444444 C53.4276521,4.44444444 67.5555556,18.5723479 67.5555556,36 C67.5555556,53.4276521 53.4276521,67.5555556 36,67.5555556 C18.5723479,67.5555556 4.44444444,53.4276521 4.44444444,36 C4.44444444,18.5723479 18.5723479,4.44444444 36,4.44444444 Z" id="椭圆形" fill="url(#linearGradient-4)" fill-rule="nonzero"></path>
-      </g>
-  </svg>
-`
-const exitSvg = `
+const exitIconSvg = `
   <svg class="fpm__exit-icon width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="86.3016741%" id="radialGradient-1">
@@ -90,7 +21,7 @@ const exitSvg = `
 
 export default `
   <style>
-  .fpm__exit {
+  .moblie .fpm__exit {
     position: absolute;
     bottom: 735px;
     left: 16px;
@@ -99,7 +30,7 @@ export default `
     z-index: 10;
     pointer-events: all;
   }
-  .fpm__exit-icon {
+  .moblie .fpm__exit-icon {
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -109,25 +40,39 @@ export default `
     justify-content: center;
     align-items: center;
   }
-  .fpm__main-text {
+  .fpm__main-btn-text {
     position: absolute;
     font-weight: 500;
     font-size: 14px;
     color: #FFFFFF;
     text-align: center;
     text-shadow: 0 2px 8px rgba(0,0,0,0.50);
+    transition: all 200ms ease-in-out;
   }
+  .fpm__main-text__hide {
+    transform: scale(0.8) translateY(4px);
+    opacity: 0;
+  }
+  .fpm__main-text__show {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  .fpm__main__start {
+    background-image: url(${startIconImage});
+  }
+  .fpm__main__end {
+    background-image: url(${endIconImage});
+  }
+
   </style>
   <div class="fpm__exit">
-    ${exitSvg}
+    ${exitIconSvg}
   </div>
   <div class="fpm_ui-bg"></div>
   <div class="fpm_operating-space">
     <div class="fpm__main fpm__main-btn">
-      <div class="fpm__main-icon">
-        ${startSvg}
-      </div>
-      <div class="fpm__main-text">开始</div>
+      <div class="fpm__main-icon fpm__main__start"></div>
+      <div class="fpm__main-text fpm__main-btn-text">开始</div>
     </div>
   </div>
 `

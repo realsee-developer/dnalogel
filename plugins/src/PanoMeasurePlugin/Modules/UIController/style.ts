@@ -80,6 +80,7 @@ export const newMainIconStyle: Partial<CSSStyleDeclaration> = {
   height: '72px',
   backgroundSize: '100%',
   cursor: 'pointer',
+  transition: 'all 200ms ease-in-out',
 }
 export const exitIconStyle: Partial<CSSStyleDeclaration> = {
   width: '40px',

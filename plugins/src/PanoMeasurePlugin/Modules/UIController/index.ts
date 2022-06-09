@@ -85,7 +85,7 @@ export class UIController {
     const exitItem = this.container.querySelector<HTMLButtonElement>('.fpm__exit')
     if (!exitItem || !exitIcon) throw new Error('cannot find dom')
 
-    if (this.mode == 'pc') {
+    if (this.mode === 'pc') {
       Object.assign(exitItem.style, exitItemStyle)
       Object.assign(exitIcon?.style, exitIconStyle)
     }
