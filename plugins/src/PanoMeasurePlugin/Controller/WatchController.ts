@@ -24,7 +24,7 @@ export default class WatchController extends BaseController {
 
   public constructor(params: IControllerParams) {
     super(params)
-    this.deleteDom = new DeleteDom(this.five, { onClick: this.deleteDomClickCallback }).appendTo(this.container)
+    this.deleteDom = new DeleteDom(this.five, { onClick: this.deleteDomClickCallback, cancelDelete: this.cancelDeleteClickCallback  }).appendTo(this.container)
     this.model.lines.forEach((line) => {
       line.distanceItem.appendTo(this.container)
       line.distanceItem.update(this.five)
@@ -239,4 +239,9 @@ export default class WatchController extends BaseController {
     // this.highlightedLines.forEach((line) => this.model.removeLine(line))
     this.deleteDom.setLines([]).hide()
   }
+
+  private cancelDeleteClickCallback = () => {
+    this.clearHighlightLines()
+  }
+
 }
