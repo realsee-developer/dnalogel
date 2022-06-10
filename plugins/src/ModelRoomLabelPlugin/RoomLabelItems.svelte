@@ -66,7 +66,6 @@
 
   five.on('cameraUpdate', onFiveCameraUpdate)
   five.on('modelShownFloorChange', onFiveCameraUpdate)
-  five.on('renderFrame', onFiveCameraUpdate)
 
   onDestroy(() => {
     five.off('cameraUpdate', onFiveCameraUpdate)
