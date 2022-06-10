@@ -1,10 +1,10 @@
-import { FivePlugin } from '@realsee/five'
+import type { FivePlugin } from '@realsee/five'
+import type { Vector3Position } from '../typings/math.type'
 import * as THREE from 'three'
 import { Scene, Vector3 } from 'three'
 import { CSS3DObject, CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import evenNumber from '../shared-utils/math/evenNumber'
 import centerPoint from '../shared-utils/three/centerPoint'
-import { Vector3Position } from '../typings/math.type'
 import transformPositionToVector3 from '../shared-utils/three/transformPositionToVector3'
 import createResizeObserver from './utils/createResizeObserver'
 

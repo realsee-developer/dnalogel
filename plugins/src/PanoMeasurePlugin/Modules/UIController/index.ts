@@ -1,5 +1,5 @@
+import type MeasureController from '../../Controller'
 import htmlString from './HTML'
-import MeasureController from '../../Controller'
 import {
   uiWrapperStyle,
   operatingSpaceStyle,
@@ -48,6 +48,7 @@ export class UIController {
   }
 
   public show() {
+    this.container.style.display = 'block'
     this.container.style.opacity = '1'
     this.container.style.transform = 'translate(0, 0)'
     this.revoke = new Revoke(this.measureController, this.container)
@@ -57,6 +58,7 @@ export class UIController {
   }
 
   public hide() {
+    this.container.style.display = 'none'
     this.container.style.opacity = '0'
     this.container.style.transform = 'translate(0, 10px)'
     this.revoke?.dispose()

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { FloorplanData } from '../../typings/floorplanData'
-  import { CAMERA_IMAGE } from '../../Assets/camera'
-  import rad2Deg from '../../../shared-utils/math/rad2Deg'
+  import type { FloorplanData } from '../typings/floorplanData'
+  import { CAMERA_IMAGE } from '../Assets/camera'
+  import rad2Deg from '../../shared-utils/math/rad2Deg'
 
   export let panoIndex: number
   export let floorplanData: FloorplanData

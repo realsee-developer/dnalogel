@@ -1,6 +1,7 @@
+import type Line from '../Model/line'
+import type Point from '../Model/point'
+import type { EventCallback, Intersection, IntersectMeshInterface } from '@realsee/five'
 import Hammer from 'hammerjs'
-import Line from '../Model/line'
-import Point from '../Model/point'
 import DeleteDom from '../Modules/DeleteDom'
 import isNDCPointInScreen from '../utils/isNDCPointInScreen'
 import BaseController, { IControllerParams } from './BaseController'
@@ -9,7 +10,6 @@ import { closestPointOnLine } from '../utils/math'
 import { findClosestPoint } from '../utils/findClosestPoint'
 import { findAssociatedLines } from '../utils/findAssociatedLines'
 import { getPointFromHammerEvent } from '../utils/getPointFromHammerEvent'
-import { EventCallback, Intersection, IntersectMeshInterface } from '@realsee/five'
 
 export default class WatchController extends BaseController {
   public type = 'watch'

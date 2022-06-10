@@ -4,7 +4,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "vite --host 0.0.0.0"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -15,9 +15,8 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
-    "@realsee/dnalogel": "2.0.0-alpha.9",
-    "@realsee/five": "^5.0.0-alpha.95",
-    "@realsee/open-works": "^0.1.0-alpha.5",
+    "@realsee/dnalogel": "2.0.0-alpha.26",
+    "@realsee/five": "^5.0.0-alpha.127",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.41",
     "@types/offscreencanvas": "^2019.6.4",
     "@types/react": "^17.0.33",
@@ -29,6 +28,7 @@
     "eslint": "^8.9.0",
     "eslint-config-alloy": "^4.5.1",
     "eslint-plugin-react": "^7.29.0",
+    "hammerjs": "2.0.8",
     "svelte": "^3.46.4",
     "three": "0.117.1",
     "typescript": "^4.5.5",

@@ -10,7 +10,7 @@ interface PanoRulerPluginUsePropTypes {
 const PanoMeasurePluginUsage = (props: PanoRulerPluginUsePropTypes) => {
     const five = unsafe__useFiveInstance()
     const panoMeasurePlugin = five.plugins.panoMeasurePlugin as ReturnType<typeof PanoMeasurePlugin>
-    const [measureEnableBtn, setMeasureEnableBtn] = React.useState<boolean>(false)
+    const [measureEnableBtn, setMeasureEnableBtn] = React.useState<boolean>(true)
 
     const handlePanoMeasurePluginListener = () => {
         panoMeasurePlugin.hook.on("modeChange", (mode) => {

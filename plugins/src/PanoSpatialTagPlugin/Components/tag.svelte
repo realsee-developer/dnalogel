@@ -76,14 +76,14 @@
   })
 </script>
 
-<div 
+<div
   class:PanoSpatialTagPlugin__tag-x={true}
   class:PanoSpatialTagPlugin__tag-upside-down={upsideDown}
   class:PanoSpatialTagPlugin__tag-show={show}
   class:PanoSpatialTagPlugin__tag-hide={show === false || destroying}
   id={'PanoSpatialTagPlugin__' + id}
   style="height: {20 * lineHeightZoom}rem"
-> 
+>
   <div class="PanoSpatialTagPlugin__tag-shadow"
     style="transform: translate({contentWidth / 2 * contentZoom * 3}px, {
       contentHeight / 2 * (upsideDown ? -1 : 1) * contentZoom * 3
@@ -155,7 +155,7 @@
   .PanoSpatialTagPlugin__tag-line1 {
     position: absolute;
     top: 0;
-    left: 0.5rem;
+    left: 0.3rem;
     height: 1.8rem;
     width: .1rem;
     background: #fff;
@@ -167,7 +167,7 @@
   .PanoSpatialTagPlugin__tag-line2 {
     position: absolute;
     top: 0;
-    left: 0.3rem;
+    left: 0.5rem;
     height: 1.8rem;
     width: .1rem;
     background: #fff;
@@ -256,13 +256,13 @@
   }
 
   .PanoSpatialTagPlugin__tag-hide .PanoSpatialTagPlugin__tag-line1 {
-    opacity: 0.5; 
+    opacity: 0.5;
     transform: translate(-50%, 10%) scaleY(0);
     animation: PanoSpatialTagPlugin__tag-line1-hide linear .28s forwards .3s;
   }
 
   .PanoSpatialTagPlugin__tag-hide .PanoSpatialTagPlugin__tag-line2 {
-    opacity: 0.5; 
+    opacity: 0.5;
     transform: translate(-50%, 0) scaleY(0);
     animation: PanoSpatialTagPlugin__tag-line2-hide linear .28s forwards .45s;
   }

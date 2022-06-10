@@ -1,8 +1,8 @@
-import Line from '../Model/line'
-import { Five } from '@realsee/five'
+import type Line from '../Model/line'
+import type { Five } from '@realsee/five'
+import type { LineCompletelyJson, PolylineCompletelyJson } from '../typings/data'
 import { Vector2, Vector3 } from 'three'
 import isNDCPointInScreen from './isNDCPointInScreen'
-import { LineCompletelyJson, PolylineCompletelyJson } from '../typings/data'
 
 export type DistanceItem = ReturnType<typeof creatDistanceItem>
 

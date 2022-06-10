@@ -8,6 +8,7 @@ export const exitImage = '//vrlab-static.ljcdn.com/release/web/measure/exit.6693
 export const revokeImage = '//vrlab-static.ljcdn.com/release/web/measure/revoke.3e424843.png'
 
 export const uiWrapperStyle: Partial<CSSStyleDeclaration> = {
+  display: 'none',
   position: 'absolute',
   top: '0',
   left: '0',

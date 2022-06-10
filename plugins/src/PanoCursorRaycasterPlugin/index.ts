@@ -1,6 +1,6 @@
-import * as THREE from 'three'
-import { Group, Raycaster, Vector3 } from 'three'
+import type * as THREE from 'three'
 import type { FivePlugin, Intersection } from '@realsee/five'
+import { Group, Raycaster, Vector3 } from 'three'
 import createLine from '../shared-utils/createLine'
 
 export interface PanoCursorRaycasterPluginParameterType {}

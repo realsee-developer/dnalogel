@@ -1,6 +1,10 @@
 import type { Five } from '@realsee/five'
 import type { FloorplanServerData } from '../typings/floorplanServerData'
-import type { FloorplanData, FloorplanExtraObject3D, FloorplanExtraObject } from '../typings/floorplanData'
+import type {
+  FloorplanData,
+  FloorplanExtraObject3D,
+  FloorplanExtraObject,
+} from '../typings/floorplanData'
 
 import Main from './Components/Main.svelte'
 import formatData, { formatExtraObjects } from '../utils/formatData'
@@ -19,8 +23,7 @@ export default class PanoFloorplanRadarPluginController {
   private wrapperSelector = ''
   private data?: FloorplanData
   private wrapper: Element | null = null
-  private extraObjects?: FloorplanExtraObject[]
-  private originExtraObjects?: FloorplanExtraObject3D[]
+  private extraObjects: FloorplanExtraObject[] = []
   private configs: NonNullable<PanoFloorplanRadarPluginControllerParameter['configs']> = {}
 
   public constructor(five: Five, params?: PanoFloorplanRadarPluginControllerParameter) {
@@ -71,7 +74,6 @@ export default class PanoFloorplanRadarPluginController {
   }
 
   public setExtraObjectsWith3DPositions(data: FloorplanExtraObject3D[]) {
-    this.originExtraObjects = data
     if (!this.data) return
     this.extraObjects = formatExtraObjects(data, this.five, this.data)
     this.render()
@@ -84,9 +86,6 @@ export default class PanoFloorplanRadarPluginController {
       this.wrapper = _wrapper
     }
     if (!this.data || !this.wrapper) return
-    if (!this.extraObjects && this.originExtraObjects) {
-      this.extraObjects = formatExtraObjects(this.originExtraObjects, this.five, this.data)
-    }
     const props = {
       five: this.five,
       floorplanData: this.data,

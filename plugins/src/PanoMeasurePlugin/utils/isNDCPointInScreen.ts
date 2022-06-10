@@ -1,4 +1,4 @@
-import { Vector3 } from 'three'
+import type { Vector3 } from 'three'
 
 export default function isNDCPointInScreen(ndcPoint: Vector3) {
   const { x, y, z } = ndcPoint

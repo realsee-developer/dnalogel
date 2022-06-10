@@ -1,10 +1,10 @@
 import type { FivePlugin } from '@realsee/five'
+import type { RoomInfo, RoomRules } from './typings'
 import { Five } from '@realsee/five'
 import { Raycaster, Vector3 } from 'three'
 import { intersectionOfLine } from '../shared-utils/math/planimetry'
 import { nextFrame } from '../shared-utils/nextFrame'
 import throttle from '../shared-utils/throttle'
-import { RoomInfo, RoomRules } from './typings'
 import PanoRulerStyle from './style'
 
 export interface PanoRulerPluginOptions {
@@ -139,9 +139,9 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
     const __rule: Rule = {}
 
     const _load = (roomInfo: RoomInfo, roomRules: RoomRules) => {
-        if (state.loaded) {
-            throw new Error('标尺被重复初始化！')
-        }
+        // if (state.loaded) {
+        //     throw new Error('标尺被重复初始化！')
+        // }
         const roomHeightInfo = getRoomHeightInfo(roomInfo, five)
         const work = five.work
         if (!work) return false
@@ -221,6 +221,8 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
         }
 
         state.loaded = true
+
+        freshRule()
         return true
     }
 
@@ -231,6 +233,8 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
         if (!roomInfo || !roomRules) {
             throw new Error('标尺数据依赖不齐全！')
         }
+
+        state.loaded = false
 
         state.options = Object.assign({}, state.options, options || {})
         if (five.model.loaded) {

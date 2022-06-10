@@ -1,5 +1,5 @@
-import MeasureController from '.'
-import { Five } from '@realsee/five'
+import type MeasureController from '.'
+import type { Five } from '@realsee/five'
 
 /** 快捷键控制器 */
 export class ShortcutKeyController {
