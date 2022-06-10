@@ -3,7 +3,7 @@
 const glob = require('glob')
 const path = require('path')
 const replace = require('replace')
-const compile = 'svelte/compiler'
+const { compile } = require('svelte/compiler')
 const  { readFile, writeFile, unlink } = require('fs/promises')
 
 const libsPath = path.resolve(path.resolve(), 'libs')
