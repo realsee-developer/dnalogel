@@ -190,6 +190,7 @@ export default class Magnifier {
     canvas.style.position = 'absolute'
     canvas.style.pointerEvents = 'all'
     canvas.style.borderRadius = '50%'
+    canvas.style.zIndex = '10'
     const pixelRatio = this.five.renderer?.getPixelRatio() ?? 1
     canvas.setAttribute('width', (this.width * pixelRatio).toString())
     canvas.setAttribute('height', (this.height * pixelRatio).toString())
@@ -212,7 +213,6 @@ export default class Magnifier {
     const deltaY = event.deltaY - lastDeltaY
     this.lastPanEvent = event.isFinal ? undefined : event
     const prevented = this.hooks.emit('wantsPanGesture', { srcEvent: event, deltaX, deltaY })
-    console.log('-->prevented',prevented)
     if (prevented) return
 
     const translateX = this.offset.x + deltaX
@@ -235,13 +235,12 @@ export default class Magnifier {
       },
     )
     // 测量时中间的指示器区域
-    const measureIndicatorSize = 72
+    const measureIndicatorSize = 110
     // 放大镜最大不能超过的范围
     const maxRect = new Rectangle(
-      { x: 16, y: 16 },
-      { x: document.body.clientWidth - 16, y: document.body.clientHeight - 16 },
+      { x: 0, y: 93 },
+      { x: document.body.clientWidth, y: document.body.clientHeight - 130 },
     )
-    console.log('-->',maxRect)
     // 放大镜不能与之重合区域的范围
     const centerRect = new Rectangle(
       {
@@ -253,7 +252,6 @@ export default class Magnifier {
         y: document.body.clientHeight / 2 + measureIndicatorSize / 2,
       },
     )
-    console.log('-->magnifierRect',magnifierRect)
     return maxRect.containsRect(magnifierRect) && !magnifierRect.isOverlapWithRectangle(centerRect)
   }
 }
