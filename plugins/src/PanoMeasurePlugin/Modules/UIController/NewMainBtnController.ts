@@ -16,12 +16,10 @@ export class NewMainBtnController {
     Object.assign(this.mainElement.mainItem.style, newMainItemStyle)
     this.change2Add()
 
-    this.measureController.hook.on('modeChange', this.modeChangeHandler)
     this.mainElement.mainItem.addEventListener('click', this.onClick)
   }
 
   public dispose() {
-    this.measureController.hook.off('modeChange', this.modeChangeHandler)
     this.mainElement.mainItem.removeEventListener('click', this.onClick)
   }
 
@@ -54,7 +52,7 @@ export class NewMainBtnController {
   }
 
   private change2Done() {
-    const { mainTextDom, mainIcon } = this.getMainElement()
+    const { mainTextDom, mainIcon } = this.mainElement
     if (mainTextDom.innerText === '结束') return
     if (mainIcon.className.includes('fpm__main__end')) return
     if (mainIcon.className.includes('fpm__main__start')) {
@@ -74,14 +72,12 @@ export class NewMainBtnController {
   }
 
   private onClick = () => {
-    const mode = this.measureController.getCurrentMode()
-    if (!mode) return
-    const newMode = mode === 'Watch' ? 'Edit' : 'Watch'
-    this.measureController.hook.emit('willChangeMode', mode, newMode)
-    mode === 'Watch' ? this.measureController.changeMode('Edit') : this.measureController.save().changeMode('Watch')
-  }
-
-  private modeChangeHandler: PluginEvent['modeChange'] = (mode) => {
-    mode === 'Watch' ? this.change2Add() : this.change2Done()
+    if( this.mainElement.mainTextDom.innerText === '开始'){
+      this.measureController.hook.emit('willChangeState', 'watching', 'editing')
+      this.change2Done()
+    }else{
+      this.measureController.hook.emit('willChangeState', 'editing', 'watching')
+      this.change2Add()
+    }
   }
 }

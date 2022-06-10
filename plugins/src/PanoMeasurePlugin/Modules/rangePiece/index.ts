@@ -64,16 +64,14 @@ export default class RangePieceController {
 
     this.container.addEventListener('animationend', this.computedCenterMouseXY)
 
-    this.five.on('cameraDirectionUpdate', this.onCameraDirectionUpdate)
-    this.hook.on('modeChange', this.onModeChange)
-    this.hook.on('willChangeMode', this.onWillChangeMode)
+    this.five.on('cameraUpdate', this.onCameraDirectionUpdate)
+    this.hook.on('willChangeState', this.onWillChangeState)
   }
 
   public dispose() {
     this.container.removeEventListener('animationend', this.computedCenterMouseXY)
     this.five.off('cameraDirectionUpdate', this.onCameraDirectionUpdate)
-    this.hook.off('modeChange', this.onModeChange)
-    this.hook.off('willChangeMode', this.onWillChangeMode)
+    this.hook.off('willChangeState', this.onWillChangeState)
     this.container.remove()
     this.group.remove(this.mouseGroup)
     this.mouseGroup.remove()
@@ -90,18 +88,14 @@ export default class RangePieceController {
     }
   }
 
-  private onModeChange: PluginEvent['modeChange'] = (mode) => {
+  private onWillChangeState: PluginEvent['willChangeState'] = (state, newState) => {
     this.dotAnimation()
-    if (mode === 'Edit') {
-      const point = this.getIntersection()?.point
-      point && this.hook.emit('getStartPoint', new Point(point))
-    }
-  }
-
-  private onWillChangeMode: PluginEvent['willChangeMode'] = (mode, newMode) => {
-    if (mode === 'Edit' && newMode === 'Watch') {
-      const point = this.getIntersection()?.point
-      point && this.hook.emit('getEndPoint', new Point(point))
+    const point = this.getIntersection()?.point
+    if(!point) return
+    if(newState === 'editing'){
+      this.hook.emit('getStartPoint', new Point(point))
+    }else{
+      this.hook.emit('getEndPoint', new Point(point))
     }
   }
 
@@ -190,8 +184,10 @@ export default class RangePieceController {
     if (!intersection) return this.mouseGroup
     // ============ update mouseGroup position ============
     const adsorbentPoint = this.fiveHelper.getAdsorbentPoint(intersection)
+    console.log('-->adsorbentPoint',adsorbentPoint)
+    // adsorbentPoint和intersection.point不一样，用intersection.point和piece保持一致
     const viewPosition = adsorbentPoint ? adsorbentPoint : intersection.point
-    this.mouseGroup.position.copy(viewPosition)
+    this.mouseGroup.position.copy(intersection.point)
     // ============ update mouseGroup quaternion ============
     if (mesh) {
       this.mouseGroup.quaternion.copy(mesh.quaternion)

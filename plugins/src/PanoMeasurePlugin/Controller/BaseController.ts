@@ -86,21 +86,9 @@ export default abstract class BaseController {
     return this.mouseGroup
   }
 
-  /** mobile态时更新放大镜 */
-  protected updateMagnifier = (point: Point) => {
-    if (this.magnifier.visible === false) {
-      this.magnifier.appendTo(this.container)
-    }
-    requestAnimationFrame(() => this.magnifier.renderWithPoint(point.position))
-    this.five.needsRender = true
-  }
-
   protected dispose() {
     this.disposed = true
-
-    if(!this.isMobile){
-      this.magnifier.remove()
-    }
+    this.magnifier.remove()
     this.model.lines.forEach((line) => this.removeLine(line))
 
     const fiveElement = this.five.getElement()

@@ -21,25 +21,26 @@ export default class EditController extends BaseController {
   private fiveElement?: HTMLCanvasElement
   /** 上一个端点位置 */
   private lastPoint: Point | null = null
-  private mobileStartPoint?: Point
-  private mobileNowPoint?: Point
   /** 鼠标点到上一个端点连接的虚线 */
   private dashed: Line
   private hammer?: InstanceType<typeof Hammer['Manager']>
 
   /** 根据 intersection 更新放大镜和吸附点 */
-  private onIntersectionUpdate = throttle((intersection: Intersection, mesh?: IntersectMeshInterface) => {
-    if (this.hasAppendMouseGroup === false) {
-      this.group.add(this.mouseGroup)
-      this.magnifier.appendTo(this.container)
-      this.hasAppendMouseGroup = true
-    }
-    const position = this.updateMouseGroup(intersection, mesh).position
-    this.pressPoint?.position.copy(position)
-    this.updateDashed()
-    requestAnimationFrame(() => this.magnifier.renderWithPoint(this.mouseGroup.position))
-    this.five.needsRender = true
-  }, 20)
+  private onIntersectionUpdate = throttle(
+    (intersection: Intersection, mesh?: IntersectMeshInterface) => {
+      if (this.hasAppendMouseGroup === false) {
+        this.group.add(this.mouseGroup)
+        this.magnifier.appendTo(this.container)
+        this.hasAppendMouseGroup = true
+      }
+      const position = this.updateMouseGroup(intersection, mesh).position
+      this.pressPoint?.position.copy(position)
+      this.updateDashed()
+      requestAnimationFrame(() => this.magnifier.renderWithPoint(this.mouseGroup.position))
+      this.five.needsRender = true
+    },
+    20,
+  )
 
   public constructor(params: IControllerParams) {
     super(params)
@@ -57,29 +58,23 @@ export default class EditController extends BaseController {
     this.model.hook.on('lineAdded', this.onLineChanged)
     this.model.hook.on('lineRemoved', this.onLineChanged)
 
-    if (!this.isMobile) {
-      // hammer
-      const fiveElement = this.five.getElement()
-      if (fiveElement) {
-        this.fiveElement = fiveElement
-        const hammer = new Hammer(fiveElement)
-        this.hammer = hammer
-        hammer.on('tap', this.onTap)
-        hammer.on('pan', this.onPan)
-        hammer.on('press', this.onPress)
-        hammer.on('panend', this.onPanEnd)
-      }
-      // fiveElement
-      this.fiveElement?.addEventListener('mouseleave', this.onMouseLeave)
+    // hammer
+    const fiveElement = this.five.getElement()
+    if (fiveElement) {
+      this.fiveElement = fiveElement
+      const hammer = new Hammer(fiveElement)
+      this.hammer = hammer
+      hammer.on('tap', this.onTap)
+      hammer.on('pan', this.onPan)
+      hammer.on('press', this.onPress)
+      hammer.on('panend', this.onPanEnd)
     }
+    // fiveElement
+    this.fiveElement?.addEventListener('mouseleave', this.onMouseLeave)
+
     // ==================== 其他 ====================
     this.hook.emit('anchorChange', null)
 
-    if (this.isMobile) {
-      this.hook.on('getStartPoint', this.onGetStartPoint)
-      this.hook.on('getEndPoint', this.onGetEndPoint)
-      this.hook.on('nowPointChange', this.onNowPointChange)
-    }
     this.five.refresh()
   }
 
@@ -97,19 +92,10 @@ export default class EditController extends BaseController {
     this.model.hook.off('lineAdded', this.onLineChanged)
     this.model.hook.off('lineRemoved', this.onLineChanged)
 
-    if (this.isMobile) {
-      this.hook.off('getStartPoint', this.onGetStartPoint)
-      this.hook.off('getEndPoint', this.onGetEndPoint)
-      this.hook.off('nowPointChange', this.onNowPointChange)
-    }
     // hammer
     this.hammer?.destroy()
     // fiveElement
     this.fiveElement?.removeEventListener('mouseleave', this.onMouseLeave)
-
-    if(!this.isMobile){
-      this.magnifier.remove()
-    }
     this.dashed.distanceItem.remove()
     this.five.needsRender = true
   }
@@ -250,44 +236,5 @@ export default class EditController extends BaseController {
     this.dashed.points[1].position.copy(this.mouseGroup.position)
     this.dashed.mesh.setPoints(this.lastPoint.position, this.mouseGroup.position)
     this.dashed.distanceItem.update(this.five)
-  }
-
-  /** mobile态时更新虚线 */
-  private updateMobileDashed = () => {
-    if (!this.mobileStartPoint || !this.mobileNowPoint) return
-    this.dashed.points[0].position.copy(this.mobileStartPoint.position)
-    this.dashed.points[1].position.copy(this.mobileNowPoint.position)
-    this.dashed.mesh.setPoints(this.mobileStartPoint.position, this.mobileNowPoint.position)
-    this.dashed.distanceItem.update(this.five)
-  }
-
-  private onGetStartPoint = (point) => {
-    this.mobileStartPoint = point
-
-    if (!this.hasAppendDashed) {
-      this.dashed.distanceItem.appendTo(this.container)
-      this.group.add(this.dashed.mesh)
-    }
-    this.hasAppendDashed = true
-    this.five.needsRender = true
-  }
-
-  private onGetEndPoint = (point) => {
-    const endPoint = point
-    if (this.mobileStartPoint && endPoint) {
-      const line = new Line(this.mobileStartPoint, endPoint, this.model)
-      line.distanceItem.appendTo(this.container)
-      this.model.addLine(line)
-      this.group.add(line.mesh)
-      line.distanceItem.update(this.five)
-    }
-    this.five.needsRender = true
-  }
-
-  private onNowPointChange = (point) => {
-    this.mobileNowPoint = point
-    this.updateMobileDashed()
-    this.updateMagnifier(point)
-    this.five.needsRender = true
   }
 }

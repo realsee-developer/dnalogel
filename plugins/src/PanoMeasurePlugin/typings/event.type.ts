@@ -1,6 +1,7 @@
 import type { SubscribeEventMap } from '@realsee/five'
 import type { Vector3 } from 'three'
 import type { Mode } from '../Controller'
+import type { State } from '../Controller/MixedController'
 import type Point from '../Model/point'
 import type { LineCompletelyJson } from './data'
 
@@ -34,7 +35,7 @@ interface MobileEvent extends SubscribeEventMap {
 
   getEndPoint: (point: Point) => void
 
-  willChangeMode:( mode:Mode, newMode:Mode) => void
+  willChangeState:( state: State, newState: State) => void
 
   nowPointChange: (point: Point) => void
 }
