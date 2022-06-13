@@ -2,20 +2,20 @@ import * as React from "react";
 import {unsafe__useFiveInstance, useFiveState} from "@realsee/five/react";
 import { Box } from '@mui/material'
 import { Five } from "@realsee/five";
+import { unsafe__useFiveInject } from "@realsee/five/vue";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 import type {
     PanoFloorplanRadarPlugin,
     FloorplanServerData
 } from '@realsee/dnalogel'
 
-import { useFivePlugin } from '@realsee/dnalogel'
-
 const PanoFloorplanRadarPanel: React.FC = () => {
     const [fiveState, setFiveState] = useFiveState();
     const floorplanServerData: FloorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
     const panoFloorplanRadarPanelRef = React.useRef<HTMLDivElement>(null)
     const [visible, setVisible] = React.useState<boolean>(false)
-    const panoFloorplanRadarPlugin = useFivePlugin<typeof PanoFloorplanRadarPlugin>('panoFloorplanRadarPlugin')
+    const five = unsafe__useFiveInject()
+    const panoFloorplanRadarPlugin = five.plugins.panoFloorplanRadarPlugin
 
 
     React.useEffect(() => {
