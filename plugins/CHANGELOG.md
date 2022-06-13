@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.27
+- 1.feat: PanoSpatialTagPlugin 兼容 bvh 为 false 模式.
+
 ## 2.0.0-alpha.26
 - 1.fix: ModelRoomLabelPlugin - 修复渲染区域大小改变时，标签位置没有更新
 - 2.pref: ModelRoomLabelPlugin - 优化渲染逻辑
