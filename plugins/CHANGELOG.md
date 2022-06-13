@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.28
+- 1.chore: 优化打包输出路径.
+
 ## 2.0.0-alpha.27
 - 1.feat: PanoSpatialTagPlugin 兼容 bvh 为 false 模式.
 
