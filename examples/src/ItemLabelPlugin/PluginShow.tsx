@@ -10,7 +10,6 @@ import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 import * as THREE from "three";
 
 interface PluginShowPropTypes {
@@ -22,9 +21,8 @@ const PluginShow = (props: PluginShowPropTypes) => {
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
     const [labelType, setLabelType] = React.useState<number>(0)
-    // const modelItemLabels = useFetchDatas(DATA_TYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
     const modelItemLabels = [
-        { "model_item_labels": [
+        { "item_labels": [
                 // {
                 //     "__type": "Item",
                 //     "materials": null,
@@ -3154,7 +3152,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 },
             ]},
         {
-            "model_item_labels": [
+            "item_labels": [
                 {
                     "__type": "Item",
                     "materials": null,
@@ -3212,7 +3210,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                         3.64173,
                         1
                     ],
-                    "name": "\u6d17\u8863\u673a",
+                    "name": "作为 VR 空间重构领域的领导者，如视为全行业提供三维空间的采集、展示、重建能力，打造低成本、高效、有针对性的 VR 空间应用解决方案。",
                     "type": [
                         "appliance",
                         "electric_appliance",
@@ -3419,18 +3417,18 @@ const PluginShow = (props: PluginShowPropTypes) => {
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
         if (wrapper) {
-            five.plugins.modelItemLabelPlugin.appendTo(wrapper)
+            five.plugins.itemLabelPlugin.appendTo(wrapper)
         }
 
     }, [])
 
     useFiveEventCallback('modelLoaded', () => {
         if (!modelItemLabels) return
-        five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
-        five.plugins.modelItemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
+        five.plugins.itemLabelPlugin.load(modelItemLabels[labelType])
+        five.plugins.itemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
             console.log('🐶---🐶： ', itemLabel)
         })
-        setFiveState({ mode: Five.Mode.Floorplan })
+        // setFiveState({ mode: Five.Mode.Floorplan })
         // addHelper(7.04986,
         //     -1.1e-05 + 0.70497,
         //     2.898, 'ball', true)
@@ -3438,7 +3436,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
 
     const switchLabel = () => {
         const newLabelType = Number(!labelType)
-        five.plugins.modelItemLabelPlugin.load(modelItemLabels[newLabelType])
+        five.plugins.itemLabelPlugin.load(modelItemLabels[newLabelType])
         setLabelType(newLabelType)
     }
 
@@ -3457,9 +3455,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
             >
                 <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon />} value={Five.Mode.Panorama} />
                 <BottomNavigationAction label="空间总览" icon={<ViewInArIcon />} value={Five.Mode.Floorplan} />
-                { fiveState.mode === Five.Mode.Floorplan &&
                 <BottomNavigationAction label="标签切换" onClick={switchLabel} icon={<ChangeCircleIcon />} value={null} />
-                }
             </BottomNavigation>
         </Paper>
     )

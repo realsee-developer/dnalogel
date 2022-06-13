@@ -38,3 +38,6 @@ export * from './ModelItemLabelPlugin'
 
 // 模型电视插件
 export * from './ModelTVVideoPlugin'
+
+// 物品标签
+export * from './ItemLabelPlugin'

@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from "path";
-// import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   // root: './src',
   base: '/dnalogel/',
-  // plugins: [react(), svelte()],
-  plugins: [react()],
+  plugins: [react(), svelte()],
+  // plugins: [react()],
   build: {
     // assetsDir: '../assets',
     target: 'esnext',
