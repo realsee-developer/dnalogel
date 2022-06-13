@@ -16,19 +16,16 @@
 
 </script>
 
-<div
-		class={classNames("item-label-item", { visible: itemLabel.visible })}
-		style:z-index="{itemLabel.zIndex}"
-		style:transform="{itemLabel.transform}"
+<div class={classNames("item-label-item", { visible: itemLabel.visible })}
+     style:z-index="{itemLabel.zIndex}"
+     style:transform="{itemLabel.transform}"
 >
-	<div
-			class="item-label-item__text-wrap"
-			style="top: {`-${itemLabel.strokeLength + 92}px`}"
-			on:click="{onClick}"
+	<div class="item-label-item__text-wrap"
+	     style="top: {`-${itemLabel.strokeLength + 92}px`}"
+	     on:click="{onClick}"
 	>
-		<div
-				class="item-label-icon"
-				style={`background-image: url(${image})`}
+		<div class="item-label-icon"
+		     style={`background-image: url(${image})`}
 		>
 
 		</div>
@@ -63,61 +60,55 @@
     .item-label-item__text-wrap {
         padding: 12px 20px 12px 12px;
         position: absolute;
-	    min-width: 292px;
-	    max-width: 473px;
-	    width: fit-content;
+        min-width: 292px;
+        max-width: 473px;
+        width: fit-content;
         min-height: 92px;
         pointer-events: all;
-	    background-color: rgba(0, 0, 0, .5);
-	    border: 1.5px solid rgba(255, 255, 255, .65);
-	    border-radius: 3px;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
+        background-color: rgba(0, 0, 0, .5);
+        border: 1.5px solid rgba(255, 255, 255, .65);
+        border-radius: 3px;
         color: white;
         transform: translate(-50%, 0);
         display: flex;
         justify-content: flex-start;
         align-items: center;
-	    box-sizing: border-box;
-	    overflow: hidden;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .item-label-icon {
-	    width: 68px;
-	    height: 68px;
-	    background-repeat: no-repeat;
-	    background-size: contain;
-	    background-position: center;
+        width: 68px;
+        height: 68px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
 
     .bar {
-	    margin: 0 12px;
-	    width: 1px;
-	    height: 100%;
+        margin: 0 12px;
+        width: 1px;
+        height: 100%;
         border-right: solid white 1px;
-	    opacity: .2;
+        opacity: .2;
     }
 
     .item-label-text {
-	    height: 100%;
-	    display: flex;
-	    flex: 1;
-	    flex-flow: column;
-	    justify-content: space-around;
-	    align-content: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-content: center;
     }
 
     .item-model {
         font-size: 22px;
-	    font-weight: bold;
-	    line-height: 1;
+        font-weight: bold;
+        line-height: 1;
     }
 
     .item-name {
-	    width: 100%;
-        word-wrap:break-word;
-        word-break:break-all;
-        overflow: hidden;
+        word-wrap: break-word;
+        word-break: break-all;
         font-size: 20px;
         line-height: 1;
     }
