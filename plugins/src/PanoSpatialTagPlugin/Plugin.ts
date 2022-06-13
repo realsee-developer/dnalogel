@@ -71,9 +71,9 @@ const MAX_DISTANCE = 3.5
  * 空间游走标签插件
  */
 export const PanoSpatialTagPlugin: FivePlugin<
-  PanoSpatialTagPluginParameterType,
-  PanoSpatialTagPluginExportType
-> = (five: Five, params) => {
+    PanoSpatialTagPluginParameterType,
+    PanoSpatialTagPluginExportType
+    > = (five: Five, params) => {
 
   let wrapper = params?.container
   const wait = params?.wait ?? 200
@@ -139,8 +139,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
     const frustum = new THREE.Frustum()
     const projScreenMatrix = new THREE.Matrix4()
     projScreenMatrix.multiplyMatrices(
-      camera.projectionMatrix,
-      camera.matrixWorldInverse
+        camera.projectionMatrix,
+        camera.matrixWorldInverse
     )
     frustum.setFromProjectionMatrix(projScreenMatrix)
 
@@ -150,8 +150,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
       if (!frustum.containsPoint(tag.position)) return tag.destroying = true
       const v = tag.position.clone().sub(camera.position).setY(0)
       if (
-        v.angleTo(tag.normal) > Math.PI / 2 - minRad &&
-        v.angleTo(tag.normal) < Math.PI / 2 + minRad
+          v.angleTo(tag.normal) > Math.PI / 2 - minRad &&
+          v.angleTo(tag.normal) < Math.PI / 2 + minRad
       ) return tag.destroying = true
     })
     state.tags.forEach(tag => {
@@ -201,10 +201,10 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.origins = state.tags.map(tag => {
       const mouse = tag.position.clone().project(camera)
       const front = tag.position.clone().sub(camera.position).setY(0)
-        .angleTo(direction.setY(0)) < Math.PI / 2
+          .angleTo(direction.setY(0)) < Math.PI / 2
       return {
         id: tag.id,
-        front,  
+        front,
         left: (   mouse.x + 1 ) / 2 * 100,
         top:  ( - mouse.y + 1 ) / 2 * 100,
         destroying: tag.destroying,
@@ -234,12 +234,12 @@ export const PanoSpatialTagPlugin: FivePlugin<
     const projScreenMatrix = new THREE.Matrix4()
     const direction = camera.getWorldDirection(new THREE.Vector3())
     projScreenMatrix.multiplyMatrices(
-      camera.projectionMatrix,
-      camera.matrixWorldInverse
+        camera.projectionMatrix,
+        camera.matrixWorldInverse
     )
     frustum.setFromProjectionMatrix(projScreenMatrix)
     const frontTagLength = state.tags.filter(
-      tag => frustum.containsPoint(tag.position) && !tag.destroying
+        tag => frustum.containsPoint(tag.position) && !tag.destroying
     ).length
 
     const points: Array<PanoSpatialTagPluginPointElement> = state.points.reduce((result, point) => {
@@ -247,22 +247,22 @@ export const PanoSpatialTagPlugin: FivePlugin<
       const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(point.position)
       if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return result
       if (!frustum.containsPoint(point.position)) return result
-      
+
       const v = point.position.clone().sub(camera.position).setY(0)
 
       if (
-        v.angleTo(point.normal) > Math.PI / 2 - minRad &&
-        v.angleTo(point.normal) < Math.PI / 2 + minRad
+          v.angleTo(point.normal) > Math.PI / 2 - minRad &&
+          v.angleTo(point.normal) < Math.PI / 2 + minRad
       ) return result
 
       const mouse = point.position.clone().project(camera)
       if (!state.tags.every(tag => {
         if (tag.position.clone().sub(camera.position).setY(0)
-          .angleTo(direction.setY(0)) > Math.PI / 2) return true
+            .angleTo(direction.setY(0)) > Math.PI / 2) return true
         const _mouse = tag.position.clone().project(camera)
         return Math.sqrt(
-          Math.pow((mouse.x - _mouse.x) / 2 * clientWidth, 2) + 
-          Math.pow((mouse.y - _mouse.y) / 2 * clientHeight, 2)
+            Math.pow((mouse.x - _mouse.x) / 2 * clientWidth, 2) +
+            Math.pow((mouse.y - _mouse.y) / 2 * clientHeight, 2)
         ) > nearTolerance
       })) return result
 
@@ -301,28 +301,30 @@ export const PanoSpatialTagPlugin: FivePlugin<
       const mouse = point.position.clone().project(camera)
       if (!state.tags.concat(newTags).every(tag => {
         if (tag.position.clone().sub(camera.position).setY(0)
-          .angleTo(direction.setY(0)) > Math.PI / 2
-         ) return true
+            .angleTo(direction.setY(0)) > Math.PI / 2
+        ) return true
         const _mouse = tag.position.clone().project(camera)
         return Math.sqrt(
-          Math.pow((mouse.x - _mouse.x) / 2 * clientWidth, 2) + 
-          Math.pow((mouse.y - _mouse.y) / 2 * clientHeight, 2)
+            Math.pow((mouse.x - _mouse.x) / 2 * clientWidth, 2) +
+            Math.pow((mouse.y - _mouse.y) / 2 * clientHeight, 2)
         ) > nearTolerance
       })) continue
 
       const raycaster = new THREE.Raycaster(
-        camera.position.clone().setY(RAY_ORIGIN_Y),
-        point.position.clone().sub(camera.position.clone().setY(RAY_ORIGIN_Y)).normalize(),
-        0,
-        point.distance + RAY_TOLERANT_DISTANCE
+          camera.position.clone().setY(RAY_ORIGIN_Y),
+          point.position.clone().sub(camera.position.clone().setY(RAY_ORIGIN_Y)).normalize(),
+          0,
+          point.distance + RAY_TOLERANT_DISTANCE
       )
-      const [intersect] = five.model.intersectRaycaster(raycaster)
+      const [intersect] = five.model.bvhs.loaded ?
+          five.model.intersectRaycaster(raycaster) :
+          raycaster.intersectObjects(five.model.children, true)
       if (!intersect) continue
       if (point.distance - intersect.distance < RAY_TOLERANT_DISTANCE) {
         const { position, normal, id, replacement } = point
         const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(normal, position)
         const right = position.clone().sub(camera.position)
-          .cross(new THREE.Vector3(0, 1, 0)).setLength(MESH_SIZE)
+            .cross(new THREE.Vector3(0, 1, 0)).setLength(MESH_SIZE)
         const square = [
           position.clone(),
           position.clone().add(right),
@@ -331,8 +333,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
         ].map(v => plane.projectPoint(v, new THREE.Vector3()))
 
         const { container, dispose } = css3DRender.create3DDomContainer(square) || {}
-        const app = new Tag({ 
-          target: container, 
+        const app = new Tag({
+          target: container,
           props: {
             id,
             content: state.render(state.template, replacement),
@@ -359,10 +361,10 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   /** 标签数据加载
-  * @param data.points {Array} 标签数据
-  * @param data.enabled {Boolean} 插件是否启用
-  * @param data.folded {Boolean} 标签是否默认展开
-  */
+   * @param data.points {Array} 标签数据
+   * @param data.enabled {Boolean} 插件是否启用
+   * @param data.folded {Boolean} 标签是否默认展开
+   */
   const load = (data: PanoSpatialTagPluginData): void => {
     state.points = data.points.map(point => {
       return {
@@ -381,17 +383,17 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   /** 标签启用
-  * 启用插件并重新计算展示标签
-  */
+   * 启用插件并重新计算展示标签
+   */
   const enable = (): void => {
     state.enabled = true
     updateTags()
   }
 
   /** 插件禁用
-  * 1. 禁用同时会清除已展示的标签
-  * 2. 再次启用时会重新计算展示标签
-  */
+   * 1. 禁用同时会清除已展示的标签
+   * 2. 再次启用时会重新计算展示标签
+   */
   const disable = (): void => {
     state.enabled = false
     origins.$set({ origins: [] })
@@ -404,9 +406,9 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   /** 展开所有标签
-  * 1. 展开所有收起的标签
-  * 2. 新标签会默认展开
-  */
+   * 1. 展开所有收起的标签
+   * 2. 新标签会默认展开
+   */
   const unfoldAll = (): void => {
     state.folded = false
     state.tags.forEach(tag => {
@@ -415,9 +417,9 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   /** 收起所有标签
-  * 1. 收起所有展开的标签
-  * 2. 新标签会默认收起
-  */
+   * 1. 收起所有展开的标签
+   * 2. 新标签会默认收起
+   */
   const foldAll = (): void => {
     state.folded = true
     state.tags.forEach(tag => {
@@ -426,8 +428,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   /** 展开单个标签
-  * @param id {Number | String} 标签ID
-  */
+   * @param id {Number | String} 标签ID
+   */
   const unfold = (id: PanoSpatialTagPluginId): void => {
     state.tags.forEach(tag => {
       if (tag.id === id) tag.app.$set({ folded: false })
@@ -435,8 +437,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   /** 收起单个标签
-  * @param id {Number | String} 标签ID
-  */
+   * @param id {Number | String} 标签ID
+   */
   const fold = (id: PanoSpatialTagPluginId): void => {
     state.tags.forEach(tag => {
       if (tag.id === id) tag.app.$set({ folded: true })
@@ -471,7 +473,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     five.on('modeChange', onModeChange)
     five.on('cameraUpdate', onCameraUpdate)
   } else {
-    five.once('modelBvhLoaded', () => {
+    five.once('modelLoaded', () => {
       if (!wrapper) wrapper = five.getElement().parentElement
       wrapper.appendChild(container)
       state.forbidden = false
