@@ -21,23 +21,19 @@
      style:transform="{itemLabel.transform}"
 >
 	<div class="item-label-item__text-wrap"
-	     style="top: {`-${itemLabel.strokeLength + 92}px`}"
+	     style="bottom: {`${itemLabel.strokeLength}px`}"
 	     on:click="{onClick}"
 	>
-		<div class="item-label-icon"
-		     style={`background-image: url(${image})`}
-		>
-
+		<div class="icon-wrap">
+			<div class="icon" style={`background-image: url(${image})`}></div>
 		</div>
-		<div class="bar"></div>
 		<div class="item-label-text">
 			<span class="item-model">{itemLabel.id}</span>
-			<div class="item-name">{itemLabel.name}</div>
+			<span class="item-name">{itemLabel.name}</span>
 		</div>
 	</div>
-	<div
-			class="item-label-item__bar"
-			style="height: {`${itemLabel.strokeLength}px`}">
+	<div class="item-label-item__bar"
+	     style="height: {`${itemLabel.strokeLength}px`}">
 	</div>
 </div>
 
@@ -58,11 +54,11 @@
     }
 
     .item-label-item__text-wrap {
+        height: fit-content;
         padding: 12px 20px 12px 12px;
         position: absolute;
-        min-width: 292px;
+        width: max-content;
         max-width: 473px;
-        width: fit-content;
         min-height: 92px;
         pointer-events: all;
         background-color: rgba(0, 0, 0, .5);
@@ -77,7 +73,15 @@
         overflow: hidden;
     }
 
-    .item-label-icon {
+    .icon-wrap {
+        width: 68px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .icon {
         width: 68px;
         height: 68px;
         background-repeat: no-repeat;
@@ -85,32 +89,30 @@
         background-position: center;
     }
 
-    .bar {
-        margin: 0 12px;
-        width: 1px;
-        height: 100%;
-        border-right: solid white 1px;
-        opacity: .2;
-    }
-
     .item-label-text {
+        min-height: 68px;
+        height: auto;
         display: flex;
         flex-flow: column;
         justify-content: space-around;
-        align-content: center;
+        align-content: flex-start;
+        border-left: solid rgba(255, 255, 255, .2) 1px;
+        padding-left: 12px;
     }
 
     .item-model {
+        white-space: nowrap;
         font-size: 22px;
         font-weight: bold;
-        line-height: 1;
+        line-height: 30px;
     }
 
     .item-name {
+        height: auto;
         word-wrap: break-word;
         word-break: break-all;
         font-size: 20px;
-        line-height: 1;
+        line-height: 28px;
     }
 
     .item-label-item__bar {
