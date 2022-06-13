@@ -1,4 +1,14 @@
 {
   "entryPoints": ["src/index.ts"],
-  "out": "./docs"
+  "out": "./docs",
+  "readme": "./README.md",
+  "entryPointStrategy": "expand",
+  "name": "如视看房插件合集",
+  "tsconfig": "./tsconfig.build.json",
+  "hideGenerator": true,
+  "includeVersion": true,
+  "excludeExternals": true,
+  "excludeProtected": true,
+  "excludePrivate": true,
+  "excludeInternal": true
 }

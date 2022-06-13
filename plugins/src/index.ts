@@ -1,3 +1,6 @@
+// 方法导出
+export * from './shared-utils/five/useFivePlugin'
+
 export * from './ModelViewPlugin'
 
 export * from './CSS3DRenderPlugin'
@@ -8,13 +11,7 @@ export * from './PanoCursorRaycasterPlugin'
 export * from './ModelRoomLabelPlugin'
 
 // floorplan
-export * from './floorplan/constant'
-
-export * from './floorplan/TopviewFloorplanPlugin'
-
-export * from './floorplan/PanoFloorplanRadarPlugin'
-
-export * from './floorplan/ModelFloorplanPlugin'
+export * from './floorplan'
 
 // 模型底盘
 export * from './ModelChassisCompassPlugin'
