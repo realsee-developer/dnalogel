@@ -2,7 +2,6 @@ import * as React from "react";
 import {unsafe__useFiveInstance, useFiveState} from "@realsee/five/react";
 import { Box } from '@mui/material'
 import { Five } from "@realsee/five";
-import { unsafe__useFiveInject } from "@realsee/five/vue";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 import type {
     PanoFloorplanRadarPlugin,
@@ -14,7 +13,7 @@ const PanoFloorplanRadarPanel: React.FC = () => {
     const floorplanServerData: FloorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
     const panoFloorplanRadarPanelRef = React.useRef<HTMLDivElement>(null)
     const [visible, setVisible] = React.useState<boolean>(false)
-    const five = unsafe__useFiveInject()
+    const five = unsafe__useFiveInstance()
     const panoFloorplanRadarPlugin = five.plugins.panoFloorplanRadarPlugin
 
 
@@ -42,17 +41,17 @@ const PanoFloorplanRadarPanel: React.FC = () => {
         <Box
             onClick={() => setFiveState({ mode: Five.Mode.Floorplan })}
             sx={{
-            display: `${visible ? 'flex' : 'none'}`,
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: "absolute",
-            top: '60px',
-            right: '20px',
-            padding: '10px',
-            width: '90px',
-            height: '120px',
-            backgroundColor: 'rgba(0, 0, 0, .2)',
-        }}
+                display: `${visible ? 'flex' : 'none'}`,
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: "absolute",
+                top: '60px',
+                right: '20px',
+                padding: '10px',
+                width: '90px',
+                height: '120px',
+                backgroundColor: 'rgba(0, 0, 0, .2)',
+            }}
             ref={panoFloorplanRadarPanelRef}
         />
     )
