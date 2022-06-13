@@ -316,7 +316,9 @@ export const PanoSpatialTagPlugin: FivePlugin<
         0,
         point.distance + RAY_TOLERANT_DISTANCE
       )
-      const [intersect] = five.model.intersectRaycaster(raycaster)
+      const [intersect] = five.model.bvhs.loaded ? 
+        five.model.intersectRaycaster(raycaster) :
+        raycaster.intersectObjects(five.model.children, true)
       if (!intersect) continue
       if (point.distance - intersect.distance < RAY_TOLERANT_DISTANCE) {
         const { position, normal, id, replacement } = point
@@ -471,7 +473,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     five.on('modeChange', onModeChange)
     five.on('cameraUpdate', onCameraUpdate)
   } else {
-    five.once('modelBvhLoaded', () => {
+    five.once('modelLoaded', () => {
       if (!wrapper) wrapper = five.getElement().parentElement
       wrapper.appendChild(container)
       state.forbidden = false
