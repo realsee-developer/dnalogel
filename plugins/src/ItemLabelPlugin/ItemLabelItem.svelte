@@ -61,7 +61,8 @@
         max-width: 473px;
         min-height: 92px;
         pointer-events: all;
-        background-color: rgba(0, 0, 0, .5);
+        /*background-color: rgba(0, 0, 0, .5);*/
+        background-image: linear-gradient(269deg, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.60) 49%, rgba(31,38,46,0.70) 100%);
         border: 1.5px solid rgba(255, 255, 255, .65);
         border-radius: 3px;
         color: white;
@@ -97,6 +98,9 @@
         justify-content: space-around;
         align-content: flex-start;
         border-left: solid rgba(255, 255, 255, .2) 1px;
+        border-top: solid rgba(255, 255, 255, .2) 0;
+        border-right: solid rgba(255, 255, 255, .2) 0;
+        border-bottom: solid rgba(255, 255, 255, .2) 0;
         padding-left: 12px;
     }
 
@@ -120,6 +124,7 @@
         bottom: 0;
         width: 3px;
         background-image: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.20);
     }
 
     @keyframes fadeIn {
