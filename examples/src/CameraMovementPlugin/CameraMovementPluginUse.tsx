@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Box, Button, ButtonGroup, Paper } from "@mui/material";
 import { unsafe__useFiveInstance } from "@realsee/five/react";
-import { MoveArgs, RotateArgs, Rotation } from '@realsee/dnalogel/libs/CameraMovementPlugin/typing'
+import type { MoveArgs, RotateArgs } from '@realsee/dnalogel'
+import { Rotation } from '@realsee/dnalogel'
 
 enum OperationEnum {
     PANO_MOVE = '点位游走',

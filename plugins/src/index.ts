@@ -38,7 +38,6 @@ export * from './PanoSpatialTagPlugin'
 
 // 模型物品标签插件
 export * from './ModelItemLabelPlugin'
-export * from './ModelItemLabelPlugin/typings'
 
 // 模型电视插件
 export * from './ModelTVVideoPlugin'
