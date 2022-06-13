@@ -7,7 +7,7 @@ import PluginShow from "./PluginShow";
 import { Box } from "@mui/material";
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ModelItemLabelPlugin/typings";
+import { DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel";
 
 const defaultPluginParam = {
     modelOcclusionEnable: false,

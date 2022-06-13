@@ -10,7 +10,6 @@ import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { modelEntryDoorGuidePluginServerData } from "../mockData";
 
 
 const ModelEntryDoorGuidePluginUse: React.FC = () => {

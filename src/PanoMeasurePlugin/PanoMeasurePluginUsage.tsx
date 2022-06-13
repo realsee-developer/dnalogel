@@ -1,5 +1,5 @@
 import { Box, Paper, ButtonGroup, Button } from '@mui/material'
-import PanoMeasurePlugin from '@realsee/dnalogel/libs/PanoMeasurePlugin'
+import {PanoMeasurePlugin} from '@realsee/dnalogel'
 import { unsafe__useFiveInstance, useFiveEventCallback } from '@realsee/five/react'
 import * as React from 'react'
 import { useEffect } from "react";
