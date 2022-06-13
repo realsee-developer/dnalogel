@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.29
+- 1.chore: 删除 react 依赖.
+
 ## 2.0.0-alpha.28
 - 1.chore: 优化打包输出路径.
 
