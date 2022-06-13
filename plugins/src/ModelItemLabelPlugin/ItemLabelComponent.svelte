@@ -57,7 +57,7 @@
         const cssPosition: THREE.Vector2 | null = five.project2d(modelPosition)
         const xOffset = cssPosition?.x
         const yOffset = cssPosition?.y
-	    return [xOffset, yOffset]
+        return [xOffset, yOffset]
     }
 
     const getLabelTransform = (cssOffset: [number, number]) => {
@@ -65,18 +65,18 @@
     }
 
     // 重叠计算
-	const isOverlap = (cssOffset: [number, number], widthOffset: number): boolean => {
+    const isOverlap = (cssOffset: [number, number], widthOffset: number): boolean => {
         if (cssOffsetLists.length === 0) {
             return false
         }
 
         const hasOverlapPoint = cssOffsetLists.find(item => (
             (cssOffset[0] >= item[0] - widthOffset && cssOffset[0] <= item[0] + widthOffset)
-	        || (cssOffset[1] >= item[1] - cssHeight && cssOffset[1] <= item[1] + cssHeight)
+            || (cssOffset[1] >= item[1] - cssHeight && cssOffset[1] <= item[1] + cssHeight)
         ))
 
-		return !!hasOverlapPoint
-	}
+        return !!hasOverlapPoint
+    }
 
     function getStrokeLength(itemSpaceHeight: number, type: DISPLAY_STRATEGY_TYPE) {
         switch (type) {
@@ -86,7 +86,7 @@
                 return Math.ceil(-38.9 * itemSpaceHeight + 130)
             case DISPLAY_STRATEGY_TYPE.LARGE:
                 return Math.ceil(-44.44 * itemSpaceHeight + 140)
-	        case DISPLAY_STRATEGY_TYPE.EXTRA_LARGE:
+            case DISPLAY_STRATEGY_TYPE.EXTRA_LARGE:
                 return Math.ceil(-92.59 * itemSpaceHeight + 300)
         }
     }
@@ -95,11 +95,11 @@
         // 计算位置 & 可见性
         const newLabels = labels.map(label => {
             const cssOffset = getLabelCssOffset(five, label)
-	        const curLabelWidth = label.name.length * basicWidth
-			const strokeLength = getStrokeLength(label.modelPosition[1], displayStrategyType)
+            const curLabelWidth = label.name.length * basicWidth
+            const strokeLength = getStrokeLength(label.modelPosition[1], displayStrategyType)
 
-	        // 是否加入碰撞检测
-	        const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : true
+            // 是否加入碰撞检测
+            const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : true
             const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
 
             if (!visible) return { ...label, visible }
@@ -146,7 +146,7 @@
         onItemLabelUpdate()
         addResizeListener()
 
-	    five.on('cameraUpdate', handleCameraUpdateCallback)
+        five.on('cameraUpdate', handleCameraUpdateCallback)
     })
 
     const handleCameraUpdate = debounce(() => {
@@ -196,7 +196,8 @@
 
 </script>
 
-<div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}" style:opacity="{itemsVisible ? 1 : 0}">
+<div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}"
+     style:opacity="{itemsVisible ? 1 : 0}">
 	{#each renderItemLabels as itemLabelItem (itemLabelItem.id)}
 		<ItemLabelItem itemLabel="{itemLabelItem}" hooks="{hooks}" />
 	{/each}

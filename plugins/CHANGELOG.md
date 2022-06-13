@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2.0.0-alpha.26
+- 1.fix: ModelRoomLabelPlugin - 修复渲染区域大小改变时，标签位置没有更新
+- 2.pref: ModelRoomLabelPlugin - 优化渲染逻辑
+
+## 2.0.0-alpha.25
+- 1.refactor: 恢复发版
+
 ## 2.0.0-alpha.24
 - 1.feat: PanoRulerPlugin 支持数据 reload。
 
