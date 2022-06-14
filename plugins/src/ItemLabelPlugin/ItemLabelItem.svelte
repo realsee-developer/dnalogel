@@ -6,11 +6,11 @@
 
     export let itemLabel: ItemLabel
     export let hooks: Subscribe<PluginEvent>
+    export let anchorEnabled: boolean
 
-    let image = 'https://vrlab-public.ljcdn.com/common/file/web/ea031fa5-ad82-46b3-86c8-7b20ec1e635a.jpg'
+    const defaultIcon = '//vrlab-public.ljcdn.com/common/file/web/c8591aaa-e62b-4e31-8fed-671483ace37f.svg\n'
 
     function onClick() {
-        console.log('__onclick___: ', itemLabel)
         hooks.emit('onLabelClick', itemLabel)
     }
 
@@ -20,19 +20,19 @@
      style:z-index="{itemLabel.zIndex}"
      style:transform="{itemLabel.transform}"
 >
-	<div class="item-label-item__text-wrap"
+	<div class={classNames("item-label-item__text-wrap", { visible: itemLabel.visible })}
 	     style="bottom: {`${itemLabel.strokeLength}px`}"
 	     on:click="{onClick}"
 	>
 		<div class="icon-wrap">
-			<div class="icon" style={`background-image: url(${image})`}></div>
+			<div class="icon" style={`background-image: url(${itemLabel.icon ?? defaultIcon})`}></div>
 		</div>
 		<div class="item-label-text">
-			<span class="item-model">{itemLabel.id}</span>
+			<span class="item-model">{itemLabel.code ?? itemLabel.id}</span>
 			<span class="item-name">{itemLabel.name}</span>
 		</div>
 	</div>
-	<div class="item-label-item__bar"
+	<div class={classNames("item-label-item__bar", { anchor: anchorEnabled })}
 	     style="height: {`${itemLabel.strokeLength}px`}">
 	</div>
 </div>
@@ -60,8 +60,7 @@
         width: max-content;
         max-width: 473px;
         min-height: 92px;
-        pointer-events: all;
-        /*background-color: rgba(0, 0, 0, .5);*/
+        pointer-events: none;
         background-image: linear-gradient(269deg, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.60) 49%, rgba(31,38,46,0.70) 100%);
         border: 1.5px solid rgba(255, 255, 255, .65);
         border-radius: 3px;
@@ -72,6 +71,10 @@
         align-items: center;
         box-sizing: border-box;
         overflow: hidden;
+    }
+
+    .item-label-item__text-wrap.visible {
+	    pointer-events: all;
     }
 
     .icon-wrap {
@@ -91,6 +94,8 @@
     }
 
     .item-label-text {
+	    margin-left: 12px;
+        padding-left: 12px;
         min-height: 68px;
         height: auto;
         display: flex;
@@ -101,7 +106,7 @@
         border-top: solid rgba(255, 255, 255, .2) 0;
         border-right: solid rgba(255, 255, 255, .2) 0;
         border-bottom: solid rgba(255, 255, 255, .2) 0;
-        padding-left: 12px;
+	    pointer-events: auto;
     }
 
     .item-model {
@@ -125,6 +130,20 @@
         width: 3px;
         background-image: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
         box-shadow: 0 2px 8px 0 rgba(0,0,0,0.20);
+	    pointer-events: none;
+    }
+
+    .item-label-item__bar.anchor:after {
+	    content: '';
+	    position: absolute;
+	    bottom: 0;
+	    width: 24px;
+	    height: 24px;
+	    background-image: url("//vrlab-public.ljcdn.com/common/file/web/67e7a198-28c9-47dc-879b-507bd3ae600c.png ");
+	    background-position: center;
+	    background-size: contain;
+        transform: translate(-10.5px, 50%);
+
     }
 
     @keyframes fadeIn {

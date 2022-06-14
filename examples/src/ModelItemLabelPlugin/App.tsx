@@ -1,4 +1,4 @@
-import { ModelItemLabelPlugin } from "@realsee/dnalogel";
+import { ModelItemLabelPlugin } from "@realsee/dnalogel/libs/ModelItemLabelPlugin";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import * as React from "react";
@@ -7,7 +7,7 @@ import PluginShow from "./PluginShow";
 import { Box } from "@mui/material";
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel";
+import { DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ModelItemLabelPlugin";
 
 const defaultPluginParam = {
     modelOcclusionEnable: false,

@@ -1,8 +1,8 @@
-import type { Subscribe } from "@realsee/five";
+import type { Mode, Subscribe } from "@realsee/five";
 import type { PluginEvent } from "./events.type";
 import type ItemLabelComponent from './ItemLabelComponent.svelte'
 
-export enum DISPLAY_STRATEGY_TYPE {
+export enum ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE {
     SMALL= 'small',
     MIDLLE= 'middle',
     LARGE= 'large',
@@ -11,19 +11,18 @@ export enum DISPLAY_STRATEGY_TYPE {
 // 插件入口参数
 export interface  ItemLabelPluginParametersType {
     modelOcclusionEnable?: boolean
-    displayStrategyType?: Partial<DISPLAY_STRATEGY_TYPE>
+    displayStrategyType?: Partial<ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE>
 }
 
 // 插件 load 数据
 export interface  ItemLabelPluginData {
     item_labels: Readonly<{
         id: string,
-        library: string,
+        code: string,
         name: string
-        size: [number, number, number]
-        center: [number, number, number]
         position: [number, number, number]
-        type: string[],
+        type?: string[],
+        icon?: string,
         [key: string]: any
     }>[]
 }
@@ -31,14 +30,12 @@ export interface  ItemLabelPluginData {
 // 插件内部 render 数据
 export interface ItemLabel {
     id: string
-    library: string
+    code: string
     name: string
-    size: [number, number, number]
-    center: [number, number, number]
     position: [number, number, number]
-    type: string[]
-    // 实际展示 position
     modelPosition: [number, number, number]
+    type?: string[]
+    icon?: string,
     [key: string]: any
 }
 
@@ -53,7 +50,7 @@ export interface  ItemLabelPluginExportReturnsType {
 }
 
 // 插件状态
-export interface  ItemLabelPluginState {
+export interface ItemLabelPluginState {
     container: HTMLDivElement
     data:  ItemLabelPluginData | null
     enabled: boolean
@@ -63,5 +60,5 @@ export interface  ItemLabelPluginState {
     app?: ItemLabelComponent | undefined
     hooks: Subscribe<PluginEvent>
     modelOcclusionEnable: boolean
-    displayStrategyType: Partial<DISPLAY_STRATEGY_TYPE>
+    displayStrategyType: Partial<ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE>
 }

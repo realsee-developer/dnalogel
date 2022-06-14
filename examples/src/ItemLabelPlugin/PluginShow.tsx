@@ -315,6 +315,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 //     "roomName": "\u5ba2\u5385"
                 // },
                 {
+                    "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
                     "library": 6219,
@@ -3154,6 +3155,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
         {
             "item_labels": [
                 {
+                    "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
                     "library": 53062,
@@ -3426,7 +3428,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
         if (!modelItemLabels) return
         five.plugins.itemLabelPlugin.load(modelItemLabels[labelType])
         five.plugins.itemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
-            console.log('🐶---🐶： ', itemLabel)
+            console.log('Realsee itemLabelPlugin click return data： ', itemLabel)
         })
         // setFiveState({ mode: Five.Mode.Floorplan })
         // addHelper(7.04986,

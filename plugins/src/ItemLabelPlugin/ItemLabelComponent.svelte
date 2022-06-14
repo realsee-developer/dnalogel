@@ -1,7 +1,8 @@
 <script lang="ts">
-    import type { Five, Subscribe } from '@realsee/five'
+    import type { Subscribe } from '@realsee/five'
+    import { Five } from '@realsee/five'
     import type { ItemLabel } from './typings'
-    import { DISPLAY_STRATEGY_TYPE } from "./typings";
+    import { ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from "./typings";
     import { beforeUpdate, onDestroy, onMount } from "svelte";
     import * as THREE from 'three'
     import ItemLabelItem from './ItemLabelItem.svelte'
@@ -15,7 +16,7 @@
     export let itemLabels: ItemLabel[]
     export let wrapper: HTMLElement | null
     export let hooks: Subscribe<PluginEvent>
-    export let displayStrategyType: DISPLAY_STRATEGY_TYPE
+    export let displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE
 
     let curItemLabels: ItemLabel[] = null
     let renderItemLabels: ItemLabel[] = null
@@ -78,15 +79,15 @@
         return !!hasOverlapPoint
     }
 
-    function getStrokeLength(itemSpaceHeight: number, type: DISPLAY_STRATEGY_TYPE) {
+    function getStrokeLength(itemSpaceHeight: number, type: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE) {
         switch (type) {
-            case DISPLAY_STRATEGY_TYPE.SMALL:
+            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.SMALL:
                 return Math.ceil(-27.78 * itemSpaceHeight + 85)
-            case DISPLAY_STRATEGY_TYPE.MIDLLE:
+            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.MIDLLE:
                 return Math.ceil(-38.9 * itemSpaceHeight + 130)
-            case DISPLAY_STRATEGY_TYPE.LARGE:
+            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE:
                 return Math.ceil(-44.44 * itemSpaceHeight + 140)
-            case DISPLAY_STRATEGY_TYPE.EXTRA_LARGE:
+            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.EXTRA_LARGE:
                 return Math.ceil(-92.59 * itemSpaceHeight + 300)
         }
     }
@@ -100,7 +101,9 @@
 
             // 是否加入碰撞检测
             const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : true
-            const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
+            const visible = naturalVisible
+	        // 关掉重叠计算
+            // const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
 
             if (!visible) return { ...label, visible }
 
@@ -196,7 +199,11 @@
 <div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}"
      style:opacity="{itemsVisible ? 1 : 0}">
 	{#each renderItemLabels as itemLabelItem (itemLabelItem.id)}
-		<ItemLabelItem itemLabel="{itemLabelItem}" hooks="{hooks}" />
+		<ItemLabelItem
+				itemLabel="{itemLabelItem}"
+				hooks="{hooks}"
+				anchorEnabled="{five.currentMode === Five.Mode.Panorama}"
+		/>
 	{/each}
 </div>
 

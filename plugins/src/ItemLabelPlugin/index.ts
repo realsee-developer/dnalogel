@@ -14,3 +14,7 @@ export type {
     ItemLabelPluginData,
     ItemLabelPluginExportReturnsType
 } from './typings'
+
+export {
+    ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE
+} from './typings'

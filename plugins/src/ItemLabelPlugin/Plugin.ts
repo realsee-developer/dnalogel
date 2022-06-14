@@ -7,7 +7,7 @@ import {
     ItemLabelPluginData,
     ItemLabelPluginExportReturnsType,
     ItemLabelPluginParametersType,
-    DISPLAY_STRATEGY_TYPE
+    ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE
 } from "./typings";
 import { parseItemLabelPluginData } from "./utils/parseData";
 
@@ -27,10 +27,10 @@ export const Plugin: FivePlugin<ItemLabelPluginParametersType,
         app: undefined,
         hooks: new Subscribe<PluginEvent>(),
         modelOcclusionEnable: params?.modelOcclusionEnable ?? true,
-        displayStrategyType: params?.displayStrategyType ?? DISPLAY_STRATEGY_TYPE.SMALL,
+        displayStrategyType: params?.displayStrategyType ?? ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.SMALL,
     }
 
-    pluginState.container.setAttribute('class', 'model-item-label-plugin-container')
+    pluginState.container.setAttribute('class', 'item-label-plugin-container')
     pluginState.container.style.cssText = `
         position: absolute;
         left: 0;

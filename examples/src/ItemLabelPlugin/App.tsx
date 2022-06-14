@@ -1,4 +1,4 @@
-import { ItemLabelPlugin } from "@realsee/dnalogel/libs/ItemLabelPlugin";
+import { ItemLabelPlugin, ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ItemLabelPlugin";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import * as React from "react";
@@ -10,6 +10,7 @@ import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
     modelOcclusionEnable: true,
+    displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()
