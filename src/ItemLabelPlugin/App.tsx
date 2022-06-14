@@ -1,4 +1,4 @@
-import { ModelItemLabelPlugin } from "@realsee/dnalogel/libs/ModelItemLabelPlugin";
+import { ItemLabelPlugin, ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ItemLabelPlugin";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import * as React from "react";
@@ -7,11 +7,10 @@ import PluginShow from "./PluginShow";
 import { Box } from "@mui/material";
 import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ModelItemLabelPlugin";
 
 const defaultPluginParam = {
-    modelOcclusionEnable: false,
-    displayStrategyType: DISPLAY_STRATEGY_TYPE.MIDLLE
+    modelOcclusionEnable: true,
+    displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()
@@ -24,8 +23,8 @@ const FiveProvider = createFiveProvider({
     textureOptions: { size: 512 }, // 贴图默认分辨率
     plugins: [
         [
-            ModelItemLabelPlugin,
-            'modelItemLabelPlugin',
+            ItemLabelPlugin,
+            'itemLabelPlugin',
             { ...pluginParams }
         ]
     ]
