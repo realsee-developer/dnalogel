@@ -31,6 +31,7 @@ export default defineConfig({
         PanoSpatialTagPlugin: resolve(__dirname, './src/PanoSpatialTagPlugin/index.html'),
         ModelItemLabelPlugin: resolve(__dirname, './src/ModelItemLabelPlugin/index.html'),
         ModelTVVideoPlugin: resolve(__dirname, './src/ModelTVVideoPlugin/index.html'),
+        ItemLabelPlugin: resolve(__dirname, './src/ItemLabelPlugin/index.html'),
       },
       output: {
         chunkFileNames: 'static/js/[name]-[hash].js',
