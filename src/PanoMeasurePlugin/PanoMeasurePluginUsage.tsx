@@ -37,11 +37,12 @@ const PanoMeasurePluginUsage = (props: PanoRulerPluginUsePropTypes) => {
         }
     }, [])
 
-    useFiveEventCallback('modelLoaded', async () => {
-        panoMeasurePlugin.enable()
-    })
+    // useFiveEventCallback('modelLoaded', async () => {
+    //     panoMeasurePlugin.enable()
+    // })
 
-    const handleMeasureEnable = () => {
+    const handleMeasureEnable = (isMobile: boolean) => {
+        panoMeasurePlugin.changeIsMobile(isMobile)
         panoMeasurePlugin.enable()
         setMeasureEnableBtn(false)
     }
@@ -49,9 +50,14 @@ const PanoMeasurePluginUsage = (props: PanoRulerPluginUsePropTypes) => {
     return (
         <Box>
             <Paper sx={{ display: `${measureEnableBtn ? 'block' : 'none'}`, position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
-                <Button onClick={handleMeasureEnable}>
-                    开启测量工具
-                </Button>
+                <ButtonGroup size="large" aria-label="large button group" orientation="vertical" >
+                    <Button onClick={()=>{handleMeasureEnable(false)}}>
+                        开启测量工具(pc端)
+                    </Button>
+                    <Button onClick={()=>{handleMeasureEnable(true)}}>
+                        开启测量工具(移动端)
+                    </Button>
+                </ButtonGroup>
             </Paper>
         </Box>
     )
