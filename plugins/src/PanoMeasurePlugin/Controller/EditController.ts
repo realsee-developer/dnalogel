@@ -35,7 +35,7 @@ export default class EditController extends BaseController {
     const position = this.updateMouseGroup(intersection, mesh).position
     this.pressPoint?.position.copy(position)
     this.updateDashed()
-    requestAnimationFrame(() => this.magnifier.updateWithPoint(this.mouseGroup.position))
+    requestAnimationFrame(() => this.magnifier.renderWithPoint(this.mouseGroup.position))
     this.five.needsRender = true
   }, 20)
 
@@ -130,12 +130,12 @@ export default class EditController extends BaseController {
     // ============ revoke dashed ============
     this.updateDashed()
     // ============ revoke magnifier ============
-    this.magnifier.dispose()
+    this.magnifier.remove()
     this.five.needsRender = true
   }
 
   private onMouseLeave = () => {
-    this.magnifier.dispose()
+    this.magnifier.remove()
     this.group.remove(this.mouseGroup)
     this.hasAppendMouseGroup = false
 
@@ -202,7 +202,7 @@ export default class EditController extends BaseController {
     }
     this.pressPoint = undefined
     this.hasAppendMouseGroup = false
-    this.magnifier.dispose()
+    this.magnifier.remove()
     this.group.remove(this.mouseGroup)
     this.updateDashed()
     this.five.needsRender = true
@@ -215,7 +215,7 @@ export default class EditController extends BaseController {
   private onWantsToMoveToPano = () => false
 
   /** 存在长按点时不能移动全景 */
-  private onWantsPanGesture = (): false | void => (this.pressPoint ? false : undefined)
+  private onWantsPanGesture = (): false | undefined => (this.pressPoint ? false : undefined)
 
   /** 移动全景时更新 distanceItem 在屏幕上的位置 */
   private onCameraUpdate = () => {

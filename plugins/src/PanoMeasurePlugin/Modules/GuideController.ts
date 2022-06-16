@@ -1,5 +1,5 @@
 import type MeasureController from '../Controller'
-import type { PluginEvent } from '../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../typings/event.type'
 
 export interface GuideControllerParams {
   container: Element
@@ -64,7 +64,7 @@ export class GuideController {
     container.appendChild(textDom)
   }
 
-  private onModelChange: PluginEvent['modeChange'] = (mode) => {
+  private onModelChange: PanoMeasurePluginEvent['modeChange'] = (mode) => {
     if (mode === 'Watch') {
       this.textDom.innerText = ``
       return
@@ -72,7 +72,7 @@ export class GuideController {
     this.textDom.innerText = `请选择第一个测量点，Esc或单击鼠标右键可取消选择`
   }
 
-  private anchorChange: PluginEvent['anchorChange'] = (anchor) => {
+  private anchorChange: PanoMeasurePluginEvent['anchorChange'] = (anchor) => {
     if (!this.hasAnchor && !!anchor) {
       this.hasAnchor = true
       this.textDom.innerText = `选择下一个测量点，Esc或单击鼠标右键取消选择`
@@ -82,7 +82,7 @@ export class GuideController {
     }
   }
 
-  private onEditedLineChange: PluginEvent['editedLineChange'] = (lines) => {
+  private onEditedLineChange: PanoMeasurePluginEvent['editedLineChange'] = (lines) => {
     if (lines.length === 1) {
       this.textDom.innerText = `可以连续选择测量点，或点击下方“完成”结束测量（Esc取消，Command+S保存）`
     }

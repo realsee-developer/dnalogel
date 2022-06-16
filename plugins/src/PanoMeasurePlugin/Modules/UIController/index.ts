@@ -1,5 +1,6 @@
 import type MeasureController from '../../Controller'
 import htmlString from './HTML'
+import mobileHTMLString from './mobileHTML'
 import {
   uiWrapperStyle,
   operatingSpaceStyle,
@@ -10,24 +11,31 @@ import {
   textStyle,
 } from './style'
 import { MainBtnController } from './MainBtnController'
+import { NewMainBtnController } from './NewMainBtnController'
 import Revoke from './Revoke'
+import type { OpenParameter } from '../../typings/data'
 
 export interface UIControllerParams {
   container: Element
+  openParams?: OpenParameter
 }
+
+export type UIMode = 'pc' | 'mobile'
 
 export class UIController {
   private revoke?: Revoke
   private container: HTMLDivElement
-  private mainController?: MainBtnController
+  private mainController?: MainBtnController | NewMainBtnController
   private disposers: (() => unknown)[] = []
   private measureController: MeasureController
+  private mode: UIMode
 
   constructor(measureController: MeasureController, params: UIControllerParams) {
     this.measureController = measureController
+    this.mode = params.openParams?.isMobile ? 'mobile' : 'pc'
     this.container = document.createElement('div')
-    this.container.innerHTML = htmlString
-    this.container.classList.add('fpm__ui-controller')
+    this.container.innerHTML = params.openParams?.isMobile ? mobileHTMLString : htmlString
+    this.container.classList.add('fpm__ui-controller', this.mode)
     params.container.appendChild(this.container)
 
     const textDoms = this.container.querySelectorAll<HTMLSpanElement>('.fpm__text')
@@ -51,8 +59,12 @@ export class UIController {
     this.container.style.display = 'block'
     this.container.style.opacity = '1'
     this.container.style.transform = 'translate(0, 0)'
-    this.revoke = new Revoke(this.measureController, this.container)
-    this.mainController = new MainBtnController(this.measureController, this.container)
+    if (this.mode === 'pc') {
+      this.revoke = new Revoke(this.measureController, this.container)
+      this.mainController = new MainBtnController(this.measureController, this.container)
+    } else {
+      this.mainController = new NewMainBtnController(this.measureController, this.container)
+    }
     this.disposers.push(this.handleExit())
     return this
   }
@@ -61,7 +73,7 @@ export class UIController {
     this.container.style.display = 'none'
     this.container.style.opacity = '0'
     this.container.style.transform = 'translate(0, 10px)'
-    this.revoke?.dispose()
+    this.mode === 'pc' && this.revoke?.dispose()
     this.mainController?.dispose()
     this.disposers.forEach((disposer) => disposer())
     this.disposers = []
@@ -73,8 +85,10 @@ export class UIController {
     const exitItem = this.container.querySelector<HTMLButtonElement>('.fpm__exit')
     if (!exitItem || !exitIcon) throw new Error('cannot find dom')
 
-    Object.assign(exitItem.style, exitItemStyle)
-    Object.assign(exitIcon?.style, exitIconStyle)
+    if (this.mode === 'pc') {
+      Object.assign(exitItem.style, exitItemStyle)
+      Object.assign(exitIcon?.style, exitIconStyle)
+    }
 
     const onMouseEnter = () => (exitItem.style.opacity = '1')
     const onMouseLeave = () => (exitItem.style.opacity = '0.7')

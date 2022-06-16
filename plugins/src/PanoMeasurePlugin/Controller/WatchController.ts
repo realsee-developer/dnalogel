@@ -24,7 +24,10 @@ export default class WatchController extends BaseController {
 
   public constructor(params: IControllerParams) {
     super(params)
-    this.deleteDom = new DeleteDom(this.five, { onClick: this.deleteDomClickCallback }).appendTo(this.container)
+    this.deleteDom = new DeleteDom(this.five, {
+      onClick: this.deleteDomClickCallback,
+      cancelDelete: this.cancelDeleteClickCallback,
+    }).appendTo(this.container)
     this.model.lines.forEach((line) => {
       line.distanceItem.appendTo(this.container)
       line.distanceItem.update(this.five)
@@ -40,6 +43,7 @@ export default class WatchController extends BaseController {
       hammer.on('panstart', this.onPanStart)
       hammer.on('panend', this.onPanEnd)
     }
+
     this.model.hook.on('lineRemoved', this.lineRemoved)
     this.five.on('cameraUpdate', this.onCameraUpdate)
     this.five.on('wantsTapGesture', this.wantsTapGesture)
@@ -109,7 +113,7 @@ export default class WatchController extends BaseController {
     this.highlightLines(this.editPointState.associatedLines)
     this.editPointState = undefined
 
-    this.magnifier.dispose()
+    this.magnifier.remove()
     this.group.remove(this.mouseGroup)
   }
 
@@ -135,7 +139,7 @@ export default class WatchController extends BaseController {
       line.mesh.setMaterial({ dashed: true })
     })
     this.updateDistanceUI()
-    this.magnifier.updateWithPoint(intersection.point)
+    this.magnifier.renderWithPoint(intersection.point)
     this.mouseGroup.position.copy(intersection.point)
     if (mesh) {
       this.mouseGroup.quaternion.copy(mesh.quaternion)
@@ -236,5 +240,9 @@ export default class WatchController extends BaseController {
     // this.clearHighlightLines()
     // this.highlightedLines.forEach((line) => this.model.removeLine(line))
     this.deleteDom.setLines([]).hide()
+  }
+
+  private cancelDeleteClickCallback = () => {
+    this.clearHighlightLines()
   }
 }

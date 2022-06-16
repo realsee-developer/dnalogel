@@ -3,9 +3,10 @@ import type Magnifier from '../Modules/Magnifier'
 import type FiveHelper from '../Modules/FiveHelper'
 import type { Group } from 'three'
 import type { Model } from '../Model'
-import type { PluginEvent } from '../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../typings/event.type'
 import type { UserDistanceItem } from '../utils/distanceDom'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
+import type { OpenParameter } from '../typings/data'
 import { preventDefault } from '../utils/ironbox'
 
 export interface IControllerParams {
@@ -16,7 +17,8 @@ export interface IControllerParams {
   container: Element
   magnifier: Magnifier
   fiveHelper: FiveHelper
-  hook: Subscribe<PluginEvent>
+  openParams: OpenParameter
+  hook: Subscribe<PanoMeasurePluginEvent>
   userDistanceItemCreator?: () => UserDistanceItem
 }
 
@@ -25,6 +27,7 @@ export default abstract class BaseController {
   protected group: Group
   protected model: Model
   protected disposed = false
+  protected isMobile: boolean
   protected mouseGroup: Group
   protected container: Element
   protected fiveHelper: FiveHelper
@@ -40,6 +43,7 @@ export default abstract class BaseController {
     this.magnifier = params.magnifier
     this.container = params.container
     this.fiveHelper = params.fiveHelper
+    this.isMobile = params.openParams?.isMobile ?? false
     this.userDistanceItemCreator = params.userDistanceItemCreator
     // ==================== Groups ====================
     this.group = params.group
@@ -83,7 +87,7 @@ export default abstract class BaseController {
 
   protected dispose() {
     this.disposed = true
-    this.magnifier.dispose()
+    this.magnifier.remove()
     this.model.lines.forEach((line) => this.removeLine(line))
 
     const fiveElement = this.five.getElement()

@@ -1,7 +1,7 @@
 import type MeasureController from '../../Controller'
-import type { PluginEvent } from '../../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../../typings/event.type'
 import TWEEN from '@tweenjs/tween.js'
-import { mainIconStyle as mainIconStyle, mainItemStyle as mainItemStyle } from './style'
+import { mainIconStyle, mainItemStyle } from './style'
 import { BetterTween, tweenProgress } from '../../../shared-utils/animationFrame/BetterTween'
 import { MAIN_NORMAL_PATH, MAIN_DONE_PATH, MAIN_MOUSE_ENTER_FILL, MAIN_MOUSE_LEAVE_FILL } from './HTML'
 
@@ -101,7 +101,7 @@ export class MainBtnController {
     mode === 'Watch' ? this.measureController.changeMode('Edit') : this.measureController.save().changeMode('Watch')
   }
 
-  private editedLineChangeHandler: PluginEvent['editedLineChange'] = (lines) => {
+  private editedLineChangeHandler: PanoMeasurePluginEvent['editedLineChange'] = (lines) => {
     // 线的数量大于 1 时，没有状态的变化
     if (lines.length > 1) return
     // 因为撤销导致的状态变更 -> 取消
@@ -109,7 +109,7 @@ export class MainBtnController {
     this.change2Done()
   }
 
-  private modeChangeHandler: PluginEvent['modeChange'] = (mode) => {
+  private modeChangeHandler: PanoMeasurePluginEvent['modeChange'] = (mode) => {
     mode === 'Watch' ? this.change2Add() : this.change2Cancel()
   }
 }

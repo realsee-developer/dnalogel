@@ -9,9 +9,6 @@
     export let anchorEnabled: boolean
     export let onIconClick: (itemLabel: ItemLabel) => void
 
-
-    console.log('anchorEnabled: ', anchorEnabled)
-
     const defaultIcon = '//vrlab-public.ljcdn.com/common/file/web/c8591aaa-e62b-4e31-8fed-671483ace37f.svg\n'
 
     function onClick() {

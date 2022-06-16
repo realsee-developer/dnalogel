@@ -21,15 +21,16 @@ export interface IDistanceItemProps {
 
 function creatContentDom() {
   const contentDom = document.createElement('div')
-  contentDom.style.height = '24px'
-  contentDom.style.width = '62px'
-  contentDom.style.lineHeight = '24px'
+  contentDom.setAttribute('style', `backdrop-filter: blur(4px);-webkit-backdrop-filter: blur(4px);`)
+  contentDom.style.padding = '3px 6px'
+  contentDom.style.lineHeight = '1'
   contentDom.style.textAlign = 'center'
   contentDom.style.transform = 'translate(-50%, -50%)'
-  contentDom.style.borderRadius = '12px'
+  contentDom.style.borderRadius = '100px'
   contentDom.style.fontSize = '14px'
-  contentDom.style.color = '#000000'
-  contentDom.style.background = '#fff'
+  contentDom.style.color = '#fff'
+  contentDom.style.background = 'rgba(195,195,195,0.70)'
+  contentDom.style.border = '0.5px solid rgba(255,255,255,0.6)'
   contentDom.style.pointerEvents = 'all'
   contentDom.style.cursor = 'pointer'
 
@@ -45,25 +46,27 @@ function createContainerDom(line: Line) {
   containerDom.style.left = '0'
   containerDom.style.top = '0'
   containerDom.style.transform = 'translate3d(0, 0, 0)'
+  containerDom.style.transformOrigin = 'left top'
   return containerDom
 }
 
 export function creatDistanceItem(props: IDistanceItemProps) {
   function handleClick() {
-    highlight()
+    // 线被选中时才高亮，外部手动触发高亮
+    // highlight()
     props.clickCallback?.(distanceItem)
   }
 
   function highlight() {
     if (userDistanceItem) return userDistanceItem.highlight()
-    contentDom.style.border = '1px solid #538FFF'
-    contentDom.style.color = '#538FFF'
+    contentDom.style.border = '0.5px solid #95AEFF'
+    contentDom.style.background = 'linear-gradient(90deg, #95AEFF 0%, #6386FF 100%)'
   }
 
   function unHighlight() {
     if (userDistanceItem) return userDistanceItem.unHighlight()
-    contentDom.style.border = 'none'
-    contentDom.style.color = '#000'
+    contentDom.style.border = '0.5px solid rgba(255,255,255,0.6)'
+    contentDom.style.background = 'rgba(195,195,195,0.70)'
   }
 
   function update(five: Five) {
@@ -76,13 +79,13 @@ export function creatDistanceItem(props: IDistanceItemProps) {
     const ndcStartPosition = startPoint.position.clone().project(five.camera)
     const ndcEndPosition = endPoint.position.clone().project(five.camera)
     const ndcDomPosition = ndcStartPosition.clone().lerp(ndcEndPosition, 0.5)
+    const screenStartPosition = new Vector2(ndcStartPosition.x * screenWidth, ndcStartPosition.y * screenHeight)
+    const screenEndPosition = new Vector2(ndcEndPosition.x * screenWidth, ndcEndPosition.y * screenHeight)
     const visible = (() => {
       // 对于超过近平面和远平面的点，计算会有问题
       if (Math.abs(ndcStartPosition.z) > 1 || Math.abs(ndcEndPosition.z) > 1) return false
       if (!isNDCPointInScreen(ndcStartPosition) && !isNDCPointInScreen(ndcEndPosition)) return false
       if (!isNDCPointInScreen(ndcDomPosition)) return false
-      const screenStartPosition = new Vector2(ndcStartPosition.x * screenWidth, ndcStartPosition.y * screenHeight)
-      const screenEndPosition = new Vector2(ndcEndPosition.x * screenWidth, ndcEndPosition.y * screenHeight)
       if (screenStartPosition.distanceTo(screenEndPosition) < 20) return false
       return true
     })()
@@ -91,10 +94,13 @@ export function creatDistanceItem(props: IDistanceItemProps) {
       containerDom.style.pointerEvents = 'none'
       return
     }
+
     // 更新 UI
     const left = ((ndcDomPosition.x + 1) / 2) * screenWidth
     const top = (-(ndcDomPosition.y - 1) / 2) * screenHeight
-    containerDom.style.transform = `translate3d(${left}px, ${top}px, 10px)`
+    const rad = Math.atan((screenStartPosition.y - screenEndPosition.y) / (screenStartPosition.x - screenEndPosition.x))
+    const deg = -(rad * 180) / Math.PI
+    containerDom.style.transform = `translate(${left}px, ${top}px) rotate(${deg}deg)`
     containerDom.style.opacity = '1'
     containerDom.style.pointerEvents = 'all'
     if (userDistanceItem) {

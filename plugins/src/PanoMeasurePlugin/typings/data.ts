@@ -31,3 +31,8 @@ export interface PluginData {
   points: PointJson[]
   polylines: PolylineJson[]
 }
+
+/** 开放可配置参数 */
+export interface OpenParameter {
+  isMobile?: boolean // true为移动端模式，false为pc端
+}
