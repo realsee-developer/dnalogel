@@ -12,7 +12,6 @@ import noop from '../../../shared-utils/noop'
 import calculateThreeMouse from '../../utils/calculateThreeMouse'
 import { getMouseGroup } from '../../utils/mouseGroup'
 
-
 export interface RangePieceControllerParams {
   container: Element
   five: Five
@@ -28,6 +27,7 @@ export default class RangePieceController {
   private five: Five
   private group: Group
   private mouseGroup: Group
+  private hasAppendMouseGroup = false
   private fiveHelper: FiveHelper
   private hook: Subscribe<PluginEvent>
   private content: HTMLElement | null
@@ -54,7 +54,6 @@ export default class RangePieceController {
       this.content.style.transform = `matrix3d(${this.pieceStyl.matrix3d.toString()}) scale(${this.pieceStyl.scale})`
       this.content.style.opacity = `${this.pieceStyl.opacity}`
     }
-    this.group.add(this.mouseGroup)
     params.container.append(this.container)
 
     this.intersectMesh = new Mesh(
@@ -70,11 +69,12 @@ export default class RangePieceController {
 
   public dispose() {
     this.container.removeEventListener('animationend', this.computedCenterMouseXY)
-    this.five.off('cameraDirectionUpdate', this.onCameraDirectionUpdate)
+    this.five.off('cameraUpdate', this.onCameraDirectionUpdate)
     this.hook.off('willChangeState', this.onWillChangeState)
     this.container.remove()
     this.group.remove(this.mouseGroup)
     this.mouseGroup.remove()
+    this.hasAppendMouseGroup = false
     this.five.scene.remove(this.intersectMesh)
   }
 
@@ -91,10 +91,10 @@ export default class RangePieceController {
   private onWillChangeState: PluginEvent['willChangeState'] = (state, newState) => {
     this.dotAnimation()
     const point = this.getIntersection()?.point
-    if(!point) return
-    if(newState === 'editing'){
+    if (!point) return
+    if (newState === 'editing') {
       this.hook.emit('getStartPoint', new Point(point))
-    }else{
+    } else {
       this.hook.emit('getEndPoint', new Point(point))
     }
   }
@@ -143,9 +143,10 @@ export default class RangePieceController {
     const cameraPos = this.five.camera.position
     let distance = vector.distanceTo(cameraPos)
     const maxDis = 4
-    const minDis = 0
+    const minDis = 1
     if (distance > maxDis) distance = maxDis
-    const scale = (-0.6 / (maxDis - minDis)) * distance + 1
+    if (distance < minDis) distance = minDis
+    const scale = (-0.51 / (maxDis - minDis)) * distance + 1
     return scale
   }
 
@@ -181,12 +182,13 @@ export default class RangePieceController {
   }
 
   private updateMouseGroup(intersection: Intersection, mesh?: IntersectMeshInterface) {
+    if (!this.hasAppendMouseGroup) {
+      this.group.add(this.mouseGroup)
+      this.hasAppendMouseGroup = true
+      const aimRef = this.container.querySelector<HTMLElement>('.range-piece__aim')
+      if (aimRef) aimRef.style.opacity = '0'
+    }
     if (!intersection) return this.mouseGroup
-    // ============ update mouseGroup position ============
-    const adsorbentPoint = this.fiveHelper.getAdsorbentPoint(intersection)
-    console.log('-->adsorbentPoint',adsorbentPoint)
-    // adsorbentPoint和intersection.point不一样，用intersection.point和piece保持一致
-    const viewPosition = adsorbentPoint ? adsorbentPoint : intersection.point
     this.mouseGroup.position.copy(intersection.point)
     // ============ update mouseGroup quaternion ============
     if (mesh) {
@@ -201,4 +203,3 @@ export default class RangePieceController {
     return this.mouseGroup
   }
 }
-

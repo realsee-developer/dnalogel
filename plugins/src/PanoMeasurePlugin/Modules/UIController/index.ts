@@ -20,7 +20,7 @@ export interface UIControllerParams {
   openParams?: OpenParameter
 }
 
-export type UIMode = 'pc' | 'moblie'
+export type UIMode = 'pc' | 'mobile'
 
 export class UIController {
   private revoke?: Revoke
@@ -32,7 +32,7 @@ export class UIController {
 
   constructor(measureController: MeasureController, params: UIControllerParams) {
     this.measureController = measureController
-    this.mode = params.openParams?.isMobile ? 'moblie' : 'pc'
+    this.mode = params.openParams?.isMobile ? 'mobile' : 'pc'
     this.container = document.createElement('div')
     this.container.innerHTML = params.openParams?.isMobile ? mobileHTMLString : htmlString
     this.container.classList.add('fpm__ui-controller', this.mode)

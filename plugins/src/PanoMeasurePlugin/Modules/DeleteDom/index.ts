@@ -12,12 +12,12 @@ export default class DeleteDom {
   private lines: Line[] = []
   private points: Point[] = []
   private onClick: (e: MouseEvent) => void
-  private cancelDelete: (e: MouseEvent) => void
+  private cancelDelete: (e: any) => void
   private content = document.createElement('div')
   private container = document.createElement('div')
   private masking = document.createElement('div')
 
-  constructor(five: Five, opts?: { onClick?: (e: MouseEvent) => void, cancelDelete?: (e: MouseEvent) => void }) {
+  constructor(five: Five, opts?: { onClick?: (e: MouseEvent) => void; cancelDelete?: (e: MouseEvent) => void }) {
     this.five = five
     this.onClick = opts?.onClick || (() => void 0)
     this.cancelDelete = opts?.cancelDelete || (() => void 0)
@@ -34,8 +34,8 @@ export default class DeleteDom {
 
     // content
     this.content.classList.add('fpm__delete-content')
-    this.content.style.width = '57px'
-    this.content.style.height = '23px'
+    this.content.style.width = '62px'
+    this.content.style.height = '26px'
     this.content.style.display = 'flex'
     this.content.style.alignItems = 'center'
     this.content.style.justifyContent = 'center'
@@ -56,9 +56,9 @@ export default class DeleteDom {
 
     const deleteSvgDom = this.content.querySelector<SVGElement>('.fpm__delete-icon')
     if (deleteSvgDom) {
-      deleteSvgDom.style.width = '15px'
-      deleteSvgDom.style.height = '15px'
-      deleteSvgDom.style.marginRight = '2px'
+      deleteSvgDom.style.width = '16px'
+      deleteSvgDom.style.height = '17px'
+      deleteSvgDom.style.marginRight = '1px'
     }
 
     this.content.addEventListener('click', this.onClick)
@@ -78,7 +78,7 @@ export default class DeleteDom {
     this.container.remove()
 
     this.masking.removeEventListener('click', this.cancelDelete)
-    this.masking.removeEventListener('touchstart',this.cancelDelete)
+    this.masking.removeEventListener('touchstart', this.cancelDelete)
     this.masking.remove()
   }
 
@@ -109,8 +109,19 @@ export default class DeleteDom {
     const centerScreenX = ((centerX + 1) / 2) * wrapper.clientWidth
     const maxScreenY = (-(maxY - 1) / 2) * wrapper.clientHeight
 
-    const x = centerScreenX
-    const y = maxScreenY - 34
+    let x = centerScreenX
+    let y = maxScreenY - 34
+
+    // 只有一条线时且斜率大时删除按钮位于右侧
+    if (this.lines.length === 1 && points.length === 2) {
+      const k = (yArray[1] - yArray[0]) / (xArray[1] - xArray[0])
+      const centerY = (yArray[1] + yArray[0]) / 2
+      const centerScreenY = (-(centerY - 1) / 2) * wrapper.clientHeight
+      if (Math.abs(k) > 0.4) {
+        x = centerScreenX + 57
+        y = centerScreenY
+      }
+    }
 
     this.container.style.transform = `translate3d(${x}px, ${y}px, 10px)`
 

@@ -52,13 +52,14 @@ function createContainerDom(line: Line) {
 
 export function creatDistanceItem(props: IDistanceItemProps) {
   function handleClick() {
-    highlight()
+    // 线被选中时才高亮，外部手动触发高亮
+    // highlight()
     props.clickCallback?.(distanceItem)
   }
 
   function highlight() {
     if (userDistanceItem) return userDistanceItem.highlight()
-    contentDom.style.border = '1px solid #538FFF'
+    contentDom.style.border = '0.5px solid #95AEFF'
     contentDom.style.background = 'linear-gradient(90deg, #95AEFF 0%, #6386FF 100%)'
   }
 
@@ -97,11 +98,9 @@ export function creatDistanceItem(props: IDistanceItemProps) {
     // 更新 UI
     const left = ((ndcDomPosition.x + 1) / 2) * screenWidth
     const top = (-(ndcDomPosition.y - 1) / 2) * screenHeight
-    const rad = Math.atan(
-      (screenStartPosition.y - screenEndPosition.y) / (screenStartPosition.x - screenEndPosition.x),
-    )
+    const rad = Math.atan((screenStartPosition.y - screenEndPosition.y) / (screenStartPosition.x - screenEndPosition.x))
     const deg = -(rad * 180) / Math.PI
-    containerDom.style.transform = `translate3d(${left}px, ${top}px, 10px) rotate(${deg}deg)`
+    containerDom.style.transform = `translate(${left}px, ${top}px) rotate(${deg}deg)`
     containerDom.style.opacity = '1'
     containerDom.style.pointerEvents = 'all'
     if (userDistanceItem) {

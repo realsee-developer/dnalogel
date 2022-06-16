@@ -14,7 +14,6 @@ import { getMouseGroup } from '../utils/mouseGroup'
 import { UIController } from '../Modules/UIController'
 import { GuideController } from '../Modules/GuideController'
 import { ShortcutKeyController } from './ShortcutKeyController'
-import { IntersectController } from '../Modules/Intersector'
 import RangePieceController from '../Modules/rangePiece'
 
 // 新增Mixed模式专用于mobile端
@@ -33,11 +32,11 @@ export interface MeasurePluginParameter {
 export default class MeasureController {
   public hasOpen = false
   public hook = new Subscribe<PluginEvent>()
+  public magnifier: Magnifier
 
   private five: Five
   private model: Model
   private group: Group
-  private magnifier: Magnifier
   private fiveHelper: FiveHelper
   private useUIController?: UIController
   private params: MeasurePluginParameter
@@ -54,7 +53,7 @@ export default class MeasureController {
     this.model = new Model({ userDistanceItemCreator: this.params.userDistanceItemCreator })
     this.fiveHelper = new FiveHelper(five)
     // magnifier
-    this.magnifier = new Magnifier(five, params.magnifierParams)
+    this.magnifier = new Magnifier(five, params.magnifierParams ?? { width: 190, height: 190, scale: 2 })
     // ==================== Group ====================
     this.group = new Group()
     this.group.name = 'plugin-measure-group'
@@ -81,7 +80,6 @@ export default class MeasureController {
       userDistanceItemCreator: this.params.userDistanceItemCreator,
     }
     if (this.params.useUIController !== false) this.useUIController = new UIController(this, this.controllerParams)
-    
     if (this.params.useGuideController !== false)
       this.useGuideController = new GuideController(this, this.controllerParams)
   }
@@ -118,12 +116,12 @@ export default class MeasureController {
     this.five.scene.add(this.group)
     // 修改透明度
     this.container.style.opacity = '1'
-    // 隐藏点位和鼠标聚焦环
-    this.five.helperVisible = false
     if (this.params.openParams?.isMobile) {
       this.controller = new MixedController(this.controllerParams)
       this.rangePieceController = new RangePieceController(this.controllerParams)
     } else {
+      // 隐藏点位和鼠标聚焦环
+      this.five.helperVisible = false
       this.controller = new WatchController(this.controllerParams)
     }
     this.useUIController?.show()
@@ -142,8 +140,6 @@ export default class MeasureController {
     this.container.style.opacity = '0'
     // 展示点位和鼠标聚焦环
     this.controller?.dispose()
-    // 因为mobile态要求一直保留放大镜，controller?.dispose时没有清，需要单独清
-    this.magnifier.dispose()
     this.rangePieceController?.dispose()
     this.useUIController?.hide()
     this.useGuideController?.hide()
@@ -169,7 +165,7 @@ export default class MeasureController {
     if (!this.hasOpen) return
     if (this.getCurrentMode() === mode) return
     // 不支持Mixed模式与其他模式切换
-    if(this.getCurrentMode() === 'Mixed'|| mode==='Mixed' ) return new Error('不支持切换的Mode')
+    if (this.getCurrentMode() === 'Mixed' || mode === 'Mixed') return new Error('不支持切换的Mode')
     this.controller?.dispose()
     const controllerMap = {
       Watch: WatchController,

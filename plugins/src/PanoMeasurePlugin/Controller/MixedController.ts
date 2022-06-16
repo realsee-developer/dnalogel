@@ -19,9 +19,7 @@ export interface EditEvent {
 export default class MixedController extends BaseController {
   public state: State = 'watching'
   public model = new Model({ userDistanceItemCreator: this.userDistanceItemCreator })
-  private pressPoint?: Point
   private hasAppendDashed = false
-  private hasAppendMouseGroup = false
   private fiveElement?: HTMLCanvasElement
   private mobileStartPoint: Point | null = null
   private mobileNowPoint: Point | null = null
@@ -68,7 +66,7 @@ export default class MixedController extends BaseController {
     // model
     this.model.hook.off('lineAdded', this.onLineChanged)
     this.model.hook.off('lineRemoved', this.onLineChanged)
-    
+
     this.hook.off('getStartPoint', this.onGetStartPoint)
     this.hook.off('getEndPoint', this.onGetEndPoint)
     this.hook.off('nowPointChange', this.onNowPointChange)
@@ -111,8 +109,7 @@ export default class MixedController extends BaseController {
   }
 
   private onWantsTapGesture: EventCallback['wantsTapGesture'] = (raycaster) => {
-
-    if(this.state==='editing') return false
+    if (this.state === 'editing') return false
 
     const [target] = this.five.model.intersectRaycaster(raycaster)
     if (!target) return
@@ -128,14 +125,8 @@ export default class MixedController extends BaseController {
         const ndcStartPoint = startPoint.position.clone().project(camera)
         const ndcEndPoint = endPoint.position.clone().project(camera)
         if (!isNDCPointInScreen(ndcStartPoint) && !isNDCPointInScreen(ndcEndPoint)) return null
-        const startScreenPosition = new Vector2(
-          ndcStartPoint.x * screenWidth,
-          ndcStartPoint.y * screenHeight,
-        )
-        const endScreenPosition = new Vector2(
-          ndcEndPoint.x * screenWidth,
-          ndcEndPoint.y * screenHeight,
-        )
+        const startScreenPosition = new Vector2(ndcStartPoint.x * screenWidth, ndcStartPoint.y * screenHeight)
+        const endScreenPosition = new Vector2(ndcEndPoint.x * screenWidth, ndcEndPoint.y * screenHeight)
         return { id: line.id, points: [startScreenPosition, endScreenPosition] }
       })
       .filter((line) => !!line) as { id: string; points: Vector2[] }[]
@@ -162,9 +153,6 @@ export default class MixedController extends BaseController {
   private onCameraUpdate = () => {
     this.updateDistanceUI()
     this.dashed.distanceItem.update(this.five)
-    if(this.state === 'watching'){
-      this.hideSreenOutLine()
-    }
   }
 
   /** mobile态时更新虚线 */
@@ -182,22 +170,6 @@ export default class MixedController extends BaseController {
       this.magnifier.appendTo(this.container)
     }
     requestAnimationFrame(() => this.magnifier.renderWithPoint(point.position))
-    this.five.needsRender = true
-  }
-
-  /** 隐藏起始点不在屏幕内的线 */
-  private hideSreenOutLine = () =>{
-    this.model.lines.forEach((line)=>{
-      const [startPoint, endPoint] = line.points
-      const ndcStartPoint = startPoint.position.clone().project(this.five.camera)
-      if(!isNDCPointInScreen(ndcStartPoint)){
-        line.mesh.visible = false
-        line.distanceItem.remove()
-      }else{
-        line.mesh.visible = true
-        line.distanceItem.appendTo(this.container)
-      }
-    })
     this.five.needsRender = true
   }
 
@@ -222,17 +194,17 @@ export default class MixedController extends BaseController {
 
     this.mobileStartPoint = null
     this.mobileNowPoint = null
-  
+
     this.five.needsRender = true
   }
 
   private onNowPointChange = (point) => {
-    if(this.state==='watching') {
+    if (this.state === 'watching') {
       this.mobileNowPoint = point
       this.updateMagnifier(point)
       return
     }
-      
+
     if (!this.hasAppendDashed) {
       this.dashed.distanceItem.appendTo(this.container)
       this.group.add(this.dashed.mesh)
@@ -246,10 +218,16 @@ export default class MixedController extends BaseController {
     this.five.needsRender = true
   }
 
-  private onWillChangeState =  (state , newState)=>{
+  private onWillChangeState = (state, newState) => {
     this.state = newState
+    if (this.state === 'watching') {
+      this.five.helperVisible = true
+    } else {
+      // 隐藏点位和鼠标聚焦环
+      this.five.helperVisible = false
+    }
   }
-  
+
   private chooseLine = (line: Line) => {
     const highlightLines = findAssociatedLines(line)
     this.highlightLines(highlightLines)

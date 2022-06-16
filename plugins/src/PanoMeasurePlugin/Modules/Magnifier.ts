@@ -92,7 +92,8 @@ export default class Magnifier {
     if (this.config.dragEnabled) {
       this.hammer = new Hammer(this.canvas)
       this.hammer.on('pan', this.onPan)
-      this.hooks.on('wantsPanGesture', this.onMagnifierWantsPanGesture)
+      this.hammer.on('panend', this.onPanEnd)
+      // this.hooks.on('wantsPanGesture', this.onMagnifierWantsPanGesture)
     }
   }
 
@@ -158,7 +159,9 @@ export default class Magnifier {
     const { scale, context, width, height } = this
     const position2d = this.renderCenter.clone().project(this.five.camera)
     const renderSize = this.five.renderer.getSize(new THREE.Vector2())
-    const pixelRatio = this.five.renderer.getPixelRatio()
+    // const pixelRatio = this.five.renderer.getPixelRatio()
+    // 安卓机型和ios部分机型在app里读不到像素，固定为1降低清晰度可以读到
+    const pixelRatio = 1
     // 从 renderTarget 读取区域的大小
     const readPixelsWidth = width / scale
     const readPixelsHeight = height / scale
@@ -190,8 +193,8 @@ export default class Magnifier {
     canvas.style.position = 'absolute'
     canvas.style.pointerEvents = 'all'
     canvas.style.borderRadius = '50%'
-    canvas.style.zIndex = '10'
-    const pixelRatio = this.five.renderer?.getPixelRatio() ?? 1
+    canvas.style.zIndex = '99'
+    const pixelRatio = 1
     canvas.setAttribute('width', (this.width * pixelRatio).toString())
     canvas.setAttribute('height', (this.height * pixelRatio).toString())
     canvas.style.border = '2px solid rgba(255,255,255,0.20)'
@@ -199,6 +202,7 @@ export default class Magnifier {
     canvas.style.height = this.height + 'px'
     canvas.style.top = this.config.initialPosition.top
     canvas.style.left = this.config.initialPosition.left
+    canvas.style.transform = 'translate(0,0,100px)'
 
     if (this.config.dragEnabled) {
       this.canvas.style.cursor = 'pointer'
@@ -207,51 +211,24 @@ export default class Magnifier {
 
   private onPan = (event: typeof Hammer['Input']) => {
     if (!this.wrapper) return
+
     const lastDeltaX = this.lastPanEvent?.deltaX ?? 0
     const lastDeltaY = this.lastPanEvent?.deltaY ?? 0
     const deltaX = event.deltaX - lastDeltaX
     const deltaY = event.deltaY - lastDeltaY
-    this.lastPanEvent = event.isFinal ? undefined : event
+    this.lastPanEvent = event
     const prevented = this.hooks.emit('wantsPanGesture', { srcEvent: event, deltaX, deltaY })
     if (prevented) return
 
     const translateX = this.offset.x + deltaX
     const translateY = this.offset.y + deltaY
-    this.canvas.style.transform = `translate3d(${translateX}px, ${translateY}px, 10px)`
+    this.contentDom.style.boxShadow = '0 2px 30px 0 rgba(0,0,0,0.20)'
+    this.canvas.style.transform = `translate3d(${translateX}px, ${translateY}px, 100px)`
     this.offset = { x: translateX, y: translateY }
   }
 
-  private onMagnifierWantsPanGesture: MagnifierEvent['wantsPanGesture'] = ({ deltaX, deltaY }) => {
-    const magnifierBoundingClientRect = this.contentDom.getBoundingClientRect()
-    // 应用了 deltaX 和 deltaY 之后的矩形
-    const magnifierRect = new Rectangle(
-      {
-        x: magnifierBoundingClientRect.left + deltaX,
-        y: magnifierBoundingClientRect.top + deltaY,
-      },
-      {
-        x: magnifierBoundingClientRect.right + deltaX,
-        y: magnifierBoundingClientRect.bottom + deltaY,
-      },
-    )
-    // 测量时中间的指示器区域
-    const measureIndicatorSize = 110
-    // 放大镜最大不能超过的范围
-    const maxRect = new Rectangle(
-      { x: 0, y: 93 },
-      { x: document.body.clientWidth, y: document.body.clientHeight - 130 },
-    )
-    // 放大镜不能与之重合区域的范围
-    const centerRect = new Rectangle(
-      {
-        x: document.body.clientWidth / 2 - measureIndicatorSize / 2,
-        y: document.body.clientHeight / 2 - measureIndicatorSize / 2,
-      },
-      {
-        x: document.body.clientWidth / 2 + measureIndicatorSize / 2,
-        y: document.body.clientHeight / 2 + measureIndicatorSize / 2,
-      },
-    )
-    return maxRect.containsRect(magnifierRect) && !magnifierRect.isOverlapWithRectangle(centerRect)
+  private onPanEnd = (event: typeof Hammer['Input']) => {
+    this.lastPanEvent = undefined
+    this.contentDom.style.boxShadow = 'none'
   }
 }

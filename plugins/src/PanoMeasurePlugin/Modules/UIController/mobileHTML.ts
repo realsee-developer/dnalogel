@@ -21,24 +21,28 @@ const exitIconSvg = `
 
 export default `
   <style>
-  .moblie .fpm__exit {
+  .mobile .fpm__exit {
     position: absolute;
-    bottom: 735px;
+    top: 53px;
     left: 16px;
     width: 24px;
     height: 24px;
     z-index: 10;
     pointer-events: all;
   }
-  .moblie .fpm__exit-icon {
+  .mobile .fpm__exit-icon {
     width: 100%;
     height: 100%;
     cursor: pointer;
+  }
+  .fpm_operating--mobile {
+    padding-bottom: 23px;
   }
   .fpm__main-btn {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 !important;
   }
   .fpm__main-btn-text {
     position: absolute;
@@ -69,7 +73,7 @@ export default `
     ${exitIconSvg}
   </div>
   <div class="fpm_ui-bg"></div>
-  <div class="fpm_operating-space">
+  <div class="fpm_operating-space fpm_operating--mobile">
     <div class="fpm__main fpm__main-btn">
       <div class="fpm__main-icon fpm__main__start"></div>
       <div class="fpm__main-text fpm__main-btn-text">开始</div>

@@ -24,7 +24,10 @@ export default class WatchController extends BaseController {
 
   public constructor(params: IControllerParams) {
     super(params)
-    this.deleteDom = new DeleteDom(this.five, { onClick: this.deleteDomClickCallback, cancelDelete: this.cancelDeleteClickCallback  }).appendTo(this.container)
+    this.deleteDom = new DeleteDom(this.five, {
+      onClick: this.deleteDomClickCallback,
+      cancelDelete: this.cancelDeleteClickCallback,
+    }).appendTo(this.container)
     this.model.lines.forEach((line) => {
       line.distanceItem.appendTo(this.container)
       line.distanceItem.update(this.five)
@@ -34,12 +37,11 @@ export default class WatchController extends BaseController {
     const fiveElement = this.five.getElement()
     if (fiveElement) {
       this.fiveElement = fiveElement
-        const hammer = new Hammer(fiveElement)
-        this.hammer = hammer
-        hammer.on('pan', this.onPan)
-        hammer.on('panstart', this.onPanStart)
-        hammer.on('panend', this.onPanEnd)
-
+      const hammer = new Hammer(fiveElement)
+      this.hammer = hammer
+      hammer.on('pan', this.onPan)
+      hammer.on('panstart', this.onPanStart)
+      hammer.on('panend', this.onPanEnd)
     }
 
     this.model.hook.on('lineRemoved', this.lineRemoved)
@@ -243,5 +245,4 @@ export default class WatchController extends BaseController {
   private cancelDeleteClickCallback = () => {
     this.clearHighlightLines()
   }
-
 }
