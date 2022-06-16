@@ -25,6 +25,7 @@
 
     let curItemLabels: ItemLabel[] = null
     let renderItemLabels: ItemLabel[] = null
+    let anchorEnabled: boolean = five?.currentMode === Five.Mode.Panorama
 
     let wrapperSize: { width: number, height: number } = { width: 0, height: 0 }
 
@@ -150,7 +151,11 @@
     })
 
     const onFiveModeChange = (mode: Mode) => {
+        itemsVisible = false
+
         five.once('initAnimationEnded', (panoIndex, pose, userAction) => {
+            anchorEnabled = mode === Five.Mode.Panorama
+	        itemsVisible = true
             if (!userAction) return
 	        else onItemLabelUpdate()
         })
@@ -194,6 +199,7 @@
 
     onDestroy(() => {
         five.off('cameraUpdate', handleCameraUpdateCallback)
+        five.off('modeChange', onFiveModeChange)
         resizeObserver.unobserve(wrapper)
     })
 
@@ -260,6 +266,15 @@
                         isFold: item.id !== itemLabel.id
                     }
                 })
+
+	            five.once('cameraUpdate', () => {
+                    renderItemLabels = renderItemLabels.map(item => {
+                        return {
+                            ...item,
+                            isFold: false
+                        }
+                    })
+	            })
             })
         }
     }
@@ -274,7 +289,7 @@
 			<ItemLabelItem
 				itemLabel="{itemLabelItem}"
 				hooks="{hooks}"
-				anchorEnabled="{five.currentMode === Five.Mode.Panorama}"
+				anchorEnabled="{anchorEnabled}"
 				onIconClick="{onIconClick}"
 			/>
 		{/if}
