@@ -34,6 +34,6 @@ export function getMouseGroup() {
   ballMesh.position.set(0, 0, 0.1)
 
   group.name = 'mouse-current'
-  group.add(planMesh, zMesh, ballMesh)
+  group.add(planMesh)
   return group
 }
