@@ -1,13 +1,14 @@
 {
   "name": "@realsee/dnalogel",
-  "main": "libs/index.js",
-  "typings": "./lib/index.d.ts",
-  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "browser": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "author": "REALSEE-DEVELOPER",
   "repository": "https://github.com/realsee-developer/dnalogel.git",
   "description": "如视 VR 看房插件合集",
   "private": false,
-  "version": "2.0.0-alpha.24",
+  "version": "2.0.0-alpha.30-beta",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
     "build": "yarn run tsb && yarn run build:rollup && yarn build:docs",
@@ -27,7 +28,7 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.17.5",
-    "@realsee/five": "^5.0.0-alpha.123",
+    "@realsee/five": "^5.0.0-alpha.127",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-typescript": "^8.3.2",

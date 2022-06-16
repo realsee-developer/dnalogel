@@ -10,7 +10,6 @@ import { Five, Mode } from "@realsee/five";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 import * as THREE from "three";
 
 interface PluginShowPropTypes {
@@ -22,9 +21,9 @@ const PluginShow = (props: PluginShowPropTypes) => {
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
     const [labelType, setLabelType] = React.useState<number>(0)
-    // const modelItemLabels = useFetchDatas(DATA_TYPES.MODEL_ROOM_LABEL_PLUGIN_DATA)
-    const modelItemLabels = [
-        { "model_item_labels": [
+    const itemLabels = [
+        {
+            "item_labels": [
                 // {
                 //     "__type": "Item",
                 //     "materials": null,
@@ -317,6 +316,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 //     "roomName": "\u5ba2\u5385"
                 // },
                 {
+                    "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
                     "library": 6219,
@@ -391,224 +391,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 {
                     "__type": "Item",
                     "materials": null,
-                    "library": 253,
-                    "adsorption": null,
-                    "position": [
-                        7.27061,
-                        0,
-                        3.17008
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        -0.707107
-                    ],
-                    "size": [
-                        0.17434,
-                        0.41051,
-                        0.24112
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0,
-                        7.27061,
-                        0,
-                        3.17008,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0,
-                        7.27061,
-                        0,
-                        3.17008,
-                        1
-                    ],
-                    "name": "\u5783\u573e\u6876",
-                    "type": [
-                        "home_decoration",
-                        "trash_can",
-                        "refuse_bin"
-                    ],
-                    "path": "e2f0661b4ad51a199532d6111d4c7a2f",
-                    "center": [
-                        0.010449,
-                        20.52565,
-                        0.017199
-                    ],
-                    "id": "u-w576TJKv9q7hXi",
-                    "roomName": "\u536b\u751f\u95f4"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 4478,
-                    "adsorption": null,
-                    "position": [
-                        7.28241,
-                        1.314405,
-                        2.898
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        -0.707107
-                    ],
-                    "size": [
-                        0.58352,
-                        0.17051,
-                        0.21718
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        -0.01,
-                        0,
-                        0,
-                        0,
-                        7.28241,
-                        1.314405,
-                        2.898,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        -0.01,
-                        0,
-                        0,
-                        0,
-                        7.28241,
-                        1.314405,
-                        2.898,
-                        1
-                    ],
-                    "name": "\u6d74\u5dfe\u67b6",
-                    "type": [
-                        "kitchen_bathroom",
-                        "bathroom",
-                        "bathroom_hardware",
-                        "bath_towel_rack"
-                    ],
-                    "path": "a83382ba9b4cd1f5906972c1106aaeb3",
-                    "center": [
-                        0,
-                        8.559249,
-                        0
-                    ],
-                    "id": "u-s4k11JKV9Q7HZq",
-                    "roomName": "\u536b\u751f\u95f4"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 193,
-                    "adsorption": null,
-                    "position": [
-                        7.056939,
-                        0.99825,
-                        1.520029
-                    ],
-                    "quaternion": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "size": [
-                        0.17876,
-                        0.60346,
-                        0.10383
-                    ],
-                    "matrix": [
-                        0.009999,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        7.056939,
-                        0.99825,
-                        1.520029,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0.009999,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        7.056939,
-                        0.99825,
-                        1.520029,
-                        1
-                    ],
-                    "name": "cj_northern_bathroom_no_010",
-                    "type": [
-                        "kitchen_bathroom",
-                        "bathroom",
-                        "bathroom_hardware",
-                        "towel_ring"
-                    ],
-                    "path": "35215568325916b550a76d1382198f4c",
-                    "center": [
-                        -0.3598,
-                        30.1749,
-                        -0.012401
-                    ],
-                    "id": "u-pscQ7QkV9Q7I29",
-                    "roomName": "\u536b\u751f\u95f4"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
                     "library": 1231,
                     "adsorption": null,
                     "position": [
@@ -678,150 +460,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     ],
                     "id": "u-vNgfllKV9Q7i2W",
                     "roomName": "\u536b\u751f\u95f4"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 3433,
-                    "adsorption": null,
-                    "position": [
-                        1.202324,
-                        -5e-05,
-                        -2.802681
-                    ],
-                    "quaternion": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "size": [
-                        0.36116,
-                        0.35142,
-                        0.47978
-                    ],
-                    "matrix": [
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        1.202324,
-                        -5e-05,
-                        -2.802681,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        1.202324,
-                        -5e-05,
-                        -2.802681,
-                        1
-                    ],
-                    "name": "\u732b\u7a9d",
-                    "type": [
-                        "home_decoration",
-                        "pet_supplies",
-                        "pet_products"
-                    ],
-                    "path": "dfe84c03297da3aed12b120fde9427ee",
-                    "center": [
-                        0.20515,
-                        17.57595,
-                        0.557049
-                    ],
-                    "id": "u-FIZ8nxKv9q7I4f",
-                    "roomName": "\u9633\u53f0"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 3231,
-                    "adsorption": null,
-                    "position": [
-                        1.204375,
-                        0,
-                        -2.371881
-                    ],
-                    "quaternion": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "size": [
-                        0.40002,
-                        0.15208,
-                        0.1855
-                    ],
-                    "matrix": [
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        1.204375,
-                        0,
-                        -2.371881,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        1.204375,
-                        0,
-                        -2.371881,
-                        1
-                    ],
-                    "name": "\u732b\u7897 \u72d7\u7897",
-                    "type": [
-                        "home_decoration",
-                        "pet_supplies",
-                        "pet_products"
-                    ],
-                    "path": "7397c7c3e6e7ebd552832a45a28e384f",
-                    "center": [
-                        0,
-                        7.604249,
-                        0.016099
-                    ],
-                    "id": "u-s49qbaKv9Q7I4o",
-                    "roomName": "\u9633\u53f0"
                 },
                 {
                     "__type": "Item",
@@ -1333,79 +971,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 {
                     "__type": "Item",
                     "materials": null,
-                    "library": 9448,
-                    "adsorption": null,
-                    "position": [
-                        0.611044,
-                        0,
-                        3.393118
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        0.707106
-                    ],
-                    "size": [
-                        0.22782,
-                        0.07872,
-                        0.26541
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        0,
-                        0.611044,
-                        0,
-                        3.393118,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.009999,
-                        0,
-                        0,
-                        0,
-                        0.611044,
-                        0,
-                        3.393118,
-                        1
-                    ],
-                    "name": "\u62d6\u978b",
-                    "type": [
-                        "home_decoration",
-                        "tableware",
-                        "clothing_accessories",
-                        "flip_flop"
-                    ],
-                    "path": "30081929b72fd298258de821d6849a82",
-                    "center": [
-                        0,
-                        3.936099,
-                        0.00345
-                    ],
-                    "id": "u-4Kz5ATKV9q7IcW",
-                    "roomName": "\u5ba2\u5385"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
                     "library": 9449,
                     "adsorption": null,
                     "position": [
@@ -1620,152 +1185,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                         0.3866
                     ],
                     "id": "u-gI1X8Vkv9q7iFZ",
-                    "roomName": "\u5ba2\u5385"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 36229,
-                    "adsorption": null,
-                    "position": [
-                        7.078084,
-                        1.856931,
-                        5.886247
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        -0.707107
-                    ],
-                    "size": [
-                        0.33,
-                        0.106027,
-                        0.244928
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        0.011999,
-                        0,
-                        0,
-                        0.011999,
-                        0,
-                        0,
-                        -0.012,
-                        0,
-                        0,
-                        0,
-                        7.078084,
-                        1.856931,
-                        5.886247,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        0.011999,
-                        0,
-                        0,
-                        0.011999,
-                        0,
-                        0,
-                        -0.012,
-                        0,
-                        0,
-                        0,
-                        7.078084,
-                        1.856931,
-                        5.886247,
-                        1
-                    ],
-                    "name": "\u5e73\u653e\u4e66 20#280",
-                    "type": [
-                        "home_decoration",
-                        "literary_form",
-                        "cultural_and_educational_books",
-                        "book_lying_flat"
-                    ],
-                    "path": "3b6aebab11594f12f6962806dd52d6a8",
-                    "center": [
-                        0.93635,
-                        4.41855,
-                        0.3866
-                    ],
-                    "id": "u-6npK0jKV9Q7Ii7",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 28813,
-                    "adsorption": null,
-                    "position": [
-                        4.289209,
-                        0.612689,
-                        0.002931
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        -0.707107
-                    ],
-                    "size": [
-                        0.681399,
-                        0.55159,
-                        0.298799
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        0.012189,
-                        0,
-                        0,
-                        0.012243,
-                        0,
-                        0,
-                        -0.01,
-                        0,
-                        0,
-                        0,
-                        4.289209,
-                        0.612689,
-                        0.002931,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        0.012189,
-                        0,
-                        0,
-                        0.012243,
-                        0,
-                        0,
-                        -0.01,
-                        0,
-                        0,
-                        0,
-                        4.289209,
-                        0.612689,
-                        0.002931,
-                        1
-                    ],
-                    "name": "\u62bd\u8c61\u6446\u4ef614#004",
-                    "type": [
-                        "home_decoration",
-                        "tableware",
-                        "tableware_others",
-                        "abstract_ornaments"
-                    ],
-                    "path": "b1b1a99297ca076235eb1b3edaf9f180",
-                    "center": [
-                        0,
-                        22.495,
-                        0
-                    ],
-                    "id": "u-lv103gkV9Q7II8",
                     "roomName": "\u5ba2\u5385"
                 },
                 {
@@ -2136,79 +1555,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 {
                     "__type": "Item",
                     "materials": null,
-                    "library": 9374,
-                    "adsorption": null,
-                    "position": [
-                        7.033441,
-                        0.95666,
-                        5.903193
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        -0.707107
-                    ],
-                    "size": [
-                        0.302,
-                        0.229999,
-                        0.160999
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        0.009258,
-                        0,
-                        0,
-                        0.006578,
-                        0,
-                        0,
-                        -0.013998,
-                        0,
-                        0,
-                        0,
-                        7.033441,
-                        0.95666,
-                        5.903193,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        0.009258,
-                        0,
-                        0,
-                        0.006578,
-                        0,
-                        0,
-                        -0.013998,
-                        0,
-                        0,
-                        0,
-                        7.033441,
-                        0.95666,
-                        5.903193,
-                        1
-                    ],
-                    "name": "\u5546\u52a1\u5973\u5305",
-                    "type": [
-                        "home_decoration",
-                        "tableware",
-                        "clothing_accessories",
-                        "bag"
-                    ],
-                    "path": "21e00d5dc71a21a13027077e040d1cbf",
-                    "center": [
-                        0.00285,
-                        17.49905,
-                        -5e-05
-                    ],
-                    "id": "u-DH8FmXkV9Q7Ip4",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
                     "library": 35508,
                     "adsorption": null,
                     "position": [
@@ -2355,152 +1701,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 {
                     "__type": "Item",
                     "materials": null,
-                    "library": 24991,
-                    "adsorption": null,
-                    "position": [
-                        6.987783,
-                        1.250898,
-                        5.344846
-                    ],
-                    "quaternion": [
-                        -0.11077,
-                        -0.679979,
-                        -0.105027,
-                        0.717167
-                    ],
-                    "size": [
-                        0.138419,
-                        0.173024,
-                        0.016999
-                    ],
-                    "matrix": [
-                        0.000368,
-                        -1e-06,
-                        0.006911,
-                        0,
-                        0.002085,
-                        0.006598,
-                        -0.000112,
-                        0,
-                        -0.006589,
-                        0.002087,
-                        0.00035,
-                        0,
-                        6.987783,
-                        1.250898,
-                        5.344846,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0.000368,
-                        -1e-06,
-                        0.006911,
-                        0,
-                        0.002085,
-                        0.006598,
-                        -0.000112,
-                        0,
-                        -0.006589,
-                        0.002087,
-                        0.00035,
-                        0,
-                        6.987783,
-                        1.250898,
-                        5.344846,
-                        1
-                    ],
-                    "name": "\u76f8\u6846",
-                    "type": [
-                        "home_decoration",
-                        "tableware",
-                        "tableware_others",
-                        "photo_frame"
-                    ],
-                    "path": "0f89cee7dbd1f5445bcc04c9c9fb2b8e",
-                    "center": [
-                        0,
-                        12.5,
-                        0
-                    ],
-                    "id": "u-2QB8bIkV9q7iS6",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 32434,
-                    "adsorption": null,
-                    "position": [
-                        5.288675,
-                        -0.0002,
-                        7.372929
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        0.707106
-                    ],
-                    "size": [
-                        2.069826,
-                        1.084624,
-                        2.377951
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        5.288675,
-                        -0.0002,
-                        7.372929,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        5.288675,
-                        -0.0002,
-                        7.372929,
-                        1
-                    ],
-                    "name": "\u8f6f\u5305\u5e8a",
-                    "type": [
-                        "furniture",
-                        "bed",
-                        "normal_bed",
-                        "normal_bed_4"
-                    ],
-                    "path": "6a22f0b25f5e2c8c9ccaaa80c3636c72",
-                    "center": [
-                        -1.7072,
-                        54.251348,
-                        6.729499
-                    ],
-                    "id": "u-Ga9jerkV9Q7itk",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
                     "library": 32434,
                     "adsorption": null,
                     "position": [
@@ -2570,150 +1770,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     ],
                     "id": "u-V5C6FeKv9Q7iUF",
                     "roomName": "\u5367\u5ba4B"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 29978,
-                    "adsorption": null,
-                    "position": [
-                        4.39022,
-                        -1e-05,
-                        8.642688
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        0.707106
-                    ],
-                    "size": [
-                        0.552406,
-                        0.553133,
-                        0.400673
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        4.39022,
-                        -1e-05,
-                        8.642688,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        4.39022,
-                        -1e-05,
-                        8.642688,
-                        1
-                    ],
-                    "name": "\u5e8a\u5934\u67dc",
-                    "type": [
-                        "furniture",
-                        "cabinet",
-                        "beside_table"
-                    ],
-                    "path": "9f9be734bd1643a9a97f00bc199bc140",
-                    "center": [
-                        -0.00965,
-                        27.65765,
-                        0.2111
-                    ],
-                    "id": "u-5A3b6IKV9q7iUg",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 29978,
-                    "adsorption": null,
-                    "position": [
-                        4.39022,
-                        -1e-05,
-                        6.112122
-                    ],
-                    "quaternion": [
-                        0,
-                        0.707106,
-                        0,
-                        0.707106
-                    ],
-                    "size": [
-                        0.552406,
-                        0.553133,
-                        0.400673
-                    ],
-                    "matrix": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        4.39022,
-                        -1e-05,
-                        6.112122,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0,
-                        0,
-                        -0.010001,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0,
-                        4.39022,
-                        -1e-05,
-                        6.112122,
-                        1
-                    ],
-                    "name": "\u5e8a\u5934\u67dc",
-                    "type": [
-                        "furniture",
-                        "cabinet",
-                        "beside_table"
-                    ],
-                    "path": "9f9be734bd1643a9a97f00bc199bc140",
-                    "center": [
-                        -0.00965,
-                        27.65765,
-                        0.2111
-                    ],
-                    "id": "u-p4w6QSKv9q7IWn",
-                    "roomName": "\u5367\u5ba4A"
                 },
                 {
                     "__type": "Item",
@@ -2863,225 +1919,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 {
                     "__type": "Item",
                     "materials": null,
-                    "library": 22646,
-                    "adsorption": null,
-                    "position": [
-                        4.388576,
-                        0.55291,
-                        6.077964
-                    ],
-                    "quaternion": [
-                        0,
-                        0.382683,
-                        0,
-                        0.923879
-                    ],
-                    "size": [
-                        0.243542,
-                        0.529301,
-                        0.361192
-                    ],
-                    "matrix": [
-                        0.007071,
-                        0,
-                        -0.007072,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.007071,
-                        0,
-                        0.007071,
-                        0,
-                        4.388576,
-                        0.55291,
-                        6.077964,
-                        1
-                    ],
-                    "matrixWorld": [
-                        0.007071,
-                        0,
-                        -0.007072,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.007071,
-                        0,
-                        0.007071,
-                        0,
-                        4.388576,
-                        0.55291,
-                        6.077964,
-                        1
-                    ],
-                    "name": "cj_yhymeq_2100020075_001",
-                    "type": [
-                        "lighting",
-                        "table_lamp",
-                        "desk_lamp",
-                        "desk_lamp_4"
-                    ],
-                    "path": "759dc5ef6351ecbbb493e2bd39b81961",
-                    "center": [
-                        0,
-                        26.465099,
-                        -1.46305
-                    ],
-                    "id": "u-3WEho7KV9Q7iXc",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 22646,
-                    "adsorption": null,
-                    "position": [
-                        7.169423,
-                        0.55291,
-                        0.666035
-                    ],
-                    "quaternion": [
-                        0,
-                        0.923879,
-                        0,
-                        -0.382684
-                    ],
-                    "size": [
-                        0.243542,
-                        0.529301,
-                        0.361192
-                    ],
-                    "matrix": [
-                        -0.007072,
-                        0,
-                        0.007071,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        -0.007072,
-                        0,
-                        -0.007072,
-                        0,
-                        7.169423,
-                        0.55291,
-                        0.666035,
-                        1
-                    ],
-                    "matrixWorld": [
-                        -0.007072,
-                        0,
-                        0.007071,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        -0.007072,
-                        0,
-                        -0.007072,
-                        0,
-                        7.169423,
-                        0.55291,
-                        0.666035,
-                        1
-                    ],
-                    "name": "cj_yhymeq_2100020075_001",
-                    "type": [
-                        "lighting",
-                        "table_lamp",
-                        "desk_lamp",
-                        "desk_lamp_4"
-                    ],
-                    "path": "759dc5ef6351ecbbb493e2bd39b81961",
-                    "center": [
-                        0,
-                        26.465099,
-                        -1.46305
-                    ],
-                    "id": "u-M9iZi9Kv9q7iXd",
-                    "roomName": "\u5367\u5ba4B"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
-                    "library": 2835,
-                    "adsorption": null,
-                    "position": [
-                        4.252789,
-                        0.552948,
-                        8.571903
-                    ],
-                    "quaternion": [
-                        0,
-                        0.923879,
-                        0,
-                        0.382683
-                    ],
-                    "size": [
-                        0.097265,
-                        0.207492,
-                        0.129878
-                    ],
-                    "matrix": [
-                        -0.007072,
-                        0,
-                        -0.007072,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.007071,
-                        0,
-                        -0.007072,
-                        0,
-                        4.252789,
-                        0.552948,
-                        8.571903,
-                        1
-                    ],
-                    "matrixWorld": [
-                        -0.007072,
-                        0,
-                        -0.007072,
-                        0,
-                        0,
-                        0.01,
-                        0,
-                        0,
-                        0.007071,
-                        0,
-                        -0.007072,
-                        0,
-                        4.252789,
-                        0.552948,
-                        8.571903,
-                        1
-                    ],
-                    "name": "\u9970\u54c1\u6446\u4ef6",
-                    "type": [
-                        "home_decoration",
-                        "tableware",
-                        "tableware_others",
-                        "abstract_ornaments"
-                    ],
-                    "path": "052902c5ad0df04365ebbaf91b0fcc8a",
-                    "center": [
-                        0,
-                        10.374634,
-                        -2e-06
-                    ],
-                    "id": "u-InhCA4Kv9q7ixF",
-                    "roomName": "\u5367\u5ba4A"
-                },
-                {
-                    "__type": "Item",
-                    "materials": null,
                     "library": 3338,
                     "adsorption": null,
                     "position": [
@@ -3152,10 +1989,12 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     "id": "u-kzS6ickV9Q7iZB",
                     "roomName": "\u5367\u5ba4A"
                 },
-            ]},
+            ]
+        },
         {
-            "model_item_labels": [
+            "item_labels": [
                 {
+                    "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
                     "library": 53062,
@@ -3212,7 +2051,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                         3.64173,
                         1
                     ],
-                    "name": "\u6d17\u8863\u673a",
+                    "name": "作为 VR 空间重构领域的领导者，如视为全行业提供三维空间的采集、展示、重建能力，打造低成本、高效、有针对性的 VR 空间应用解决方案。",
                     "type": [
                         "appliance",
                         "electric_appliance",
@@ -3380,7 +2219,9 @@ const PluginShow = (props: PluginShowPropTypes) => {
     // 画辅助线
     function addHelper(x: number, y: number, z: number, type: string, helper?: boolean) {
         // const point = new THREE.Vector3();
-        let geometry; let materials; let mesh: any
+        let geometry;
+        let materials;
+        let mesh: any
 
         if (type === 'box') {
             geometry = new THREE.BoxGeometry(
@@ -3419,26 +2260,26 @@ const PluginShow = (props: PluginShowPropTypes) => {
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
         if (wrapper) {
-            five.plugins.modelItemLabelPlugin.appendTo(wrapper)
+            five.plugins.itemLabelPlugin.appendTo(wrapper)
         }
 
     }, [])
 
     useFiveEventCallback('modelLoaded', () => {
-        if (!modelItemLabels) return
-        five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
-        five.plugins.modelItemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
-            console.log('🐶---🐶： ', itemLabel)
+        if (!itemLabels) return
+        five.plugins.itemLabelPlugin.load(itemLabels[labelType])
+        five.plugins.itemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
+            console.log('Realsee itemLabelPlugin click return data： ', itemLabel)
         })
-        setFiveState({ mode: Five.Mode.Floorplan })
+        // setFiveState({ mode: Five.Mode.Floorplan })
         // addHelper(7.04986,
         //     -1.1e-05 + 0.70497,
         //     2.898, 'ball', true)
-    }, [modelItemLabels])
+    }, [itemLabels])
 
     const switchLabel = () => {
         const newLabelType = Number(!labelType)
-        five.plugins.modelItemLabelPlugin.load(modelItemLabels[newLabelType])
+        five.plugins.itemLabelPlugin.load(itemLabels[newLabelType])
         setLabelType(newLabelType)
     }
 
@@ -3457,9 +2298,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
             >
                 <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon />} value={Five.Mode.Panorama} />
                 <BottomNavigationAction label="空间总览" icon={<ViewInArIcon />} value={Five.Mode.Floorplan} />
-                { fiveState.mode === Five.Mode.Floorplan &&
                 <BottomNavigationAction label="标签切换" onClick={switchLabel} icon={<ChangeCircleIcon />} value={null} />
-                }
             </BottomNavigation>
         </Paper>
     )

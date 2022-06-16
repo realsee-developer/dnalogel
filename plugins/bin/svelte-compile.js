@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 
-import glob from 'glob'
-import * as path from 'path'
-import replace from 'replace'
+const glob = require('glob')
+const path = require('path')
+const replace = require('replace')
+const { compile } = require('svelte/compiler')
+const  { readFile, writeFile, unlink } = require('fs/promises')
 
-import { readFile, writeFile, unlink } from 'fs/promises'
-import { compile } from 'svelte/compiler'
-
-const __dirname = path.resolve()
-
-const libsPath = path.resolve(__dirname, 'libs')
+const libsPath = path.resolve(path.resolve(), 'libs')
 
 replace({
 	regex: /\.svelte/g,

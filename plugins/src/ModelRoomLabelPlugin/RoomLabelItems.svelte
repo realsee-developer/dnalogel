@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Five } from '@realsee/five'
   import type { RoomLabel } from './typings'
-  import { onDestroy, onMount } from 'svelte'
+  import { onDestroy } from 'svelte'
   import { Raycaster, Vector3 } from 'three'
   import RoomLabelItem from './RoomLabelItem.svelte'
 
@@ -10,16 +10,27 @@
 
   let containerWidth: number
   let containerHeight: number
+  let shownFloor: number | null = null
+  $: rendererSize = { x: containerWidth, y: containerHeight }
 
-  function getLabelVisible(five: Five, roomLabelItem: RoomLabel) {
-    // 先看是不是在当前展示的楼层上
-    const isLabelInFloor = five.model.shownFloor === null || roomLabelItem.floorIndex === five.model.shownFloor
-    if (!isLabelInFloor) return false
+  $: {
+    // rendererSize 变化时，触发 reRender
+    roomLabels = getFormatedRoomLabels(rendererSize)
+  }
 
-    // 再看是不是被模型遮挡
+  $: {
+    // shownFloor 变化时，更新 item visible
+    roomLabels = roomLabels.map((item) => {
+      const isLabelInFloor = shownFloor === null || item.floorIndex === shownFloor
+      const visible = isLabelInFloor ? item.visible : false
+      return {...item, visible}
+    })
+  }
+
+  function getLabelVisible(item: RoomLabel) {
     const raycaster = new Raycaster()
     const cameraPosition = five.camera.position.clone()
-    const position = new Vector3(roomLabelItem.position.x, roomLabelItem.position.y, roomLabelItem.position.z)
+    const position = new Vector3(item.position.x, item.position.y, item.position.z)
     const vectorDistance = position.distanceTo(cameraPosition)
     raycaster.set(cameraPosition.clone(), position.clone().sub(cameraPosition).normalize())
     const [intersection] = five.model.intersectRaycaster(raycaster)
@@ -28,56 +39,65 @@
     return true
   }
 
-  function getLabelTransform(five: Five, roomLabelItem: RoomLabel) {
-    const position = new Vector3(roomLabelItem.position.x, roomLabelItem.position.y, roomLabelItem.position.z)
+  function getLabelTransform(item: RoomLabel, rendererSize: { x: number; y: number }) {
+    const position = new Vector3(item.position.x, item.position.y, item.position.z)
     const mouse = position.clone().project(five.camera)
-    const xOffset = Math.ceil(((mouse.x + 1) / 2) * containerWidth)
-    const yOffset = Math.ceil(((-mouse.y + 1) / 2) * containerHeight)
+    const xOffset = Math.ceil(((mouse.x + 1) / 2) * rendererSize.x)
+    const yOffset = Math.ceil(((-mouse.y + 1) / 2) * rendererSize.y)
 
     return `translate(${xOffset}px, ${yOffset}px)`
   }
 
-  function getFormatedRoomLabels(five: Five, labels: RoomLabel[]) {
-    const newLabels = labels.map((roomLabelItem) => {
-      // 计算是否可见，如果不可见，不会更新位置
-      const visible = getLabelVisible(five, roomLabelItem)
-      if (!visible) return { ...roomLabelItem, visible }
-      // 更新位置
-      const transform = getLabelTransform(five, roomLabelItem)
-      return { ...roomLabelItem, visible, transform }
+  function getFormatedRoomLabels(rendererSize: { x: number; y: number }) {
+    // 因为 item distance 需要重复计算，所以缓存一下
+    const distanceMap = new Map<string, number>()
+
+    function getItemDistance(item: RoomLabel) {
+      const cacheDistance = distanceMap.get(item.id)
+      if (cacheDistance) return cacheDistance
+      const { x, y, z } = item.position
+      const distance = new Vector3(x, y, z).clone().distanceTo(five.camera.position)
+      distanceMap.set(item.id, distance)
+      return distance
+    }
+
+    const formatedItems = roomLabels.map((item) => {
+      const visible = getLabelVisible(item)
+      const transform = visible ? getLabelTransform(item, rendererSize) : item.transform
+      const itemDistance = getItemDistance(item)
+      // visible === true 的 item 中，distance 比自己小的 item 个数
+      const minItemLen = roomLabels.filter(
+        (item) => item.visible && getItemDistance(item) < itemDistance,
+      ).length
+      const zIndex = minItemLen * 10
+      return { ...item, visible, transform, zIndex }
     })
-    const sortedRoomLabelItems = newLabels
-      .filter(({ visible }) => visible)
-      .map((roomLabelItem) => ({
-        roomLabelItem: roomLabelItem,
-        distance: new Vector3(...Object.values(roomLabelItem.position)).clone().distanceTo(five.camera.position),
-      }))
-      .sort((a, b) => a.distance - b.distance)
-    return newLabels.map((roomLabelItem) => {
-      const sortIndex = sortedRoomLabelItems.findIndex((item) => item.roomLabelItem.id === roomLabelItem.id)
-      if (sortIndex !== undefined) return { ...roomLabelItem, zIndex: sortIndex * 10 }
-      return roomLabelItem
-    })
+
+    return formatedItems
   }
 
   function onFiveCameraUpdate() {
-    roomLabels = getFormatedRoomLabels(five, roomLabels)
+    roomLabels = getFormatedRoomLabels(rendererSize)
+  }
+
+  function onFiveModelShownFloorChange(floorIndex: null | number) {
+    shownFloor = floorIndex
   }
 
   five.on('cameraUpdate', onFiveCameraUpdate)
-  five.on('modelShownFloorChange', onFiveCameraUpdate)
+  five.on('modelShownFloorChange', onFiveModelShownFloorChange)
 
   onDestroy(() => {
     five.off('cameraUpdate', onFiveCameraUpdate)
-    five.off('modelShownFloorChange', onFiveCameraUpdate)
-  })
-
-  onMount(() => {
-    onFiveCameraUpdate()
+    five.off('modelShownFloorChange', onFiveModelShownFloorChange)
   })
 </script>
 
-<div class="room-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}">
+<div
+  class="room-labels-container"
+  bind:clientWidth="{containerWidth}"
+  bind:clientHeight="{containerHeight}"
+>
   {#each roomLabels as roomLableItem (roomLableItem.id)}
     <RoomLabelItem roomLabel="{roomLableItem}" five="{five}" />
   {/each}
