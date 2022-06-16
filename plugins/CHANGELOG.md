@@ -4,6 +4,8 @@
 - 1.feat: PanoMeasurePlugin 新增移动端UI交互模式
 - 2.feat: PanoMeasurePlugin 点线、标签气泡、删除按钮、三维坐标系UI交互优化
 - 3.feat: PanoMeasurePlugin 优化放大镜功能，支持可拖拽，新增放大镜开放参数
+- 4.fix: TopviewFloorplanPlugin 兼容全局 text-align 使用
+
 ## 2.0.0-alpha.29
 - 1.chore: 删除 react 依赖.
 
