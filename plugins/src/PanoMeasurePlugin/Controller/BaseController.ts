@@ -8,7 +8,6 @@ import type { UserDistanceItem } from '../utils/distanceDom'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import type { OpenParameter } from '../typings/data'
 import { preventDefault } from '../utils/ironbox'
-import type Point from '../Model/point'
 
 export interface IControllerParams {
   five: Five

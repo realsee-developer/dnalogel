@@ -1,4 +1,4 @@
-import { PanoMeasurePlugin } from '@realsee/dnalogel'
+import { PanoMeasurePlugin } from '@realsee/dnalogel';
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
@@ -19,10 +19,14 @@ const FiveProvider = createFiveProvider({
         useGuideController: false,
         useUIController: true,
         openParams: { isMobile: true },
-        magnifierParams: { height: 120, scale: 2, width: 120,
+        magnifierParams: {
+          height: 120,
+          scale: 2,
+          width: 120,
           dragEnabled: true,
           autoFixPCPosition: false,
-          initialPosition: { left: '35%', top: '20%',} },
+          initialPosition: { left: '35%', top: '20%' },
+        },
       },
     ],
   ],
@@ -31,33 +35,6 @@ const FiveProvider = createFiveProvider({
 const App: React.FC = () => {
   const size = useWindowDimensions()
   const work = useFetchDatas(DATA_TYPES.WORK)
-
-  // const maxRedStyle: React.CSSProperties = {
-  //   position: 'absolute',
-  //   width: '100%',
-  //   height: '100%',
-  //   left: '0',
-  //   top: '0',
-  //   background: 'red',
-  //   pointerEvents: 'none',
-  // }
-
-  // const centerRedStyle: React.CSSProperties = {
-  //   position: 'absolute',
-  //   left: '50%',
-  //   top: '50%',
-  //   transform: 'translate(-50%, -50%)',
-  //   background: 'red',
-  //   pointerEvents: 'none',
-  // }
-
-  // const blueStyle: React.CSSProperties = {
-  //   position: 'absolute',
-  //   left: '16px',
-  //   top: '16px',
-  //   pointerEvents: 'none',
-  //   background: 'blue',
-  // }
 
   return (
     work && (
@@ -78,9 +55,6 @@ const App: React.FC = () => {
           }}
         />
         <PanoMeasurePluginUsage />
-        {/* <div className="max-red" style={maxRedStyle} />
-        <div className="blue" style={blueStyle} />
-        <div className="center-red" style={centerRedStyle} /> */}
       </FiveProvider>
     )
   )

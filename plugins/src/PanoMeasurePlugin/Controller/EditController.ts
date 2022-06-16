@@ -26,21 +26,18 @@ export default class EditController extends BaseController {
   private hammer?: InstanceType<typeof Hammer['Manager']>
 
   /** 根据 intersection 更新放大镜和吸附点 */
-  private onIntersectionUpdate = throttle(
-    (intersection: Intersection, mesh?: IntersectMeshInterface) => {
-      if (this.hasAppendMouseGroup === false) {
-        this.group.add(this.mouseGroup)
-        this.magnifier.appendTo(this.container)
-        this.hasAppendMouseGroup = true
-      }
-      const position = this.updateMouseGroup(intersection, mesh).position
-      this.pressPoint?.position.copy(position)
-      this.updateDashed()
-      requestAnimationFrame(() => this.magnifier.renderWithPoint(this.mouseGroup.position))
-      this.five.needsRender = true
-    },
-    20,
-  )
+  private onIntersectionUpdate = throttle((intersection: Intersection, mesh?: IntersectMeshInterface) => {
+    if (this.hasAppendMouseGroup === false) {
+      this.group.add(this.mouseGroup)
+      this.magnifier.appendTo(this.container)
+      this.hasAppendMouseGroup = true
+    }
+    const position = this.updateMouseGroup(intersection, mesh).position
+    this.pressPoint?.position.copy(position)
+    this.updateDashed()
+    requestAnimationFrame(() => this.magnifier.renderWithPoint(this.mouseGroup.position))
+    this.five.needsRender = true
+  }, 20)
 
   public constructor(params: IControllerParams) {
     super(params)
@@ -57,7 +54,6 @@ export default class EditController extends BaseController {
     // model
     this.model.hook.on('lineAdded', this.onLineChanged)
     this.model.hook.on('lineRemoved', this.onLineChanged)
-
     // hammer
     const fiveElement = this.five.getElement()
     if (fiveElement) {
@@ -71,10 +67,8 @@ export default class EditController extends BaseController {
     }
     // fiveElement
     this.fiveElement?.addEventListener('mouseleave', this.onMouseLeave)
-
     // ==================== 其他 ====================
     this.hook.emit('anchorChange', null)
-
     this.five.refresh()
   }
 
@@ -91,11 +85,11 @@ export default class EditController extends BaseController {
     // model
     this.model.hook.off('lineAdded', this.onLineChanged)
     this.model.hook.off('lineRemoved', this.onLineChanged)
-
     // hammer
     this.hammer?.destroy()
     // fiveElement
     this.fiveElement?.removeEventListener('mouseleave', this.onMouseLeave)
+    this.magnifier.dispose()
     this.dashed.distanceItem.remove()
     this.five.needsRender = true
   }
@@ -229,7 +223,7 @@ export default class EditController extends BaseController {
     this.dashed.distanceItem.update(this.five)
   }
 
-  /** pc态时更新虚线 */
+  /** 更新虚线 */
   private updateDashed = () => {
     if (!this.lastPoint) return
     this.dashed.points[0].position.copy(this.lastPoint.position)
