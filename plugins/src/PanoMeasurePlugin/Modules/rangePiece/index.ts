@@ -2,7 +2,7 @@ import Line from '../../Model/line'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import { DoubleSide, Group, Mesh, MeshBasicMaterial, Raycaster, RingGeometry, Vector3 } from 'three'
 import type { Model } from '../../Model'
-import type { PluginEvent } from '../../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../../typings/event.type'
 import type FiveHelper from '../FiveHelper'
 import Point from '../../Model/point'
 import TWEEN from '@tweenjs/tween.js'
@@ -19,7 +19,7 @@ export interface RangePieceControllerParams {
   model: Model
   mouseGroup: Group
   fiveHelper: FiveHelper
-  hook: Subscribe<PluginEvent>
+  hook: Subscribe<PanoMeasurePluginEvent>
 }
 
 export default class RangePieceController {
@@ -29,7 +29,7 @@ export default class RangePieceController {
   private mouseGroup: Group
   private hasAppendMouseGroup = false
   private fiveHelper: FiveHelper
-  private hook: Subscribe<PluginEvent>
+  private hook: Subscribe<PanoMeasurePluginEvent>
   private content: HTMLElement | null
   private intersectMesh: Mesh
   private centerMouseXY: any
@@ -88,7 +88,7 @@ export default class RangePieceController {
     }
   }
 
-  private onWillChangeState: PluginEvent['willChangeState'] = (state, newState) => {
+  private onWillChangeState: PanoMeasurePluginEvent['willChangeState'] = (state, newState) => {
     this.dotAnimation()
     const point = this.getIntersection()?.point
     if (!point) return

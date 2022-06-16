@@ -40,4 +40,4 @@ interface MobileEvent extends SubscribeEventMap {
   nowPointChange: (point: Point) => void
 }
 
-export type PluginEvent = ControllerEvent & EditEvent & WatchEvent & DragEvent & MobileEvent
+export type PanoMeasurePluginEvent = ControllerEvent & EditEvent & WatchEvent & DragEvent & MobileEvent

@@ -1,7 +1,8 @@
 import type { FivePlugin } from '@realsee/five'
-import MeasureController, { MeasurePluginParameter } from './Controller'
+import MeasureController, { PanoMeasureParameterType } from './Controller'
+import Magnifier from './Modules/Magnifier'
 
-export const PanoMeasurePlugin: FivePlugin<MeasurePluginParameter, PluginReturns> =
+export const PanoMeasurePlugin: FivePlugin<PanoMeasureParameterType, PanoMeasureReturnType> =
   function PanoMeasurePlugin(five, params) {
     return new MeasureController(five, params)
   }
@@ -9,6 +10,8 @@ export const PanoMeasurePlugin: FivePlugin<MeasurePluginParameter, PluginReturns
 export default PanoMeasurePlugin
 
 // 类型导出
-export type PluginReturns = MeasureController
-export type { PluginEvent } from './typings/event.type'
-export type { LineJson, PointJson } from './typings/data'
+export type PanoMeasureReturnType = MeasureController
+export type { PanoMeasurePluginEvent } from './typings/event.type'
+export type { LineJson, PointJson, OpenParameter } from './typings/data'
+export type { PanoMeasureParameterType } from './Controller'
+export { Magnifier }

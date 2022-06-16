@@ -1,6 +1,6 @@
 import type BaseController from './BaseController'
 import type { OpenParameter, PluginData } from '../typings/data'
-import type { PluginEvent } from '../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../typings/event.type'
 import type { UserDistanceItem } from '../utils/distanceDom'
 import Magnifier, { MagnifierParameter } from '../Modules/Magnifier'
 import FiveHelper from '../Modules/FiveHelper'
@@ -20,7 +20,7 @@ import RangePieceController from '../Modules/rangePiece'
 export type Mode = 'Watch' | 'Edit' | 'Mixed'
 
 // 参数
-export interface MeasurePluginParameter {
+export interface PanoMeasureParameterType {
   openParams?: OpenParameter
   magnifierParams?: MagnifierParameter
   useUIController?: boolean
@@ -31,7 +31,7 @@ export interface MeasurePluginParameter {
 
 export default class MeasureController {
   public hasOpen = false
-  public hook = new Subscribe<PluginEvent>()
+  public hook = new Subscribe<PanoMeasurePluginEvent>()
   public magnifier: Magnifier
 
   private five: Five
@@ -39,7 +39,7 @@ export default class MeasureController {
   private group: Group
   private fiveHelper: FiveHelper
   private useUIController?: UIController
-  private params: MeasurePluginParameter
+  private params: PanoMeasureParameterType
   private useGuideController?: GuideController
   private rangePieceController?: RangePieceController
   private container = document.createElement('div')
@@ -47,7 +47,7 @@ export default class MeasureController {
   private controller: WatchController | EditController | MixedController | null = null
   private controllerParams: ConstructorParameters<typeof BaseController>[0]
 
-  public constructor(five: Five, params: MeasurePluginParameter) {
+  public constructor(five: Five, params: PanoMeasureParameterType) {
     this.five = five
     this.params = params
     this.model = new Model({ userDistanceItemCreator: this.params.userDistanceItemCreator })

@@ -3,7 +3,7 @@ import type Magnifier from '../Modules/Magnifier'
 import type FiveHelper from '../Modules/FiveHelper'
 import type { Group } from 'three'
 import type { Model } from '../Model'
-import type { PluginEvent } from '../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../typings/event.type'
 import type { UserDistanceItem } from '../utils/distanceDom'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import type { OpenParameter } from '../typings/data'
@@ -18,7 +18,7 @@ export interface IControllerParams {
   magnifier: Magnifier
   fiveHelper: FiveHelper
   openParams: OpenParameter
-  hook: Subscribe<PluginEvent>
+  hook: Subscribe<PanoMeasurePluginEvent>
   userDistanceItemCreator?: () => UserDistanceItem
 }
 

@@ -1,5 +1,5 @@
 import type MeasureController from '../../Controller'
-import type { PluginEvent } from '../../typings/event.type'
+import type { PanoMeasurePluginEvent } from '../../typings/event.type'
 import { newMainIconStyle, newMainItemStyle } from './style'
 
 export class NewMainBtnController {
