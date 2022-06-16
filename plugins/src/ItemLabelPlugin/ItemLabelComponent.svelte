@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { Subscribe } from '@realsee/five'
-    import { Five } from '@realsee/five'
+    import type { Subscribe, WorkObserver } from '@realsee/five'
+    import { Five, Mode } from '@realsee/five'
     import type { ItemLabel } from './typings'
     import { ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from "./typings";
     import { beforeUpdate, onDestroy, onMount } from "svelte";
@@ -8,6 +8,10 @@
     import ItemLabelItem from './ItemLabelItem.svelte'
     import { PluginEvent } from "./events.type";
     import debounce from '../shared-utils/debounce'
+    import { isImpacted } from "./utils/isImpacted";
+    import { getStrokeLength } from "./utils/getStrokeLength";
+    import { getLabelTransform } from './utils/getLabelTransform'
+    import { transform2RenderData } from "./utils/transform2RenderData";
 
     const { Raycaster, Vector3 } = THREE
 
@@ -17,6 +21,7 @@
     export let wrapper: HTMLElement | null
     export let hooks: Subscribe<PluginEvent>
     export let displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE
+    export let maxVisibleDistance: number | null
 
     let curItemLabels: ItemLabel[] = null
     let renderItemLabels: ItemLabel[] = null
@@ -39,17 +44,25 @@
      * 1、当前楼层(假设先不考虑多楼层)
      * 2、模型未被遮挡（一个 box 有没有被遮挡的计算？ TODO）
      * */
-
     const getLabelVisible = (five: Five, itemLabel: ItemLabel) => {
         // 虚拟 VR 仅有一层，不考虑楼层信息
-        const raycaster = new Raycaster()
         const cameraPosition = five.camera.position.clone()
         const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
         // 计算点到相机的位置
         const vectorDistance = modelPosition.distanceTo(cameraPosition)
-        raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
-        const [intersection] = five.model.intersectRaycaster(raycaster)
-        return !(intersection && intersection.distance + 1 < vectorDistance);
+
+        // 判断距离，大于最大可见距离直接不可见 TODO 把距离计算和碰撞拆分开
+        if (maxVisibleDistance !== undefined && five.state.mode === Five.Mode.Panorama) {
+            if (vectorDistance > maxVisibleDistance) {
+                return false
+            }
+        }
+
+        return isImpacted(five, modelPosition.clone().sub(cameraPosition).normalize(), cameraPosition, vectorDistance)
+
+        // raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
+        // const [intersection] = five.model.intersectRaycaster(raycaster)
+        // return !(intersection && intersection.distance + 1 < vectorDistance);
     }
 
     // cssOffset 获取
@@ -59,10 +72,6 @@
         const xOffset = cssPosition?.x
         const yOffset = cssPosition?.y
         return [xOffset, yOffset]
-    }
-
-    const getLabelTransform = (cssOffset: [number, number]) => {
-        return `translate(${cssOffset[0]}px, ${cssOffset[1]}px)`
     }
 
     // 重叠计算
@@ -79,19 +88,6 @@
         return !!hasOverlapPoint
     }
 
-    function getStrokeLength(itemSpaceHeight: number, type: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE) {
-        switch (type) {
-            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.SMALL:
-                return Math.ceil(-27.78 * itemSpaceHeight + 85)
-            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.MIDLLE:
-                return Math.ceil(-38.9 * itemSpaceHeight + 130)
-            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE:
-                return Math.ceil(-44.44 * itemSpaceHeight + 140)
-            case ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.EXTRA_LARGE:
-                return Math.ceil(-92.59 * itemSpaceHeight + 300)
-        }
-    }
-
     const getFormatedItemLabels = (five: Five, labels: ItemLabel[]) => {
         // 计算位置 & 可见性
         const newLabels = labels.map(label => {
@@ -100,9 +96,9 @@
             const strokeLength = getStrokeLength(label.modelPosition[1], displayStrategyType)
 
             // 是否加入碰撞检测
-            const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : true
+            const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : label.visible
             const visible = naturalVisible
-	        // 关掉重叠计算
+            // 关掉重叠计算
             // const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
 
             if (!visible) return { ...label, visible }
@@ -144,13 +140,21 @@
     }
 
     onMount(() => {
-        renderItemLabels = itemLabels
+        renderItemLabels = transform2RenderData(itemLabels)
         curItemLabels = itemLabels
         onItemLabelUpdate()
         addResizeListener()
 
         five.on('cameraUpdate', handleCameraUpdateCallback)
+        five.on('modeChange', onFiveModeChange)
     })
+
+    const onFiveModeChange = (mode: Mode) => {
+        five.once('initAnimationEnded', (panoIndex, pose, userAction) => {
+            if (!userAction) return
+	        else onItemLabelUpdate()
+        })
+    }
 
     const handleCameraUpdate = debounce(() => {
         itemsVisible = true
@@ -167,7 +171,7 @@
 
     const addDataUpdateListener = () => {
         if (curItemLabels !== itemLabels) {
-            renderItemLabels = itemLabels
+            renderItemLabels = transform2RenderData(itemLabels)
             curItemLabels = itemLabels
             onItemLabelUpdate()
         }
@@ -193,17 +197,87 @@
         resizeObserver.unobserve(wrapper)
     })
 
+    const getNearObserverPano = (fromPositionVector: THREE.Vector3, observers: WorkObserver[]) => {
+        let candidates = []
+
+        for (let i = 0; i < observers.length; i++) {
+            const { position: obVector, panoIndex } = observers[i]
+            const distance = fromPositionVector.distanceTo(obVector)
+            if (maxVisibleDistance === undefined || distance <= maxVisibleDistance || five.state.mode !== Five.Mode.Panorama) {
+                candidates.push({
+                    panoIndex,
+                    obVector,
+                    distance
+                })
+            }
+        }
+
+        candidates = candidates.sort((a, b) => a.distance - b.distance);
+        let observerIndex: number
+
+        for (let i = 0; i < candidates.length; i++) {
+            const { obVector, distance, panoIndex } = candidates[i]
+            const isImpactedRes = isImpacted(five, fromPositionVector, obVector, distance)
+            if (!isImpactedRes) {
+                observerIndex = panoIndex
+                break
+            }
+        }
+
+        return typeof observerIndex === "number" ? observers[observerIndex] : undefined
+    }
+
+    const onIconClick = (itemLabel: ItemLabel) => {
+        if (five.state.mode === Five.Mode.Panorama) return
+
+        const observers = five.work.observers
+        const fromPositionVector = new Vector3(itemLabel.position[0], itemLabel.position[1], itemLabel.position[2])
+        const observer = getNearObserverPano(fromPositionVector, observers)
+        if (observer) {
+            itemLabel.observerIndex = observer.panoIndex
+        }
+
+        if (typeof itemLabel.observerIndex === "number") {
+            const observer = observers[itemLabel.observerIndex]
+            const direction = fromPositionVector.clone().sub(observer.position).normalize()
+
+            const cameraCoord = {
+                longitude: Math.PI + Math.atan2(direction.x, direction.z),
+                latitude: Math.acos(direction.y / direction.length()) - Math.PI / 2,
+            }
+
+            five.setState({
+                ...cameraCoord,
+                mode: Five.Mode.Panorama,
+                panoIndex: itemLabel.observerIndex
+            })
+
+            // 游走结束更新 render list
+            five.once('initAnimationEnded', () => {
+                renderItemLabels = renderItemLabels.map(item => {
+                    return {
+                        ...item,
+                        isFold: item.id !== itemLabel.id
+                    }
+                })
+            })
+        }
+    }
+
 
 </script>
 
 <div class="item-labels-container" bind:clientWidth="{containerWidth}" bind:clientHeight="{containerHeight}"
      style:opacity="{itemsVisible ? 1 : 0}">
 	{#each renderItemLabels as itemLabelItem (itemLabelItem.id)}
-		<ItemLabelItem
+		{#if itemLabelItem.visible}
+			<ItemLabelItem
 				itemLabel="{itemLabelItem}"
 				hooks="{hooks}"
 				anchorEnabled="{five.currentMode === Five.Mode.Panorama}"
-		/>
+				onIconClick="{onIconClick}"
+			/>
+		{/if}
 	{/each}
 </div>
 

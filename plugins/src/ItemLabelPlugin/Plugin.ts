@@ -11,6 +11,8 @@ import {
 } from "./typings";
 import { parseItemLabelPluginData } from "./utils/parseData";
 
+const defaultMaxVisibleDistance = undefined
+
 export const Plugin: FivePlugin<ItemLabelPluginParametersType,
     ItemLabelPluginExportReturnsType> = (
     five: Five,
@@ -28,6 +30,7 @@ export const Plugin: FivePlugin<ItemLabelPluginParametersType,
         hooks: new Subscribe<PluginEvent>(),
         modelOcclusionEnable: params?.modelOcclusionEnable ?? true,
         displayStrategyType: params?.displayStrategyType ?? ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.SMALL,
+        maxVisibleDistance: params?.maxVisibleDistance ?? defaultMaxVisibleDistance,
     }
 
     pluginState.container.setAttribute('class', 'item-label-plugin-container')
@@ -90,7 +93,8 @@ export const Plugin: FivePlugin<ItemLabelPluginParametersType,
                     itemLabels: pluginState.itemLabels,
                     wrapper: pluginState.wrapper,
                     hooks: pluginState.hooks,
-                    displayStrategyType: pluginState.displayStrategyType
+                    displayStrategyType: pluginState.displayStrategyType,
+                    maxVisibleDistance: pluginState.maxVisibleDistance
                 }
             })
         } else {
@@ -103,13 +107,13 @@ export const Plugin: FivePlugin<ItemLabelPluginParametersType,
 
     // 添加 five 监听
     const addListener4Five = () => {
-        five.on('modeChange', onFiveModeChange)
+        // five.on('modeChange', onFiveModeChange)
         five.once('dispose', dispose)
     }
 
     // 取消 five 监听
     const removeListener4Five = () => {
-        five.off('modeChange', onFiveModeChange)
+        // five.off('modeChange', onFiveModeChange)
     }
 
     const onFiveModeChange = (mode: Mode) => {

@@ -7,6 +7,10 @@
     export let itemLabel: ItemLabel
     export let hooks: Subscribe<PluginEvent>
     export let anchorEnabled: boolean
+    export let onIconClick: (itemLabel: ItemLabel) => void
+
+
+    console.log('anchorEnabled: ', anchorEnabled)
 
     const defaultIcon = '//vrlab-public.ljcdn.com/common/file/web/c8591aaa-e62b-4e31-8fed-671483ace37f.svg\n'
 
@@ -16,17 +20,21 @@
 
 </script>
 
-<div class={classNames("item-label-item", { visible: itemLabel.visible })}
+<div class={classNames("item-label-item", { fold: itemLabel.isFold })}
      style:z-index="{itemLabel.zIndex}"
      style:transform="{itemLabel.transform}"
 >
-	<div class={classNames("item-label-item__text-wrap", { visible: itemLabel.visible })}
+	<div class={classNames("item-label-item__text-wrap")}
 	     style="bottom: {`${itemLabel.strokeLength}px`}"
 	     on:click="{onClick}"
 	>
-		<div class="icon-wrap">
-			<div class="icon" style={`background-image: url(${itemLabel.icon ?? defaultIcon})`}></div>
-		</div>
+		{#if itemLabel.icon}
+			<div class="icon-wrap"
+			     on:click="{(e) => onIconClick(itemLabel)}"
+			>
+				<div class="icon" style={`background-image: url(${itemLabel.icon ?? defaultIcon})`} ></div>
+			</div>
+		{/if}
 		<div class="item-label-text">
 			<span class="item-model">{itemLabel.code ?? itemLabel.id}</span>
 			<span class="item-name">{itemLabel.name}</span>
@@ -45,12 +53,19 @@
         cursor: pointer;
         pointer-events: none;
         user-select: none;
-        opacity: 0;
+        animation: fadeIn .3s ease-in;
     }
 
-    .item-label-item.visible {
-        opacity: 1;
-        animation: fadeIn .3s ease-in;
+    .item-label-item.fold >.item-label-item__text-wrap  {
+	    visibility: hidden;
+    }
+
+    .item-label-item.fold >.item-label-item__bar.anchor {
+	    visibility: hidden;
+    }
+
+    .item-label-item.fold >.item-label-item__bar.anchor:after  {
+	    visibility: visible;
     }
 
     .item-label-item__text-wrap {
@@ -60,8 +75,7 @@
         width: max-content;
         max-width: 473px;
         min-height: 92px;
-        pointer-events: none;
-        background-image: linear-gradient(269deg, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.60) 49%, rgba(31,38,46,0.70) 100%);
+        background-image: linear-gradient(269deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.60) 49%, rgba(31, 38, 46, 0.70) 100%);
         border: 1.5px solid rgba(255, 255, 255, .65);
         border-radius: 3px;
         color: white;
@@ -71,10 +85,7 @@
         align-items: center;
         box-sizing: border-box;
         overflow: hidden;
-    }
-
-    .item-label-item__text-wrap.visible {
-	    pointer-events: all;
+        pointer-events: all;
     }
 
     .icon-wrap {
@@ -94,7 +105,7 @@
     }
 
     .item-label-text {
-	    margin-left: 12px;
+        margin-left: 12px;
         padding-left: 12px;
         min-height: 68px;
         height: auto;
@@ -106,7 +117,7 @@
         border-top: solid rgba(255, 255, 255, .2) 0;
         border-right: solid rgba(255, 255, 255, .2) 0;
         border-bottom: solid rgba(255, 255, 255, .2) 0;
-	    pointer-events: auto;
+        pointer-events: auto;
     }
 
     .item-model {
@@ -129,21 +140,20 @@
         bottom: 0;
         width: 3px;
         background-image: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
-        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.20);
-	    pointer-events: none;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.20);
+        pointer-events: none;
     }
 
     .item-label-item__bar.anchor:after {
-	    content: '';
-	    position: absolute;
-	    bottom: 0;
-	    width: 24px;
-	    height: 24px;
-	    background-image: url("//vrlab-public.ljcdn.com/common/file/web/67e7a198-28c9-47dc-879b-507bd3ae600c.png ");
-	    background-position: center;
-	    background-size: contain;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 24px;
+        height: 24px;
+        background-image: url("//vrlab-public.ljcdn.com/common/file/web/67e7a198-28c9-47dc-879b-507bd3ae600c.png ");
+        background-position: center;
+        background-size: contain;
         transform: translate(-10.5px, 50%);
-
     }
 
     @keyframes fadeIn {

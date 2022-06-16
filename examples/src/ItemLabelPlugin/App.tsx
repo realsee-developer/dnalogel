@@ -10,7 +10,8 @@ import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
     modelOcclusionEnable: true,
-    displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE
+    displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE,
+    // maxVisibleDistance: 100
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()

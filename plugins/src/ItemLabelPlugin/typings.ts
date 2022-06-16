@@ -10,6 +10,7 @@ export enum ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE {
 }
 // 插件入口参数
 export interface  ItemLabelPluginParametersType {
+    maxVisibleDistance?: number
     modelOcclusionEnable?: boolean
     displayStrategyType?: Partial<ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE>
 }
@@ -36,6 +37,9 @@ export interface ItemLabel {
     modelPosition: [number, number, number]
     type?: string[]
     icon?: string,
+    observerIndex?: number | undefined
+    visible?: boolean,
+    isFold?: boolean,
     [key: string]: any
 }
 
@@ -61,4 +65,5 @@ export interface ItemLabelPluginState {
     hooks: Subscribe<PluginEvent>
     modelOcclusionEnable: boolean
     displayStrategyType: Partial<ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE>
+    maxVisibleDistance: number | undefined
 }
