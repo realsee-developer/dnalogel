@@ -9,7 +9,7 @@
     export let anchorEnabled: boolean
     export let onIconClick: (itemLabel: ItemLabel) => void
 
-    const defaultIcon = '//vrlab-public.ljcdn.com/common/file/web/c8591aaa-e62b-4e31-8fed-671483ace37f.svg\n'
+    // const defaultIcon = '//vrlab-public.ljcdn.com/common/file/web/c8591aaa-e62b-4e31-8fed-671483ace37f.svg\n'
 
     function onClick() {
         hooks.emit('onLabelClick', itemLabel)
@@ -29,11 +29,11 @@
 			<div class="icon-wrap"
 			     on:click="{(e) => onIconClick(itemLabel)}"
 			>
-				<div class="icon" style={`background-image: url(${itemLabel.icon ?? defaultIcon})`} ></div>
+				<div class="icon" style={`background-image: url(${itemLabel.icon})`} ></div>
 			</div>
 		{/if}
 		<div class="item-label-text">
-			<span class="item-model">{itemLabel.code ?? itemLabel.id}</span>
+			<span class="item-model">{itemLabel.code || itemLabel.id}</span>
 			<span class="item-name">{itemLabel.name}</span>
 		</div>
 	</div>
