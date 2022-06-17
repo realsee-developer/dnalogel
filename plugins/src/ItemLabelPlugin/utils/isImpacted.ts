@@ -11,5 +11,6 @@ export const isImpacted = (five: Five, sourceVector: THREE.Vector3, targetVector
     const raycaster = new Raycaster()
     raycaster.set(targetVector, direction)
     const [intersection] = five.model.intersectRaycaster(raycaster)
-    return intersection && distance <= intersection.distance + 0.1
+    return intersection && intersection.distance + 0.01 < distance
+    // return intersection && distance <= intersection.distance + 0.1
 }

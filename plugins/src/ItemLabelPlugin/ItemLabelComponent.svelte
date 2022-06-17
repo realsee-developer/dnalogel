@@ -45,7 +45,7 @@
      * 1、当前楼层(假设先不考虑多楼层)
      * 2、模型未被遮挡（一个 box 有没有被遮挡的计算？ TODO）
      * */
-    const getLabelVisible = (five: Five, itemLabel: ItemLabel) => {
+    const judgeImpacted = (five: Five, itemLabel: ItemLabel) => {
         // 虚拟 VR 仅有一层，不考虑楼层信息
         const cameraPosition = five.camera.position.clone()
         const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
@@ -64,6 +64,22 @@
         // raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
         // const [intersection] = five.model.intersectRaycaster(raycaster)
         // return !(intersection && intersection.distance + 1 < vectorDistance);
+    }
+
+    const judgeInViewport = (modelPoint: THREE.Vector3): boolean => {
+        const { camera, model } = five;
+        const {
+            x: offsetXFromCenter,
+            y: offsetYFromCenter,
+            z: offsetZFromCenter,
+        } = modelPoint.clone().project(camera)
+        const ratioFromLeft = (offsetXFromCenter + 1) / 2
+        const ratioFromTop = (2 - (offsetYFromCenter + 1)) / 2
+        const isFront = Math.abs(offsetZFromCenter) < 1
+        const cssOffset = [ratioFromLeft, ratioFromTop]
+        const isInViewport = isFront && cssOffset.every((ratio) => ratio < 1 && ratio >= 0)
+
+        return Boolean(isInViewport)
     }
 
     // cssOffset 获取
@@ -97,8 +113,20 @@
             const strokeLength = getStrokeLength(label.modelPosition[1], displayStrategyType)
 
             // 是否加入碰撞检测
-            const naturalVisible = modelOcclusionEnable ? getLabelVisible(five, label) : label.visible
-            const visible = naturalVisible
+	        // 配置加入碰撞检测，则判断碰撞检测
+
+	        // 在可见范围内， 仅在 Panorama 模态计算
+	        const isInViewport = five.currentMode === Five.Mode.Panorama
+		        ? judgeInViewport(new Vector3(label.position[0], label.position[1], label.position[2]))
+		        : true
+
+	        // 碰撞
+	        const isBlocked = modelOcclusionEnable
+		        ? judgeImpacted(five, label)
+		        : false
+
+	        const visible = isInViewport && !isBlocked
+
             // 关掉重叠计算
             // const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
 
@@ -131,24 +159,10 @@
         renderItemLabels = getFormatedItemLabels(five, renderItemLabels)
     }
 
-    beforeUpdate(() => {
-        addDataUpdateListener()
-    })
-
     const handleCameraUpdateCallback = () => {
         itemsVisible = false
         handleCameraUpdate()
     }
-
-    onMount(() => {
-        renderItemLabels = transform2RenderData(itemLabels)
-        curItemLabels = itemLabels
-        onItemLabelUpdate()
-        addResizeListener()
-
-        five.on('cameraUpdate', handleCameraUpdateCallback)
-        five.on('modeChange', onFiveModeChange)
-    })
 
     const onFiveModeChange = (mode: Mode) => {
         itemsVisible = false
@@ -197,12 +211,6 @@
         }
     })
 
-    onDestroy(() => {
-        five.off('cameraUpdate', handleCameraUpdateCallback)
-        five.off('modeChange', onFiveModeChange)
-        resizeObserver.unobserve(wrapper)
-    })
-
     const getNearObserverPano = (fromPositionVector: THREE.Vector3, observers: WorkObserver[]) => {
         let candidates = []
 
@@ -240,6 +248,7 @@
         const fromPositionVector = new Vector3(itemLabel.position[0], itemLabel.position[1], itemLabel.position[2])
         const observer = getNearObserverPano(fromPositionVector, observers)
         if (observer) {
+            console.log('--has observer--')
             itemLabel.observerIndex = observer.panoIndex
         }
 
@@ -278,6 +287,26 @@
             })
         }
     }
+
+    beforeUpdate(() => {
+        addDataUpdateListener()
+    })
+
+    onMount(() => {
+        renderItemLabels = transform2RenderData(itemLabels)
+        curItemLabels = itemLabels
+        onItemLabelUpdate()
+        addResizeListener()
+
+        five.on('cameraUpdate', handleCameraUpdateCallback)
+        five.on('modeChange', onFiveModeChange)
+    })
+
+    onDestroy(() => {
+        five.off('cameraUpdate', handleCameraUpdateCallback)
+        five.off('modeChange', onFiveModeChange)
+        resizeObserver.unobserve(wrapper)
+    })
 
 
 </script>
