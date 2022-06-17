@@ -1,5 +1,5 @@
 import { Box, Paper, ButtonGroup, Button } from '@mui/material'
-import {PanoMeasurePlugin} from '@realsee/dnalogel'
+import { PanoMeasurePlugin } from '@realsee/dnalogel'
 import { unsafe__useFiveInstance, useFiveEventCallback } from '@realsee/five/react'
 import * as React from 'react'
 import { useEffect } from "react";
@@ -49,12 +49,22 @@ const PanoMeasurePluginUsage = (props: PanoRulerPluginUsePropTypes) => {
 
     return (
         <Box>
-            <Paper sx={{ display: `${measureEnableBtn ? 'block' : 'none'}`, position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
-                <ButtonGroup size="large" aria-label="large button group" orientation="vertical" >
-                    <Button onClick={()=>{handleMeasureEnable(false)}}>
+            <Paper sx={{
+                display: `${measureEnableBtn ? 'block' : 'none'}`,
+                position: 'fixed',
+                top: '10px',
+                right: '10px',
+                backgroundColor: 'transparent'
+            }}>
+                <ButtonGroup size="large" aria-label="large button group" orientation="vertical">
+                    <Button onClick={() => {
+                        handleMeasureEnable(false)
+                    }}>
                         开启测量工具(pc端)
                     </Button>
-                    <Button onClick={()=>{handleMeasureEnable(true)}}>
+                    <Button onClick={() => {
+                        handleMeasureEnable(true)
+                    }}>
                         开启测量工具(移动端)
                     </Button>
                 </ButtonGroup>
