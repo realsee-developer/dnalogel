@@ -236,7 +236,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
 
         state.loaded = false
 
-        state.options = Object.assign({}, state.options, options || {})
+        state.options = { ...state.options, ...options || {}}
         if (five.model.loaded) {
             return _load(roomInfo, roomRules)
         } else {
@@ -350,8 +350,8 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
                 $element.style.display = 'none'
                 continue
             }
-
-            if (start.distanceTo(end) < 0.5) {
+            // 线小于0.3m隐藏
+            if (start.distanceTo(end) < 0.3) {
                 $element.style.display = 'none'
                 continue
             }
@@ -442,6 +442,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
                 $line.style.transform = `rotate(${-deg}deg)`
 
                 $label.style.left = `${labelOffset}%`
+                $label.style.transform = `rotate(${Math.abs(deg) > 180 ? 180 : 0}deg)`
             }
         }
     }
