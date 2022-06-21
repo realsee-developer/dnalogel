@@ -442,7 +442,7 @@ export const PanoRulerPlugin: FivePlugin<PanoRulerPluginParameterType, PanoRuler
                 $line.style.transform = `rotate(${-deg}deg)`
 
                 $label.style.left = `${labelOffset}%`
-                $label.style.transform = `rotate(${Math.abs(deg) > 180 ? 180 : 0}deg)`
+                $label.style.transform = `rotate(${Math.abs(deg) > 90 ? 180 : 0}deg)`
             }
         }
     }
