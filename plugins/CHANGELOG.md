@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.31
+- 1.fix: PanoRulerPlugin 修改标尺隐藏策略，线长小于0.3m隐藏
+
 ## 2.0.0-alpha.30
 - 1.feat: PanoMeasurePlugin 新增移动端UI交互模式
 - 2.feat: PanoMeasurePlugin 点线、标签气泡、删除按钮、三维坐标系UI交互优化
