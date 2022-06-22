@@ -4,4 +4,5 @@ export const pluginStyle: Partial<CSSStyleDeclaration> = {
   top: '50%',
   transform: 'translate(-50%, -50%)',
   zIndex: '10',
+  pointerEvents: 'none'
 }

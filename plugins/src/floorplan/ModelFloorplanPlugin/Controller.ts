@@ -80,6 +80,7 @@ export default class ModelFloorplanPluginController {
       top: '50%',
       transform: 'translate(-50%, -50%)',
       zIndex: 10,
+      pointerEvents: 'none'
     })
 
     this.five.addExtraElement(this.container)
