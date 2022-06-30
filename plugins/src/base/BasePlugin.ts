@@ -1,10 +1,12 @@
 import { Subscribe } from '@realsee/five'
 import type { SubscribeEventMap } from '@realsee/five'
 
+type Config<T extends Record<string, any>> = T
+
 /**
  * 基本属性字段
  */
-interface State {
+interface State<PluginConfig> {
   /**
    * 插件是否启用
    */
@@ -13,29 +15,39 @@ interface State {
   /**
    * 插件UI是否展示
    */
-  visible?: boolean
+  visible: boolean
+
+  /**
+   * 插件的配置项
+   */
+  config: Config<PluginConfig>
 }
 
 /**
  * 插件基本事件
  */
-interface EventMap<T extends State> extends SubscribeEventMap {
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+type EventMap<PluginState> = {
   /**
    * 插件状态变化
    * @param nextState 最新的状态
    * @param prevState 前一个状态
    */
-  stateChange: (nextState: T, prevState?: T) => void
+  stateChange: (nextState: PluginState, prevState: PluginState) => void
 }
 
 /**
  * plugin 的基本控制器
  */
-abstract class Controller<PluginState extends State, PluginEventMap extends EventMap<PluginState>> {
+abstract class Controller<
+  PluginConfig,
+  PluginState extends State<PluginConfig>,
+  PluginEventMap extends EventMap<PluginState>,
+> {
   /**
    * 插件事件钩子
    */
-  public hooks = new Subscribe<PluginEventMap>()
+  public hooks: Subscribe<PluginEventMap> = new Subscribe()
 
   /**
    * 当前状态
@@ -56,20 +68,20 @@ abstract class Controller<PluginState extends State, PluginEventMap extends Even
   }
 
   /**
+   * 插件自身DOM添加到父容器
+   * @param wrapper
+   */
+  public appendTo(wrapper: Element) {}
+
+  /**
    * 展示UI
    */
-  public show?(): void
+  public abstract show(): Promise<void>
 
   /**
    * 隐藏UI
    */
-  public hide?(): void
-
-  /**
-   * 插件自身DOM添加到父容器
-   * @param wrapper
-   */
-  public appendTo?(wrapper: Element): void
+  public abstract hide(): Promise<void>
 
   /**
    * 启用插件，让插件能够响应交互
@@ -90,7 +102,7 @@ abstract class Controller<PluginState extends State, PluginEventMap extends Even
    * 设置state
    * @param state 插件的目标状态
    */
-  public abstract setState(state: PluginState): void
+  public abstract setState(state: PluginState, immediately: boolean, userAction: boolean): void
 }
 
 export type { State, EventMap }

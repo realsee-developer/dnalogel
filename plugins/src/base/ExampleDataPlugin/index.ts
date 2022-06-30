@@ -1,10 +1,16 @@
 import * as BasePlugin from '../BasePluginWithData'
 
-interface State extends BasePlugin.State {
+interface Config {
+  testEnable: boolean
+}
+
+interface State extends BasePlugin.State<Config> {
   test: string
 }
 
-type EventMap = BasePlugin.EventMap<State>
+interface EventMap extends BasePlugin.EventMap<State, PluginData> {
+  onTest: () => void
+}
 
 interface ServerData {
   version: number
@@ -23,17 +29,25 @@ function create() {
   return cont
 }
 
-class Controller extends BasePlugin.Controller<State, EventMap, ServerData, PluginData> {
+class Controller extends BasePlugin.Controller<Config, State, EventMap, ServerData, PluginData> {
+  public appendTo = undefined
   public state = {
     test: 'test',
     enabled: true,
     visible: true,
+    config: {
+      testEnable: true,
+    },
   }
   protected data?: PluginData
 
   public constructor() {
     super()
   }
+
+  public async show() {}
+
+  public async hide() {}
 
   public enable() {}
 

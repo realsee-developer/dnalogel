@@ -1,27 +1,43 @@
 import * as BasePlugin from '../BasePlugin'
 
-interface State extends BasePlugin.State {
+interface Config {
+  testEnable: boolean
+}
+
+interface State extends BasePlugin.State<Config> {
   test: string
 }
 
-type EventMap = BasePlugin.EventMap<State>
+interface EventMap extends BasePlugin.EventMap<State> {
+  onTest: () => void
+}
 
 function create() {
   const cont = new Controller()
-  console.log('🚀 ~ cont.state.name', cont.state.test)
+  console.log('🚀 ~ cont.state.name', cont.state.config.testEnable)
+  cont.hooks.on('stateChange', () => {})
   return cont
 }
 
-class Controller extends BasePlugin.Controller<State, EventMap> {
+class Controller extends BasePlugin.Controller<Config, State, EventMap> {
+  public appendTo = undefined
+
   public state = {
     test: 'test',
     enabled: true,
     visible: true,
+    config: {
+      testEnable: true,
+    },
   }
 
   public constructor() {
     super()
   }
+
+  public async show() {}
+
+  public async hide() {}
 
   public enable() {}
 
