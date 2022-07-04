@@ -14,6 +14,7 @@
     "build": "yarn run tsb && yarn run build:rollup && yarn build:docs",
     "build:dev": "yarn build:svelte && tsc --watch",
     "build:rollup": " rollup --config rollup.config.js",
+    "build:rollup-components": " vite build",
     "tsb": "tsc && yarn build:svelte && ./bin/svelte-compile.js",
     "build:svelte": "svelte-strip strip src/ libs -m=false",
     "build:docs": "typedoc --options ./typedoc.json",
@@ -23,6 +24,7 @@
   "files": [
     "libs",
     "dist",
+    "components",
     "docs",
     "TERMS.txt"
   ],
