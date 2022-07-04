@@ -912,22 +912,18 @@ transition: all 500ms;
   cursor: pointer;
 }
 
-._paintBrush-ctrlitem--undo {
-  .brush-icon {
+._paintBrush-ctrlitem--undo >.brush-icon{
     background-image: url("//vrlab-static.ljcdn.com/release/web/revoke.ab7694ef.svg");
     background-size: 100%;
     width: 22px;
     height: 22px;
-  }
 }
 
-._paintBrush-ctrlitem--close {
-  .brush-icon {
+._paintBrush-ctrlitem--close >.brush-icon {
     background-image: url("//vrlab-static.ljcdn.com/release/web/exit_paintbrush.02bc1341.svg");
     background-size: 100%;
     width: 22px;
     height: 22px;
-  }
 }
 
 </style>
@@ -1045,7 +1041,7 @@ class Controller extends Subscribe {
       $i.className = "brush-icon";
       const $span = document.createElement("span");
       $span.className = "brush-txt";
-      $span.innerText = $a.className.endsWith("undo") ? "\u56DE\u9000" : "\u5173\u95ED";
+      $span.innerText = $a.className.endsWith("undo") ? this.configs.onUndoText : this.configs.onExitText;
       $a.appendChild($i);
       $a.appendChild($span);
     });
@@ -1417,7 +1413,9 @@ class PaintBrush {
   constructor(configs = {}) {
     __publicField(this, "controller");
     const _configs = Object.assign({
-      currentColor: "#f44336"
+      currentColor: "#f44336",
+      onUndoText: "\u56DE\u9000",
+      onExitText: "\u5173\u95ED"
     }, configs);
     this.controller = new Controller(_configs);
   }
@@ -1449,4 +1447,4 @@ class PaintBrush {
     this.controller.updateCurrentColor(color);
   }
 }
-export { PaintBrush };
+export { PaintBrush, PaintBrushTypeEnum };

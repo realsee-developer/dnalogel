@@ -12,10 +12,11 @@ export default defineConfig({
   plugins: [postcss()],
   build: {
     lib: {
-      entry: resolve(__dirname, 'comps/index.ts'),
+      entry: resolve(__dirname, 'src/components/index.ts'),
       name: 'dnalogel',
-      formats: ['es', 'umd', 'cjs'],
-      fileName: (format) => `index.${format}.js`
+      // formats: ['es', 'umd', 'cjs'],
+      formats: ['es'],
+      fileName: (format) => `index.js`
     },
     rollupOptions: {
       plugins: [],

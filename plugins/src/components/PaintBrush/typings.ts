@@ -4,6 +4,8 @@ export interface PaintBrushConfigs {
   DPR?: number,
   onClickClose?: () => void,
   onClickUndo?: () => void,
+  onUndoText?: string
+  onExitText?: string
 }
 
 export type PaintBrushEventMap = {

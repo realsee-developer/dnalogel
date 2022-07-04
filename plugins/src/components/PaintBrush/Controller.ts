@@ -20,7 +20,7 @@ import {
 } from './typings'
 
 import { Subscribe } from './Subscribe'
-import { uuid } from '../../src/shared-utils/uuid'
+import { uuid } from '../../shared-utils/uuid'
 import PaintBrushStyle from './style'
 
 export class Controller extends Subscribe<PaintBrushEventMap> {
@@ -169,7 +169,7 @@ export class Controller extends Subscribe<PaintBrushEventMap> {
       const $span = document.createElement('span')
       $span.className = 'brush-txt'
 
-      $span.innerText = $a.className.endsWith('undo') ? '回退' : '关闭'
+      $span.innerText = $a.className.endsWith('undo') ? this.configs.onUndoText : this.configs.onExitText
       $a.appendChild($i)
       $a.appendChild($span)
     })

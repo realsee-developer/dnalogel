@@ -83,22 +83,18 @@ transition: all 500ms;
   cursor: pointer;
 }
 
-._paintBrush-ctrlitem--undo {
-  .brush-icon {
+._paintBrush-ctrlitem--undo >.brush-icon{
     background-image: url("//vrlab-static.ljcdn.com/release/web/revoke.ab7694ef.svg");
     background-size: 100%;
     width: 22px;
     height: 22px;
-  }
 }
 
-._paintBrush-ctrlitem--close {
-  .brush-icon {
+._paintBrush-ctrlitem--close >.brush-icon {
     background-image: url("//vrlab-static.ljcdn.com/release/web/exit_paintbrush.02bc1341.svg");
     background-size: 100%;
     width: 22px;
     height: 22px;
-  }
 }
 
 </style>

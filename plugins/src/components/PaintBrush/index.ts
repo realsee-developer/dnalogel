@@ -8,6 +8,8 @@ export class PaintBrush {
   constructor(configs: Partial<PaintBrushConfigs> = {}) {
     const _configs = Object.assign({
       currentColor: '#f44336',
+      onUndoText: '回退',
+      onExitText: '关闭'
     }, configs)
 
     this.controller = new Controller(_configs)
