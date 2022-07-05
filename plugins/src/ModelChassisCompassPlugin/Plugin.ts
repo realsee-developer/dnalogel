@@ -33,16 +33,16 @@ export const ModelChassisCompassPlugin: FivePlugin<
   ModelChassisCompassPluginExportType
 > = (five: Five, params) => {
   const defaultFbxUrl = params.fbx_url || '//vrlab-static.ljcdn.com/release/web/v3/dipan3/dipan.FBX'
-  const defaultNorthRad = params.north_rad || undefined
+  const defaultNorthRad = params.north_rad ?? undefined
 
   // 局部状态
   const state: ModelChassisCompassPluginState = {}
 
   const load = async (data?: ModelChassisCompassPluginData) => {
     const fbxUrl = data?.fbx_url || defaultFbxUrl
-    const northRad = data?.north_rad || defaultNorthRad
+    const northRad = data?.north_rad ?? defaultNorthRad
 
-    if (!northRad) {
+    if (typeof northRad !== 'number') {
       throw new Error('"northRad"配置参数缺失：未配置指南针指向！')
     }
 

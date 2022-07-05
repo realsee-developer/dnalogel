@@ -1588,10 +1588,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@realsee/five@^5.0.0-alpha.127":
+"@realsee/five@5.0.0-alpha.127":
   version "5.0.0-alpha.127"
-  resolved "https://registry.npmmirror.com/@realsee/five/-/five-5.0.0-alpha.127.tgz#bf16fc7324aa31628e727345b97946ea5f41c385"
-  integrity sha512-IgC1eQCbdO5lsyXF3lUe7LwzVsvVtqKb+GoHAQ1LTHT6eJ8er2P7Xnm0reBNznpLAQY82U0WVik+5jiRewFlUQ==
+  resolved "http://artifactory.intra.ke.com/artifactory/api/npm/npm-virtual/@realsee/five/-/five-5.0.0-alpha.127.tgz#bf16fc7324aa31628e727345b97946ea5f41c385"
+  integrity sha1-vxb8cySqMWKOcnNFuXlG6l9Bw4U=
   dependencies:
     archiver "^5.3.0"
     commander "^9.0.0"
