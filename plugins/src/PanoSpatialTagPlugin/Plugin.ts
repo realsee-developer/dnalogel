@@ -465,7 +465,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
   if (five?.model?.loaded) {
     if (!wrapper) wrapper = five.getElement().parentElement
-    wrapper.appendChild(container)
+    if (wrapper) wrapper.appendChild(container)
     state.forbidden = false
     updateTags()
     five.on('panoWillArrive', onPanoWillArrive)
@@ -475,7 +475,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
   } else {
     five.once('modelLoaded', () => {
       if (!wrapper) wrapper = five.getElement().parentElement
-      wrapper.appendChild(container)
+      if (wrapper) wrapper.appendChild(container)
       state.forbidden = false
       updateTags()
       five.on('panoWillArrive', onPanoWillArrive)
