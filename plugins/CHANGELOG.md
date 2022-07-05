@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.33
+- 1.fix: Floorplan Plugins Compass & ModelChassisCompassPlugin 修复对 north_rad 为 0 的处理
+
 ## 2.0.0-alpha.32
 - 1.feat: PanoRulerPlugin 修改标尺隐藏策略，线长小于0.3m隐藏；
 - 2.fix: TopViewFloorplanPlugin & ModelFloorplanPlugin wrapper pointer-events: none。
