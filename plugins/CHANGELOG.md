@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2.0.0-alpha.34
+- 1.feat: 新增 PaintBrush 组件，此版本为实验版，请谨慎使用。
+
+## 2.0.0-alpha.33
+- 1.fix: Floorplan Plugins Compass & ModelChassisCompassPlugin 修复对 north_rad 为 0 的处理
+- 2.fix: panospatialtagplugin 兼容nextjs出现的text样式问题
+
 ## 2.0.0-alpha.32
 - 1.feat: 新增 PaintBrush 组件，此组件为实验发布阶段，请谨慎使用。
 

@@ -105,7 +105,9 @@
 
 <style>
   .PanoSpatialTagPlugin__tag-x {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: block;
     white-space: nowrap;
     box-sizing: border-box;
