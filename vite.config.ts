@@ -32,6 +32,7 @@ export default defineConfig({
         ModelItemLabelPlugin: resolve(__dirname, './src/ModelItemLabelPlugin/index.html'),
         ModelTVVideoPlugin: resolve(__dirname, './src/ModelTVVideoPlugin/index.html'),
         ItemLabelPlugin: resolve(__dirname, './src/ItemLabelPlugin/index.html'),
+        PaintBrush: resolve(__dirname, './src/PaintBrush/index.html'),
       },
       output: {
         chunkFileNames: 'static/js/[name]-[hash].js',

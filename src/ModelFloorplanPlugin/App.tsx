@@ -35,7 +35,6 @@ const FiveProvider = createFiveProvider({
 const App: React.FC = () => {
     const size = useWindowDimensions();
     const work = useFetchDatas(DATA_TYPES.WORK)
-
     return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
 		<FiveCanvas {...size} />
 	    <Box

@@ -12,6 +12,7 @@ const PanoSpatialTagPluginUse: React.FC = () => {
     const model_tag = useFetchDatas(DATA_TYPES.MODEL_TAG, '81gmMq5eXl5I9y7JMk')
 
     React.useEffect(() => {
+
         if (!model_tag) return
         const points = model_tag.map((v) => {
           const { id, position, normal, weight, name, price, brand } = v
@@ -51,7 +52,7 @@ const PanoSpatialTagPluginUse: React.FC = () => {
           },
         })
     }, [model_tag])
-    
+
     return null
 }
 

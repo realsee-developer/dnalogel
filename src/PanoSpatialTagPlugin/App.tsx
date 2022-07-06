@@ -37,7 +37,6 @@ const FiveProvider = createFiveProvider({
 const App: FC = () => {
   const size = useWindowDimensions();
   const work = useFetchDatas(DATA_TYPES.WORK, '81gmMq5eXl5I9y7JMk')
-
   return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>
     <FiveCanvas {...size} />
     <PanoSpacialTagPluginUse />
