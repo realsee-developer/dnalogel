@@ -62,7 +62,6 @@ interface PanoSpatialTagPluginState {
 }
 
 const MESH_SIZE = 0.001
-const RAY_ORIGIN_Y = 1.4
 const RAY_TOLERANT_DISTANCE = 0.01
 const BLUR_IMAGE_URL = 'https://vrlab-image4.ljcdn.com/release/web/PanoSpatialTagPlugin__blur.png'
 const MIN_DISTANCE = 1.2
@@ -77,6 +76,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     > = (five: Five, params) => {
 
   let wrapper = params?.container
+  let centerY = 1.4
   const wait = params?.wait ?? 200
   const maxNumberOnScreen = params?.maxNumberOnScreen ?? 3
   const minRad = params?.minRad ?? Math.PI / 4
@@ -146,7 +146,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     frustum.setFromProjectionMatrix(projScreenMatrix)
 
     state.tags.forEach(tag => {
-      const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(tag.position)
+      const distance = camera.position.clone().setY(centerY).distanceTo(tag.position)
       if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return tag.destroying = true
       if (!frustum.containsPoint(tag.position)) return tag.destroying = true
       const v = tag.position.clone().sub(camera.position).setY(0)
@@ -245,7 +245,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
     const points: Array<PanoSpatialTagPluginPointElement> = state.points.reduce((result, point) => {
       if (state.tags.find(tag => point.id === tag.id && !tag.destroying)) return result
-      const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(point.position)
+      const distance = camera.position.clone().setY(centerY).distanceTo(point.position)
       if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return result
       if (!frustum.containsPoint(point.position)) return result
 
@@ -312,8 +312,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
       })) continue
 
       const raycaster = new THREE.Raycaster(
-          camera.position.clone().setY(RAY_ORIGIN_Y),
-          point.position.clone().sub(camera.position.clone().setY(RAY_ORIGIN_Y)).normalize(),
+          camera.position.clone().setY(centerY),
+          point.position.clone().sub(camera.position.clone().setY(centerY)).normalize(),
           0,
           point.distance + RAY_TOLERANT_DISTANCE
       )
@@ -478,6 +478,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     if (!wrapper) wrapper = five.getElement().parentElement
     if (wrapper) wrapper.appendChild(container)
     state.forbidden = false
+    centerY = five.model.bounding.getCenter(new THREE.Vector3())
     updateTags()
     five.on('panoWillArrive', onPanoWillArrive)
     five.on('panoArrived', onPanoArrived)
@@ -487,6 +488,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     five.once('modelLoaded', () => {
       if (!wrapper) wrapper = five.getElement().parentElement
       if (wrapper) wrapper.appendChild(container)
+      centerY = five.model.bounding.getCenter(new THREE.Vector3())
       state.forbidden = false
       updateTags()
       five.on('panoWillArrive', onPanoWillArrive)
