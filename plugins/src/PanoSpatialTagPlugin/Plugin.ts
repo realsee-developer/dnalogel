@@ -54,6 +54,7 @@ interface PanoSpatialTagPluginState {
   tags: Array<PanoSpatialTagPluginTagElement>
   render: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => string
   events: PanoSpatialTagPluginContentEvent
+  intersectObjects?: Array<any> // 碰撞检测objects
   template: string
   folded: boolean // 标签初始收起展开状态
   enabled: boolean // 用户控制启用禁止状态
@@ -316,9 +317,11 @@ export const PanoSpatialTagPlugin: FivePlugin<
           0,
           point.distance + RAY_TOLERANT_DISTANCE
       )
-      const [intersect] = five.model.bvhs.loaded ?
-          five.model.intersectRaycaster(raycaster) :
-          raycaster.intersectObjects(five.model.children, true)
+      const [intersect] = state.intersectObjects ?
+        raycaster.intersectObjects(state.intersectObjects, true) :
+        (five.model.bvhs.loaded ?
+        five.model.intersectRaycaster(raycaster) :
+        raycaster.intersectObjects(five.model.children, true))
       if (!intersect) continue
       if (point.distance - intersect.distance < RAY_TOLERANT_DISTANCE) {
         const { position, normal, id, replacement } = point
@@ -380,6 +383,14 @@ export const PanoSpatialTagPlugin: FivePlugin<
     if (data.events) state.events = data.events
     if (data.enabled === false) state.enabled = data.enabled
     if (data.folded === true) state.folded = data.folded
+  }
+
+  /** 设置射线碰撞检测objects
+   * 
+   */
+  const setIntersectObjects = (objects: Array<any>): void => {
+    state.intersectObjects = objects
+    updateTags()
   }
 
   /** 标签启用
@@ -489,6 +500,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
   return {
     load,
+    setIntersectObjects,
     unfoldAll,
     foldAll,
     unfold,
