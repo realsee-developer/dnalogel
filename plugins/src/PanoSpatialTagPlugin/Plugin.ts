@@ -472,13 +472,15 @@ export const PanoSpatialTagPlugin: FivePlugin<
     five.off('panoArrived', onPanoArrived)
     five.off('modeChange', onModeChange)
     five.off('cameraUpdate', onCameraUpdate)
+    window.removeEventListener('resize', updateOrigins, false)
   }
 
+  window.addEventListener('resize', updateOrigins, false)
   if (five?.model?.loaded) {
     if (!wrapper) wrapper = five.getElement().parentElement
     if (wrapper) wrapper.appendChild(container)
     state.forbidden = false
-    centerY = five.model.bounding.getCenter(new THREE.Vector3())
+    centerY = five.model.bounding.getCenter(new THREE.Vector3()).y
     updateTags()
     five.on('panoWillArrive', onPanoWillArrive)
     five.on('panoArrived', onPanoArrived)
@@ -488,7 +490,7 @@ export const PanoSpatialTagPlugin: FivePlugin<
     five.once('modelLoaded', () => {
       if (!wrapper) wrapper = five.getElement().parentElement
       if (wrapper) wrapper.appendChild(container)
-      centerY = five.model.bounding.getCenter(new THREE.Vector3())
+      centerY = five.model.bounding.getCenter(new THREE.Vector3()).y
       state.forbidden = false
       updateTags()
       five.on('panoWillArrive', onPanoWillArrive)
