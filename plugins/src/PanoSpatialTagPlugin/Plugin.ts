@@ -456,6 +456,22 @@ export const PanoSpatialTagPlugin: FivePlugin<
     })
   }
 
+  const onResize = (): void => {
+    five.once('renderFrame', updateOrigins)
+  }
+
+  const onModelLoaded = (): void => {
+    if (!wrapper) wrapper = five.getElement().parentElement
+    if (wrapper) wrapper.appendChild(container)
+    state.forbidden = false
+    centerY = five.model.bounding.getCenter(new THREE.Vector3()).y
+    updateTags()
+    five.on('panoWillArrive', onPanoWillArrive)
+    five.on('panoArrived', onPanoArrived)
+    five.on('modeChange', onModeChange)
+    five.on('cameraUpdate', onCameraUpdate)
+  }
+
   const dispose = (): void => {
     blurImage = null
     css3DRender.disposeAll()
@@ -468,38 +484,19 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.origins = []
     state.tags = []
 
+    five.off('modelLoaded', onModelLoaded)
+    five.off('renderFrame', updateOrigins)
     five.off('panoWillArrive', onPanoWillArrive)
     five.off('panoArrived', onPanoArrived)
     five.off('modeChange', onModeChange)
     five.off('cameraUpdate', onCameraUpdate)
-    window.removeEventListener('resize', updateOrigins, false)
+    five.off('dispose', dispose)
+    window.removeEventListener('resize', onResize, false)
   }
 
-  window.addEventListener('resize', updateOrigins, false)
-  if (five?.model?.loaded) {
-    if (!wrapper) wrapper = five.getElement().parentElement
-    if (wrapper) wrapper.appendChild(container)
-    state.forbidden = false
-    centerY = five.model.bounding.getCenter(new THREE.Vector3()).y
-    updateTags()
-    five.on('panoWillArrive', onPanoWillArrive)
-    five.on('panoArrived', onPanoArrived)
-    five.on('modeChange', onModeChange)
-    five.on('cameraUpdate', onCameraUpdate)
-  } else {
-    five.once('modelLoaded', () => {
-      if (!wrapper) wrapper = five.getElement().parentElement
-      if (wrapper) wrapper.appendChild(container)
-      centerY = five.model.bounding.getCenter(new THREE.Vector3()).y
-      state.forbidden = false
-      updateTags()
-      five.on('panoWillArrive', onPanoWillArrive)
-      five.on('panoArrived', onPanoArrived)
-      five.on('modeChange', onModeChange)
-      five.on('cameraUpdate', onCameraUpdate)
-    })
-  }
-
+  window.addEventListener('resize', onResize, false)
+  if (five?.model?.loaded) onModelLoaded()
+  else five.once('modelLoaded', onModelLoaded)
   five.on('dispose', dispose)
 
   return {
