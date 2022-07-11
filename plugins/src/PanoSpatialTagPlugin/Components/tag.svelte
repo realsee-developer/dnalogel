@@ -87,7 +87,7 @@
   <div class="PanoSpatialTagPlugin__tag-shadow"
     style="transform: translate({contentWidth / 2 * contentZoom * 3}px, {
       contentHeight / 2 * (upsideDown ? -1 : 1) * contentZoom * 3
-    }px)"
+    }px) scale({1 / contentZoom})"
   />
   <div class="PanoSpatialTagPlugin__tag-line">
     <i class="PanoSpatialTagPlugin__tag-flagpole"
