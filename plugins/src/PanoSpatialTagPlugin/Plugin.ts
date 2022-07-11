@@ -497,8 +497,10 @@ export const PanoSpatialTagPlugin: FivePlugin<
   }
 
   window.addEventListener('resize', onResize, false)
+
   if (five?.model?.loaded) onModelLoaded()
   else five.once('modelLoaded', onModelLoaded)
+    
   five.on('dispose', dispose)
 
   return {
