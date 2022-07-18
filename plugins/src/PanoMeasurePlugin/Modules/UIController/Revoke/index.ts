@@ -16,12 +16,12 @@ export default class Revoke {
     if (!revokeIcon || !revokeItem) throw new Error('不正确的选择器')
     this.revokeIcon = revokeIcon
     this.revokeItem = revokeItem
-    this.revokeIcon.addEventListener('click', this.onClick)
+    this.revokeItem.addEventListener('click', this.onClick)
     measureController.hook.on('modeChange', this.onModeChange)
   }
 
   dispose() {
-    this.revokeIcon.removeEventListener('click', this.onClick)
+    this.revokeItem.removeEventListener('click', this.onClick)
     this.measureController.hook.off('modeChange', this.onModeChange)
   }
 

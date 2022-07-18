@@ -45,7 +45,7 @@ export default class RangePieceController {
     this.five = params.five
     this.hook = params.hook
     this.group = params.group
-    this.mouseGroup = getMouseGroup()
+    this.mouseGroup = getMouseGroup(true)
     this.fiveHelper = params.fiveHelper
     this.container.innerHTML = htmlString
     this.container.classList.add('range-piece-controller')
@@ -200,6 +200,7 @@ export default class RangePieceController {
       const lookAtVector = position.clone().add(positionVector)
       this.mouseGroup.lookAt(lookAtVector)
     }
+    const planMesh:any = this.mouseGroup.children.find((c)=>c.name='planMesh')
     return this.mouseGroup
   }
 }
