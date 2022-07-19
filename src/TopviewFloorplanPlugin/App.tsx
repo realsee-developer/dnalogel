@@ -1,4 +1,4 @@
-import { TopviewFloorplanPlugin } from '@realsee/dnalogel'
+import { TopviewFloorplanPlugin } from '@realsee/dnalogel/libs/floorplan/TopviewFloorplanPlugin'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'
@@ -18,8 +18,7 @@ const defaultPluginParam = {
 
 const initialParamFromUrl = getInitialParamFromUrl()
 
-const pluginParams =
-  JSON.stringify(initialParamFromUrl) !== '{}' ? initialParamFromUrl : defaultPluginParam
+const pluginParams = Object.assign(defaultPluginParam, JSON.stringify(initialParamFromUrl) !== '{}' ? initialParamFromUrl : {})
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
@@ -28,10 +27,7 @@ const FiveProvider = createFiveProvider({
     [
       TopviewFloorplanPlugin,
       'topviewFloorplanPlugin',
-      {
-        selector: '.plugin-full-screen-container',
-        ...pluginParams,
-      },
+      { ...pluginParams },
     ],
   ],
 })
@@ -46,8 +42,9 @@ const App: React.FC = () => {
         initialWork={parseWork(work)}
         ref={(ref) => Object.assign(window, { $five: ref?.five })}
       >
-        <FiveCanvas {...size} />
+        <FiveCanvas key="five-canvas" {...size} />
         <Box
+          key="box"
           className="plugin-full-screen-container"
           sx={{
             position: 'absolute',
@@ -58,7 +55,7 @@ const App: React.FC = () => {
             pointerEvents: 'none',
           }}
         />
-        <TopviewFloorplanPluginUse />
+        <TopviewFloorplanPluginUse key="plugin-use"/>
       </FiveProvider>
     )
   )
