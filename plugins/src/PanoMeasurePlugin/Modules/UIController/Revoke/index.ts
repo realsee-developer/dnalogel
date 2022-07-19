@@ -30,11 +30,14 @@ export default class Revoke {
   }
 
   onModeChange = (mode: Mode) => {
-    if (mode !== 'Edit') {
+    if (mode !== 'Edit' && this.revokeItem.className.includes('enabled')) {
       this.revokeItem.classList.remove('enabled')
       return
     }
-    this.revokeItem.classList.add('enabled')
+    // 开始测量标记一个点后才能撤销
+    this.measureController.hook.on('anchorChange',()=>{
+      this.revokeItem.classList.add('enabled')
+    })
   }
 
   handleRevoke = () => {

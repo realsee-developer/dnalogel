@@ -65,7 +65,7 @@ export default `
       opacity: 0.3;
     }  
     .fpm__revoke.enabled {
-      opacity: 0.7;
+      opacity: 0.85;
     }    
     .fpm__revoke.enabled:hover {
       opacity: 1;

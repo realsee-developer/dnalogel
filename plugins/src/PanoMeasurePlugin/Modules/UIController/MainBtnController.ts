@@ -85,7 +85,7 @@ export class MainBtnController {
   /* 鼠标移出时 */
   private onMouseLeave = () => {
     const { mainItem } = this.mainElement
-    mainItem.style.opacity = '0.7'
+    mainItem.style.opacity = '0.85'
   }
 
   private onClick = () => {

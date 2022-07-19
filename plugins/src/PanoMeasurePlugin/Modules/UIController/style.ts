@@ -48,11 +48,11 @@ export const controllerBackgroundStyle: Partial<CSSStyleDeclaration> = {
 
 // item
 export const mainItemStyle: Partial<CSSStyleDeclaration> = {
-  margin: '0 80px',
+  margin: '0 64px',
 }
 
 export const exitItemStyle: Partial<CSSStyleDeclaration> = {
-  opacity: '0.7',
+  opacity: '0.85',
 }
 
 // icon

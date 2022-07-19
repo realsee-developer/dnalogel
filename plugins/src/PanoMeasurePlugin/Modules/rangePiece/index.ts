@@ -1,4 +1,3 @@
-import Line from '../../Model/line'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import { DoubleSide, Group, Mesh, MeshBasicMaterial, Raycaster, RingGeometry, Vector3 } from 'three'
 import type { Model } from '../../Model'
@@ -200,7 +199,6 @@ export default class RangePieceController {
       const lookAtVector = position.clone().add(positionVector)
       this.mouseGroup.lookAt(lookAtVector)
     }
-    const planMesh:any = this.mouseGroup.children.find((c)=>c.name='planMesh')
     return this.mouseGroup
   }
 }
