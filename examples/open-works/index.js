@@ -7,6 +7,7 @@ import _816lPVZQkQDF5XOpPo from "./virtual/816lPVZQkQDF5XOpPo";
 import _81980RNawnbCVaLz0a from "./virtual/81980RNawnbCVaLz0a";
 import _pWLy9nekmQdMXqja from './virtual/pWLy9nekmQdMXqja';
 import _pWLy9ndnVL73Xqja from './real/pWLy9ndnVL73Xqja';
+import _80pWLy9nekmQdMXqja from './real/80pWLy9nekmQdMXqja';
 
 export const openWorks = {
 	_81gmMq5a7zbF9leWMk,
@@ -17,6 +18,7 @@ export const openWorks = {
 	_816lPVZQkQDF5XOpPo,
 	_81980RNawnbCVaLz0a,
 	_pWLy9nekmQdMXqja,
-	_pWLy9ndnVL73Xqja
+	_pWLy9ndnVL73Xqja,
+	_80pWLy9nekmQdMXqja
 }
 

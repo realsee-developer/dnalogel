@@ -27,7 +27,7 @@ export interface PanoRulerProPluginState {
 }
 
 export interface PanoRulerProPluginParameterType {
-  panoRulerData?: PanoRulerProPluginDatas
+  panoRulerProData?: PanoRulerProPluginDatas
   options?: PanoRulerProPluginOptions
 }
 
@@ -38,11 +38,6 @@ export interface PanoRulerPluginExportType {
   state: PanoRulerProPluginState
 }
 
-export interface PanoRulerProp {
-  five: Five
-  rulerDatas: PanoRulerProPluginDatas
-  options: PanoRulerProPluginOptions
-}
 export interface RulerItemProp {
   width: number
   left: number

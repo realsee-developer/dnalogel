@@ -4,7 +4,7 @@ import RulerItems from './RulerItems.svelte'
 export default class Controller {
   private five: Five
   private container = document.createElement('div')
-  private panoRulerData: PanoRulerProPluginDatas | undefined
+  private panoRulerProData: PanoRulerProPluginDatas | undefined
   private rulerItems: RulerItems | undefined
   public state: PanoRulerProPluginState = {
     enable: false,
@@ -17,7 +17,7 @@ export default class Controller {
 
   public constructor(five: Five, params: PanoRulerProPluginParameterType) {
     this.five = five
-    this.container.classList.add('rulerPlugin-container')
+    this.container.classList.add('panoRulerProPlugin-container')
     this.container.setAttribute(
       'style',
       `position: absolute;pointer-events: none;width: 100%;height: 100%;left: 0;top: 0;overflow: hidden;`,
@@ -34,10 +34,10 @@ export default class Controller {
   public async load(params: PanoRulerProPluginParameterType) {
     this.state.options = { ...this.state.options, ...params.options || {}}
     if (!this.five.work) return
-    const data = params.panoRulerData
+    const data = params.panoRulerProData
     if (params.options?.className) this.container.classList.add(params.options?.className)
     if (!data) throw new Error('标尺数据依赖不齐全！')
-    this.panoRulerData = data
+    this.panoRulerProData = data
     this.state.loaded = true
   }
 
@@ -58,17 +58,17 @@ export default class Controller {
 
   private async render() {
     if (this.state.enable) {
-      if (!this.panoRulerData || !this.container) return
+      if (!this.panoRulerProData || !this.container) return
       this.rulerItems = new RulerItems({
         target: this.container,
         props: {
           five: this.five,
-          roomLabels: this.panoRulerData,
+          rulerDatas: this.panoRulerProData,
           options: this.state.options
         },
       })
     } else {
-      this.rulerItems.$destroy()
+      this.rulerItems?.$destroy()
       this.rulerItems = undefined
     }
   }

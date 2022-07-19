@@ -25,6 +25,7 @@ export enum DATA_TYPES {
     MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA = 'modelEntryDoorGuidePluginServerData',
     PANO_RULER_PLUGIN_SERVER_DATA = 'panoRulerPluginServerData',
     MODEL_TAG = 'modelTag',
+    PANO_RULER_PRO_PLUGIN_SERVER_DATA = 'panoRulerProPluginServerData',
 }
 
 const useFetchDatas = (dataType: DATA_TYPES, renderCode?: string, spaceType?: 'real') => {
