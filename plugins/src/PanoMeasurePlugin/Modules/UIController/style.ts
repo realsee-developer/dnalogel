@@ -27,19 +27,11 @@ export const operatingSpaceStyle: Partial<CSSStyleDeclaration> = {
   height: '89px',
   display: 'flex',
   justifyContent: 'space-between',
-  fontSize: '16px',
+  alignItems: 'center',
+  fontSize: '14px',
   pointerEvents: 'all',
   color: '#fff',
   zIndex: '10',
-}
-
-export const buttonGroupStyle: Partial<CSSStyleDeclaration> = {
-  height: '100%',
-  width: 'max-content',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: 'center',
 }
 
 // 操作区下方的背景
@@ -56,26 +48,15 @@ export const controllerBackgroundStyle: Partial<CSSStyleDeclaration> = {
 
 // item
 export const mainItemStyle: Partial<CSSStyleDeclaration> = {
-  margin: '0 80px',
-  opacity: '0.7',
-}
-
-export const newMainItemStyle: Partial<CSSStyleDeclaration> = {
-  margin: '0 80px',
+  margin: '0 64px',
 }
 
 export const exitItemStyle: Partial<CSSStyleDeclaration> = {
-  opacity: '0.7',
+  opacity: '0.85',
 }
 
 // icon
 export const mainIconStyle: Partial<CSSStyleDeclaration> = {
-  width: '60px',
-  height: '60px',
-  backgroundSize: '100%',
-  cursor: 'pointer',
-}
-export const newMainIconStyle: Partial<CSSStyleDeclaration> = {
   width: '72px',
   height: '72px',
   backgroundSize: '100%',
@@ -83,9 +64,9 @@ export const newMainIconStyle: Partial<CSSStyleDeclaration> = {
   transition: 'all 200ms ease-in-out',
 }
 export const exitIconStyle: Partial<CSSStyleDeclaration> = {
-  width: '40px',
-  height: '40px',
-  marginTop: '10px',
+  width: '24px',
+  height: '24px',
+  marginRight: '4px',
   backgroundSize: '100%',
   cursor: 'pointer',
 }

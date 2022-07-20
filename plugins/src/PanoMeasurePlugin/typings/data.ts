@@ -35,4 +35,10 @@ export interface PluginData {
 /** 开放可配置参数 */
 export interface OpenParameter {
   isMobile?: boolean // true为移动端模式，false为pc端
+  crossHairParameter?: CrossHairParameter // 准心参数
+}
+
+export interface CrossHairParameter {
+  useNormalVector?: boolean // 是否展示法向量
+  ballColor?: number // 法向量小球色值
 }

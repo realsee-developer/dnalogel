@@ -60,7 +60,7 @@ export class GuideController {
     textDom.classList.add('fpm__guide-text')
     textDom.style.color = '#fff'
     textDom.style.fontSize = '20px'
-    textDom.innerText = `点击下方“添加”开始测距`
+    textDom.innerText = `点击下方“开始”按钮开始测距`
     container.appendChild(textDom)
   }
 
@@ -84,7 +84,7 @@ export class GuideController {
 
   private onEditedLineChange: PanoMeasurePluginEvent['editedLineChange'] = (lines) => {
     if (lines.length === 1) {
-      this.textDom.innerText = `可以连续选择测量点，或点击下方“完成”结束测量（Esc取消，Command+S保存）`
+      this.textDom.innerText = `可以连续选择测量点，或点击下方“结束”按钮完成测量（Esc取消，Command+S保存）`
     }
   }
 }
