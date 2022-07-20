@@ -18,7 +18,6 @@
     export let five: Five
     export let modelOcclusionEnable: boolean
     export let itemLabels: ItemLabel[]
-    export let wrapper: HTMLElement | null
     export let hooks: Subscribe<PluginEvent>
     export let displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE
     export let maxVisibleDistance: number | null
@@ -26,8 +25,6 @@
     let curItemLabels: ItemLabel[] = null
     let renderItemLabels: ItemLabel[] = null
     let anchorEnabled: boolean = five?.currentMode === Five.Mode.Panorama
-
-    let wrapperSize: { width: number, height: number } = { width: 0, height: 0 }
 
     let containerWidth: number
     let containerHeight: number
@@ -181,11 +178,7 @@
     }, 300)
 
     const addResizeListener = () => {
-        wrapperSize = {
-            width: wrapper.clientWidth,
-            height: wrapper.clientHeight
-        }
-        resizeObserver.observe(wrapper)
+        window.addEventListener('resize', onItemLabelUpdate)
     }
 
     const addDataUpdateListener = () => {
@@ -195,21 +188,6 @@
             onItemLabelUpdate()
         }
     }
-
-    const resizeObserver = new ResizeObserver(entries => {
-        const entry = entries[0]
-        const target = entry.target as HTMLElement
-        const curWidth = target.clientWidth
-        const curHeight = target.clientHeight
-        if (wrapperSize.width !== curWidth || wrapperSize.height !== curHeight) {
-            wrapperSize = {
-                width: curWidth,
-                height: curHeight
-            }
-
-            onItemLabelUpdate()
-        }
-    })
 
     const getNearObserverPano = (fromPositionVector: THREE.Vector3, observers: WorkObserver[]) => {
         let candidates = []
@@ -305,7 +283,7 @@
     onDestroy(() => {
         five.off('cameraUpdate', handleCameraUpdateCallback)
         five.off('modeChange', onFiveModeChange)
-        resizeObserver.unobserve(wrapper)
+        window.removeEventListener('resize', onItemLabelUpdate)
     })
 
 

@@ -8,7 +8,7 @@
   "repository": "https://github.com/realsee-developer/dnalogel.git",
   "description": "如视 VR 看房插件合集",
   "private": false,
-  "version": "2.0.0-beta.36",
+  "version": "2.0.0-alpha.36",
   "license": "SEE LICENSE IN TERMS.txt",
   "scripts": {
     "build": "yarn run tsb && yarn run build:rollup && yarn run build:components && yarn build:docs",

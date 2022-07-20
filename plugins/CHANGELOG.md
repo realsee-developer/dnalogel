@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## 2.0.0-alpha.36
+- 1.fix: 修复 ResizeObserver 使用。
+
+## 2.0.0-beta.36
 - 1.refactor: 户型图相关插件改造，详情参考 floorplan/CHANGELOGE.md。
 
 ## 2.0.0-alpha.35
