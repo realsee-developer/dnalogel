@@ -1,6 +1,6 @@
 import { ModelItemLabelPlugin } from "@realsee/dnalogel/libs/ModelItemLabelPlugin";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
-import { parseWork } from "@realsee/five";
+import { Five, parseWork } from "@realsee/five";
 import * as React from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
 import PluginShow from "./PluginShow";
