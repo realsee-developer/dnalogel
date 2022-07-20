@@ -1,16 +1,12 @@
+import type { Parameters } from './typing'
 import type { FivePlugin } from '@realsee/five'
-import {
-  TopviewFloorplanPluginController,
-  TopviewFloorplanPluginParameterType,
-  TopviewFloorplanPluginReturnType,
-} from './Controller'
 
-export const TopviewFloorplanPlugin: FivePlugin<
-  TopviewFloorplanPluginParameterType,
-  TopviewFloorplanPluginReturnType
-> = (five, params) => {
-  return new TopviewFloorplanPluginController(five, params)
+import { Controller } from './Controller'
+
+export const TopviewFloorplanPlugin: FivePlugin<undefined | Parameters, Controller> = (five, params) => {
+  return new Controller(five, params)
 }
 
+export type TopviewFloorplanPluginParameterType = Parameters | undefined
+export type TopviewFloorplanPluginReturnType = InstanceType<typeof Controller>
 export default TopviewFloorplanPlugin
-export type { TopviewFloorplanPluginReturnType, TopviewFloorplanPluginParameterType } from './Controller'

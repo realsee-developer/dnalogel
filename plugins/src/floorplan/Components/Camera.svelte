@@ -23,17 +23,17 @@
   const domSizeStyle = `${size / 16}rem`
 </script>
 
-<div class="floorplan__camera-position" style:left="{positionLeft}" style:top="{positionTop}">
+<div class="floorplan__camera-position" style:left={positionLeft} style:top={positionTop}>
   <div
     class="floorplan__camera-rotate"
-    style:width="{domSizeStyle}"
-    style:height="{domSizeStyle}"
-    style:left="{'-' + domSizeStyle}"
-    style:top="{'-' + domSizeStyle}"
-    style:transform="{`rotate(${rotate}deg)`}"
-    style:transform-origin="{`${domSizeStyle} ${domSizeStyle}`}"
+    style:width={domSizeStyle}
+    style:height={domSizeStyle}
+    style:left={'-' + domSizeStyle}
+    style:top={'-' + domSizeStyle}
+    style:transform={`rotate(${rotate}deg)`}
+    style:transform-origin={`${domSizeStyle} ${domSizeStyle}`}
     style="background-image: {`url(${cameraImageUrl || CAMERA_IMAGE})`}"
-  ></div>
+  />
 </div>
 
 <style lang="postcss">

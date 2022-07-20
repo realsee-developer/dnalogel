@@ -1,16 +1,12 @@
+import type { Parameters } from './typing'
 import type { FivePlugin } from '@realsee/five'
-import FloorplanPluginController, { ModelFloorplanParameterType } from './Controller'
 
-export const ModelFloorplanPlugin: FivePlugin<ModelFloorplanParameterType, ModelFloorplanPluginReturnType> = (
-  five,
-  params,
-) => {
-  return new FloorplanPluginController(five, params)
+import { Controller } from './Controller'
+
+export const ModelFloorplanPlugin: FivePlugin<undefined | Parameters, Controller> = (five, params) => {
+  return new Controller(five, params)
 }
 
+export type ModelFloorplanPluginParameterType = Parameters | undefined
+export type ModelFloorplanPluginReturnType = InstanceType<typeof Controller>
 export default ModelFloorplanPlugin
-export type ModelFloorplanPluginReturnType = FloorplanPluginController
-export type { ModelFloorplanViewEvent } from './typings/events.type'
-export type { FloorplanErrorType as ModelFloorplanErrorType } from './utils/constant'
-export type { ModelFloorplanPluginsConfigs, ModelFloorplanParameterType } from './Controller'
-export type { FloorplanEventHandlers as ModelFloorplanEventHandlers } from './typings/events.type'

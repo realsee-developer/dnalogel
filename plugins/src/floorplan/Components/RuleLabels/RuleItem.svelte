@@ -1,9 +1,5 @@
 <script lang="ts">
-  import type {
-    RuleLabelsKey,
-    RuleLabelsValue,
-    FloorplanBounding,
-  } from '../../typings/floorplanData'
+  import type { RuleLabelsKey, RuleLabelsValue, FloorplanBounding } from '../../typings/floorplanData'
 
   export let type: RuleLabelsKey
   export let data: RuleLabelsValue
@@ -28,9 +24,7 @@
     })
   const rulerLabels = rulerPoints.map((num) => {
     const left = isRow ? (num - bounding.min.x - padding + exteriorWallOffset) / contentWidth : 0
-    const bottom = !isRow
-      ? (num - bounding.min.y - padding + exteriorWallOffset) / contentHeight
-      : 0
+    const bottom = !isRow ? (num - bounding.min.y - padding + exteriorWallOffset) / contentHeight : 0
     return { left, bottom }
   })
   rulerLabels.unshift({ left: 0, bottom: 0 })
@@ -40,12 +34,8 @@
     .map((num, index, arr) => {
       const distance = index === 0 ? 0 : num - arr[index - 1]
       const positionNum = index === 0 ? 0 : (num + arr[index - 1]) / 2
-      const left = isRow
-        ? (positionNum - bounding.min.x - padding + exteriorWallOffset) / contentWidth
-        : 0
-      const bottom = !isRow
-        ? (positionNum - bounding.min.y - padding + exteriorWallOffset) / contentHeight
-        : 0
+      const left = isRow ? (positionNum - bounding.min.x - padding + exteriorWallOffset) / contentWidth : 0
+      const bottom = !isRow ? (positionNum - bounding.min.y - padding + exteriorWallOffset) / contentHeight : 0
       return { left, bottom, distance }
     })
     .filter(({ distance }) => distance / length > 0.1)
@@ -53,28 +43,28 @@
 
 <div
   class="floorplan-plugin__rule-labels floorplan-plugin__rule-labels--{type}"
-  class:is-row="{isRow}"
-  style:width="{isRow ? '100%' : 1 / 16 + 'rem'}"
-  style:height="{!isRow ? '100%' : 1 / 16 + 'rem'}"
+  class:is-row={isRow}
+  style:width={isRow ? '100%' : 1 / 16 + 'rem'}
+  style:height={!isRow ? '100%' : 1 / 16 + 'rem'}
 >
-  <div class="floorplan-plugin__rule-line"></div>
-  <div class="floorplan-plugin__rule-scale-wrapper" class:is-row="{isRow}">
+  <div class="floorplan-plugin__rule-line" />
+  <div class="floorplan-plugin__rule-scale-wrapper" class:is-row={isRow}>
     {#each rulerLabels as rulerLabel}
       <div
         class="floorplan-plugin__rule-scale"
-        style:left="{rulerLabel.left * 100 + '%'}"
-        style:bottom="{rulerLabel.bottom * 100 + '%'}"
-      ></div>
+        style:left={rulerLabel.left * 100 + '%'}
+        style:bottom={rulerLabel.bottom * 100 + '%'}
+      />
     {/each}
   </div>
   <div class="floorplan-plugin__rule-text-wrapper">
     {#each rulerTexts as textItem, textItemIndex (textItemIndex)}
       <div
         class="floorplan-plugin__rule-text-item"
-        style:left="{textItem.left * 100 + '%'}"
-        style:bottom="{textItem.bottom * 100 + '%'}"
+        style:left={textItem.left * 100 + '%'}
+        style:bottom={textItem.bottom * 100 + '%'}
       >
-        <div class="floorplan-plugin__rule-text" class:is-row="{isRow}">
+        <div class="floorplan-plugin__rule-text" class:is-row={isRow}>
           {textItem.distance}
         </div>
       </div>

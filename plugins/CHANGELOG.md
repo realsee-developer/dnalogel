@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0-alpha.36
+- 1.refactor: 户型图相关插件改造，详情参考 floorplan/CHANGELOGE.md。
+
 ## 2.0.0-alpha.35
 - 1.style: PanoSpatialTagPlugin标签样式兼容, 标签阴影背景自适应；
 - 2.feat: PanoSpatialTagPlugin开放可见距离配置参数，此功能不保证最佳UI效果）;
@@ -11,9 +14,6 @@
 ## 2.0.0-alpha.33
 - 1.fix: Floorplan Plugins Compass & ModelChassisCompassPlugin 修复对 north_rad 为 0 的处理
 - 2.fix: panospatialtagplugin 兼容nextjs出现的text样式问题
-
-## 2.0.0-alpha.32
-- 1.feat: 新增 PaintBrush 组件，此组件为实验发布阶段，请谨慎使用。
 
 ## 2.0.0-alpha.32
 - 1.feat: PanoRulerPlugin 修改标尺隐藏策略，线长小于0.3m隐藏；

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import * as React from 'react';
 import { Five, Mode } from "@realsee/five"
 import { unsafe__useFiveInstance, useFiveModelReadyState, useFiveState } from "@realsee/five/react";
@@ -17,6 +18,7 @@ const TopviewFloorplanPluginUse = () => {
         if(!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return
         const topviewFloorplanPlugin = five.plugins.topviewFloorplanPlugin
         topviewFloorplanPlugin.load(floorplanServerData)
+        topviewFloorplanPlugin.appendTo(document.querySelector('.plugin-full-screen-container'))
     }, [floorplanServerData])
 
     if(fiveModelReadyState !== 'Loaded') return null
@@ -26,14 +28,15 @@ const TopviewFloorplanPluginUse = () => {
             className="topview-floorplan-plugin-use"
         >
             <BottomNavigation
+                key="topview-floorplan-plugin"
                 showLabels
                 value={fiveState.mode}
                 onChange={(_, newValue: Mode) => {
                     setFiveState({ mode: newValue });
                 }}
             >
-                <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon/>} value={Five.Mode.Panorama}/>
-                <BottomNavigationAction label="俯视模型" icon={<ViewInArIcon/>} value={Five.Mode.Topview}/>
+                <BottomNavigationAction key={1} label="全景漫游" icon={<DirectionsWalkIcon/>} value={Five.Mode.Panorama}/>
+                <BottomNavigationAction key={2} label="俯视模型" icon={<ViewInArIcon/>} value={Five.Mode.Topview}/>
             </BottomNavigation>
         </Paper>
     )

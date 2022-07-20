@@ -17,7 +17,7 @@
 </script>
 
 <BaseImage {...{ floorIndex, floorplanData }} />
-<ExtraObjects extraObjects="{currentFloorExtraObjects}" />
+<ExtraObjects extraObjects={currentFloorExtraObjects} />
 {#if hoverEnable}
   <Highlight {...{ five, pxmm, floorIndex, floorplanData, onRoomHeightClick }} />
 {/if}

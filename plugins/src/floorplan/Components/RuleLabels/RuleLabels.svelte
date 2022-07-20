@@ -11,9 +11,7 @@
   $: bounding = floorplanData.bounding
   $: ruleLabelData = floorplanData.floorDatas[floorIndex].rules
   $: ruleLabelDataKeys = Object.keys(ruleLabelData) as RuleLabelsKey[]
-  $: ruleLabelArray = ruleLabelDataKeys.map(
-    (key) => [key, ruleLabelData[key]] as [RuleLabelsKey, RuleLabelsValue],
-  )
+  $: ruleLabelArray = ruleLabelDataKeys.map((key) => [key, ruleLabelData[key]] as [RuleLabelsKey, RuleLabelsValue])
   $: boundingWidth = bounding.max.x - bounding.min.x
   $: boundingHeight = bounding.max.y - bounding.min.y
   $: contentWidth = bounding.max.x - bounding.min.x - (padding - exteriorWallOffset) * 2

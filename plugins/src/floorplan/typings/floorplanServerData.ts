@@ -187,10 +187,7 @@ export interface FloorplanServerRoomItem {
   observer_indexs: number[]
 }
 
-export type FloorplanServerRuleLabels = Record<
-  'top' | 'right' | 'bottom' | 'left',
-  FloorplanServerPosition[][]
->
+export type FloorplanServerRuleLabels = Record<'top' | 'right' | 'bottom' | 'left', FloorplanServerPosition[][]>
 
 /** 当前楼层的数据 */
 export interface FloorplanServerFloorData {

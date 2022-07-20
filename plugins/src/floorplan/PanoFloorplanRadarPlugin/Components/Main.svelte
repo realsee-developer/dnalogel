@@ -6,6 +6,7 @@
   import CurrentFloor from './CurrentFloor/CurrentFloor.svelte'
 
   export let five: Five
+  export let visible: boolean
   export let hoverEnable: boolean
   export let floorplanData: FloorplanData
   export let cameraImageUrl: undefined | string
@@ -44,14 +45,16 @@
   })
 </script>
 
-<div class="plugin-floorplan-radar" bind:clientWidth bind:clientHeight>
-  {#if clientWidth !== 0}
-    <div class="plugin-floorplan-radar-container" style:width="{contentWidth}px" style:height="{contentHeight}px">
-      <CurrentFloor {...{ five, pxmm, floorIndex, floorplanData, hoverEnable, extraObjects }} />
-      <Camera {...{ pxmm, five, floorplanData, cameraImageUrl }} />
-    </div>
-  {/if}
-</div>
+{#if visible}
+  <div class="plugin-floorplan-radar" bind:clientWidth bind:clientHeight>
+    {#if clientWidth !== 0}
+      <div class="plugin-floorplan-radar-container" style:width="{contentWidth}px" style:height="{contentHeight}px">
+        <CurrentFloor {...{ five, pxmm, floorIndex, floorplanData, hoverEnable, extraObjects }} />
+        <Camera {...{ pxmm, five, floorplanData, cameraImageUrl }} />
+      </div>
+    {/if}
+  </div>
+{/if}
 
 <style>
   .plugin-floorplan-radar {

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Five, Pose } from '@realsee/five'
   import type { FloorplanData } from '../../typings/floorplanData'
-  import { onMount, onDestroy } from 'svelte'
+  import { onMount } from 'svelte'
   import { CAMERA_IMAGE } from '../../Assets/camera'
   import throttle from '../../../shared-utils/throttle'
 
@@ -40,28 +40,28 @@
     panoIndex = _panoIndex
   }
 
-  const onFiveCameraDirectionUpdate = throttle((pose: Pose) => {
+  const onFiveCameraDirectionUpdate = throttle((pose: Pick<Pose, 'longitude' | 'latitude'>) => {
     longitude = pose.longitude
   }, 1000 / 60)
 
   onMount(() => {
     five.on('panoWillArrive', onFivePanoWillArrive)
     five.on('cameraDirectionUpdate', onFiveCameraDirectionUpdate)
-  })
 
-  onDestroy(() => {
-    five.off('panoWillArrive', onFivePanoWillArrive)
-    five.off('cameraDirectionUpdate', onFiveCameraDirectionUpdate)
+    return function dispose() {
+      five.off('panoWillArrive', onFivePanoWillArrive)
+      five.off('cameraDirectionUpdate', onFiveCameraDirectionUpdate)
+    }
   })
 </script>
 
 <div class="plugin-radar__camera-wrapper">
-  <div class="plugin-radar__camera-position" style:transform="{positionTransform}">
+  <div class="plugin-radar__camera-position" style:transform={positionTransform}>
     <div
       class="plugin-radar__camera-rotate"
-      style:transform="{rotateTransform}"
+      style:transform={rotateTransform}
       style="background-image: url({cameraImageUrl || CAMERA_IMAGE})"
-    ></div>
+    />
   </div>
 </div>
 
