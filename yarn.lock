@@ -1609,10 +1609,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@realsee/five@5.0.0-alpha.134":
-  version "5.0.0-alpha.134"
-  resolved "http://artifactory.intra.ke.com/artifactory/api/npm/npm-virtual/@realsee/five/-/five-5.0.0-alpha.134.tgz#ccadb16cd805bf5b3ac3d94bb209073bb9927af5"
-  integrity sha1-zK2xbNgFv1s6w9lLsgkHO7mSevU=
+"@realsee/five@5.0.0-alpha.138":
+  version "5.0.0-alpha.138"
+  resolved "https://registry.npmjs.org/@realsee/five/-/five-5.0.0-alpha.138.tgz#013e629f3d89fddfc590cb228fff9be71d141ecc"
+  integrity sha512-RZKxAJvYeeYwjGa8yPH4rrWGyvfvKhTfKND87iBzsgRsVnhYG2NMjG2hettT6CYBzkYfByiME2+nRKwkr/06zQ==
   dependencies:
     "@math.gl/core" "^3.5.7"
     archiver "^5.3.0"

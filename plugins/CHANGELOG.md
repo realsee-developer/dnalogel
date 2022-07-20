@@ -1,11 +1,9 @@
 # CHANGELOG
 
-## 2.0.0-alpha.37
-- 1.fix: PanoMeasurePlugin pc端UI优化
-- 2.fix: PanoMeasurePlugin准心优化，支持是否展示法向量和小球颜色可配置
-
 ## 2.0.0-alpha.36
-- 1.fix: 修复 ResizeObserver 使用。
+- 1.style: PanoMeasurePlugin pc端UI优化
+- 2.style: PanoMeasurePlugin准心优化，支持是否展示法向量和小球颜色可配置
+- 3.fix: 修复 ResizeObserver 使用。
 
 ## 2.0.0-beta.36
 - 1.refactor: 户型图相关插件改造，详情参考 floorplan/CHANGELOGE.md。

@@ -57,10 +57,6 @@
         }
 
         return isImpacted(five, modelPosition.clone().sub(cameraPosition).normalize(), cameraPosition, vectorDistance)
-
-        // raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
-        // const [intersection] = five.model.intersectRaycaster(raycaster)
-        // return !(intersection && intersection.distance + 1 < vectorDistance);
     }
 
     const judgeInViewport = (modelPoint: THREE.Vector3): boolean => {
@@ -110,19 +106,19 @@
             const strokeLength = getStrokeLength(label.modelPosition[1], displayStrategyType)
 
             // 是否加入碰撞检测
-	        // 配置加入碰撞检测，则判断碰撞检测
+            // 配置加入碰撞检测，则判断碰撞检测
 
-	        // 在可见范围内， 仅在 Panorama 模态计算
-	        const isInViewport = five.currentMode === Five.Mode.Panorama
-		        ? judgeInViewport(new Vector3(label.position[0], label.position[1], label.position[2]))
-		        : true
+            // 在可见范围内， 仅在 Panorama 模态计算
+            const isInViewport = five.currentMode === Five.Mode.Panorama
+                ? judgeInViewport(new Vector3(label.position[0], label.position[1], label.position[2]))
+                : true
 
-	        // 碰撞
-	        const isBlocked = modelOcclusionEnable
-		        ? judgeImpacted(five, label)
-		        : false
+            // 碰撞
+            const isBlocked = modelOcclusionEnable
+                ? judgeImpacted(five, label)
+                : false
 
-	        const visible = isInViewport && !isBlocked
+            const visible = isInViewport && !isBlocked
 
             // 关掉重叠计算
             // const visible = naturalVisible && !isOverlap([cssOffset[0], cssOffset[1] + strokeLength], curLabelWidth)
@@ -166,9 +162,9 @@
 
         five.once('initAnimationEnded', (panoIndex, pose, userAction) => {
             anchorEnabled = mode === Five.Mode.Panorama
-	        itemsVisible = true
+            itemsVisible = true
             if (!userAction) return
-	        else onItemLabelUpdate()
+            else onItemLabelUpdate()
         })
     }
 
@@ -177,8 +173,12 @@
         onItemLabelUpdate()
     }, 300)
 
+    const onResize = () => {
+        five.once('renderFrame', onItemLabelUpdate)
+    }
+
     const addResizeListener = () => {
-        window.addEventListener('resize', onItemLabelUpdate)
+        window.addEventListener('resize', onResize, false)
     }
 
     const addDataUpdateListener = () => {
@@ -254,14 +254,14 @@
                     }
                 })
 
-	            five.once('cameraUpdate', () => {
+                five.once('cameraUpdate', () => {
                     renderItemLabels = renderItemLabels.map(item => {
                         return {
                             ...item,
                             isFold: false
                         }
                     })
-	            })
+                })
             })
         }
     }
@@ -283,7 +283,7 @@
     onDestroy(() => {
         five.off('cameraUpdate', handleCameraUpdateCallback)
         five.off('modeChange', onFiveModeChange)
-        window.removeEventListener('resize', onItemLabelUpdate)
+        window.removeEventListener('resize', onResize, false)
     })
 
 
@@ -294,10 +294,10 @@
 	{#each renderItemLabels as itemLabelItem (itemLabelItem.id)}
 		{#if itemLabelItem.visible}
 			<ItemLabelItem
-				itemLabel="{itemLabelItem}"
-				hooks="{hooks}"
-				anchorEnabled="{anchorEnabled}"
-				onIconClick="{onIconClick}"
+					itemLabel="{itemLabelItem}"
+					hooks="{hooks}"
+					anchorEnabled="{anchorEnabled}"
+					onIconClick="{onIconClick}"
 			/>
 		{/if}
 	{/each}

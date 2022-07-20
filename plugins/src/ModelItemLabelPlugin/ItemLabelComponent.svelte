@@ -153,7 +153,7 @@
     }, 300)
 
     const addResizeListener = () => {
-        window.addEventListener('resize', onItemLabelUpdate)
+        window.addEventListener('resize', onResize, false)
     }
 
     const addDataUpdateListener = () => {
@@ -164,10 +164,14 @@
         }
     }
 
+    const onResize = () => {
+        five.once('renderFrame', onItemLabelUpdate)
+    }
+
 
     onDestroy(() => {
         five.off('cameraUpdate', handleCameraUpdateCallback)
-        window.removeEventListener('resize', onItemLabelUpdate)
+        window.removeEventListener('resize', onResize, false)
     })
 
 
