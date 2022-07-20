@@ -10,8 +10,10 @@ import { requestAnimationFrameInterval } from '../../../shared-utils/animationFr
 import noop from '../../../shared-utils/noop'
 import calculateThreeMouse from '../../utils/calculateThreeMouse'
 import { getMouseGroup } from '../../utils/mouseGroup'
+import type { OpenParameter } from '../../typings/data'
 
 export interface RangePieceControllerParams {
+  openParams: OpenParameter
   container: Element
   five: Five
   group: Group
@@ -44,7 +46,7 @@ export default class RangePieceController {
     this.five = params.five
     this.hook = params.hook
     this.group = params.group
-    this.mouseGroup = getMouseGroup(true)
+    this.mouseGroup = getMouseGroup({ isMobile: true, ...params.openParams.crossHairParameter })
     this.fiveHelper = params.fiveHelper
     this.container.innerHTML = htmlString
     this.container.classList.add('range-piece-controller')

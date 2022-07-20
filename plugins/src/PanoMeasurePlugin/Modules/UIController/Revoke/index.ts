@@ -35,8 +35,8 @@ export default class Revoke {
       return
     }
     // 开始测量标记一个点后才能撤销
-    this.measureController.hook.on('anchorChange',()=>{
-      this.revokeItem.classList.add('enabled')
+    this.measureController.hook.on('anchorChange',(anchor)=>{
+      anchor && this.revokeItem.classList.add('enabled')
     })
   }
 

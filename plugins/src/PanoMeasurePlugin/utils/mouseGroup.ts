@@ -38,7 +38,20 @@ void main() {
 }
 `
 
-export function getMouseGroup(isMobile = false) {
+export interface MouseGroupParameter {
+  isMobile?: boolean
+  useNormalVector?: boolean // 是否展示法向量
+  ballColor?: number // 法向量小球色值
+}
+
+export function getMouseGroup(params: MouseGroupParameter) {
+  const isMobile = params.isMobile ?? true
+  const useNormalVector = params.useNormalVector ?? true
+  let ballColor = 0x9ded6b
+  if (useNormalVector && params.ballColor >= 0){
+    ballColor = params.ballColor
+  }
+
   const group = new Group()
   // 底部纹理贴图面片
   const planGeometry = new PlaneGeometry(0.3, 0.3)
@@ -65,7 +78,7 @@ export function getMouseGroup(isMobile = false) {
   // 法向量圆球
   const ballGeometry = new SphereGeometry(0.01, 20, 20)
   const ballMaterial = new MeshBasicMaterial({
-    color: 0x9ded6b,
+    color: ballColor,
     depthTest: false,
     transparent: true,
     side: DoubleSide,
@@ -74,6 +87,8 @@ export function getMouseGroup(isMobile = false) {
   ballMesh.position.set(0, 0, 0.1)
 
   group.name = 'mouse-current'
-  group.add(planMesh, zMesh, ballMesh)
+  group.add(planMesh)
+  if (useNormalVector) group.add(zMesh, ballMesh)
+
   return group
 }

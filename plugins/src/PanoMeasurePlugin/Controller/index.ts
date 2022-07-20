@@ -78,7 +78,7 @@ export default class MeasureController {
       container: this.container,
       fiveHelper: this.fiveHelper,
       openParams,
-      mouseGroup: getMouseGroup(),
+      mouseGroup: getMouseGroup({ ...openParams.crossHairParameter }),
       userDistanceItemCreator: this.params.userDistanceItemCreator,
     }
     if (this.params.useUIController !== false) this.useUIController = new UIController(this, this.controllerParams)
