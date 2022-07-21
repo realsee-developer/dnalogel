@@ -1,19 +1,19 @@
 import type MeasureController from '../../Controller'
 import type { PanoMeasurePluginEvent } from '../../typings/event.type'
-import { newMainIconStyle, newMainItemStyle } from './style'
+import { mainIconStyle, mainItemStyle } from './style'
 
-export class NewMainBtnController {
+export class mobileMainBtnController {
   private container: Element
   private measureController: MeasureController
-  private mainElement: ReturnType<NewMainBtnController['getMainElement']>
+  private mainElement: ReturnType<mobileMainBtnController['getMainElement']>
 
   public constructor(measureController: MeasureController, container: Element) {
     this.measureController = measureController
     this.container = container
     this.mainElement = this.getMainElement()
 
-    Object.assign(this.mainElement.mainIcon.style, newMainIconStyle)
-    Object.assign(this.mainElement.mainItem.style, newMainItemStyle)
+    Object.assign(this.mainElement.mainIcon.style, mainIconStyle)
+    Object.assign(this.mainElement.mainItem.style, mainItemStyle)
     this.change2Add()
 
     this.mainElement.mainItem.addEventListener('click', this.onClick)

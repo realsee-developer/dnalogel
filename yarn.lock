@@ -1611,7 +1611,7 @@
 
 "@realsee/five@5.0.0-alpha.138":
   version "5.0.0-alpha.138"
-  resolved "https://registry.yarnpkg.com/@realsee/five/-/five-5.0.0-alpha.138.tgz#013e629f3d89fddfc590cb228fff9be71d141ecc"
+  resolved "https://registry.npmjs.org/@realsee/five/-/five-5.0.0-alpha.138.tgz#013e629f3d89fddfc590cb228fff9be71d141ecc"
   integrity sha512-RZKxAJvYeeYwjGa8yPH4rrWGyvfvKhTfKND87iBzsgRsVnhYG2NMjG2hettT6CYBzkYfByiME2+nRKwkr/06zQ==
   dependencies:
     "@math.gl/core" "^3.5.7"
