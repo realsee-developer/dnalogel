@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v1.0.1]
+
+### BugFix
+- ***hook*** `hide`： 修复 `auto` 参数错误
+- ***public member function*** `changeConfigs`：函数缺失
+
 ## [v1.0.0]
 
 ### BugFix

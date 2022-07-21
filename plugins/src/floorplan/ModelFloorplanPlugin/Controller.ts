@@ -234,6 +234,13 @@ export class Controller extends BasePlugin.Controller<State, EventMap, PluginSer
     }
   }
 
+  public changeConfigs(_config: Partial<Config>, userAction = true) {
+    const config = { ...this.state.config, ..._config }
+    this.updateState({ config }, userAction)
+    if (!this.container) return
+    this.render()
+  }
+
   /** 更新户型图大小 */
   public updateSize = () => {
     if (!this.data) return
@@ -477,7 +484,7 @@ export class Controller extends BasePlugin.Controller<State, EventMap, PluginSer
 
     if (shouldFloorplanHideWithPose(fiveCurrentState)) {
       this.updateState({ visible: false }, userAction)
-      this._hide({ userAction })
+      this._hide({ userAction, isAutoHide: true })
     }
   }
 
