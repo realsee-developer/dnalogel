@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let content: string  
+  export let content: string
 
   const svgStyle = `
     <style>
@@ -15,6 +15,9 @@
 </script>
 
 <div class="floorplan-plugin__base-image">
+  <!-- TODO: @html 是一个很不好的语法，但是目前没有好的方式去配置 User DOM -->
+  <!-- TODO: 看一下能不能改成在 reactive segment 里动态插入 DOM -->
+  <!-- eslint-disable svelte/no-at-html-tags -->
   {@html svgStyle}
   {@html content}
 </div>

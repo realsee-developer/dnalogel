@@ -13,14 +13,12 @@
     export let five: Five
     export let modelOcclusionEnable: boolean
     export let itemLabels: ItemLabel[]
-    export let wrapper: HTMLElement | null
     export let hooks: Subscribe<PluginEvent>
     export let displayStrategyType: DISPLAY_STRATEGY_TYPE
 
     let curItemLabels: ItemLabel[] = null
     let renderItemLabels: ItemLabel[] = null
 
-    let wrapperSize: { width: number, height: number } = { width: 0, height: 0 }
 
     let containerWidth: number
     let containerHeight: number
@@ -43,7 +41,7 @@
         // 虚拟 VR 仅有一层，不考虑楼层信息
         const raycaster = new Raycaster()
         const cameraPosition = five.camera.position.clone()
-        const modelPosition = new Vector3(itemLabel.modelPosition[0], itemLabel.modelPosition[1], itemLabel.modelPosition[2])
+        const modelPosition = new Vector3().fromArray(itemLabel.modelPosition)
         // 计算点到相机的位置
         const vectorDistance = modelPosition.distanceTo(cameraPosition)
         raycaster.set(cameraPosition.clone(), modelPosition.clone().sub(cameraPosition).normalize())
@@ -155,11 +153,7 @@
     }, 300)
 
     const addResizeListener = () => {
-        wrapperSize = {
-            width: wrapper.clientWidth,
-            height: wrapper.clientHeight
-        }
-        resizeObserver.observe(wrapper)
+        window.addEventListener('resize', onResize, false)
     }
 
     const addDataUpdateListener = () => {
@@ -170,27 +164,14 @@
         }
     }
 
-    const resizeObserver = new ResizeObserver(entries => {
-        const entry = entries[0]
-        const target = entry.target as HTMLElement
-        const curWidth = target.clientWidth
-        const curHeight = target.clientHeight
-        if (wrapperSize.width !== curWidth || wrapperSize.height !== curHeight) {
-            wrapperSize = {
-                width: curWidth,
-                height: curHeight
-            }
+    const onResize = () => {
+        five.once('renderFrame', onItemLabelUpdate)
+    }
 
-            onItemLabelUpdate()
-        }
-    })
 
     onDestroy(() => {
         five.off('cameraUpdate', handleCameraUpdateCallback)
-        resizeObserver.unobserve(wrapper)
-        // curItemLabels = null
-        // renderItemLabels = null
-        // wrapperSize = { width: 0, height: 0 }
+        window.removeEventListener('resize', onResize, false)
     })
 
 

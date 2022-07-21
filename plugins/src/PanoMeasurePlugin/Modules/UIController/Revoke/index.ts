@@ -16,12 +16,12 @@ export default class Revoke {
     if (!revokeIcon || !revokeItem) throw new Error('不正确的选择器')
     this.revokeIcon = revokeIcon
     this.revokeItem = revokeItem
-    this.revokeIcon.addEventListener('click', this.onClick)
+    this.revokeItem.addEventListener('click', this.onClick)
     measureController.hook.on('modeChange', this.onModeChange)
   }
 
   dispose() {
-    this.revokeIcon.removeEventListener('click', this.onClick)
+    this.revokeItem.removeEventListener('click', this.onClick)
     this.measureController.hook.off('modeChange', this.onModeChange)
   }
 
@@ -30,11 +30,14 @@ export default class Revoke {
   }
 
   onModeChange = (mode: Mode) => {
-    if (mode !== 'Edit') {
+    if (mode !== 'Edit' && this.revokeItem.className.includes('enabled')) {
       this.revokeItem.classList.remove('enabled')
       return
     }
-    this.revokeItem.classList.add('enabled')
+    // 开始测量标记一个点后才能撤销
+    this.measureController.hook.on('anchorChange',(anchor)=>{
+      anchor && this.revokeItem.classList.add('enabled')
+    })
   }
 
   handleRevoke = () => {

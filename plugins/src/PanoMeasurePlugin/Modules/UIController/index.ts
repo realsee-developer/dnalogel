@@ -5,13 +5,12 @@ import {
   uiWrapperStyle,
   operatingSpaceStyle,
   controllerBackgroundStyle,
-  buttonGroupStyle,
   exitIconStyle,
   exitItemStyle,
   textStyle,
 } from './style'
 import { MainBtnController } from './MainBtnController'
-import { NewMainBtnController } from './NewMainBtnController'
+import { mobileMainBtnController } from './mobileMainBtnController'
 import Revoke from './Revoke'
 import type { OpenParameter } from '../../typings/data'
 
@@ -25,7 +24,7 @@ export type UIMode = 'pc' | 'mobile'
 export class UIController {
   private revoke?: Revoke
   private container: HTMLDivElement
-  private mainController?: MainBtnController | NewMainBtnController
+  private mainController?: MainBtnController | mobileMainBtnController
   private disposers: (() => unknown)[] = []
   private measureController: MeasureController
   private mode: UIMode
@@ -39,14 +38,12 @@ export class UIController {
     params.container.appendChild(this.container)
 
     const textDoms = this.container.querySelectorAll<HTMLSpanElement>('.fpm__text')
-    const UIItems = this.container.querySelectorAll<HTMLDivElement>('.fpm__ui-item')
     const bgDom = this.container.querySelector<HTMLSpanElement>('.fpm_ui-bg')
     const operatingSpaceDom = this.container.querySelector<HTMLSpanElement>('.fpm_operating-space')
 
     Object.assign(bgDom?.style, controllerBackgroundStyle)
     Object.assign(operatingSpaceDom?.style, operatingSpaceStyle)
     Object.assign(this.container.style, uiWrapperStyle)
-    UIItems.forEach((item) => Object.assign(item.style, buttonGroupStyle))
     textDoms.forEach((item) => Object.assign(item.style, textStyle))
   }
 
@@ -63,7 +60,7 @@ export class UIController {
       this.revoke = new Revoke(this.measureController, this.container)
       this.mainController = new MainBtnController(this.measureController, this.container)
     } else {
-      this.mainController = new NewMainBtnController(this.measureController, this.container)
+      this.mainController = new mobileMainBtnController(this.measureController, this.container)
     }
     this.disposers.push(this.handleExit())
     return this
@@ -91,19 +88,19 @@ export class UIController {
     }
 
     const onMouseEnter = () => (exitItem.style.opacity = '1')
-    const onMouseLeave = () => (exitItem.style.opacity = '0.7')
+    const onMouseLeave = () => (exitItem.style.opacity = '0.85')
     const handleClick = () => {
       this.measureController.disable()
     }
 
-    exitIcon.addEventListener('click', handleClick)
-    exitIcon.addEventListener('mouseenter', onMouseEnter)
-    exitIcon.addEventListener('mouseleave', onMouseLeave)
+    exitItem.addEventListener('click', handleClick)
+    exitItem.addEventListener('mouseenter', onMouseEnter)
+    exitItem.addEventListener('mouseleave', onMouseLeave)
 
     return () => {
-      exitIcon.removeEventListener('click', handleClick)
-      exitIcon.removeEventListener('mouseenter', onMouseEnter)
-      exitIcon.removeEventListener('mouseleave', onMouseLeave)
+      exitItem.removeEventListener('click', handleClick)
+      exitItem.removeEventListener('mouseenter', onMouseEnter)
+      exitItem.removeEventListener('mouseleave', onMouseLeave)
     }
   }
 }

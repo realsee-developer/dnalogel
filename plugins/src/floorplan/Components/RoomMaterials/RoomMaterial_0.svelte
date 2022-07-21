@@ -8,4 +8,4 @@
 </script>
 
 <!-- 纯色背景 -->
-<path d={d} fill="#2F313A"></path>
+<path {d} fill="#2F313A" />

@@ -33,6 +33,8 @@ export interface PanoSpatialTagPluginParameterType {
   minRad?: number // 视角和标签平面最小夹角
   nearTolerance?: number // 标签映射到屏幕之间最小间距
   upsideHeight?: number // 标签反向高度
+  minDistance?: number // 标签最小距离，单位米
+  maxDistance?: number // 标签最小距离，单位米
   // foldPercent?: number // 标签折叠屏幕百分比
 }
 
@@ -54,6 +56,7 @@ interface PanoSpatialTagPluginState {
   tags: Array<PanoSpatialTagPluginTagElement>
   render: (template: string, replacement: PanoSpatialTagPluginContentReplacement) => string
   events: PanoSpatialTagPluginContentEvent
+  intersectObjects?: Array<any> // 碰撞检测objects
   template: string
   folded: boolean // 标签初始收起展开状态
   enabled: boolean // 用户控制启用禁止状态
@@ -61,11 +64,8 @@ interface PanoSpatialTagPluginState {
 }
 
 const MESH_SIZE = 0.001
-const RAY_ORIGIN_Y = 1.4
 const RAY_TOLERANT_DISTANCE = 0.01
 const BLUR_IMAGE_URL = 'https://vrlab-image4.ljcdn.com/release/web/PanoSpatialTagPlugin__blur.png'
-const MIN_DISTANCE = 1.2
-const MAX_DISTANCE = 3.5
 
 /**
  * 空间游走标签插件
@@ -76,11 +76,14 @@ export const PanoSpatialTagPlugin: FivePlugin<
     > = (five: Five, params) => {
 
   let wrapper = params?.container
+  let centerY = 1.4
   const wait = params?.wait ?? 200
   const maxNumberOnScreen = params?.maxNumberOnScreen ?? 3
   const minRad = params?.minRad ?? Math.PI / 4
   const nearTolerance = params?.nearTolerance ?? 100
   const upsideHeight = params?.upsideHeight ?? 1.6
+  const minDistance = params?.minDistance ?? 1.2
+  const maxDistance = params?.maxDistance ?? 3.5
   // const foldPercent = params?.foldPercent ?? 20
 
   const css3DRender = CSS3DRenderPlugin(five)
@@ -145,8 +148,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
     frustum.setFromProjectionMatrix(projScreenMatrix)
 
     state.tags.forEach(tag => {
-      const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(tag.position)
-      if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return tag.destroying = true
+      const distance = camera.position.clone().setY(centerY).distanceTo(tag.position)
+      if (distance < minDistance || distance > maxDistance) return tag.destroying = true
       if (!frustum.containsPoint(tag.position)) return tag.destroying = true
       const v = tag.position.clone().sub(camera.position).setY(0)
       if (
@@ -157,15 +160,15 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.tags.forEach(tag => {
       if (tag.destroying) {
         tag.app.$set({
-          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / MAX_DISTANCE,
-          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / MAX_DISTANCE),
+          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
+          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
           destroying: tag.destroying,
         })
       } else {
         tag.app.$set({
-          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / MAX_DISTANCE),
-          lineHeightZoom: 0.4 + (camera.position.distanceTo(tag.position) - MIN_DISTANCE) / MAX_DISTANCE * 0.6,
-          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / MAX_DISTANCE,
+          lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(tag.position) / maxDistance),
+          lineHeightZoom: 0.4 + (camera.position.distanceTo(tag.position) - minDistance) / maxDistance * 0.6,
+          contentZoom: 0.1 + camera.position.distanceTo(tag.position) / maxDistance,
         })
       }
     })
@@ -244,8 +247,8 @@ export const PanoSpatialTagPlugin: FivePlugin<
 
     const points: Array<PanoSpatialTagPluginPointElement> = state.points.reduce((result, point) => {
       if (state.tags.find(tag => point.id === tag.id && !tag.destroying)) return result
-      const distance = camera.position.clone().setY(RAY_ORIGIN_Y).distanceTo(point.position)
-      if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) return result
+      const distance = camera.position.clone().setY(centerY).distanceTo(point.position)
+      if (distance < minDistance || distance > maxDistance) return result
       if (!frustum.containsPoint(point.position)) return result
 
       const v = point.position.clone().sub(camera.position).setY(0)
@@ -311,14 +314,16 @@ export const PanoSpatialTagPlugin: FivePlugin<
       })) continue
 
       const raycaster = new THREE.Raycaster(
-          camera.position.clone().setY(RAY_ORIGIN_Y),
-          point.position.clone().sub(camera.position.clone().setY(RAY_ORIGIN_Y)).normalize(),
+          camera.position.clone().setY(centerY),
+          point.position.clone().sub(camera.position.clone().setY(centerY)).normalize(),
           0,
           point.distance + RAY_TOLERANT_DISTANCE
       )
-      const [intersect] = five.model.bvhs.loaded ?
-          five.model.intersectRaycaster(raycaster) :
-          raycaster.intersectObjects(five.model.children, true)
+      const [intersect] = state.intersectObjects ?
+        raycaster.intersectObjects(state.intersectObjects, true) :
+        (five.model.bvhs.loaded ?
+        five.model.intersectRaycaster(raycaster) :
+        raycaster.intersectObjects(five.model.children, true))
       if (!intersect) continue
       if (point.distance - intersect.distance < RAY_TOLERANT_DISTANCE) {
         const { position, normal, id, replacement } = point
@@ -338,9 +343,9 @@ export const PanoSpatialTagPlugin: FivePlugin<
           props: {
             id,
             content: state.render(state.template, replacement),
-            lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / MAX_DISTANCE),
-            lineHeightZoom: 0.4 + (camera.position.distanceTo(position) - MIN_DISTANCE) / MAX_DISTANCE * 0.6,
-            contentZoom: 0.1 + camera.position.distanceTo(position) / MAX_DISTANCE,
+            lineWidthZoom: 0.38 * (0.01 + camera.position.distanceTo(position) / maxDistance),
+            lineHeightZoom: 0.4 + (camera.position.distanceTo(position) - minDistance) / maxDistance * 0.6,
+            contentZoom: 0.1 + camera.position.distanceTo(position) / maxDistance,
             upsideDown: position.y > upsideHeight,
             folded: state.folded,
             events: state.events,
@@ -380,6 +385,14 @@ export const PanoSpatialTagPlugin: FivePlugin<
     if (data.events) state.events = data.events
     if (data.enabled === false) state.enabled = data.enabled
     if (data.folded === true) state.folded = data.folded
+  }
+
+  /** 设置射线碰撞检测objects
+   * 
+   */
+  const setIntersectObjects = (objects: Array<any>): void => {
+    state.intersectObjects = objects
+    updateTags()
   }
 
   /** 标签启用
@@ -445,6 +458,22 @@ export const PanoSpatialTagPlugin: FivePlugin<
     })
   }
 
+  const onResize = (): void => {
+    five.once('renderFrame', updateOrigins)
+  }
+
+  const onModelLoaded = (): void => {
+    if (!wrapper) wrapper = five.getElement().parentElement
+    if (wrapper) wrapper.appendChild(container)
+    state.forbidden = false
+    centerY = five.model.bounding.getCenter(new THREE.Vector3()).y
+    updateTags()
+    five.on('panoWillArrive', onPanoWillArrive)
+    five.on('panoArrived', onPanoArrived)
+    five.on('modeChange', onModeChange)
+    five.on('cameraUpdate', onCameraUpdate)
+  }
+
   const dispose = (): void => {
     blurImage = null
     css3DRender.disposeAll()
@@ -457,38 +486,26 @@ export const PanoSpatialTagPlugin: FivePlugin<
     state.origins = []
     state.tags = []
 
+    five.off('modelLoaded', onModelLoaded)
+    five.off('renderFrame', updateOrigins)
     five.off('panoWillArrive', onPanoWillArrive)
     five.off('panoArrived', onPanoArrived)
     five.off('modeChange', onModeChange)
     five.off('cameraUpdate', onCameraUpdate)
+    five.off('dispose', dispose)
+    window.removeEventListener('resize', onResize, false)
   }
 
-  if (five?.model?.loaded) {
-    if (!wrapper) wrapper = five.getElement().parentElement
-    wrapper.appendChild(container)
-    state.forbidden = false
-    updateTags()
-    five.on('panoWillArrive', onPanoWillArrive)
-    five.on('panoArrived', onPanoArrived)
-    five.on('modeChange', onModeChange)
-    five.on('cameraUpdate', onCameraUpdate)
-  } else {
-    five.once('modelLoaded', () => {
-      if (!wrapper) wrapper = five.getElement().parentElement
-      wrapper.appendChild(container)
-      state.forbidden = false
-      updateTags()
-      five.on('panoWillArrive', onPanoWillArrive)
-      five.on('panoArrived', onPanoArrived)
-      five.on('modeChange', onModeChange)
-      five.on('cameraUpdate', onCameraUpdate)
-    })
-  }
+  window.addEventListener('resize', onResize, false)
 
+  if (five?.model?.loaded) onModelLoaded()
+  else five.once('modelLoaded', onModelLoaded)
+    
   five.on('dispose', dispose)
 
   return {
     load,
+    setIntersectObjects,
     unfoldAll,
     foldAll,
     unfold,

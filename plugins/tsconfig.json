@@ -15,6 +15,9 @@
     "moduleResolution": "node",
     "types": ["node", "svelte"]
   },
+  "paths": {
+    "@realsee/dnalogel/components": ["./src/components"]
+  },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
   "exclude": ["libs"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.0.0-alpha.36
+- 1.style: PanoMeasurePlugin pc端UI优化
+- 2.style: PanoMeasurePlugin准心优化，支持是否展示法向量和小球颜色可配置
+- 3.fix: 修复 ResizeObserver 使用。
+
+## 2.0.0-beta.36
+- 1.refactor: 户型图相关插件改造，详情参考 floorplan/CHANGELOGE.md。
+
+## 2.0.0-alpha.35
+- 1.style: PanoSpatialTagPlugin标签样式兼容, 标签阴影背景自适应；
+- 2.feat: PanoSpatialTagPlugin开放可见距离配置参数，此功能不保证最佳UI效果）;
+- 3.refactor: PanoSpatialTagPlugin更新中心点位置及事件监听。
+
+## 2.0.0-alpha.34
+- 1.feat: 新增 PaintBrush 组件，此版本为实验版，请谨慎使用。
+
+## 2.0.0-alpha.33
+- 1.fix: Floorplan Plugins Compass & ModelChassisCompassPlugin 修复对 north_rad 为 0 的处理
+- 2.fix: panospatialtagplugin 兼容nextjs出现的text样式问题
+
 ## 2.0.0-alpha.32
 - 1.feat: PanoRulerPlugin 修改标尺隐藏策略，线长小于0.3m隐藏；
 - 2.fix: TopViewFloorplanPlugin & ModelFloorplanPlugin wrapper pointer-events: none。

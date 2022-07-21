@@ -18,13 +18,13 @@
 
 <div class="floorplan-plugin__room-material">
   {#each rooms as room}
-    <svg width="100%" height="100%" viewBox="{`0 0 ${boundingWidth} ${boundingHeight}`}">
+    <svg width="100%" height="100%" viewBox={`0 0 ${boundingWidth} ${boundingHeight}`}>
       {#if room.floorType === 1}
-        <RoomMaterial_0 path="{room.path}" />
+        <RoomMaterial_0 path={room.path} />
       {:else if room.floorType === 0}
-        <RoomMaterial_2 path="{room.path}" />
+        <RoomMaterial_2 path={room.path} />
       {:else}
-        <RoomMaterial_1 path="{room.path}" />
+        <RoomMaterial_1 path={room.path} />
       {/if}
     </svg>
   {/each}

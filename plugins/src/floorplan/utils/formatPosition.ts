@@ -32,10 +32,7 @@ export function pathD(
 }
 
 /** 把户型图上点点位转换到 SVG 上的点位 */
-export default function formatFloorplanPoint(
-  { x, y }: Vector2Position,
-  bounding: FloorplanBounding,
-) {
+export default function formatFloorplanPoint({ x, y }: Vector2Position, bounding: FloorplanBounding) {
   const { max, min } = bounding
   return { x: x - min.x, y: max.y - y }
 }
@@ -51,10 +48,7 @@ export function modelPosition2FloorplanPosition(
 }
 
 /** 户型图点位转在图片上的相对坐标 */
-export function floorplanPosition2ImagePosition(
-  position: { x: number; y: number },
-  floorplanData: FloorplanData,
-) {
+export function floorplanPosition2ImagePosition(position: { x: number; y: number }, floorplanData: FloorplanData) {
   const bounding = floorplanData.bounding
   const boundingWidth = bounding.max.x - bounding.min.x
   const boundingHeight = bounding.max.y - bounding.min.y
@@ -65,10 +59,7 @@ export function floorplanPosition2ImagePosition(
 }
 
 /** 求三维坐标点所在的楼层 */
-export function getFloorIndexFromModelPosition(
-  position: { x: number; y: number; z: number },
-  five: Five,
-) {
+export function getFloorIndexFromModelPosition(position: { x: number; y: number; z: number }, five: Five) {
   const floorIndex = Math.max(
     ...five.work.observers.map((observer) => {
       if (position.z >= observer.standingPosition.z) return observer.floorIndex

@@ -1,15 +1,12 @@
+import type { Parameters } from './typing'
 import type { FivePlugin } from '@realsee/five'
-import PanoFloorplanRadarPluginController from './Controller'
 
-export const PanoFloorplanRadarPlugin: FivePlugin<
-  PanoFloorplanRadarPluginParameterType,
-  PanoFloorplanRadarPluginReturnType
-> = (five, params) => {
-  return new PanoFloorplanRadarPluginController(five, params)
+import { Controller } from './Controller'
+
+export const PanoFloorplanRadarPlugin: FivePlugin<Parameters | undefined, Controller> = (five, params) => {
+  return new Controller(five, params)
 }
 
+export type PanoFloorplanRadarPluginParameterType = Parameters | undefined
+export type PanoFloorplanRadarPluginReturnType = InstanceType<typeof Controller>
 export default PanoFloorplanRadarPlugin
-export type { PanoFloorplanRadarPluginController }
-export type { PanoFloorplanRadarPluginControllerParameter } from './Controller'
-export type PanoFloorplanRadarPluginReturnType = PanoFloorplanRadarPluginController
-export type PanoFloorplanRadarPluginParameterType = ConstructorParameters<typeof PanoFloorplanRadarPluginController>[1]

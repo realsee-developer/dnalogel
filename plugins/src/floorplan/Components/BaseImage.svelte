@@ -1,7 +1,7 @@
 <script lang="ts">
+  import type { FloorplanData } from '../typings/floorplanData'
   import NormalImage from './Normalmage.svelte'
   import SvgImage from './SvgImage.svelte'
-  import type { FloorplanData } from '../typings/floorplanData'
 
   export let floorIndex: number
   export let floorplanData: FloorplanData
@@ -11,9 +11,9 @@
 
 <div class="floorplan-plugin__base-image">
   {#if svgContent}
-    <SvgImage content="{svgContent}" />
+    <SvgImage content={svgContent} />
   {:else if imageData}
-    <NormalImage url="{imageData.url}" />
+    <NormalImage url={imageData.url} />
   {/if}
 </div>
 

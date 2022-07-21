@@ -1,4 +1,3 @@
-import Line from '../../Model/line'
 import type { Five, Intersection, IntersectMeshInterface, Subscribe } from '@realsee/five'
 import { DoubleSide, Group, Mesh, MeshBasicMaterial, Raycaster, RingGeometry, Vector3 } from 'three'
 import type { Model } from '../../Model'
@@ -11,8 +10,10 @@ import { requestAnimationFrameInterval } from '../../../shared-utils/animationFr
 import noop from '../../../shared-utils/noop'
 import calculateThreeMouse from '../../utils/calculateThreeMouse'
 import { getMouseGroup } from '../../utils/mouseGroup'
+import type { OpenParameter } from '../../typings/data'
 
 export interface RangePieceControllerParams {
+  openParams: OpenParameter
   container: Element
   five: Five
   group: Group
@@ -45,7 +46,7 @@ export default class RangePieceController {
     this.five = params.five
     this.hook = params.hook
     this.group = params.group
-    this.mouseGroup = getMouseGroup()
+    this.mouseGroup = getMouseGroup({ isMobile: true, ...params.openParams.crossHairParameter })
     this.fiveHelper = params.fiveHelper
     this.container.innerHTML = htmlString
     this.container.classList.add('range-piece-controller')

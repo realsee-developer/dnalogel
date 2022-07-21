@@ -19,10 +19,11 @@
   export let lastPanoramaLongitude: number
   export let cameraImageUrl: undefined | string
   export let getLabelElement: undefined | ((room: FloorplanRoomItem) => Element | null)
+  export let adaptiveRoomLabelVisibleEnable: boolean
 </script>
 
 {#if visible}
-  <div class="floorplan-main" in:fade="{{ duration, easing: linear }}">
+  <div class="floorplan-main" in:fade={{ duration, easing: linear }}>
     {#each floorplanData.floorDatas as floorData}
       <CurrentFloor
         {...{
@@ -31,14 +32,15 @@
           getLabelElement,
           roomLabelsEnable,
           ruleLabelsEnable,
+          adaptiveRoomLabelVisibleEnable,
         }}
-        floorIndex="{floorData.floorIndex}"
-        isCurrent="{floorData.floorIndex === floorIndex}"
+        floorIndex={floorData.floorIndex}
+        isCurrent={floorData.floorIndex === floorIndex}
       />
     {/each}
     <Camera {...{ panoIndex, floorplanData, lastPanoramaLongitude, cameraImageUrl }} />
     {#if compassEnable}
-      <Compass floorplanData="{floorplanData}" northDesc="{northDesc}" />
+      <Compass {floorplanData} {northDesc} />
     {/if}
   </div>
 {/if}

@@ -16,7 +16,7 @@
         style:width="{extraObject.icon.width / 16}rem"
         style:height="{extraObject.icon.height / 16}rem"
         style="background-image: {`url(${extraObject.icon.url})`}"
-      ></div>
+      />
     </div>
   {/each}
 </div>

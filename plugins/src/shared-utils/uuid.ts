@@ -10,3 +10,5 @@ export default function uuid() {
   // then to call it, plus stitch in '4' in the third group
   return (S4() + S4() + '-' + S4() + '-4' + S4().substr(0, 3) + '-' + S4() + '-' + S4() + S4() + S4()).toLowerCase()
 }
+
+export { uuid }

@@ -58,7 +58,9 @@ export default class MeasureController {
     this.group = new Group()
     this.group.name = 'plugin-measure-group'
     this.container.classList.add('five-plugin-measure-container')
-    this.container.style.position = 'relative'
+    this.container.style.position = 'absolute'
+    this.container.style.left = '0'
+    this.container.style.top = '0'
     this.container.style.pointerEvents = 'none'
     this.container.style.width = '100%'
     this.container.style.height = '100%'
@@ -76,7 +78,7 @@ export default class MeasureController {
       container: this.container,
       fiveHelper: this.fiveHelper,
       openParams,
-      mouseGroup: getMouseGroup(),
+      mouseGroup: getMouseGroup({ ...openParams.crossHairParameter }),
       userDistanceItemCreator: this.params.userDistanceItemCreator,
     }
     if (this.params.useUIController !== false) this.useUIController = new UIController(this, this.controllerParams)

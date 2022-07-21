@@ -1,25 +1,28 @@
-import { Five } from '@realsee/five'
-
-import changeMode from '../../../shared-utils/five/changeMode'
-import { FloorplanErrorType } from './constant'
-import to from '../../../shared-utils/to'
-import nearlyEqual from '../../../shared-utils/nearlyEqual'
+import type { Five, Mode } from '@realsee/five'
+import to from '../../shared-utils/to'
+import { FloorplanErrorType } from '../utils/constant'
+import nearlyEqual from '../../shared-utils/nearlyEqual'
+import changeMode from '../../shared-utils/five/changeMode'
 
 export interface ShowState {
   latitude: number
   longitude: number
   fov: number
+  mode: Mode
 }
 
 /** 判断当前状态是否可以展示户型图 */
 export function checkShowState(five: Five, showState: ShowState) {
-  if (five.currentMode !== Five.Mode.Floorplan) return false
+  if (five.currentMode !== showState.mode) return false
   const { latitude, longitude, fov } = showState
   const { latitude: _latitude, longitude: _longitude } = five.getCurrentState()
   const _fov = five.camera.fov
 
-  if (nearlyEqual(latitude, _latitude, 1) && nearlyEqual(longitude, _longitude, 1) && fov === _fov) return true
-  return false
+  if (!nearlyEqual(latitude, _latitude, 2)) return false
+  if (!nearlyEqual(longitude, _longitude, 2)) return false
+  if (fov !== _fov) return false
+
+  return true
 }
 
 /** 更改 Five 状态到展示户型图的状态
@@ -32,19 +35,18 @@ export default async function correctFiveState(five: Five, showState: ShowState,
   const result = checkShowState(five, showState)
   if (result === true) return
 
+  const currentFiveState = five.getCurrentState()
+
   // 纠正 mode
-  if (five.currentMode !== Five.Mode.Floorplan) {
-    const [changeModeError] = await to(changeMode(five, Five.Mode.Floorplan, showState, undefined, userAction))
-    if (changeModeError) throw changeModeError
-    // changeMode 是异步行为，可能会被打断，需要在结束后加一次判断
-    const result = checkShowState(five, showState)
-    if (result === false) throw new Error(FloorplanErrorType.ChangeModeError)
+  if (currentFiveState.mode !== showState.mode) {
+    const [changeModeError] = await to(changeMode(five, [showState.mode, showState, undefined, userAction]))
+    if (changeModeError) throw new Error(FloorplanErrorType.ChangeModeError)
     return
   }
 
   // 纠正相机状态
   // 根据 latitude、longitude、fov 计算动画时间，最多 1s
-  const { latitude, longitude, fov } = five.getCurrentState()
+  const { latitude, longitude, fov } = currentFiveState
   const time = Math.min(
     1000,
     Math.max(
