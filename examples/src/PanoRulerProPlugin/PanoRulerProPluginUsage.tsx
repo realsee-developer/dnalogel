@@ -1,5 +1,5 @@
 import { Box, Button, Paper } from '@mui/material'
-import { PanoRulerProPlugin } from '@realsee/dnalogel/libs/PanoRulerProPlugin'
+import { PanoRulerProPlugin } from '@realsee/dnalogel'
 import {
   unsafe__useFiveInstance,
   useFiveEventCallback,
@@ -23,7 +23,7 @@ const PanoRulerProPluginUsage = (props: PanoRulerProPluginUsePropTypes) => {
   >
   const panoRulerProData = useFetchDatas(
     DATA_TYPES.PANO_RULER_PRO_PLUGIN_SERVER_DATA,
-    '80pWLy9nekmQdMXqja',
+    '80o024DE2xyva3j5BE',
     'real'
   )
 

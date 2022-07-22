@@ -1,4 +1,4 @@
-import { PanoRulerProPlugin } from "@realsee/dnalogel/libs/PanoRulerProPlugin";
+import { PanoRulerProPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import * as React from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
@@ -17,7 +17,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
     const size = useWindowDimensions();
-    const work = useFetchDatas(DATA_TYPES.WORK, '80pWLy9nekmQdMXqja','real')
+    const work = useFetchDatas(DATA_TYPES.WORK, '80o024DE2xyva3j5BE','real')
 
 
     return work && <FiveProvider initialWork={parseWork(work)} ref={ref => Object.assign(window, { $five: ref?.five })}>

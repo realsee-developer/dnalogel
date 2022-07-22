@@ -3,24 +3,22 @@
 
   export let rulerItemProp: RulerItemProp
   let _visible = true
-  let labelElement
-
-  $: labelRotateDeg = Math.abs(rulerItemProp.rotateDeg) > 90 ? 180 : 0
+  let labelWidth
 
   $: {
-    if (labelElement) {
-      let labelWidth = labelElement.clientWidth || 0
-      if (
-        labelWidth >= rulerItemProp.width ||
-        labelWidth / 2 >= (rulerItemProp.labelOffset / 100) * rulerItemProp.width ||
-        labelWidth / 2 >= (1 - rulerItemProp.labelOffset / 100) * rulerItemProp.width
-      ) {
-        _visible = false
-      } else {
-        _visible = true
-      }
+    if (
+      labelWidth >= rulerItemProp.width ||
+      labelWidth / 2 >= (rulerItemProp.labelOffset / 100) * rulerItemProp.width ||
+      labelWidth / 2 >= (1 - rulerItemProp.labelOffset / 100) * rulerItemProp.width
+    ) {
+      _visible = false
+    } else {
+      _visible = true
     }
   }
+
+  let EM_DOTTED_BG = `data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjQiIHdpZHRoPSIxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGRlZnM+PGZpbHRlciBpZD0icHJlZml4X19hIiBoZWlnaHQ9IjQwMCUiIHdpZHRoPSIxMzcuNCUiIHg9Ii0xOC43JSIgeT0iLTE1MCUiPjxmZU1vcnBob2xvZ3kgaW49IlNvdXJjZUFscGhhIiBvcGVyYXRvcj0iZGlsYXRlIiByYWRpdXM9Ii41IiByZXN1bHQ9InNoYWRvd1NwcmVhZE91dGVyMSIvPjxmZU9mZnNldCBpbj0ic2hhZG93U3ByZWFkT3V0ZXIxIiByZXN1bHQ9InNoYWRvd09mZnNldE91dGVyMSIvPjxmZU1vcnBob2xvZ3kgaW49IlNvdXJjZUFscGhhIiByYWRpdXM9IjEiIHJlc3VsdD0ic2hhZG93SW5uZXIiLz48ZmVPZmZzZXQgaW49InNoYWRvd0lubmVyIiByZXN1bHQ9InNoYWRvd0lubmVyIi8+PGZlQ29tcG9zaXRlIGluPSJzaGFkb3dPZmZzZXRPdXRlcjEiIGluMj0ic2hhZG93SW5uZXIiIG9wZXJhdG9yPSJvdXQiIHJlc3VsdD0ic2hhZG93T2Zmc2V0T3V0ZXIxIi8+PGZlR2F1c3NpYW5CbHVyIGluPSJzaGFkb3dPZmZzZXRPdXRlcjEiIHJlc3VsdD0ic2hhZG93Qmx1ck91dGVyMSIgc3RkRGV2aWF0aW9uPSIuNSIvPjxmZUNvbG9yTWF0cml4IGluPSJzaGFkb3dCbHVyT3V0ZXIxIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuMiAwIi8+PC9maWx0ZXI+PHBhdGggaWQ9InByZWZpeF9fYiIgZD0iTS44ODkgMkgxMS41OCIvPjwvZGVmcz48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48dXNlIGZpbGw9IiMwMDAiIGZpbHRlcj0idXJsKCNwcmVmaXhfX2EpIiB4bGluazpocmVmPSIjcHJlZml4X19iIi8+PHVzZSBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNCIgeGxpbms6aHJlZj0iI3ByZWZpeF9fYiIvPjwvZz48L3N2Zz4=`
+  $: vars = `--background-image: url(${EM_DOTTED_BG})`;
 </script>
 
 <div
@@ -32,20 +30,19 @@
   style:display="{rulerItemProp.visible && _visible ? 'block' : 'none'}"
 >
   {#if rulerItemProp.children.length === 0}
-    <em class="{rulerItemProp.state ? 'em-solid' : 'em-dotted'}"></em>
+    <em class="{rulerItemProp.state ? 'em-solid' : 'em-dotted'}" style="{vars}"></em>
   {:else}
     <div class="rule-mixed-line">
       {#each rulerItemProp.children as child}
-        <div style:width="{child.width}px" class="{child.state ? 'em-solid' : 'em-dotted'}"></div>
+        <div style:width="{child.width}px" class="{child.state ? 'em-solid' : 'em-dotted'}" style="{vars}"></div>
       {/each}
     </div>
   {/if}
   <div
     class="PanoRulerPlugin-rule-label"
     style:left="{rulerItemProp.labelOffset}%"
-    style:transform="rotate({labelRotateDeg}deg)"
   >
-    <div class="PanoRulerPlugin-rule-label-name" bind:this="{labelElement}">
+    <div class="PanoRulerPlugin-rule-label-name" bind:offsetWidth="{labelWidth}">
       {rulerItemProp.labelElement}
     </div>
   </div>
@@ -111,7 +108,7 @@
   }
   .em-dotted {
     height: 0.125rem;
-    background: url('//vrlab-static.ljcdn.com/release/web/dotted_line.690c9c36.svg');
+    background: var(--background-image);
     background-position: center;
     background-repeat: repeat;
   }

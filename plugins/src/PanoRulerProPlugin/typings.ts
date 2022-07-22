@@ -1,5 +1,3 @@
-import type { Five } from "@realsee/five"
-
 export type PanoRulerProPluginDatas = PanoRulerProPluginData[] // 插件传入数据
 
 export interface PanoRulerProPluginData {
@@ -31,7 +29,7 @@ export interface PanoRulerProPluginParameterType {
   options?: PanoRulerProPluginOptions
 }
 
-export interface PanoRulerPluginExportType {
+export interface PanoRulerProPluginExportType {
   enable: () => void
   disable: () => void
   load: (params: PanoRulerProPluginParameterType) => void
