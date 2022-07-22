@@ -25,7 +25,7 @@ export enum LOG_LEVEL {
 
 // 输出日志
 const echo = (logLevel: Partial<LOG_LEVEL>, args: any[] = []) => {
-  args.unshift(`Realsee ${getTime()} <${logLevel}> `)
+  args.unshift(`@realsee/dnalogel ${getTime()} <${logLevel}> `)
   switch (logLevel) {
     case LOG_LEVEL.info:
       return console.info(...args)
