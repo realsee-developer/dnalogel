@@ -1,11 +1,10 @@
-import type { Five } from '@realsee/five'
-import type { FivePlugin } from '@realsee/five'
+import type { Five, FivePlugin } from '@realsee/five'
 import * as THREE from 'three'
 
 export interface ModelViewPluginExportType {
-    appendTo(element: HTMLElement, size?: { width?: number; height?: number }): void
+    appendTo: (element: HTMLElement, size?: { width?: number; height?: number }) => void
 
-    refresh(size?: { width?: number; height?: number }): void
+    refresh: (size?: { width?: number; height?: number }) => void
 }
 
 /**
@@ -64,8 +63,7 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
 
     const handleModelLoaded = () => {
         function cloneMaterial(material: THREE.ShaderMaterial) {
-            material = material.clone()
-            material.uniforms.modelAlpha.value = 1
+            material.clone().uniforms.modelAlpha.value = 1
             if (material.uniforms.map.value) {
                 material.uniforms.map.value.needsUpdate = true
             }
@@ -115,7 +113,7 @@ export const ModelViewPlugin: FivePlugin<void, ModelViewPluginExportType> = (fiv
         if (!renderer) return
         const element = renderer.domElement
         const container = element.parentNode as HTMLElement
-        if (container && container.nodeName) {
+        if (container?.nodeName) {
 
             const { width = container.offsetWidth, height = container.offsetHeight } = size
             renderer.setSize(width, height)

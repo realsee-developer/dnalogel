@@ -46,7 +46,7 @@ const error = (...args: any[]) => echo(LOG_LEVEL.error, args)
 
 const warn = (...args: any[]) => echo(LOG_LEVEL.warn, args)
 
-const logger = {
+export const logger = {
   log,
   info,
   error,
