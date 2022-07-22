@@ -231,6 +231,7 @@ export class IncrementRenderer {
 
   /**
    * 核心：给work数据打补丁
+   * 注意：修改work数据会导致数据签名失效，five拒绝渲染
    */
   private _polyfillWork = (originWork: any) => {
     const observers = originWork?.observers || []
