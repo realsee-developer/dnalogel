@@ -12,6 +12,7 @@ const PanoCompassPluginUse = () => {
     // 朝北方向来源于户型图数据
     const NORTH_RAD = floorplanServerData?.computed_data?.entrance?.north_rad
     // 载入朝北数据
+
     await five.plugins.panoCompassPlugin.load({ north_rad: NORTH_RAD })
   }, [floorplanServerData])
 
