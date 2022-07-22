@@ -21,6 +21,9 @@ export * from './CameraMovementPlugin'
 // 全景标尺
 export * from './PanoRulerPlugin'
 
+// 全景标尺Pro版
+export * from './PanoRulerProPlugin'
+
 // 全景指南针
 export * from './PanoCompassPlugin'
 
