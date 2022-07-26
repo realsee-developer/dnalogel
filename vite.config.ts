@@ -27,6 +27,7 @@ export default defineConfig({
         ModelFloorplanPlugin: resolve(__dirname, './src/ModelFloorplanPlugin/index.html'),
         PanoCompassPlugin: resolve(__dirname, './src/PanoCompassPlugin/index.html'),
         PanoRulerPlugin: resolve(__dirname, './src/PanoRulerPlugin/index.html'),
+        PanoRulerProPlugin: resolve(__dirname, './src/PanoRulerProPlugin/index.html'),
         PanoMeasurePlugin: resolve(__dirname, './src/PanoMeasurePlugin/index.html'),
         PanoSpatialTagPlugin: resolve(__dirname, './src/PanoSpatialTagPlugin/index.html'),
         ModelItemLabelPlugin: resolve(__dirname, './src/ModelItemLabelPlugin/index.html'),
