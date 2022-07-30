@@ -20,7 +20,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
     const [fiveState, setFiveState] = useFiveState()
     const five = unsafe__useFiveInstance()
     const fiveModeReadyState = useFiveModelReadyState()
-    const [labelType, setLabelType] = React.useState<number>(0)
+    const [labelType, setLabelType] = React.useState<number>(1)
     const itemLabels = [
         {
             "item_labels": [
@@ -983,6 +983,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
         {
             "item_labels": [
                 {
+                    "panoIndex": 0,
                     "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
@@ -1056,6 +1057,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     "roomName": "\u536b\u751f\u95f4"
                 },
                 {
+                    "panoIndex": 2,
                     "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
@@ -1129,6 +1131,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     "roomName": "\u9633\u53f0"
                 },
                 {
+                    "panoIndex": 3,
                     "icon": '//center.realsee.com/_next/image?url=https%3A%2F%2Fvrlab-static.ljcdn.com%2Frelease%2Fweb%2Fai-designer-avatar.c6b132b4.png&w=96&q=75',
                     "__type": "Item",
                     "materials": null,
@@ -1208,45 +1211,45 @@ const PluginShow = (props: PluginShowPropTypes) => {
 
 
     // 画辅助线
-    function addHelper(x: number, y: number, z: number, type: string, helper?: boolean) {
-        // const point = new THREE.Vector3();
-        let geometry;
-        let materials;
-        let mesh: any
-
-        if (type === 'box') {
-            geometry = new THREE.BoxGeometry(
-                0.6,
-                2.5,
-                1.010696,
-            )
-
-            let mats = []
-            for (let i = 0; i < geometry.faces.length; i++) {
-                const material = new THREE.MeshBasicMaterial({
-                    color: new THREE.Color(Math.random() * 0xffffff)
-                })
-                mats.push(material)
-            }
-            materials = mats
-        } else if (type === 'ball') {
-            geometry = new THREE.SphereGeometry(0.02, 0.02, 64);
-            materials = new THREE.MeshBasicMaterial({
-                color: new THREE.Color(0xffffff)
-            })
-        }
-        mesh = new THREE.Mesh(geometry, materials)
-        // y 轴需要加一半的高度，因为position是从地面开始的，或者我应该算偏移更合理
-        mesh.position.set(x, y, z)
-
-        if (helper) {
-            const helper = new THREE.AxesHelper(5);
-            mesh.add(helper)
-        }
-
-        five.scene.add(mesh);
-
-    }
+    // function addHelper(x: number, y: number, z: number, type: string, helper?: boolean) {
+    //     // const point = new THREE.Vector3();
+    //     let geometry;
+    //     let materials;
+    //     let mesh: any
+    //
+    //     if (type === 'box') {
+    //         geometry = new THREE.BoxGeometry(
+    //             0.6,
+    //             2.5,
+    //             1.010696,
+    //         )
+    //
+    //         let mats = []
+    //         for (let i = 0; i < geometry.faces.length; i++) {
+    //             const material = new THREE.MeshBasicMaterial({
+    //                 color: new THREE.Color(Math.random() * 0xffffff)
+    //             })
+    //             mats.push(material)
+    //         }
+    //         materials = mats
+    //     } else if (type === 'ball') {
+    //         geometry = new THREE.SphereGeometry(0.02, 0.02, 64);
+    //         materials = new THREE.MeshBasicMaterial({
+    //             color: new THREE.Color(0xffffff)
+    //         })
+    //     }
+    //     mesh = new THREE.Mesh(geometry, materials)
+    //     // y 轴需要加一半的高度，因为position是从地面开始的，或者我应该算偏移更合理
+    //     mesh.position.set(x, y, z)
+    //
+    //     if (helper) {
+    //         const helper = new THREE.AxesHelper(5);
+    //         mesh.add(helper)
+    //     }
+    //
+    //     five.scene.add(mesh);
+    //
+    // }
 
     React.useEffect(() => {
         const wrapper = document.querySelector('.plugin-full-screen-container')
@@ -1287,9 +1290,9 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     setFiveState({ mode: newValue });
                 }}
             >
-                <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon />} value={Five.Mode.Panorama} />
-                <BottomNavigationAction label="空间总览" icon={<ViewInArIcon />} value={Five.Mode.Floorplan} />
-                <BottomNavigationAction label="标签切换" onClick={switchLabel} icon={<ChangeCircleIcon />} value={null} />
+                <BottomNavigationAction label="全景漫游" icon=<DirectionsWalkIcon /> value={Five.Mode.Panorama} />
+                <BottomNavigationAction label="空间总览" icon=<ViewInArIcon /> value={Five.Mode.Floorplan} />
+                <BottomNavigationAction label="标签切换" onClick={switchLabel} icon=<ChangeCircleIcon /> value={null} />
             </BottomNavigation>
         </Paper>
     )

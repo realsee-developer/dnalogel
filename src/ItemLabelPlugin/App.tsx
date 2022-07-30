@@ -1,4 +1,4 @@
-import { ItemLabelPlugin, ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel/libs/ItemLabelPlugin";
+import { ItemLabelPlugin, ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import * as React from "react";
@@ -9,7 +9,7 @@ import getInitialParamFromUrl from "../utils/getInitialParamFromUrl";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
-    modelOcclusionEnable: true,
+    modelOcclusionEnable: false,
     displayStrategyType: ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE.LARGE,
     // maxVisibleDistance: 100 // 配置最大可见距离，默认不添加此配置
 }
