@@ -1290,9 +1290,9 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     setFiveState({ mode: newValue });
                 }}
             >
-                <BottomNavigationAction label="全景漫游" icon=<DirectionsWalkIcon /> value={Five.Mode.Panorama} />
-                <BottomNavigationAction label="空间总览" icon=<ViewInArIcon /> value={Five.Mode.Floorplan} />
-                <BottomNavigationAction label="标签切换" onClick={switchLabel} icon=<ChangeCircleIcon /> value={null} />
+                <BottomNavigationAction label="全景漫游" icon={<DirectionsWalkIcon />} value={Five.Mode.Panorama} />
+                <BottomNavigationAction label="空间总览" icon={<ViewInArIcon />} value={Five.Mode.Floorplan} />
+                <BottomNavigationAction label="标签切换" onClick={switchLabel} icon={<ChangeCircleIcon />} value={null} />
             </BottomNavigation>
         </Paper>
     )
