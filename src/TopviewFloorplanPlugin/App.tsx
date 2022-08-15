@@ -1,4 +1,4 @@
-import { TopviewFloorplanPlugin } from '@realsee/dnalogel/libs/floorplan/TopviewFloorplanPlugin'
+import { TopviewFloorplanPlugin } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'

@@ -1,4 +1,4 @@
-import { FLOOR_PLAN_ATTACHED_TO, ModelFloorplanPlugin } from "@realsee/dnalogel/libs";
+import { FLOOR_PLAN_ATTACHED_TO, ModelFloorplanPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import { parseWork } from "@realsee/five";
 import * as React from "react";
