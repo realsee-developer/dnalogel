@@ -11,10 +11,35 @@ import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import * as THREE from "three";
+import ReactDOM from 'react-dom';
 
 interface PluginShowPropTypes {
 
 }
+
+const CustomConpment = () => {
+    const [show, setShow] = React.useState(true)
+
+    React.useEffect(() => {
+        console.log('CustomConpment mounted')
+    }, [])
+
+    return (
+        <div>
+            <div> 我是标题 </div>
+            {show && <div> 我是能隐藏的文字 </div>}
+                <button
+                    onClick={(ev) => {
+                    ev.stopPropagation()
+                    setShow(!show)
+                    }}
+                >
+                    点击我{show ? '隐藏' : '展示'}文字
+                </button>
+        </div>
+    )
+}
+
 
 const PluginShow = (props: PluginShowPropTypes) => {
     const [fiveState, setFiveState] = useFiveState()
@@ -1063,6 +1088,11 @@ const PluginShow = (props: PluginShowPropTypes) => {
                     "materials": null,
                     "library": 1547,
                     "adsorption": null,
+                    render: (item: any) => {
+                        const div = document.createElement('div')
+                        ReactDOM.render(<CustomConpment />, div)
+                        return div
+                    },
                     "position": [
                         0.779794,
                         -0.000137,
