@@ -5,7 +5,7 @@ specifiers:
   '@emotion/styled': ^11.8.1
   '@mui/icons-material': ^5.4.2
   '@mui/material': ^5.4.2
-  '@realsee/dnalogel': 2.0.0-alpha.45
+  '@realsee/dnalogel': 2.0.0-alpha.47
   '@realsee/five': 5.0.0-alpha.141
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.41
   '@types/offscreencanvas': ^2019.6.4
@@ -35,7 +35,7 @@ devDependencies:
   '@emotion/styled': 11.10.0_wiynxy2xmewqltyl3r22mlxgsm
   '@mui/icons-material': 5.10.2_nmqjiwr5rpbnyqhmjzj5vfrzti
   '@mui/material': 5.10.2_mm2isjkwxtdnw3xlwl5r7b6ile
-  '@realsee/dnalogel': link:../plugins
+  '@realsee/dnalogel': 2.0.0-alpha.47
   '@realsee/five': 5.0.0-alpha.141_4s7zzwlcu26mauxezrgyqum6qq
   '@sveltejs/vite-plugin-svelte': 1.0.2_svelte@3.49.0+vite@2.9.15
   '@types/offscreencanvas': 2019.7.0
@@ -792,6 +792,14 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: true
 
+  /@realsee/dnalogel/2.0.0-alpha.47:
+    resolution: {integrity: sha512-iwfFuMTOfDR8UJtxnVVojzRi4gf0f/osbd6utfMAtr58QKtBFEzxtwzQeM/A4Yg1puFhzFLhLaXNxR94VXlI4A==}
+    dependencies:
+      '@tweenjs/tween.js': 18.6.4
+      hammerjs: 2.0.8
+      svelte: 3.49.0
+    dev: true
+
   /@realsee/five/5.0.0-alpha.141_4s7zzwlcu26mauxezrgyqum6qq:
     resolution: {integrity: sha512-IlkpL2tiz505s1wuEuG31eSPdCqQlsMkFaj7nhcIjTQa+6aa++ze3VUnuzqKdCxJrWA4tGJAYRCsHKtD3QIf2g==}
     hasBin: true
@@ -850,6 +858,10 @@ packages:
       vite: 2.9.15
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@tweenjs/tween.js/18.6.4:
+    resolution: {integrity: sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==}
     dev: true
 
   /@types/json-schema/7.0.11:
