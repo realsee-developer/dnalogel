@@ -6,15 +6,15 @@ import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { pluginsData } from "../../mock/BigSpace/pluginsData";
+// import { pluginsData } from "../../mock/BigSpace/pluginsData";
 
 
 const PluginUse = () => {
     const five = unsafe__useFiveInstance()
     const [fiveState, setFiveState] = useFiveState()
     const fiveModelReadyState = useFiveModelReadyState()
-    // const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
-    const floorplanServerData = pluginsData.FloorplanPlugin
+    const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    // const floorplanServerData = pluginsData.FloorplanPlugin
 
     React.useEffect(() => {
         if(!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return

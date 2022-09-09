@@ -25,6 +25,7 @@ export default defineConfig({
         CSS3DRenderPlugin: resolve(__dirname, './src/CSS3DRenderPlugin/index.html'),
         CameraMovementPlugin: resolve(__dirname, './src/CameraMovementPlugin/index.html'),
         ModelFloorplanPlugin: resolve(__dirname, './src/ModelFloorplanPlugin/index.html'),
+        MapviewFloorplanPlugin: resolve(__dirname, './src/MapviewFloorplanPlugin/index.html'),
         PanoCompassPlugin: resolve(__dirname, './src/PanoCompassPlugin/index.html'),
         PanoRulerPlugin: resolve(__dirname, './src/PanoRulerPlugin/index.html'),
         PanoRulerProPlugin: resolve(__dirname, './src/PanoRulerProPlugin/index.html'),
@@ -34,6 +35,7 @@ export default defineConfig({
         ModelTVVideoPlugin: resolve(__dirname, './src/ModelTVVideoPlugin/index.html'),
         ItemLabelPlugin: resolve(__dirname, './src/ItemLabelPlugin/index.html'),
         PaintBrush: resolve(__dirname, './src/PaintBrush/index.html'),
+        // PanoDoorLabelPlugin: resolve(__dirname, './src/PanoDoorLabelPlugin/index.html'),
       },
       output: {
         chunkFileNames: 'static/js/[name]-[hash].js',

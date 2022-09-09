@@ -8,7 +8,7 @@ import { Box } from '@mui/material'
 import getInitialParamFromUrl from '../utils/getInitialParamFromUrl'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import * as THREE from 'three'
-import { work } from '../../mock/BigSpace/work'
+// import { work } from '../../mock/BigSpace/work'
 
 Object.assign(window, { THREE })
 console.log('🚀 ~ THREE', THREE)
@@ -37,7 +37,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  // const work = useFetchDatas(DATA_TYPES.WORK)
+  const work = useFetchDatas(DATA_TYPES.WORK)
 
   return (
     work && (
