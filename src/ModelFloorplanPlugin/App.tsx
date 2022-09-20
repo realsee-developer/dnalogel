@@ -1,10 +1,12 @@
-import { FLOOR_PLAN_ATTACHED_TO, ModelFloorplanPlugin } from '@realsee/dnalogel'
+import './index.css'
+import { FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel/libs/floorplan/constant'
+import { ModelFloorplanPlugin } from '@realsee/dnalogel/libs/floorplan/ModelFloorplanPlugin'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
 import ModelFloorplanPluginUse from './ModelFloorplanPluginUse'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import getInitialParamFromUrl from '../utils/getInitialParamFromUrl'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 
@@ -35,6 +37,12 @@ const FiveProvider = createFiveProvider({
 const App: React.FC = () => {
   const size = useWindowDimensions()
   const work = useFetchDatas(DATA_TYPES.WORK)
+  const [isDefaultUnit, setIsDefaultUnit] = React.useState(true)
+
+  function toggleUnit() {
+    setIsDefaultUnit(!isDefaultUnit)
+  }
+
   return (
     work && (
       <FiveProvider
@@ -53,7 +61,12 @@ const App: React.FC = () => {
             pointerEvents: 'none',
           }}
         />
-        <ModelFloorplanPluginUse />
+        <ModelFloorplanPluginUse {...{ isDefaultUnit }} />
+        <div className="right-slide-btn-group">
+          <Button variant="contained" onClick={toggleUnit}>
+            切换单位
+          </Button>
+        </div>
       </FiveProvider>
     )
   )
