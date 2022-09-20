@@ -11,9 +11,7 @@ import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
 import ViewInArIcon from '@mui/icons-material/ViewInAr'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 
-interface ModelFloorplanPluginUsePropTypes {}
-
-const ModelFloorplanPluginUse = (props: ModelFloorplanPluginUsePropTypes) => {
+const ModelFloorplanPluginUse = () => {
   const five = unsafe__useFiveInstance()
   const [fiveState, setFiveState] = useFiveState()
   const fiveModelReadyState = useFiveModelReadyState()
