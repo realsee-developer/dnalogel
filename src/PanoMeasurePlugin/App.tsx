@@ -1,4 +1,4 @@
-import { PanoMeasurePlugin } from '@realsee/dnalogel';
+import { PanoMeasurePlugin } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
@@ -34,7 +34,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const work = useFetchDatas(DATA_TYPES.WORK, 'pWLy9ndnVL73Xqja','real')
+  const work = useFetchDatas(DATA_TYPES.WORK, 'pWLy9ndnVL73Xqja', 'real')
 
   return (
     work && (
