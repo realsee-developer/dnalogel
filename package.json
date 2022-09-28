@@ -15,7 +15,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
-    "@realsee/dnalogel": "2.0.1",
+    "@realsee/dnalogel": "2.0.2",
     "@realsee/five": "5.0.0-alpha.149",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.41",
     "@types/offscreencanvas": "^2019.6.4",
