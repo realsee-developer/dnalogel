@@ -2,7 +2,7 @@ import * as React from 'react'
 import { unsafe__useFiveInstance, useFiveModelReadyState, useFiveState } from '@realsee/five/react'
 import { Box, Slider, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import { Five } from '@realsee/five'
-import type { ModelViewPlugin } from '@realsee/dnalogel/libs/ModelViewPlugin'
+import type { ModelViewPlugin } from '@realsee/dnalogel'
 
 const MiniModelPanel: React.FC = () => {
   const [fiveState, setFiveState] = useFiveState()

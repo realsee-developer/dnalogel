@@ -1,5 +1,5 @@
 import { Box, Button, Paper } from '@mui/material'
-import { PanoRulerPlugin } from '@realsee/dnalogel/libs/PanoRulerPlugin'
+import { PanoRulerPlugin } from '@realsee/dnalogel'
 import {
   unsafe__useFiveInstance,
   useFiveEventCallback,

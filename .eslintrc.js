@@ -19,6 +19,6 @@ module.exports = {
 		// myGlobal: false
 	},
 	rules: {
-		// 自定义你的规则
+		"@typescript-eslint/no-empty-interface": "off"
 	},
 };

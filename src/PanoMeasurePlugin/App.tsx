@@ -1,4 +1,4 @@
-import { PanoMeasurePlugin } from '@realsee/dnalogel'
+import { PanoMeasurePlugin } from '@realsee/dnalogel';
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'

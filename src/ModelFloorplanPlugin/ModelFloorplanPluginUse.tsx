@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ModelFloorplanPlugin } from '@realsee/dnalogel/libs/floorplan/ModelFloorplanPlugin'
+import { ModelFloorplanPlugin } from '@realsee/dnalogel'
 import { Five, Mode } from '@realsee/five'
 import {
   unsafe__useFiveInstance,

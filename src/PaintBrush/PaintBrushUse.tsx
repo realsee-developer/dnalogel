@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PaintBrush, PaintBrushTypeEnum } from "@realsee/dnalogel/components"
+import { PaintBrush, PaintBrushTypeEnum } from "@realsee/dnalogel"
 import { Box, Button, Paper } from "@mui/material";
 // import { PaintBrushTypeEnum } from "../../../plugins/comps/PaintBrush/typings";
 
@@ -39,13 +39,11 @@ const PaintBrushUse = (props: PaintBrushUsePropTypes) => {
         return () => paintBrushInstanceRef.current.off('stateChange', handlePaintBrushStateChange)
     }, [paintBrushInstanceRef])
 
-    return <>
-        <Box sx={{display: paintBrushEnabledIcon ? 'block' : 'none'}}>
+    return <Box sx={{display: paintBrushEnabledIcon ? 'block' : 'none'}}>
             <Paper sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
                 <Button onClick={handlePaintBrushEnable}>开启画笔 🖌️</Button>
             </Paper>
         </Box>
-    </>
 };
 
 export default PaintBrushUse;
