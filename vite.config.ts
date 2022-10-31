@@ -36,6 +36,7 @@ export default defineConfig(({ command, mode }) => {
             ModelTVVideoPlugin: resolve(__dirname, './src/ModelTVVideoPlugin/index.html'),
             ItemLabelPlugin: resolve(__dirname, './src/ItemLabelPlugin/index.html'),
             PaintBrush: resolve(__dirname, './src/PaintBrush/index.html'),
+            GuideLinePlugin: resolve(__dirname, './src/GuideLinePlugin/index.html'),
             // PanoDoorLabelPlugin: resolve(__dirname, './src/PanoDoorLabelPlugin/index.html'),
           },
           output: {
