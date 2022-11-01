@@ -89,7 +89,7 @@ const GuideLinePluginUse = () => {
             <Typography>
               选择节点，添加到当前路径中，然后点击重载路径
             </Typography>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', position: 'relative', overflow: "auto", maxHeight: 300, '& ul': { padding: 0 }, }}>
               {observersData?.map((item) => {
                 const labelId = `checkbox-list-label-${item.panoIndex}`;
                 return (
@@ -116,7 +116,7 @@ const GuideLinePluginUse = () => {
           </AccordionDetails>
         </Accordion>
       </Stack>
-    </Stack>
+    </Stack >
   )
 }
 
