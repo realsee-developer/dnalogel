@@ -24,9 +24,9 @@ const GuideLinePluginUse = () => {
   const five = unsafe__useFiveInstance();
   const guideLine = five.plugins.guideLinePlugin;
 
+
   useEffect(() => {
     reloadGuideLine(visible);
-    setCurrentObserversData(five.work.observers);
   }, [])
 
   // 显示/隐藏路径
@@ -41,12 +41,13 @@ const GuideLinePluginUse = () => {
   }
   // 重载路径
   const reloadGuideLine = async (visible) => {
-    guideLine.load({
+    await guideLine.load({
       routes: [{
         panoIndexList: currentGuideLine,
         // arrowTextureUrl: '', // 自定义路径箭头icon
       }]
     })
+    setCurrentObserversData(five.work.observers);
 
     if (visible) {
       handleVisibleChange(true)
