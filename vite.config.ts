@@ -37,6 +37,7 @@ export default defineConfig(({ command, mode }) => {
             ItemLabelPlugin: resolve(__dirname, './src/ItemLabelPlugin/index.html'),
             PaintBrush: resolve(__dirname, './src/PaintBrush/index.html'),
             GuideLinePlugin: resolve(__dirname, './src/GuideLinePlugin/index.html'),
+            CruisePlugin: resolve(__dirname, './src/CruisePlugin/index.html'),
             // PanoDoorLabelPlugin: resolve(__dirname, './src/PanoDoorLabelPlugin/index.html'),
           },
           output: {
