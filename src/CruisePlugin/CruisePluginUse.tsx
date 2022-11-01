@@ -235,7 +235,7 @@ const CruisePluginUse = () => {
   }
 
   return (
-    <Stack spacing={2} direction="row" sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
+    <Stack spacing={2} direction="row" sx={{ position: 'fixed', top: '10px', left: '10px', width: '100%', backgroundColor: 'transparent', overflow: 'scroll' }}>
       <Box component="span">
         <Stack spacing={1} direction="row" sx={{ backgroundColor: 'transparent' }}>
           <Button variant="contained" onClick={() => handleVisibleChange(!visible)}>{visible ? '隐藏路径' : '显示路径'}</Button>
