@@ -1,4 +1,4 @@
-import { CSS3DRenderPlugin } from "@realsee/dnalogel";
+import { CSS3DRenderPlugin, PanoTagPlugin } from "@realsee/dnalogel";
 import { createFiveProvider, FiveCanvas } from "@realsee/five/react";
 import * as React from "react";
 import { useWindowDimensions } from "./useWindowDimensions";
@@ -13,6 +13,10 @@ const FiveProvider = createFiveProvider({
     [
       CSS3DRenderPlugin,
       'css3DRenderPlugin'
+    ],
+    [
+      PanoTagPlugin,
+      'panoTagPlugin',
     ]
   ]
 });
