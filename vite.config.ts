@@ -12,9 +12,6 @@ export default defineConfig({
   server: {
     host: true,
     open: '/',
-    watch: {
-      ignored: ['!**/node_modules/@realsee/dnalogel/**']
-    }
   },
   build: {
     rollupOptions: {
@@ -30,9 +27,9 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  optimizeDeps: {
-    include: Object.keys(pkg.dependencies).filter(key => key === '@realsee/dnalogel'),
-    exclude: ['@realsee/dnalogel']
-  },
-  appType: 'mpa'
+  // optimizeDeps: {
+  //   include: Object.keys(pkg.dependencies),
+  //   force: true,
+  // },
+  appType: 'mpa',
 })
