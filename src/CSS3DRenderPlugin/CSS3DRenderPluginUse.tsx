@@ -48,7 +48,9 @@ const CSS3DRenderPluginUse: React.FC = () => {
       }) || {}
     container && ReactDOM.render(<img src="//vrlab-static.ljcdn.com/release/web/catCoding.1cd4e989.gif" width="100%" />, container)
     Object.assign(window, { setCatCodingVisible: setVisible })
-    return dispose
+    return () => {
+      dispose()
+    }
   }, [])
 
   React.useEffect(() => {
@@ -58,7 +60,9 @@ const CSS3DRenderPluginUse: React.FC = () => {
         ratio: 0.002,
       }) || {}
     container && ReactDOM.render(<iframe width="100%" height="100%" src="//home.realsee.com/" />, container)
-    return dispose
+    return () => {
+      dispose()
+    }
   }, [])
 
   React.useEffect(() => {

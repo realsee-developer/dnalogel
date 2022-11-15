@@ -3389,7 +3389,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
                 1.010696,
             )
 
-            let mats = []
+            let mats:THREE.MeshBasicMaterial[] = []
             for (let i = 0; i < geometry.faces.length; i++) {
                 const material = new THREE.MeshBasicMaterial({
                     color: new THREE.Color(Math.random() * 0xffffff)

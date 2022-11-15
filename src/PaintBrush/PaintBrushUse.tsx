@@ -9,7 +9,7 @@ interface PaintBrushUsePropTypes {
 
 const PaintBrushUse = (props: PaintBrushUsePropTypes) => {
     const [paintBrushEnabledIcon, setPaintBrushEnabledIcon] = React.useState<boolean>(true)
-    const paintBrushInstanceRef = React.useRef(null)
+    const paintBrushInstanceRef = React.useRef<PaintBrush | undefined>()
 
     const handlePaintBrushEnable = () => {
         paintBrushInstanceRef.current?.show()
@@ -34,10 +34,10 @@ const PaintBrushUse = (props: PaintBrushUsePropTypes) => {
     React.useEffect(() => {
         if (!paintBrushInstanceRef) return
 
-        paintBrushInstanceRef.current.on('stateChange', handlePaintBrushStateChange)
+        paintBrushInstanceRef.current?.on('stateChange', handlePaintBrushStateChange)
 
-        return () => paintBrushInstanceRef.current.off('stateChange', handlePaintBrushStateChange)
-    }, [paintBrushInstanceRef])
+        return () => paintBrushInstanceRef.current?.off('stateChange', handlePaintBrushStateChange)
+    }, [paintBrushInstanceRef.current])
 
     return <Box sx={{display: paintBrushEnabledIcon ? 'block' : 'none'}}>
             <Paper sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>

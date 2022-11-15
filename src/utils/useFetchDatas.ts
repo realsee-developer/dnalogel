@@ -28,7 +28,7 @@ export enum DATA_TYPES {
     PANO_RULER_PRO_PLUGIN_SERVER_DATA = 'panoRulerProPluginServerData',
 }
 
-const useFetchDatas = (dataType: DATA_TYPES, renderCode?: string, spaceType?: 'real') => {
+const useFetchDatas = (dataType: DATA_TYPES, renderCode?: string, spaceType?: 'real'):any => {
     const [returnDatas, setReturnData] = React.useState(null)
     const dataCode = renderCodeFromQuery || renderCode || DEFAULT_RENDER_CODE
     const space = spaceTypeFromQuery || spaceType || DEFAULT_SPACE_TYPE

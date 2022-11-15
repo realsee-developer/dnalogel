@@ -1,38 +1,31 @@
 {
-  "name": "examples",
+  "name": "@realsee/dnalogel-examples",
+  "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "tsc && vite build --emptyOutDir",
-    "preview": "vite preview",
-    "dev": "tsc && vite --host"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "deploy": "sh ./bin/deploy.sh"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.10.12",
+    "@realsee/dnalogel": "workspace:*",
+    "@realsee/five": "5.0.0-alpha.162",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "three": "0.117.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.4.2",
-    "@mui/material": "^5.4.2",
-    "@realsee/dnalogel": "workspace:*",
-    "@realsee/five": "5.0.0-alpha.149",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.41",
-    "@types/offscreencanvas": "^2019.6.4",
+    "@babel/core": "^7.20.2",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "@vitejs/plugin-react": "^1.0.7",
-    "classnames": "^2.3.1",
-    "eslint": "^8.9.0",
-    "eslint-config-alloy": "^4.5.1",
-    "eslint-plugin-react": "^7.29.0",
-    "hammerjs": "2.0.8",
-    "svelte": "^3.46.4",
-    "three": "0.117.1",
-    "typescript": "^4.5.5",
-    "vite": "3.1.8"
+    "@vitejs/plugin-react": "^2.2.0",
+    "glob": "^8.0.1",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.3"
   }
 }
