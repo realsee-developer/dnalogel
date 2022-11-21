@@ -18,15 +18,15 @@ const PanoTagPluginUse = () => {
   console.log('five', five)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface;
 
-  const modelIntersectRaycaster = useFiveModelIntersectRaycaster();
-  // 获取坐标
-  useFiveEventCallback("wantsTapGesture", (raycaster) => {
-    const [intersect] = modelIntersectRaycaster(raycaster);
-    if (intersect) {
-      console.log(intersect.point)
-    }
-    return false;
-  },);
+  // const modelIntersectRaycaster = useFiveModelIntersectRaycaster();
+  // // 获取坐标
+  // useFiveEventCallback("wantsTapGesture", (raycaster) => {
+  //   const [intersect] = modelIntersectRaycaster(raycaster);
+  //   if (intersect) {
+  //     console.log(intersect.point)
+  //   }
+  //   return false;
+  // },);
 
   useEffect(() => {
     pluginInstance.load({ tagList: TagsList } as any)
