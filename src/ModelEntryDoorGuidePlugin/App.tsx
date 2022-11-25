@@ -9,6 +9,7 @@ import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const defaultPluginParam = {
   // animationEnabled: true
+  name: "入户门",
 }
 
 const initialParamFromUrl = getInitialParamFromUrl()
