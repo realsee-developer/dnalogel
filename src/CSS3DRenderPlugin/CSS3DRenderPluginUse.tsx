@@ -28,6 +28,8 @@ const CSS3DRenderPluginUse: React.FC = () => {
   const [enable, setEnable] = React.useState(css3DRenderPlugin.state.enabled)
 
   React.useEffect(() => {
+    // const fivecanvas = five.getElement()
+    // if (fivecanvas) fivecanvas.style.position = 'relative'
     five.plugins.panoTagPlugin.load({
         tagList: [
           {
