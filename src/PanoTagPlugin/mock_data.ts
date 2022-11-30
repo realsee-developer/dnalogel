@@ -1,9 +1,12 @@
 import { ContentType } from '@realsee/dnalogel';
+import { Mode } from '@realsee/five/five'
+import { Vector3 } from 'three'
 export const TagsList = [
     {
         "dimensionType": "2D",
         "pointType": "PointTag",
         "contentType": "Text",
+        "enable": true,
         "position": [
             -2.0543282763294135,
             0.3319934118281651,
@@ -18,12 +21,26 @@ export const TagsList = [
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
             }
         },
-        "id": 0
+        "id": 0,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 0.6087052772120609,
+            "latitude": -0.0392156862745098,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     {
         "dimensionType": "2D",
         "pointType": "PointTag",
         "contentType": "ImageText",
+        "enable": true,
         "position": [
             -1.3311771624715265,
             0,
@@ -46,12 +63,26 @@ export const TagsList = [
                 }
             ]
         },
-        "id": 1
+        "id": 1,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 0.9079828829912141,
+            "latitude": 0.2043343653250773,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     {
         "dimensionType": "3D",
         "pointType": "PlaneTag",
         "contentType": "MediaPlane",
+        "enable": true,
         "position": [
             [
                 -1.9866843325110417,
@@ -82,12 +113,26 @@ export const TagsList = [
                 }
             ]
         },
-        "id": 2
+        "id": 2,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 3,
+            "longitude": 2.706451797307377,
+            "latitude": 0.05631416156432678,
+            "fov": 95,
+            "offset": {
+                "x": -0.618914008140564,
+                "y": 1.1130503593145502,
+                "z": -1.6621500253677368
+            } as Vector3,
+            "distance": 0
+        }
     },
     {
         "dimensionType": "2D",
         "pointType": "PointTag",
         "contentType": "Marketing",
+        "enable": true,
         "position": [
             -2.6990631227056436,
             0.018038999289274438,
@@ -115,12 +160,26 @@ export const TagsList = [
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
             }
         },
-        "id": 3
+        "id": 3,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 1.4711282761387834,
+            "latitude": 0.020969743131104737,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     {
         "dimensionType": "3D",
         "pointType": "PointTag",
         "contentType": "Text",
+        "enable": true,
         "normal": [
             -2.6990631227056436,
             0.018038999289274438,
@@ -134,7 +193,20 @@ export const TagsList = [
         "data": {
             "text": "3D文本标签哈哈"
         },
-        "id": 4
+        "id": 4,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 5.493428678855368,
+            "latitude": -0.10500571410520228,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     {
         "dimensionType": "2D",
@@ -149,12 +221,26 @@ export const TagsList = [
             "audioUrl": "//vrlab-static.ljcdn.com/release/web/Bling.678be963.mp3",
             "text": "2D音频标签标题标题标题标标题标题标题标题标题标题标题标题标题标题标题标标题标题"
         },
-        "id": 5
+        "id": 5,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 6.151207373723298,
+            "latitude": -0.24015893081017836,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     {
         "dimensionType": "2D",
         "pointType": "PointTag",
         "contentType": "Link",
+        "enable": true,
         "position": [
             -0.8070892936181384,
             1.1621840046490304,
@@ -164,14 +250,27 @@ export const TagsList = [
             "linkType": "vr",
             "text": "2D跳转标签"
         },
-        "id": 6
+        "id": 6,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 2.439458631185228,
+            "latitude": -0.01238390092879257,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     }
 ]
 
 
 export const AddTagData = {
     [ContentType.Text]: {
-        "id": "03338b76-b64a-4e90-37fb-44e3c0ffeb56",
+        "id": 7,
         "pointType": "PointTag",
         "dimensionType": "2D",
         "position": [-1.9697880985731286, 1.6096369355028362, -2.339700937271118],
@@ -184,10 +283,24 @@ export const AddTagData = {
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/tagStyle1.30bff6db.png"
             }
         },
-        "contentType": "Text"
+        "contentType": "Text",
+        "enable": true,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 0.7552481048694407,
+            "latitude": -0.4809081527347768,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     [ContentType.ImageText]: {
-        "id": "03338b76-b64a-4e90-37fb-44e3c0ffeb58",
+        "id": 8,
         "pointType": "PointTag",
         "dimensionType": "2D",
         "position": [-0.8340552724043149, 2.1891417065796084, -2.339700937271118],
@@ -210,10 +323,24 @@ export const AddTagData = {
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
             }
         },
-        "contentType": "ImageText"
+        "contentType": "ImageText",
+        "enable": true,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 0.2330602823720213,
+            "latitude": -0.8028895768833848,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     [ContentType.Audio]: {
-        "id": 2268743,
+        "id": 9,
         "pointType": "PointTag",
         "dimensionType": "2D",
         "position": [-2.1892900647187052, 1.6567515982674699, 1.0212990045547485],
@@ -227,10 +354,24 @@ export const AddTagData = {
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
             }
         },
-        "contentType": "Audio"
+        "contentType": "Audio",
+        "enable": true,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 1.9245150725093125,
+            "latitude": -0.13944516130522125,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     [ContentType.Marketing]: {
-        "id": 2268698,
+        "id": 10,
         "pointType": "PointTag",
         "dimensionType": "2D",
         "position": [-1.338475476220061, 0, -0.33318181321254403],
@@ -256,10 +397,24 @@ export const AddTagData = {
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/tagStyle1.30bff6db.png"
             }
         },
-        "contentType": "Marketing"
+        "contentType": "Marketing",
+        "enable": true,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 1.5468060941811406,
+            "latitude": 0.3001833216669151,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
     [ContentType.Link]: {
-        "id": 2268701,
+        "id": 11,
         "pointType": "PointTag",
         "dimensionType": "2D",
         "position": [-1.333800813934946, 0, -2.2449222652733747],
@@ -270,6 +425,20 @@ export const AddTagData = {
         "style": {
             "point": {}
         },
-        "contentType": "Link"
+        "contentType": "Link",
+        "enable": true,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 0.4859185812812441,
+            "latitude": 0.10616887378249829,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
     },
 };
