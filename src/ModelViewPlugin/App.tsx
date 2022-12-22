@@ -10,7 +10,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[ModelViewPlugin, 'modelViewPlugin']],
+  plugins: [[ModelViewPlugin, 'modelViewPlugin', { initialState: { enabled: true } }]],
 })
 
 const App: React.FC = () => {

@@ -18,6 +18,10 @@ const MiniModelPanel: React.FC = () => {
   const [lockedLongitude, setLockedLongitude] = React.useState(0)
   const plugin = five.plugins.modelViewPlugin as ReturnType<typeof ModelViewPlugin>
 
+  // React.useEffect(() => {
+  //   Object.assign(window, { plugin })
+  // }, [])
+
   function calculateLatitude(value: number) {
     return Math.ceil((value / 100) * (Math.PI / 2) * 10000) / 10000
   }
@@ -61,9 +65,7 @@ const MiniModelPanel: React.FC = () => {
     <>
       <FormGroup sx={{ position: 'absolute', left: '20px', top: '20px', width: '200px' }}>
         <FormControlLabel
-          control={
-            <Switch checked={checkedState.latitude} name="latitude" onChange={handleCheckChange} />
-          }
+          control={<Switch checked={checkedState.latitude} name="latitude" onChange={handleCheckChange} />}
           label="锁定俯仰角"
         />
         <Slider
@@ -76,13 +78,7 @@ const MiniModelPanel: React.FC = () => {
           onChange={handleLatitudeSliderChange}
         />
         <FormControlLabel
-          control={
-            <Switch
-              checked={checkedState.longitude}
-              name="longitude"
-              onChange={handleCheckChange}
-            />
-          }
+          control={<Switch checked={checkedState.longitude} name="longitude" onChange={handleCheckChange} />}
           label="锁定水平角"
         />
         <Slider
@@ -95,13 +91,7 @@ const MiniModelPanel: React.FC = () => {
           onChange={handleLongitudeSliderChange}
         />
         <FormControlLabel
-          control={
-            <Switch
-              name="currentPanoIndex"
-              checked={checkedState.currentPanoIndex}
-              onChange={handleCheckChange}
-            />
-          }
+          control={<Switch name="currentPanoIndex" checked={checkedState.currentPanoIndex} onChange={handleCheckChange} />}
           label="锁定当前点位"
         />
       </FormGroup>
