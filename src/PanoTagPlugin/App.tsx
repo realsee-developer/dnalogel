@@ -10,7 +10,7 @@ import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
 
 const FiveProvider = createFiveProvider({
     imageOptions: { size: 512 }, // 图片默认分辨率
-    textureOptions: { size: 512 }, // 贴图默认分辨率
+    textureOptions: { size: 128 }, // 贴图默认分辨率
     onlyRenderIfNeeds: true,
     plugins: [
         [
@@ -24,10 +24,17 @@ const App: React.FC = () => {
     const size = useWindowDimensions()
     const work = useFetchDatas(DATA_TYPES.WORK)
 
+    // React.useEffect(() => {
+    //     setTimeout(() => {
+    //         const five = (window as any).$five
+    //         five.setState({ mode: 'Panorama' })
+    //     }, 5000)
+    // }, [])
     return (
         work && (
             <FiveProvider
                 initialWork={parseWork(work)}
+                // initialState={{mode : 'Floorplan'}}
                 ref={(ref) => Object.assign(window, { $five: ref?.five })}
             >
                 <FiveCanvas {...size} />

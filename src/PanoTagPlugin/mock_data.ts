@@ -13,12 +13,11 @@ export const TagsList = [
             -2.2450259661695933
         ],
         "data": {
-            "text": "这是一个文本标签🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️，它有很长的标题标题标题标题标题标题标题标题标题标题标题标题标题"
+            "text": "这 是 一 个 文本标签🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️，它有很长的标题标题标题标题标题标题标题标题标题标题标题标题标题"
         },
         "style": {
             "point": {
-                "style": "CustomIcon",
-                "iconUrl": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
+                "url": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
             }
         },
         "id": 0,
@@ -50,8 +49,8 @@ export const TagsList = [
             "text": "2D图文标签哈哈哈哈哈",
             "mediaData": [
                 {
-                    "url": "//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4",
-                    "type": "Video"
+                    "url": "//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png",
+                    "type": "Image"
                 },
                 {
                     "url": "//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png",
@@ -109,6 +108,7 @@ export const TagsList = [
             "mediaData": [
                 {
                     "url": "//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4",
+                    "videoCoverUrl": '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
                     "type": "Video"
                 }
             ]
@@ -156,7 +156,6 @@ export const TagsList = [
         },
         "style": {
             "point": {
-                "style": "CustomIcon",
                 "iconUrl": "//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png"
             }
         },
@@ -212,16 +211,48 @@ export const TagsList = [
         "dimensionType": "2D",
         "pointType": "PointTag",
         "contentType": "Audio",
-        "position": [
-            0.17501044773948682,
-            1.1010380993204227,
-            -2.339700937271118
-        ],
+        // "position": [
+        //     0.17501044773948682,
+        //     1.1010380993204227,
+        //     -2.339700937271118
+        // ],
+        "position": [-2.1892900647187052, 1.6567515982674699, 1.0212990045547485],
         "data": {
+            "appearance": "plane",
             "audioUrl": "//vrlab-static.ljcdn.com/release/web/Bling.678be963.mp3",
             "text": "2D音频标签标题标题标题标标题标题标题标题标题标题标题标题标题标题标题标标题标题"
         },
         "id": 5,
+        "fiveState": {
+            "mode": "Panorama" as Mode,
+            "panoIndex": 0,
+            "longitude": 6.151207373723298,
+            "latitude": -0.24015893081017836,
+            "fov": 95,
+            "offset": {
+                "x": 0.09141919761896133,
+                "y": 1.1138173893692536,
+                "z": -0.08654399961233139
+            } as Vector3,
+            "distance": 0
+        }
+    },
+    {
+        "dimensionType": "2D",
+        "pointType": "PointTag",
+        "contentType": "Audio",
+        // "position": [
+        //     0.17501044773948682,
+        //     1.1010380993204227,
+        //     -2.339700937271118
+        // ],
+        "position": [-2.1892900647187052, 1.5567515982674699, 1.0212990045547485],
+        "data": {
+            "appearance": "plane",
+            "audioUrl": "//vrlab-static.ljcdn.com/release/web/Bling.678be963.mp3",
+            "text": "2D音频标签标题标题标题标标题标题标题标题标题标题标题标题标题标题标题标标题标题"
+        },
+        "id": 51,
         "fiveState": {
             "mode": "Panorama" as Mode,
             "panoIndex": 0,
@@ -275,7 +306,8 @@ export const AddTagData = {
         "dimensionType": "2D",
         "position": [-1.9697880985731286, 1.6096369355028362, -2.339700937271118],
         "data": {
-            "text": "创建一个简单的文字标签"
+            "appearance": "plane",
+            "text": "创 建 一  🙋‍♂️ 个 简单🙋‍♂️的文字标签"
         },
         "style": {
             "point": {
@@ -343,8 +375,9 @@ export const AddTagData = {
         "id": 9,
         "pointType": "PointTag",
         "dimensionType": "2D",
-        "position": [-2.1892900647187052, 1.6567515982674699, 1.0212990045547485],
+        "position": [-2.1892900647187052, 1.3567515982674699, 1.0212990045547485],
         "data": {
+            "appearance": "plane",
             "text": "sadfsdf",
             "audioUrl": "https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-09-27_11-57-08.mp3"
         },
@@ -421,9 +454,6 @@ export const AddTagData = {
         "data": {
             "text": "回归跳转vr",
             "linkType": "vr"
-        },
-        "style": {
-            "point": {}
         },
         "contentType": "Link",
         "enable": true,

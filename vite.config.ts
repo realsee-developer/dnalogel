@@ -7,29 +7,52 @@ import pkg from './package.json'
 const appSrc = path.resolve(process.cwd(), 'src')
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/dnalogel/',
-  server: {
-    host: true,
-    open: '/',
-  },
-  build: {
-    rollupOptions: {
-      input: glob
-        .sync(path.resolve(appSrc, './**/index.html'))
-        .map((filepath) => ({
-          [path.relative(appSrc, path.dirname(filepath))]: filepath,
-        }))
-        .filter(Boolean)
-        .reduce((prev, curr) => ({ ...prev, ...curr }), {
-          index: path.resolve(process.cwd(), 'index.html'),
-        }),
+export default defineConfig(({ mode }) => {
+  const isEnvDevelopment = mode === 'development'
+
+  return {
+    base: '/dnalogel/',
+    server: {
+      host: true,
+      open: '/',
+      // watch: {
+      //   usePolling: true,
+      //   interval: 5000,
+      //   alwaysStat: true,
+      //   depth: 0,
+      // }
     },
-  },
-  plugins: [react()],
-  // optimizeDeps: {
-  //   include: Object.keys(pkg.dependencies),
-  //   force: true,
-  // },
-  appType: 'mpa',
+    build: {
+      rollupOptions: {
+        input: glob
+          .sync(path.resolve(appSrc, './**/index.html'))
+          .map((filepath) => ({
+            [path.relative(appSrc, path.dirname(filepath))]: filepath,
+          }))
+          .filter(Boolean)
+          .reduce((prev, curr) => ({ ...prev, ...curr }), {
+            index: path.resolve(process.cwd(), 'index.html'),
+          }),
+      },
+      // watch: {
+      //   chokidar: {
+      //     depth: 1,
+      //     ignoreInitial: true,
+      //     atomic: 1000,
+      //     alwaysStat: true,
+      //   }
+      // }
+      // watch: isEnvDevelopment
+      // ? {
+      //     buildDelay: 2000, // milliseconds
+      //   }
+      // : null,
+    },
+    plugins: [react()],
+    // optimizeDeps: {
+    //   include: Object.keys(pkg.dependencies),
+    //   force: true,
+    // },
+    appType: 'mpa',
+  }
 })

@@ -28,8 +28,7 @@ const PluginUse: React.FC = () => {
         tagList: [
           {
             id: '1',
-            dimensionType: '3D',
-            pointType: 'PlaneTag',
+            stickType: 'Plane',
             contentType: 'MediaPlane',
             position: [vector0, vector1, vector2, vector3],
             data: {

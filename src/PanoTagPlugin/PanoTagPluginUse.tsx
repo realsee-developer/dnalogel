@@ -69,15 +69,14 @@ const PanoTagPluginUse = () => {
 
     const tagData = {
       id: "03338b76-b64a-4e90-37fb-44e3c0ffeb88",
-      pointType: "PointTag",
-      dimensionType: "2D",
+      stickType: '2DPoint' as const,
       position: [-1.7882169929208833, 1.022040232156752, -2.339700937271118],
       data: {
         text: "自定义热点"
       },
       element: ele,
       // ContentType设置为Custom
-      contentType: "Custom",
+      contentType: "Custom" as const,
       fiveState: {
         "mode": "Panorama" as Mode,
         "panoIndex": 0,
