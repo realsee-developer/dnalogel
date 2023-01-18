@@ -15,12 +15,6 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       open: '/',
-      // watch: {
-      //   usePolling: true,
-      //   interval: 5000,
-      //   alwaysStat: true,
-      //   depth: 0,
-      // }
     },
     build: {
       rollupOptions: {
@@ -34,19 +28,6 @@ export default defineConfig(({ mode }) => {
             index: path.resolve(process.cwd(), 'index.html'),
           }),
       },
-      // watch: {
-      //   chokidar: {
-      //     depth: 1,
-      //     ignoreInitial: true,
-      //     atomic: 1000,
-      //     alwaysStat: true,
-      //   }
-      // }
-      // watch: isEnvDevelopment
-      // ? {
-      //     buildDelay: 2000, // milliseconds
-      //   }
-      // : null,
     },
     plugins: [react()],
     // optimizeDeps: {

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "light-dev": "vite",
     "build": "tsc && vite build",
     "deploy": "sh ./bin/deploy.sh"
   },

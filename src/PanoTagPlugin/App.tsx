@@ -1,4 +1,4 @@
-import { PanoTagPlugin } from '@realsee/dnalogel'
+import { PanoTagPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
