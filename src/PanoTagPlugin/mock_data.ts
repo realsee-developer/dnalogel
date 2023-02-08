@@ -307,7 +307,8 @@ export const AddTagData = {
         "position": [-1.9697880985731286, 1.6096369355028362, -2.339700937271118],
         "data": {
             "appearance": "plane",
-            "text": "创 建 一  🙋‍♂️ 个 简单🙋‍♂️的文字标签"
+            "text": "创 建 一  🙋‍♂️ 个 简单🙋‍♂️的文字标签",
+            "description": "ldjskladjsla sdjakds sjsadsa sadj sajld sajdk sdajk dsaj dlsad dsa jskal djskald ldjskladjsla sdjakds sjsadsa sadj sajld sajdk sdajk dsaj dlsad dsa jskal djskald "
         },
         "style": {
             "point": {
