@@ -138,7 +138,7 @@ const PluginUse: React.FC = () => {
   const addHelper = React.useCallback(() => {
     const obj = getObject()
     if (obj) {
-      const controllers = object3DHelperPlugin.addObject3DHelper(obj, {moveHelper:  {enable: true, offset:{x: 0, y: {percents:0.5}, z:0}}, rotateHelper: {enable: true, offset:{x: 0, y: {percents:0.5}, z:0},yzCircleEnable: true, xzCircleEnable: true, xyCircleEnable: true}, scaleHelper: true, boundingBoxHelper: true } )
+      const controllers = object3DHelperPlugin.addObject3DHelper(obj, {moveHelper:  {enable: true, offset:{x: 0, y: {percents:0.5}, z:0}}, rotateHelper: {enable: true, offset:{x: 0, y: {percents:0.5}, z:0},yzCircleEnable: false, xzCircleEnable: true, xyCircleEnable: false}, scaleHelper: true, boundingBoxHelper: true } )
       window['controllers'] = controllers
     } else {
       console.error('objectRef.current is null')
