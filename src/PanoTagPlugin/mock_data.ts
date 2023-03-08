@@ -270,7 +270,7 @@ export const TagsList = [
     {
         "dimensionType": "2D",
         "pointType": "PointTag",
-        "contentType": "Link",
+        "contentType": "Sticker",
         "enable": true,
         "position": [
             -0.8070892936181384,
@@ -280,6 +280,13 @@ export const TagsList = [
         "data": {
             "linkType": "vr",
             "text": "2D跳转标签"
+        },
+        "style": {
+            "point": {
+                "size": "S",
+                "steps": 1,
+                "url": "https://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+            }
         },
         "id": 6,
         "fiveState": {
