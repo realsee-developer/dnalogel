@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { Mode } from '@realsee/five/five'
-import { TagsList, AddTagData } from './mock_data'
+import { TagsList, AddTagData } from './mocks/mock_data'
+import TagsList2 from './mocks/marketingData'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import ImageIcon from '@mui/icons-material/Image'
@@ -33,7 +34,7 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [currentTagList, setCurrentTagList] = useState(TagsList)
+  const [currentTagList, setCurrentTagList] = useState(TagsList2.map((v, i) => ({...v, id: i})))
   const [visible, setVisible] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
 
@@ -95,7 +96,6 @@ const PanoTagPluginUse = () => {
 
   // 删除tag
   const deleteTag = (id: number) => {
-    console.log('id', id)
     // 调用pluginInstance中对应的方法，删除tag
     pluginInstance.destroyTagById(id)
     // 从mock数据中删除tag

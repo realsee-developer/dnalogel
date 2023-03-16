@@ -25,7 +25,6 @@ const PaintBrushUse = (props: PaintBrushUsePropTypes) => {
     }, [])
 
     const handlePaintBrushStateChange = (state, userAction) => {
-        console.log(state, userAction)
         if(state.type === PaintBrushTypeEnum.Exit) {
             setPaintBrushEnabledIcon(true)
         }
