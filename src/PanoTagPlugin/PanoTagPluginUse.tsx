@@ -34,7 +34,7 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [currentTagList, setCurrentTagList] = useState(TagsList2.map((v, i) => ({...v, id: i})))
+  const [currentTagList, setCurrentTagList] = useState(TagsList2.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
 
@@ -161,7 +161,7 @@ const PanoTagPluginUse = () => {
                       {ContentTypeOptions[item.contentType]}
                     </Typography>
                     <Typography gutterBottom variant="body2" color="text.secondary">
-                      {item.data.text}
+                      {Object.hasOwn(item.data, 'text') && item.data['text']}
                     </Typography>
                   </CardContent>
                   <CardActions>
