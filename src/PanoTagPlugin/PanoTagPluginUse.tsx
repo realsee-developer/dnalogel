@@ -34,7 +34,7 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [currentTagList, setCurrentTagList] = useState(TagsList2.map((v, i) => ({ ...v, id: i })))
+  const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
 
