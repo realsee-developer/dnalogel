@@ -31,6 +31,7 @@ const ContentTypeOptions = {
   [ContentType.Marketing]: '营销标签',
   [ContentType.Link]: 'VR跳转标签',
   [ContentType.Custom]: '自定义标签',
+  // [ContentType.MediaModel]: 'MR标签',
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
