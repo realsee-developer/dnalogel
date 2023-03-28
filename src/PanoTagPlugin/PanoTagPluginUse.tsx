@@ -162,7 +162,7 @@ const PanoTagPluginUse = () => {
                       {ContentTypeOptions[item.contentType]}
                     </Typography>
                     <Typography gutterBottom variant="body2" color="text.secondary">
-                      {Object.hasOwn(item.data, 'text') && item.data['text']}
+                      {item.data['text']}
                     </Typography>
                   </CardContent>
                   <CardActions>
