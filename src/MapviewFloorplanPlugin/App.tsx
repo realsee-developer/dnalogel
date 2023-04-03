@@ -1,4 +1,4 @@
-import { MapviewFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel'
+import { MapviewFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'
