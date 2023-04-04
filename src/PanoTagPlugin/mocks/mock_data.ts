@@ -69,32 +69,101 @@ export const TagsList = [
       distance: 0,
     },
   },
+  // {
+  //   dimensionType: '3D',
+  //   pointType: 'PlaneTag',
+  //   contentType: 'MediaPlane',
+  //   enable: true,
+  //   position: [
+  //     [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
+  //     [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
+  //     [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
+  //     [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
+  //   ],
+  //   data: {
+  //     mediaData: [
+  //       {
+  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+  //         type: 'Video',
+  //       },
+  //       {
+  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+  //         type: 'Video',
+  //       },
+  //     ],
+  //   },
+  //   fiveState: {
+  //     mode: 'Panorama' as Mode,
+  //     panoIndex: 3,
+  //     longitude: 2.706451797307377,
+  //     latitude: 0.05631416156432678,
+  //     fov: 95,
+  //     offset: {
+  //       x: -0.618914008140564,
+  //       y: 1.1130503593145502,
+  //       z: -1.6621500253677368,
+  //     } as Vector3,
+  //     distance: 0,
+  //   },
+  // },
   {
     dimensionType: '3D',
     pointType: 'PlaneTag',
     contentType: 'MediaPlane',
     enable: true,
     position: [
-      [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
-      [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
-      [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
-      [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
+      [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 0.01],
+      [-1.4781933464383068, 0.8696103907729694, -2.339700937271118 + 0.01],
+      [-1.4865722199099451, 2.1293509755511106, -2.3397009372711177 + 0.01],
+      [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
     ],
     data: {
       mediaData: [
         {
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          type: 'Video',
-        },
-        {
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          type: 'Video',
+          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
+          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+          type: 'Image',
         },
       ],
     },
-
+    fiveState: {
+      mode: 'Panorama' as Mode,
+      panoIndex: 3,
+      longitude: 2.706451797307377,
+      latitude: 0.05631416156432678,
+      fov: 95,
+      offset: {
+        x: -0.618914008140564,
+        y: 1.1130503593145502,
+        z: -1.6621500253677368,
+      } as Vector3,
+      distance: 0,
+    },
+  },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    enable: true,
+    position: [
+      [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805 + 0.01],
+      [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805 + 0.01],
+      [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805 + 0.01],
+      [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805 + 0.01],
+    ],
+    data: {
+      mediaData: [
+        {
+          // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Image',
+        },
+      ],
+    },
     fiveState: {
       mode: 'Panorama' as Mode,
       panoIndex: 3,
