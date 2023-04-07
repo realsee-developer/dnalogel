@@ -34,6 +34,6 @@ export default defineConfig(({ mode }) => {
     //   include: Object.keys(pkg.dependencies),
     //   force: true,
     // },
-    appType: 'mpa',
+    // appType: 'mpa',
   }
 })
