@@ -3,6 +3,7 @@ import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { Mode } from '@realsee/five/five'
 import { TagsList, AddTagData } from './mocks/mock_data'
 import TagsList2 from './mocks/marketingData'
+import TagsList3 from './mocks/mediaModel'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import ImageIcon from '@mui/icons-material/Image'
@@ -18,10 +19,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import { ContentType, PanoTagPluginExportInterface, Tag } from '@realsee/dnalogel'
+import { ContentType, PanoTagPluginExportInterface } from '@realsee/dnalogel'
 import { Vector3 } from 'three'
-
-import { useFiveEventCallback, useFiveModelIntersectRaycaster } from '@realsee/five/react'
 
 const ContentTypeOptions = {
   [ContentType.Text]: '文字标签',
@@ -35,7 +34,7 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
+  const [currentTagList, setCurrentTagList] = useState(TagsList3.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
 
@@ -50,7 +49,7 @@ const PanoTagPluginUse = () => {
   // },);
 
   useEffect(() => {
-    pluginInstance.load({ tagList: currentTagList } as any)
+    pluginInstance.load({ tagList: currentTagList as any, globalConfig: {renderType: 'Mesh',} } )
   })
 
   const addTag = (type: ContentType) => {
@@ -117,7 +116,7 @@ const PanoTagPluginUse = () => {
     const tagItem = currentTagList.find((item) => item.id === id)
     const state = tagItem?.fiveState
     if (state) {
-      five.setState(state, false, false)
+      five.setState(state as any, false, false)
     }
   }
 

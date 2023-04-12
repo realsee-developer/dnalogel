@@ -170,4 +170,4 @@ const PluginUse2: React.FC = () => {
   )
 }
 
-export default PluginUse
+export default PluginUse2

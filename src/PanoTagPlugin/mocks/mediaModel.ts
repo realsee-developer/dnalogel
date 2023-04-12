@@ -1,0 +1,110 @@
+export default [
+
+  {
+    id: 'MediaModel',
+    stickType: 'Model',
+    contentType: 'MediaModel',
+    fiveState: {
+      distance: 0,
+      fov: 100,
+      latitude: 0,
+      longitude: 1.5817071602126802,
+      mode: 'Panorama',
+      offset: { x: 2.60088, y: 0.0440728, z: -3.06787 },
+      panoIndex: 1,
+    },
+    position: [-1.9006045858954423, 0.005288434039257162, -1.954760281604037],
+    data: {
+      appearance: 'plane',
+      title: null,
+      description: null,
+      mediaData: [
+        {
+          type: 'Image',
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        },
+        {
+          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Video',
+        },
+        {
+          type: 'Image',
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        },
+      ],
+      targetUrl: null,
+      modelType: 'billboard1',
+      objectFit: 'contain',
+      action: { type: 'iframe', url: '' },
+      type: 'billboard1',
+      modelUrl: 'https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf',
+      defaultImageUrl: 'https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png',
+      previewUrl: 'https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png',
+      iconUrl: 'https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png',
+      size: '540x1500',
+      mediaPosition: [
+        [-0.27, 0.1172, 0.028],
+        [0.27, 0.1172, 0.028],
+        [0.27, 1.6172, 0.028],
+        [-0.27, 1.6172, 0.028],
+      ],
+    },
+    style: { point: { iconType: 'circle' } },
+    config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
+    matrix: [
+      0.05233595624294407,
+      0,
+      -0.9986295347545739,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0.9986295347545739,
+      0,
+      0.05233595624294407,
+      0,
+      -1.416045858954421,
+      0.005288434039257162,
+      -1.654760281604037,
+      1
+  ]
+  },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    enable: true,
+    position: [
+      [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 0.01],
+      [-1.4781933464383068, 0.8696103907729694, -2.339700937271118 + 0.01],
+      [-1.4865722199099451, 2.1293509755511106, -2.3397009372711177 + 0.01],
+      [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
+    ],
+    data: {
+      mediaData: [
+        {
+          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
+          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+          type: 'Image',
+        },
+      ],
+    },
+    fiveState: {
+      mode: 'Panorama' ,
+      panoIndex: 3,
+      longitude: 2.706451797307377,
+      latitude: 0.05631416156432678,
+      fov: 95,
+      offset: {
+        x: -0.618914008140564,
+        y: 1.1130503593145502,
+        z: -1.6621500253677368,
+      },
+      distance: 0,
+    },
+  },
+]
