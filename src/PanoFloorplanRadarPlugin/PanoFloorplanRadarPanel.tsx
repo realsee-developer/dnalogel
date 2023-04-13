@@ -15,6 +15,7 @@ const PanoFloorplanRadarPanel: React.FC = () => {
     const [visible, setVisible] = React.useState<boolean>(false)
     const five = unsafe__useFiveInstance()
     const panoFloorplanRadarPlugin = five.plugins.panoFloorplanRadarPlugin
+    panoFloorplanRadarPlugin.changeConfigs({ hoverEnable: true })
 
 
     React.useEffect(() => {
