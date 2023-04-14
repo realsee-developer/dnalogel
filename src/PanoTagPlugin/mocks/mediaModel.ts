@@ -19,19 +19,19 @@ export default [
       title: null,
       description: null,
       mediaData: [
-        {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
+        // {
+        //   type: 'Image',
+        //   url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        // },
         {
           url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
           videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
           type: 'Video',
         },
-        {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
+        // {
+        //   type: 'Image',
+        //   url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        // },
       ],
       targetUrl: null,
       modelType: 'billboard1',
@@ -85,12 +85,39 @@ export default [
     data: {
       mediaData: [
         {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
-          type: 'Image',
+          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Video',
         },
+        // {
+        //   url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+        //   videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   type: 'Video',
+        // },
+        // {
+        //   url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+        //   videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   type: 'Video',
+        // },
+        // {
+        //   url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+        //   videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   type: 'Video',
+        // },
+        // {
+        //   url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+        //   // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
+        //   // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+        //   type: 'Image',
+        // },
+        // {
+        //   url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+        //   // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
+        //   // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+        //   type: 'Image',
+        // },
       ],
     },
     fiveState: {
