@@ -63,7 +63,7 @@ const PluginUse: React.FC = () => {
         return objectRef.current
       } else {
         const tag = panoTagPlugin.getTagById('1')!
-        const object = tag.tag3DContentSvelte?.domContainer.css3DObject
+        const object = tag.tag3DContentSvelte?.css3DInstance.css3DObject
         if (object) {
           objectRef.current = object
           return objectRef.current

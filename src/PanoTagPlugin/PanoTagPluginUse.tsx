@@ -48,6 +48,8 @@ const PanoTagPluginUse = () => {
   //   return false;
   // },);
 
+  // globalConfig: {renderType: 'Mesh',}
+
   useEffect(() => {
     pluginInstance.load({ tagList: currentTagList as any, globalConfig: {renderType: 'Mesh',} } )
   })
