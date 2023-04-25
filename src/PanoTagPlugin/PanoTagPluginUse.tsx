@@ -36,6 +36,7 @@ const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
   const [currentTagList, setCurrentTagList] = useState(TagsList3.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
+  const [enabled, setEnabled] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
 
   // const modelIntersectRaycaster = useFiveModelIntersectRaycaster();
@@ -114,6 +115,15 @@ const PanoTagPluginUse = () => {
     setVisible(!visible)
   }
 
+  const handlerTagEnableChange = async () => {
+    if (visible) {
+       pluginInstance.disable()
+    } else {
+       pluginInstance.enable()
+    }
+    setEnabled(!enabled)
+  }
+
   const move2Tag = (id: number) => {
     const tagItem = currentTagList.find((item) => item.id === id)
     const state = tagItem?.fiveState
@@ -147,6 +157,12 @@ const PanoTagPluginUse = () => {
         </Button>
         <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => handlerTagVisibleChange()}>
           {visible ? '隐藏' : '显示'}标签
+        </Button>
+        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => handlerTagEnableChange()}>
+          {enabled ? '禁用' : '启用'}标签
+        </Button>
+        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => pluginInstance.dispose()}>
+          dispose
         </Button>
       </Stack>
       <Stack direction={'row'} justifyContent="flex-end" spacing={1}>
