@@ -82,6 +82,7 @@ export default [
       [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
     ],
     data: {
+      objectFit: 'fill',
       mediaData: [
         // {
         //   url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
@@ -98,18 +99,18 @@ export default [
         //   videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
         //   type: 'Video',
         // },
-        {
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          type: 'Video',
-        },
         // {
-        //   url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-        //   // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-        //   // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-        //   // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
-        //   type: 'Image',
+        //   url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+        //   videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   type: 'Video',
         // },
+        {
+          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
+          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+          type: 'Image',
+        },
         // {
         //   // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
         //   url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
@@ -154,6 +155,26 @@ export default [
       mediaData: [
         {
           url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+          // videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Video',
+        },
+      ],
+    },
+  },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    position: [
+      [-4.344637059045372, 0.8661640292431658-1, -2.339700937271118 + 2 + 2],
+      [-4.344637059045372, 0.8696103907729694-1 , -2.339700937271118 + 0.2 + 2],
+      [-4.344637059045372, 2.1293509755511106-1, -2.3397009372711177 + 0.2 + 2],
+      [-4.344637059045372, 2.1145151110093137-1, -2.3397009372711177 + 2 + 2],
+    ],
+    data: {
+      mediaData: [
+        {
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/BD03zP21a6syknEF1o/2023-05-08_11-49-54_transcode.mp4',
           // videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
           type: 'Video',
         },
