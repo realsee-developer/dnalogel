@@ -1,8 +1,7 @@
-import { GuideLinePlugin } from '@realsee/dnalogel'
+import { GuideLinePlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
-import { Box } from '@mui/material'
 import GuideLinePluginUse from './GuideLinePluginUse'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
