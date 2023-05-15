@@ -2,7 +2,7 @@ export default [
   {
     id: 'Model',
     stickType: 'Model',
-    contentType: 'Model',
+    contentType: 'MediaModel',
     fiveState: {
       distance: 0,
       fov: 100,

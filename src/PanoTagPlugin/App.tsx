@@ -12,7 +12,7 @@ const FiveProvider = createFiveProvider({
   textureOptions: { size: 128 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
   plugins: [
-    [PanoTagPlugin, 'panoTagPlugin', { config: { globalConfig: { modelConfig: { autoLookAtEnabled: true } } } }] as FivePluginInit<
+    [PanoTagPlugin, 'panoTagPlugin', { config: { globalConfig: { modelConfig: { autoLookAtEnabled: false } } } }] as FivePluginInit<
       typeof PanoTagPlugin
     >,
   ],
