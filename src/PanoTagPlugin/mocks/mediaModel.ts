@@ -2,7 +2,7 @@ export default [
   {
     id: 'Model',
     stickType: 'Model',
-    contentType: 'Model',
+    contentType: 'MediaModel',
     fiveState: {
       distance: 0,
       fov: 100,
@@ -22,10 +22,14 @@ export default [
         //   type: 'Image',
         //   url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
         // },
+        // {
+        //   url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+        //   videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+        //   type: 'Video',
+        // },
         {
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          type: 'Video',
+          type: 'Image',
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
         },
         {
           type: 'Image',
