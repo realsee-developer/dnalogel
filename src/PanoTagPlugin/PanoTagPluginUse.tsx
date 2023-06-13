@@ -19,8 +19,34 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import { ContentType, PanoTagPluginExportInterface } from '@realsee/dnalogel/dist'
+import { ContentType, PanoTagPluginExportInterface, Tag, TagInstance } from '@realsee/dnalogel/dist'
 import { Vector3 } from 'three'
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+// function CommentTag(props: { tag: TagInstance<'Unknown'> }) {
+//   const [data, setData] = React.useState(props.tag.data)
+
+//   React.useEffect(() => {
+//     console.log('data change', data)
+//   }, [data])
+
+
+//   React.useEffect(() => {
+//     props.tag.hooks.on('dataChanged', setData)
+//     return () => {
+//       props.tag.hooks.off('dataChanged', setData)
+//     }
+//   }, [props.tag])
+
+//   return (
+//     <div>
+//       <div>CommentTag</div>
+//       <div>{JSON.stringify(props.tag.data)}</div>
+//     </div>
+//   )
+// }
+
 
 const ContentTypeOptions = {
   [ContentType.Text]: '文字标签',
@@ -34,7 +60,7 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [currentTagList, setCurrentTagList] = useState(TagsList3.map((v, i) => ({ ...v, id: i })))
+  const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const [enabled, setEnabled] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
@@ -52,8 +78,13 @@ const PanoTagPluginUse = () => {
   // globalConfig: {renderType: 'Mesh',}
 
   useEffect(() => {
-    pluginInstance.load({ tagList: currentTagList as any, globalConfig: {renderType: 'Mesh',} } )
-  })
+    // pluginInstance.registerRenderer('Text', (container: HTMLElement, tag: TagInstance<'Unknown'>) => {
+    //   ReactDOM.render(<CommentTag tag={tag}></CommentTag>, container)
+    //   return () => ReactDOM.unmountComponentAtNode(container)
+    // })
+    const list = currentTagList as Tag[]
+    pluginInstance.load({ tagList: currentTagList as Tag[], globalConfig: {renderType: 'Mesh',} } )
+  }, [])
 
   const addTag = (type: ContentType) => {
     pluginInstance.addTag(AddTagData[type])
@@ -116,7 +147,7 @@ const PanoTagPluginUse = () => {
   }
 
   const handlerTagEnableChange = async () => {
-    if (visible) {
+    if (enabled) {
        pluginInstance.disable()
     } else {
        pluginInstance.enable()
