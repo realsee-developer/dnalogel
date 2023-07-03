@@ -44,6 +44,7 @@ const GuideLinePluginUse = () => {
     const data: GuideLinePluginType.PluginData = {
       lines: [
         {
+          name: 'Line 1',
           id: 1,
           // pano_group: [0, 1, 2],
           path: [
