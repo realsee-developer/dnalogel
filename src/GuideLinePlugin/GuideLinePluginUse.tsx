@@ -44,7 +44,7 @@ const GuideLinePluginUse = () => {
     const data: GuideLinePluginType.PluginData = {
       lines: [
         {
-          name: 'Line 1',
+          name: '前往出口',
           id: 1,
           // pano_group: [0, 1, 2],
           path: [
@@ -71,7 +71,7 @@ const GuideLinePluginUse = () => {
             start_tag: {
               position: five.work.observers[0].standingPosition.toArray(),
               data: {
-                text: '起点起点',
+                text: '器械区',
                 icon_url: 'https://vrlab-static.ljcdn.com/release/web/jsl/test.804f254f.png',
               },
             },
@@ -109,13 +109,13 @@ const GuideLinePluginUse = () => {
             texture: {
               url: '//vrlab-static.ljcdn.com/release/web/jsl/arrow_3.5c2c79a5.png',
             },
-            end_tag: {
-              position: [-1.6820100545883179, 0.01284792484609465, 0.07329510152339935],
-              data: {
-                text: '终点',
-                icon_url: 'https://vrlab-static.ljcdn.com/release/web/jsl/end.702f9be0.png',
-              },
-            },
+            // end_tag: {
+            //   position: [-1.6820100545883179, 0.01284792484609465, 0.07329510152339935],
+            //   data: {
+            //     text: '终点',
+            //     icon_url: 'https://vrlab-static.ljcdn.com/release/web/jsl/end.702f9be0.png',
+            //   },
+            // },
           },
         },
         // {
