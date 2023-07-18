@@ -18,19 +18,28 @@ const FiveProvider = createFiveProvider({
       'panoMeasurePlugin',
       {
         useGuideController: true,
-        useUIController: true,
+        useUIController: {
+          useNewUI: true,
+        },
+        editParams: {
+          allowMeasureType: ['area', 'line'],
+          // pointSelectorMode: 'cursor',
+          autoEndConfig: {
+            // line: 2
+          },
+        },
         openParams: {
-          isMobile: true,
+          isMobile: false,
         },
         magnifierParams: {
           height: 120,
           scale: 2,
           width: 120,
           dragEnabled: true,
-          autoFixPCPosition: false,
+          autoFixPCPosition: true,
           initialPosition: { left: '35%', top: '20%' },
         },
-      } as PanoMeasureParameterType,
+      } ,
     ],
   ],
 })

@@ -1,4 +1,4 @@
-import { PanoCompassPlugin } from '@realsee/dnalogel'
+import { PanoCompassPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
@@ -16,6 +16,7 @@ const FiveProvider = createFiveProvider({
             PanoCompassPlugin,
             'panoCompassPlugin',
             {
+                // staticPrefix: 'a'
                 // compassImageUrl: ''
             },
         ],

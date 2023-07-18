@@ -21,7 +21,7 @@ const CustomConpment = () => {
     const [show, setShow] = React.useState(true)
 
     React.useEffect(() => {
-        console.log('CustomConpment mounted')
+        console.info('CustomConpment mounted')
     }, [])
 
     return (
@@ -1293,7 +1293,7 @@ const PluginShow = (props: PluginShowPropTypes) => {
         if (!itemLabels) return
         five.plugins.itemLabelPlugin.load(itemLabels[labelType])
         five.plugins.itemLabelPlugin.hooks.on('onLabelClick', itemLabel => {
-            console.log('Realsee itemLabelPlugin click return data： ', itemLabel)
+            console.info('Realsee itemLabelPlugin click return data： ', itemLabel)
         })
         // setFiveState({ mode: Five.Mode.Floorplan })
         // addHelper(7.04986,

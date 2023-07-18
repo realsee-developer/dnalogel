@@ -24,7 +24,7 @@ const getInitialParamFromUrl = (): Record<string, any> => {
         }
     })
 
-    console.log("__debug__: ", initialParam)
+    console.info("__debug__: ", initialParam)
     return initialParam
 }
 

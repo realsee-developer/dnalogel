@@ -28,7 +28,7 @@ import React from 'react'
 //   const [data, setData] = React.useState(props.tag.data)
 
 //   React.useEffect(() => {
-//     console.log('data change', data)
+//     console.info('data change', data)
 //   }, [data])
 
 
@@ -70,7 +70,7 @@ const PanoTagPluginUse = () => {
   // useFiveEventCallback("wantsTapGesture", (raycaster) => {
   //   const [intersect] = modelIntersectRaycaster(raycaster);
   //   if (intersect) {
-  //     console.log(intersect.point)
+  //     console.info(intersect.point)
   //   }
   //   return false;
   // },);

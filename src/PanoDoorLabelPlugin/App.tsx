@@ -13,7 +13,7 @@ const initialParamFromUrl = getInitialParamFromUrl()
 
 const pluginParams =
   JSON.stringify(initialParamFromUrl) !== '{}' ? initialParamFromUrl : defaultPluginParam
-console.log(pluginParams, 'pluginParams')
+console.info(pluginParams, 'pluginParams')
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率

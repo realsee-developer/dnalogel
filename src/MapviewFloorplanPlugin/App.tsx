@@ -11,7 +11,7 @@ import * as THREE from 'three'
 // import { work } from '../../mock/BigSpace/work'
 
 Object.assign(window, { THREE })
-console.log('🚀 ~ THREE', THREE)
+console.info('🚀 ~ THREE', THREE)
 
 const defaultPluginParam = {
   hoverEnable: true,

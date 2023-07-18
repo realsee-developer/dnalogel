@@ -35,10 +35,10 @@ const ModelFloorplanPluginUse = (props: { isDefaultUnit: boolean }) => {
   // 插件事件监听
   React.useEffect(() => {
     five.plugins.modelFloorplanPlugin.hooks.on('showAnimationEnded', () => {
-      console.log('🐶-- ModelFloorplanPlugin -- show')
+      console.info('🐶-- ModelFloorplanPlugin -- show')
     })
     five.plugins.modelFloorplanPlugin.hooks.on('hide', () => {
-      console.log('🐶-- ModelFloorplanPlugin -- hide')
+      console.info('🐶-- ModelFloorplanPlugin -- hide')
     })
   }, [five])
 

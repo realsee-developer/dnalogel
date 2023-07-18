@@ -63,8 +63,8 @@ const PanoCursorRaycasterPluginUse = (props: PanoCursorRaycasterPluginUsePropTyp
         if (!pos) {
             return
         }
-        console.log('vector3:', pos.point)
-        console.log('array: ', [pos.point.x, pos.point.y, pos.point.z])
+        console.info('vector3:', pos.point)
+        console.info('array: ', [pos.point.x, pos.point.y, pos.point.z])
         // 添加辅助坐标
         panoCursorRaycasterPlugin.pointAxesHelper(pos.point)
 

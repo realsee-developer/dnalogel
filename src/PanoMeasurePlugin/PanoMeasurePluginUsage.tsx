@@ -1,5 +1,5 @@
 import { Box, Paper, ButtonGroup, Button } from '@mui/material'
-import { PanoMeasurePlugin, PanoMeasurePluginPolylineJson, PanoMeasurePluginPolyline } from '@realsee/dnalogel'
+import { PanoMeasurePlugin, PanoMeasurePluginPolylineJson, PanoMeasurePluginPolyline } from '@realsee/dnalogel/dist'
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import * as React from 'react'
 import { useEffect } from 'react'
@@ -25,16 +25,16 @@ const PanoMeasurePluginUsage = () => {
 
   const handlePanoMeasurePluginListener = () => {
     panoMeasurePlugin.hook.on('modeChange', (mode) => {
-      console.log('__mode__', mode)
+      console.info('__mode__', mode)
     })
 
     panoMeasurePlugin.hook.on('enable', () => {
-      console.log('开启测量工具')
+      console.info('开启测量工具')
       setMeasureEnableBtn(false)
     })
 
     panoMeasurePlugin.hook.on('disable', () => {
-      console.log('关闭测量工具')
+      console.info('关闭测量工具')
       setMeasureEnableBtn(true)
     })
   }
@@ -48,9 +48,12 @@ const PanoMeasurePluginUsage = () => {
     }
   }, [])
 
-  // useFiveEventCallback('modelLoaded', async () => {
-  //     panoMeasurePlugin.enable()
-  // })
+  // DELETE debug
+  useEffect( () => {
+      panoMeasurePlugin.changeIsMobile(false)
+      panoMeasurePlugin.enable()
+      setMeasureEnableBtn(false)
+  }, [])
 
   const handleMeasureEnable = (isMobile: boolean) => {
     panoMeasurePlugin.changeIsMobile(isMobile)
@@ -83,7 +86,7 @@ const PanoMeasurePluginUsage = () => {
   // 当前编辑的虚线发生改变时，查看线段展示的文字内容
   // 虚线不存在时 line === null
   panoMeasurePlugin.hook.on('editedDashedLineChange', (line) => {
-    // console.log('__editedDashedLineChange__', line?.distanceItem.getCurrentContent())
+    // console.info('__editedDashedLineChange__', line?.distanceItem.getCurrentContent())
   })
 
   // 监听编辑态下的折线变化
@@ -91,7 +94,7 @@ const PanoMeasurePluginUsage = () => {
     panoMeasurePlugin.hook.on('editedPolylineChange', onEditedPolylineChange)
 
     function onEditedPolylineChange(polyline: PanoMeasurePluginPolyline) {
-      console.log('__editedLineChange__', polyline)
+      console.info('__editedLineChange__', polyline)
       if (polyline.lines.length === 1) {
         const line = polyline.lines[0]
         currentLineID.current = line.id
@@ -114,7 +117,7 @@ const PanoMeasurePluginUsage = () => {
 
   // 点击新增按钮
   function addNewPolyline() {
-    console.log('🐶 ~ panoMeasurePlugin.getCurrentMode()', panoMeasurePlugin.getCurrentMode())
+    console.info('🐶 ~ panoMeasurePlugin.getCurrentMode()', panoMeasurePlugin.getCurrentMode())
     // 先把数据置空
     panoMeasurePlugin.load({ polylines: [] })
     // 进入编辑态
@@ -128,12 +131,12 @@ const PanoMeasurePluginUsage = () => {
     polylineJson.visiblePanoIndexes = [five.getCurrentState().panoIndex]
     if (modifyID.current) {
       const data = mockServerModify(modifyID.current, polylineJson)
-      console.log('🐶 ~ modify data', data)
+      console.info('🐶 ~ modify data', data)
       const index = serverData.current.findIndex((item) => item.id === modifyID.current)
       serverData.current[index] = data
     } else {
       const data = mockServerAdd(polylineJson)
-      console.log('🐶 ~ add data', data)
+      console.info('🐶 ~ add data', data)
       serverData.current.push(data)
     }
     // 保存数据时，需要情况之前设置的默认文本，不然新建新的线时使用的还是旧的默认文本
