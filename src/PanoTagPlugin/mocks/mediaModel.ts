@@ -114,64 +114,64 @@ export default [
       ],
     },
   },
-  // {
-  //   dimensionType: '3D',
-  //   pointType: 'PlaneTag',
-  //   contentType: 'MediaPlane',
-  //   position: [
-  //     [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 2],
-  //     [-4.344637059045372, 0.8696103907729694, -2.339700937271118 + 0.2],
-  //     [-4.344637059045372, 2.1293509755511106, -2.3397009372711177 + 0.2],
-  //     [-4.344637059045372, 2.1145151110093137, -2.3397009372711177 + 2],
-  //   ],
-  //   data: {
-  //     mediaData: [
-  //       {
-  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //     ],
-  //   },
-  // },
-  // {
-  //   dimensionType: '3D',
-  //   pointType: 'PlaneTag',
-  //   contentType: 'MediaPlane',
-  //   position: [
-  //     [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 2 + 2],
-  //     [-4.344637059045372, 0.8696103907729694, -2.339700937271118 + 0.2 + 2],
-  //     [-4.344637059045372, 2.1293509755511106, -2.3397009372711177 + 0.2 + 2],
-  //     [-4.344637059045372, 2.1145151110093137, -2.3397009372711177 + 2 + 2],
-  //   ],
-  //   data: {
-  //     mediaData: [
-  //       {
-  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-  //         // videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //     ],
-  //   },
-  // },
-  // {
-  //   dimensionType: '3D',
-  //   pointType: 'PlaneTag',
-  //   contentType: 'MediaPlane',
-  //   position: [
-  //     [-4.344637059045372, 0.8661640292431658 - 1, -2.339700937271118 + 2 + 2],
-  //     [-4.344637059045372, 0.8696103907729694 - 1, -2.339700937271118 + 0.2 + 2],
-  //     [-4.344637059045372, 2.1293509755511106 - 1, -2.3397009372711177 + 0.2 + 2],
-  //     [-4.344637059045372, 2.1145151110093137 - 1, -2.3397009372711177 + 2 + 2],
-  //   ],
-  //   data: {
-  //     mediaData: [
-  //       {
-  //         url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/BD03zP21a6syknEF1o/2023-05-08_11-49-54_transcode.mp4',
-  //         // videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //     ],
-  //   },
-  // },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    position: [
+      [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 2],
+      [-4.344637059045372, 0.8696103907729694, -2.339700937271118 + 0.2],
+      [-4.344637059045372, 2.1293509755511106, -2.3397009372711177 + 0.2],
+      [-4.344637059045372, 2.1145151110093137, -2.3397009372711177 + 2],
+    ],
+    data: {
+      mediaData: [
+        {
+          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+          videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Video',
+        },
+      ],
+    },
+  },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    position: [
+      [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 2 + 2],
+      [-4.344637059045372, 0.8696103907729694, -2.339700937271118 + 0.2 + 2],
+      [-4.344637059045372, 2.1293509755511106, -2.3397009372711177 + 0.2 + 2],
+      [-4.344637059045372, 2.1145151110093137, -2.3397009372711177 + 2 + 2],
+    ],
+    data: {
+      mediaData: [
+        {
+          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+          // videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Video',
+        },
+      ],
+    },
+  },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    position: [
+      [-4.344637059045372, 0.8661640292431658 - 1, -2.339700937271118 + 2 + 2],
+      [-4.344637059045372, 0.8696103907729694 - 1, -2.339700937271118 + 0.2 + 2],
+      [-4.344637059045372, 2.1293509755511106 - 1, -2.3397009372711177 + 0.2 + 2],
+      [-4.344637059045372, 2.1145151110093137 - 1, -2.3397009372711177 + 2 + 2],
+    ],
+    data: {
+      mediaData: [
+        {
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/BD03zP21a6syknEF1o/2023-05-08_11-49-54_transcode.mp4',
+          // videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          type: 'Video',
+        },
+      ],
+    },
+  },
 ]
