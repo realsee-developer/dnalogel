@@ -10,23 +10,23 @@
     "deploy": "sh ./bin/deploy.sh"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.4.2",
-    "@mui/material": "^5.10.12",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
     "@realsee/dnalogel": "workspace:*",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "three": "0.117.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@realsee/five": "5.0.0-alpha.198",
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@vitejs/plugin-react": "^4.0.0",
-    "glob": "^8.0.1",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.3"
+    "@babel/core": "^7.22.9",
+    "@realsee/five": "5.0.0-alpha.207",
+    "@types/react": "^17.0.62",
+    "@types/react-dom": "^17.0.20",
+    "@vitejs/plugin-react": "^4.0.3",
+    "glob": "^8.1.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.6"
   }
 }
