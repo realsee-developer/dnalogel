@@ -20,6 +20,9 @@ const PanoMeasurePluginUsage = () => {
       getDistanceText(distance) {
         return isDefaultUnit ? distance.toFixed(1).toString() + 'm' : (distance * 3.2808).toFixed(1) + 'ft'
       },
+      getAreaText(area) {
+        return isDefaultUnit ? area.toFixed(2).toString() + '㎡' : (area * 10.7639).toFixed(2) + 'ft²'
+      },
     })
   }, [isDefaultUnit])
 
