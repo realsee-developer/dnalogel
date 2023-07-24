@@ -134,12 +134,10 @@ const PanoMeasurePluginUsage = () => {
     polylineJson.visiblePanoIndexes = [five.getCurrentState().panoIndex]
     if (modifyID.current) {
       const data = mockServerModify(modifyID.current, polylineJson)
-      console.info('🐶 ~ modify data', data)
       const index = serverData.current.findIndex((item) => item.id === modifyID.current)
       serverData.current[index] = data
     } else {
       const data = mockServerAdd(polylineJson)
-      console.info('🐶 ~ add data', data)
       serverData.current.push(data)
     }
     // 保存数据时，需要情况之前设置的默认文本，不然新建新的线时使用的还是旧的默认文本
