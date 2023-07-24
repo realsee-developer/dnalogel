@@ -25,6 +25,7 @@ export enum DATA_TYPES {
     MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA = 'modelEntryDoorGuidePluginServerData',
     PANO_RULER_PLUGIN_SERVER_DATA = 'panoRulerPluginServerData',
     MODEL_TAG = 'modelTag',
+    PIPELINE_DATA = 'pipelineData',
     PANO_RULER_PRO_PLUGIN_SERVER_DATA = 'panoRulerProPluginServerData',
 }
 
