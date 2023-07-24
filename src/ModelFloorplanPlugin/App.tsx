@@ -1,6 +1,5 @@
 import './index.css'
-import { FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel'
-import { ModelFloorplanPlugin } from '@realsee/dnalogel'
+import { ModelFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'
@@ -16,8 +15,7 @@ const defaultPluginParam = {
 
 const initialParamFromUrl = getInitialParamFromUrl()
 
-const pluginParams =
-  JSON.stringify(initialParamFromUrl) !== '{}' ? initialParamFromUrl : defaultPluginParam
+const pluginParams = JSON.stringify(initialParamFromUrl) !== '{}' ? initialParamFromUrl : defaultPluginParam
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
@@ -45,10 +43,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider
-        initialWork={parseWork(work)}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
-      >
+      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.five })}>
         <FiveCanvas {...size} />
         <Box
           className="plugin-full-screen-container"
