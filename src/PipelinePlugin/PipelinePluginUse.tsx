@@ -34,13 +34,13 @@ const TopviewFloorplanPluginUse = () => {
   }, [pipelineIndex])
 
   React.useEffect(() => {
-    plugin.hooks.on('show', (...arg) => console.log('show', ...arg))
-    plugin.hooks.on('hide', (...arg) => console.log('hide', ...arg))
-    plugin.hooks.on('dataChange', (...arg) => console.log('dataChange', ...arg))
-    plugin.hooks.on('dataLoaded', (...arg) => console.log('dataLoaded', ...arg))
-    plugin.hooks.on('stateChange', (...arg) => console.log('stateChange', ...arg))
-    plugin.hooks.on('enable', (...arg) => console.log('enable', ...arg))
-    plugin.hooks.on('disable', (...arg) => console.log('disable', ...arg))
+    plugin.hooks.on('show', (...arg) => console.info('show', ...arg))
+    plugin.hooks.on('hide', (...arg) => console.info('hide', ...arg))
+    plugin.hooks.on('dataChange', (...arg) => console.info('dataChange', ...arg))
+    plugin.hooks.on('dataLoaded', (...arg) => console.info('dataLoaded', ...arg))
+    plugin.hooks.on('stateChange', (...arg) => console.info('stateChange', ...arg))
+    plugin.hooks.on('enable', (...arg) => console.info('enable', ...arg))
+    plugin.hooks.on('disable', (...arg) => console.info('disable', ...arg))
   }, [])
 
   function enable() {

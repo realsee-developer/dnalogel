@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { Mode } from '@realsee/five/five'
+import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
+import { Five, Mode } from '@realsee/five/five'
 import { TagsList, AddTagData } from './mocks/mock_data'
 import TagsList2 from './mocks/marketingData'
 import TagsList3 from './mocks/mediaModel'
+import TagsList4 from './mocks/textTagData'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import ImageIcon from '@mui/icons-material/Image'
@@ -23,6 +24,7 @@ import { ContentType, PanoTagPluginExportInterface, Tag, TagInstance } from '@re
 import { Vector3 } from 'three'
 import ReactDOM from 'react-dom'
 import React from 'react'
+import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 
 // function CommentTag(props: { tag: TagInstance<'Unknown'> }) {
 //   const [data, setData] = React.useState(props.tag.data)
@@ -60,7 +62,8 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [currentTagList, setCurrentTagList] = useState(TagsList3.map((v, i) => ({ ...v, id: i })))
+  const [fiveState, setFiveState] = useFiveState()
+  const [currentTagList, setCurrentTagList] = useState(TagsList4.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const [enabled, setEnabled] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
@@ -164,6 +167,22 @@ const PanoTagPluginUse = () => {
   }
 
   return (
+    <>
+      <Paper
+        sx={{ position: "fixed", bottom: 0 }}
+        style={{borderRadius: '4px', overflow: 'hidden'}}
+      >
+        <BottomNavigation
+            showLabels
+            value={fiveState.mode}
+            onChange={(_, newValue: Mode) => {
+                setFiveState({ mode: newValue });
+            }}
+        >
+            <BottomNavigationAction label="全景漫游"  value={Five.Mode.Panorama}/>
+            <BottomNavigationAction label="空间总览"  value={Five.Mode.Floorplan}/>
+        </BottomNavigation>
+    </Paper>
     <Stack direction={'column'} spacing={1} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
       <Stack direction={'row'} spacing={1} justifyContent="flex-end">
         <Button variant="contained" size="small" startIcon={<TitleIcon />} onClick={() => addTag(ContentType.Text)}>
@@ -225,6 +244,7 @@ const PanoTagPluginUse = () => {
         </Accordion>
       </Stack>
     </Stack>
+    </>
   )
 }
 
