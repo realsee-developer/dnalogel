@@ -16,33 +16,13 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const [vrCode, setVrCode] = React.useState<string>('pWLy9nekmQdMXqja')
+  const [vrCode, setVrCode] = React.useState<string>('81gmMq5a7zbF9leWMk')
   const work = useFetchDatas(DATA_TYPES.WORK, vrCode)
 
   return (
     <FiveProvider work={work && parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.five })}>
       <FiveCanvas {...size} />
       <PanoRulerPluginUsage vrCode={vrCode} />
-      <Box>
-        <Paper
-          sx={{
-            position: 'fixed',
-            top: '10px',
-            left: '10px',
-            backgroundColor: 'transparent',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px 0',
-          }}
-        >
-          <Button
-            variant="contained"
-            onClick={vrCode === 'pWLy9nekmQdMXqja' ? () => setVrCode('81gmMq5a7zbF9leWMk') : () => setVrCode('pWLy9nekmQdMXqja')}
-          >
-            切换VR
-          </Button>
-        </Paper>
-      </Box>
     </FiveProvider>
   )
 }
