@@ -33,7 +33,7 @@ const App: React.FC = () => {
       <FiveProvider
         initialWork={parseWork(work)}
         // initialState={{ mode: 'Floorplan' }}
-        initialState={{ panoIndex: 7 }}
+        initialState={{ panoIndex: 2 }}
         ref={(ref) => Object.assign(window, { $five: ref?.five })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>

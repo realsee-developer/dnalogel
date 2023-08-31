@@ -98,11 +98,12 @@ export default [
         //   type: 'Video',
         // },
         {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          type: 'Image',
+          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Ro7waAEG66UK7pAiqo/4fc3cf64be0e6dc572e8f81eaa3c7fc9.png?imageMogr2/thumbnail/1920x%3E/quality/70/ignore-error/1',
+          // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
           // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
           // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
           // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
-          type: 'Image',
         },
         // {
         //   // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
