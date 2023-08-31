@@ -1,4 +1,4 @@
-import { AreaMakerPluginPlugin } from '@realsee/dnalogel/dist'
+import { AreaMakerPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
@@ -11,7 +11,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[AreaMakerPluginPlugin, 'AreaMakerPluginPlugin']],
+  plugins: [[AreaMakerPlugin, 'AreaMakerPlugin']],
 })
 
 const App: React.FC = () => {

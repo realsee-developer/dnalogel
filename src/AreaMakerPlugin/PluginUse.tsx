@@ -3,11 +3,11 @@ import * as THREE from 'three'
 import Stack from '@mui/material/Stack'
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import * as mockPluginData from './mockPluginData.json'
-import { AreaMakerPluginPluginType } from '@realsee/dnalogel/dist'
+import { AreaMakerPluginType } from '@realsee/dnalogel/dist'
 
 const AreaMakerPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const plugin = five.plugins.AreaMakerPluginPlugin as AreaMakerPluginPluginType.AreaMakerController
+  const plugin = five.plugins.AreaMakerPlugin as AreaMakerPluginType.AreaMakerController
 
   React.useEffect(() => {
     plugin.load(mockPluginData)
