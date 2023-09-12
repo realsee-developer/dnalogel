@@ -33,7 +33,6 @@ import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 //     console.info('data change', data)
 //   }, [data])
 
-
 //   React.useEffect(() => {
 //     props.tag.hooks.on('dataChanged', setData)
 //     return () => {
@@ -48,7 +47,6 @@ import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 //     </div>
 //   )
 // }
-
 
 const ContentTypeOptions = {
   [ContentType.Text]: '文字标签',
@@ -85,8 +83,8 @@ const PanoTagPluginUse = () => {
     //   ReactDOM.render(<CommentTag tag={tag}></CommentTag>, container)
     //   return () => ReactDOM.unmountComponentAtNode(container)
     // })
-    const list = currentTagList as Tag[]
-    pluginInstance.load({ tagList: currentTagList as Tag[], globalConfig: {renderType: 'Mesh',} } )
+    const list = currentTagList as unknown as Tag[]
+    pluginInstance.load({ tagList: list, globalConfig: { renderType: 'Mesh' } })
   }, [])
 
   const addTag = (type: ContentType) => {
@@ -151,9 +149,9 @@ const PanoTagPluginUse = () => {
 
   const handlerTagEnableChange = async () => {
     if (enabled) {
-       pluginInstance.disable()
+      pluginInstance.disable()
     } else {
-       pluginInstance.enable()
+      pluginInstance.enable()
     }
     setEnabled(!enabled)
   }
@@ -168,82 +166,79 @@ const PanoTagPluginUse = () => {
 
   return (
     <>
-      <Paper
-        sx={{ position: "fixed", bottom: 0 }}
-        style={{borderRadius: '4px', overflow: 'hidden'}}
-      >
+      <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
         <BottomNavigation
-            showLabels
-            value={fiveState.mode}
-            onChange={(_, newValue: Mode) => {
-                setFiveState({ mode: newValue });
-            }}
+          showLabels
+          value={fiveState.mode}
+          onChange={(_, newValue: Mode) => {
+            setFiveState({ mode: newValue })
+          }}
         >
-            <BottomNavigationAction label="全景漫游"  value={Five.Mode.Panorama}/>
-            <BottomNavigationAction label="空间总览"  value={Five.Mode.Floorplan}/>
+          <BottomNavigationAction label="全景漫游" value={Five.Mode.Panorama} />
+          <BottomNavigationAction label="空间总览" value={Five.Mode.Floorplan} />
         </BottomNavigation>
-    </Paper>
-    <Stack direction={'column'} spacing={1} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
-      <Stack direction={'row'} spacing={1} justifyContent="flex-end">
-        <Button variant="contained" size="small" startIcon={<TitleIcon />} onClick={() => addTag(ContentType.Text)}>
-          添加文字标签
-        </Button>
-        <Button variant="contained" size="small" startIcon={<MusicNoteIcon />} onClick={() => addTag(ContentType.Audio)}>
-          添加音频标签
-        </Button>
-        <Button variant="contained" size="small" startIcon={<ShoppingBagIcon />} onClick={() => addTag(ContentType.Marketing)}>
-          添加营销贴片
-        </Button>
-        <Button variant="contained" size="small" startIcon={<LinkIcon />} onClick={() => addTag(ContentType.Link)}>
-          添加跳转标签
-        </Button>
+      </Paper>
+      <Stack direction={'column'} spacing={1} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
+        <Stack direction={'row'} spacing={1} justifyContent="flex-end">
+          <Button variant="contained" size="small" startIcon={<TitleIcon />} onClick={() => addTag(ContentType.Text)}>
+            添加文字标签
+          </Button>
+          <Button variant="contained" size="small" startIcon={<MusicNoteIcon />} onClick={() => addTag(ContentType.Audio)}>
+            添加音频标签
+          </Button>
+          <Button variant="contained" size="small" startIcon={<ShoppingBagIcon />} onClick={() => addTag(ContentType.Marketing)}>
+            添加营销贴片
+          </Button>
+          <Button variant="contained" size="small" startIcon={<LinkIcon />} onClick={() => addTag(ContentType.Link)}>
+            添加跳转标签
+          </Button>
+        </Stack>
+        <Stack direction={'row'} spacing={1} justifyContent="flex-end">
+          <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={addCustomerTag}>
+            添加自定义标签
+          </Button>
+          <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => addTag(ContentType.ImageText)}>
+            添加图文标签
+          </Button>
+          <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => handlerTagVisibleChange()}>
+            {visible ? '隐藏' : '显示'}标签
+          </Button>
+          <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => handlerTagEnableChange()}>
+            {enabled ? '禁用' : '启用'}标签
+          </Button>
+          <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => pluginInstance.dispose()}>
+            dispose
+          </Button>
+        </Stack>
+        <Stack direction={'row'} justifyContent="flex-end" spacing={1}>
+          <Accordion sx={{ width: '300px' }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+              <Typography>标签列表</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ height: '375px', overflow: 'scroll' }}>
+              {currentTagList.map((item) => {
+                return (
+                  <Card sx={{ maxWidth: 268, marginBottom: '10px', cursor: 'pointer' }} key={item.id} onClick={() => move2Tag(item.id)}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        {ContentTypeOptions[item.contentType]}
+                      </Typography>
+                      <Typography gutterBottom variant="body2" color="text.secondary">
+                        {item.data['text']}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" onClick={() => deleteTag(item.id)}>
+                        删除
+                      </Button>
+                    </CardActions>
+                  </Card>
+                )
+              })}
+            </AccordionDetails>
+          </Accordion>
+        </Stack>
       </Stack>
-      <Stack direction={'row'} spacing={1} justifyContent="flex-end">
-        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={addCustomerTag}>
-          添加自定义标签
-        </Button>
-        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => addTag(ContentType.ImageText)}>
-          添加图文标签
-        </Button>
-        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => handlerTagVisibleChange()}>
-          {visible ? '隐藏' : '显示'}标签
-        </Button>
-        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => handlerTagEnableChange()}>
-          {enabled ? '禁用' : '启用'}标签
-        </Button>
-        <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => pluginInstance.dispose()}>
-          dispose
-        </Button>
-      </Stack>
-      <Stack direction={'row'} justifyContent="flex-end" spacing={1}>
-        <Accordion sx={{ width: '300px' }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography>标签列表</Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{ height: '375px', overflow: 'scroll' }}>
-            {currentTagList.map((item) => {
-              return (
-                <Card sx={{ maxWidth: 268, marginBottom: '10px', cursor: 'pointer' }} key={item.id} onClick={() => move2Tag(item.id)}>
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      {ContentTypeOptions[item.contentType]}
-                    </Typography>
-                    <Typography gutterBottom variant="body2" color="text.secondary">
-                      {item.data['text']}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" onClick={() => deleteTag(item.id)}>
-                      删除
-                    </Button>
-                  </CardActions>
-                </Card>
-              )
-            })}
-          </AccordionDetails>
-        </Accordion>
-      </Stack>
-    </Stack>
     </>
   )
 }
