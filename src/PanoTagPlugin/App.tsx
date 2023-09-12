@@ -12,9 +12,14 @@ const FiveProvider = createFiveProvider({
   textureOptions: { size: 128 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
   plugins: [
-    [PanoTagPlugin, 'panoTagPlugin', { config: { globalConfig: { modelConfig: { autoLookAtEnabled: false } } } }] as FivePluginInit<
-      typeof PanoTagPlugin
-    >,
+    [PanoTagPlugin, 'panoTagPlugin', { 
+      config: { 
+        globalConfig: { 
+          modelConfig: { autoLookAtEnabled: false },
+          // clickable: false
+        }
+      }
+    }] as FivePluginInit<typeof PanoTagPlugin>,
   ],
 })
 
@@ -28,12 +33,13 @@ const App: React.FC = () => {
   //         five.setState({ mode: 'Panorama' })
   //     }, 5000)
   // }, [])
+
   return (
     work && (
       <FiveProvider
         initialWork={parseWork(work)}
         // initialState={{ mode: 'Floorplan' }}
-        initialState={{ panoIndex: 2 }}
+        initialState={{ panoIndex: 4 }}
         ref={(ref) => Object.assign(window, { $five: ref?.five })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
