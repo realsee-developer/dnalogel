@@ -2,7 +2,6 @@ import { PanoTagPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
-import { Box } from '@mui/material'
 import PanoTagPluginUse from './PanoTagPluginUse'
 import { FivePluginInit, parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
@@ -12,14 +11,18 @@ const FiveProvider = createFiveProvider({
   textureOptions: { size: 128 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
   plugins: [
-    [PanoTagPlugin, 'panoTagPlugin', { 
-      config: { 
-        globalConfig: { 
-          modelConfig: { autoLookAtEnabled: false },
-          // clickable: false
-        }
-      }
-    }] as FivePluginInit<typeof PanoTagPlugin>,
+    [
+      PanoTagPlugin,
+      'panoTagPlugin',
+      {
+        config: {
+          globalConfig: {
+            modelConfig: { autoLookAtEnabled: false },
+            // clickable: false
+          },
+        },
+      },
+    ] as FivePluginInit<typeof PanoTagPlugin>,
   ],
 })
 

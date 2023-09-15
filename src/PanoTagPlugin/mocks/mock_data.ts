@@ -243,6 +243,31 @@ export const TagsList = [
     },
   },
   {
+    dimensionType: '3D',
+    pointType: 'PointTag',
+    contentType: 'Text',
+    enable: true,
+    normal: [-2.6990631227056436, 0.018038999289274438, -0.3673991100072416],
+    position: [0.927103332208612, 0.8545514464586326, -0.6591370084540737],
+    data: {
+      text: '3D文本标签2',
+    },
+    id: 44,
+    fiveState: {
+      mode: 'Panorama' as Mode,
+      panoIndex: 0,
+      longitude: 5.493428678855368,
+      latitude: -0.10500571410520228,
+      fov: 95,
+      offset: {
+        x: 0.09141919761896133,
+        y: 1.1138173893692536,
+        z: -0.08654399961233139,
+      } as Vector3,
+      distance: 0,
+    },
+  },
+  {
     dimensionType: '2D',
     pointType: 'PointTag',
     contentType: 'Audio',

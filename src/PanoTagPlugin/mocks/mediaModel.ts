@@ -55,7 +55,6 @@ export default [
     },
     style: { point: { iconType: 'circle' } },
     config: {
-      visibleConfig: { visiblePanoIndex: 'all', visibleFiveMode: ['Floorplan', 'Panorama'] },
       unfoldedConfig: { autoUnfold: { enable: false } },
       modelConfig: { autoLookAtEnabled: true },
     },
