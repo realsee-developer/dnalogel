@@ -11,7 +11,6 @@ import * as THREE from 'three'
 // import { work } from '../../mock/BigSpace/work'
 
 Object.assign(window, { THREE })
-console.info('🚀 ~ THREE', THREE)
 
 const defaultPluginParam = {
   hoverEnable: true,
@@ -26,13 +25,7 @@ const pluginParams = Object.assign(defaultPluginParam, JSON.stringify(initialPar
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率
-  plugins: [
-    [
-      MapviewFloorplanPlugin,
-      'mapviewFloorplanPlugin',
-      { ...pluginParams },
-    ],
-  ],
+  plugins: [[MapviewFloorplanPlugin, 'mapviewFloorplanPlugin', { ...pluginParams }]],
 })
 
 const App: React.FC = () => {
@@ -41,10 +34,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider
-        initialWork={parseWork(work)}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
-      >
+      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.five })}>
         <FiveCanvas key="five-canvas" {...size} />
         <Box
           key="box"
@@ -58,7 +48,7 @@ const App: React.FC = () => {
             pointerEvents: 'none',
           }}
         />
-        <PluginUse key="plugin-use"/>
+        <PluginUse key="plugin-use" />
       </FiveProvider>
     )
   )
