@@ -17,7 +17,7 @@ const FiveProvider = createFiveProvider({
 const App: React.FC = () => {
   const size = useWindowDimensions()
   const [vrCode, setVrCode] = React.useState<string>('81gmMq5a7zbF9leWMk')
-  const work = useFetchDatas(DATA_TYPES.WORK, vrCode)
+  const work = useFetchDatas(DATA_TYPES.WORK)
 
   return (
     <FiveProvider work={work && parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.five })}>

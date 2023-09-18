@@ -7,9 +7,7 @@ import type { FloorplanServerData } from '@realsee/dnalogel'
 
 const PanoDoorLabels: React.FC = () => {
   const [fiveState, setFiveState] = useFiveState()
-  const floorplanServerData: FloorplanServerData | null = useFetchDatas(
-    DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA,
-  )
+  const floorplanServerData: FloorplanServerData | null = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
   const doorLabelsRef = React.useRef<HTMLDivElement>(null)
   const [visible, setVisible] = React.useState<boolean>(false)
   const five = unsafe__useFiveInstance()
@@ -18,7 +16,7 @@ const PanoDoorLabels: React.FC = () => {
   React.useEffect(() => {
     if (!doorLabelsRef.current || fiveState.mode !== Five.Mode.Panorama) return
     panoDoorLabelPlugin.appendTo(doorLabelsRef.current)
-  }, [])
+  }, [fiveState.mode])
 
   React.useEffect(() => {
     if (!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return

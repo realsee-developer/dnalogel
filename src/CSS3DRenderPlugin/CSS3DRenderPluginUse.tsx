@@ -2,10 +2,9 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import './index.css'
 import { unsafe__useFiveInstance, useFiveModelReadyState } from '@realsee/five/react'
-import { Input } from '@mui/material'
 import { iframePoints, ImageExamplePoints, VideoExamplePoints } from './points'
 import { useFivePlugin } from '../utils/hooks/useFivePlugin'
-import { CSS3DRenderPlugin } from '@realsee/dnalogel'
+import { CSS3DRenderPlugin } from '@realsee/dnalogel/dist'
 
 // function ReactExample() {
 //   const [count, setCount] = React.useState(0)
@@ -31,18 +30,18 @@ const CSS3DRenderPluginUse: React.FC = () => {
     // const fivecanvas = five.getElement()
     // if (fivecanvas) fivecanvas.style.position = 'relative'
     five.plugins.panoTagPlugin.load({
-        tagList: [
-          {
-            dimensionType: '2D',
-            pointType: 'PointTag',
-            contentType: 'Text',
-            position: [-3.3344076411262944, 0.7070410926642972, -2.3397009372711186],
-            data: {
-              text: '112123',
-            },
+      tagList: [
+        {
+          dimensionType: '2D',
+          pointType: 'PointTag',
+          contentType: 'Text',
+          position: [-3.3344076411262944, 0.7070410926642972, -2.3397009372711186],
+          data: {
+            text: '112123',
           },
-        ],
-      })
+        },
+      ],
+    })
     const { container, dispose, setVisible } =
       css3DRenderPlugin.create3DDomContainer(ImageExamplePoints, {
         pointerEvents: 'auto',
@@ -145,11 +144,7 @@ const CSS3DRenderPluginUse: React.FC = () => {
           </button>
         </div>
         <div>
-          <button
-            onClick={() => css3DRenderPlugin.dispose()}
-          >
-            dispose
-          </button>
+          <button onClick={() => css3DRenderPlugin.dispose()}>dispose</button>
         </div>
       </div>
     </>

@@ -39,14 +39,14 @@ const FiveProvider = createFiveProvider({
           autoFixPCPosition: true,
           initialPosition: { left: '35%', top: '20%' },
         },
-      } ,
+      },
     ],
   ],
 })
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const work = useFetchDatas(DATA_TYPES.WORK, 'pWLy9ndnVL73Xqja', 'real')
+  const work = useFetchDatas(DATA_TYPES.WORK)
 
   return (
     work && (
