@@ -11,7 +11,8 @@ export const TagsList = [
     data: {
       appearance: 'plane',
       text: '这 是 一 个 文本标签🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️，它有很长的标题标题标题标题标题标题标题标题标题标题标题标题标题',
-      description: '收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦',
+      description:
+        '收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦',
     },
     style: {
       point: {
@@ -132,18 +133,28 @@ export const TagsList = [
         },
       ],
     },
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 3,
-      longitude: 2.706451797307377,
-      latitude: 0.05631416156432678,
-      fov: 95,
-      offset: {
-        x: -0.618914008140564,
-        y: 1.1130503593145502,
-        z: -1.6621500253677368,
-      } as Vector3,
-      distance: 0,
+  },
+  {
+    dimensionType: '3D',
+    pointType: 'PlaneTag',
+    contentType: 'MediaPlane',
+    enable: true,
+    position: [
+      [-0.16450234208682218, 1.2079436283327727, -2.3397009372711186],
+      [0.4534614669340434, 1.2009985563997523, -2.3397009372711186],
+      [0.4588598077301688, 1.9071464262166917, -2.339700937271118],
+      [-0.16094619454331782, 1.9098602633949615, -2.3397009372711186],
+    ],
+    data: {
+      mediaData: [
+        {
+          url: '//vrlab-static.ljcdn.com/release/web/catCoding.1cd4e989.gif',
+          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
+          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+          type: 'Image',
+        },
+      ],
     },
   },
   {
@@ -396,23 +407,9 @@ export const TagsList = [
     style: { point: { iconType: 'circle' } },
     config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
     matrix: [
-      0.05233595624294407,
-      0,
-      -0.9986295347545739,
-      0,
-      0,
-      1,
-      0,
-      0,
-      0.9986295347545739,
-      0,
-      0.05233595624294407,
-      0,
-      1.3993954141045577,
-      0.005288434039257162,
-      -3.054760281604037,
-      1
-  ]
+      0.05233595624294407, 0, -0.9986295347545739, 0, 0, 1, 0, 0, 0.9986295347545739, 0, 0.05233595624294407, 0, 1.3993954141045577,
+      0.005288434039257162, -3.054760281604037, 1,
+    ],
   },
 ]
 
