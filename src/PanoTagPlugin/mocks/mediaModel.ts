@@ -31,10 +31,10 @@ export default [
           type: 'Image',
           url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
         },
-        {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
+        // {
+        //   type: 'Image',
+        //   url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        // },
       ],
       targetUrl: null,
       modelType: 'billboard1',
