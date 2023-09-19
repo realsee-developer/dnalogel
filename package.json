@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
-    "@realsee/five": "6.0.0-alpha.8",
+    "@realsee/five": "6.0.0-alpha.10",
     "@types/react": "^17.0.62",
     "@types/react-dom": "^17.0.20",
     "@vitejs/plugin-react": "^4.0.3",
