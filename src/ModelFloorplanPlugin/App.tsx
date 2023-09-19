@@ -1,6 +1,5 @@
 import './index.css'
-import { FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel'
-import { ModelFloorplanPlugin } from '@realsee/dnalogel/dist'
+import { ModelFloorplanPlugin, FLOOR_PLAN_ATTACHED_TO } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'
