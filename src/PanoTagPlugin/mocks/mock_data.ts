@@ -3,392 +3,1253 @@ import { Mode } from '@realsee/five/five'
 import { Vector3 } from 'three'
 export const TagsList = [
   {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Text',
-    enable: true,
-    position: [-2.0543282763294135, 0.3319934118281651, -2.2450259661695933],
-    data: {
-      appearance: 'plane',
-      text: '这 是 一 个 文本标签🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️，它有很长的标题标题标题标题标题标题标题标题标题标题标题标题标题',
-      description: '收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦',
-    },
-    style: {
-      point: {
-        url: '//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png',
+    "id": 9026413,
+    "stickType": "2DPoint",
+    "contentType": "Text",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.0051983486400709236,
+      "longitude": 1.2686312168447784,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
       },
+      "panoIndex": 21
     },
-    id: 0,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 0.6087052772120609,
-      latitude: -0.0392156862745098,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'ImageText',
-    enable: true,
-    position: [-1.3311771624715265, 0, -0.8947385152744657],
-    data: {
-      text: '2D图文标签哈哈哈哈哈',
-      mediaData: [
-        {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          type: 'Image',
-        },
-        {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          type: 'Image',
-        },
-        {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          type: 'Image',
-        },
-      ],
-    },
-    id: 1,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 0.9079828829912141,
-      latitude: 0.2043343653250773,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  // {
-  //   dimensionType: '3D',
-  //   pointType: 'PlaneTag',
-  //   contentType: 'MediaPlane',
-  //   enable: true,
-  //   position: [
-  //     [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
-  //     [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
-  //     [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
-  //     [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
-  //   ],
-  //   data: {
-  //     mediaData: [
-  //       {
-  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //       {
-  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //     ],
-  //   },
-  //   fiveState: {
-  //     mode: 'Panorama' as Mode,
-  //     panoIndex: 3,
-  //     longitude: 2.706451797307377,
-  //     latitude: 0.05631416156432678,
-  //     fov: 95,
-  //     offset: {
-  //       x: -0.618914008140564,
-  //       y: 1.1130503593145502,
-  //       z: -1.6621500253677368,
-  //     } as Vector3,
-  //     distance: 0,
-  //   },
-  // },
-  {
-    dimensionType: '3D',
-    pointType: 'PlaneTag',
-    contentType: 'MediaPlane',
-    enable: true,
-    position: [
-      [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 0.01],
-      [-1.4781933464383068, 0.8696103907729694, -2.339700937271118 + 0.01],
-      [-1.4865722199099451, 2.1293509755511106, -2.3397009372711177 + 0.01],
-      [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
-    ],
-    data: {
-      mediaData: [
-        {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
-          type: 'Image',
-        },
-      ],
-    },
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 3,
-      longitude: 2.706451797307377,
-      latitude: 0.05631416156432678,
-      fov: 95,
-      offset: {
-        x: -0.618914008140564,
-        y: 1.1130503593145502,
-        z: -1.6621500253677368,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '3D',
-    pointType: 'PlaneTag',
-    contentType: 'MediaPlane',
-    enable: true,
-    position: [
-      [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805 + 0.01],
-      [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805 + 0.01],
-      [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805 + 0.01],
-      [-0.9866843325110417, 1.220446049250313e-16, 0.37528638936879805 + 0.01],
-    ],
-    data: {
-      mediaData: [
-        {
-          // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
-          type: 'Image',
-        },
-      ],
-    },
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 3,
-      longitude: 2.706451797307377,
-      latitude: 0.05631416156432678,
-      fov: 95,
-      offset: {
-        x: -0.618914008140564,
-        y: 1.1130503593145502,
-        z: -1.6621500253677368,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Marketing',
-    enable: true,
-    position: [-2.6990631227056436, 0.018038999289274438, -0.3673991100072416],
-    data: {
-      title: '2D营销标签',
-      brandTags: ['品牌名称'],
-      tags: ['标签描述', '标签描述'],
-      headerPictureUrl: '//vrlab-static.ljcdn.com/release/web/cardHeader.19ff7aa0.png',
-      highlightText: '立即查看',
-      price: {
-        value: '20.30',
-        unit: '元起',
+    "position": [-8.803682946386367, 1.0196057752536265, 0.17862177518022593],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
       },
-    },
-    style: {
-      point: {
-        iconUrl: '//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png',
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": null,
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
       },
+      "tags": null,
+      "targetUrl": null,
+      "theme": "",
+      "title": "11111",
+      "vrLinkCode": "",
+      "vrLinkName": ""
     },
-    id: 3,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 1.4711282761387834,
-      latitude: 0.020969743131104737,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
+    "style": {
+      "point": {
+        "iconType": "circle",
+        "scale": 1,
+        "size": "S",
+        "steps": 1,
+        "type": "circle",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/87f60c66-a572-49d4-abb3-17b85fdc7ead.png"
+      }
     },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "normal": [0.8926622475024489, 0, 0.450726205011287],
+    "extend": "",
+    "enabled": true
   },
   {
-    dimensionType: '3D',
-    pointType: 'PointTag',
-    contentType: 'Text',
-    enable: true,
-    normal: [-2.6990631227056436, 0.018038999289274438, -0.3673991100072416],
-    position: [0.927103332208612, 0.8445514464586326, -0.6591370084540737],
-    data: {
-      text: '3D文本标签哈哈',
+    "id": 9204448,
+    "stickType": "2DPoint",
+    "contentType": "Image",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.6840737884184314,
+      "longitude": 4.95076971739282,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
     },
-    id: 4,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 5.493428678855368,
-      latitude: -0.10500571410520228,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Audio',
-    // "position": [
-    //     0.17501044773948682,
-    //     1.1010380993204227,
-    //     -2.339700937271118
-    // ],
-    position: [-2.1892900647187052, 1.6567515982674699, 1.0212990045547485],
-    data: {
-      appearance: 'plane',
-      audioUrl: '//vrlab-static.ljcdn.com/release/web/Bling.678be963.mp3',
-      text: '2D音频标签标题标题标题标标题标题标题标题标题标题标题标题标题标题标题标标题标题',
-    },
-    id: 5,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 6.151207373723298,
-      latitude: -0.24015893081017836,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Audio',
-    // "position": [
-    //     0.17501044773948682,
-    //     1.1010380993204227,
-    //     -2.339700937271118
-    // ],
-    position: [-2.1892900647187052, 1.5567515982674699, 1.0212990045547485],
-    data: {
-      appearance: 'plane',
-      audioUrl: '//vrlab-static.ljcdn.com/release/web/test.145da774.m4a',
-      text: 'test.m4a',
-    },
-    id: 51,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 6.151207373723298,
-      latitude: -0.24015893081017836,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Link',
-    enable: true,
-    position: [-0.8070892936181384, 1.1621840046490304, 1.0212990045547485],
-    data: {
-      linkType: 'vr',
-      text: '2D跳转标签',
-    },
-    id: 6,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 2.439458631185228,
-      latitude: -0.01238390092879257,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    id: 'MediaModel',
-    stickType: 'Model',
-    contentType: 'MediaModel',
-    fiveState: {
-      distance: 0,
-      fov: 100,
-      latitude: 0,
-      longitude: 1.5817071602126802,
-      mode: 'Panorama' as Mode,
-      offset: { x: 2.60088, y: 0.0440728, z: -3.06787 } as Vector3,
-      panoIndex: 1,
-    },
-    position: [-1.4006045858954423, 0.005288434039257162, -1.654760281604037],
-    data: {
-      appearance: 'plane',
-      title: null,
-      description: null,
-      mediaData: [
+    "position": [-3.219187667721342, -0.41330396963676885, 2.301064788586588],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": [
         {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
+          "height": 2337,
+          "type": "Image",
+          "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/1c904604496da389a0a58a48248c0934.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1",
+          "width": 1080
+        }
       ],
-      targetUrl: null,
-      modelType: 'billboard1',
-      objectFit: 'contain',
-      action: { type: 'iframe', url: '' },
-      type: 'billboard1',
-      modelUrl: 'https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf',
-      defaultImageUrl: 'https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png',
-      previewUrl: 'https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png',
-      iconUrl: 'https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png',
-      size: '540x1500',
-      mediaPosition: [
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": null,
+      "targetUrl": null,
+      "theme": "",
+      "title": "图片",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "circle",
+        "scale": 1,
+        "size": "S",
+        "steps": 1,
+        "type": "circle",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/87f60c66-a572-49d4-abb3-17b85fdc7ead.png"
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "normal": [-0.994643985256068, 0, 0.10336025635575177],
+    "extend": "",
+    "enabled": true
+  },
+  {
+    "id": 9204450,
+    "stickType": "2DPoint",
+    "contentType": "Video",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.6840737884184314,
+      "longitude": 4.95076971739282,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
+    },
+    "position": [-3.26393378001971, -0.33388415825357576, 0.12949432424014445],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "0",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": [
+        {
+          "type": "Video",
+          "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/b08adc63a390dea2c69e4cbab3d8f024_transcode.mp4",
+          "videoCoverUrl": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/b08adc63a390dea2c69e4cbab3d8f024_transcode.png"
+        }
+      ],
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": null,
+      "targetUrl": null,
+      "theme": "",
+      "title": "视频",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "circle",
+        "scale": 1,
+        "size": "S",
+        "steps": 1,
+        "type": "circle",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/87f60c66-a572-49d4-abb3-17b85fdc7ead.png"
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "normal": [-0.43307168938958984, 0, 0.9013594798132689],
+    "extend": "",
+    "enabled": true
+  },
+  {
+    "id": 9204500,
+    "stickType": "2DPoint",
+    "contentType": "Sticker",
+    "fiveState": {
+      "distance": 0,
+      "fov": 112.5,
+      "latitude": 0.29624439682990233,
+      "longitude": 0.03421738610864981,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
+    },
+    "position": [-6.721744668042137, -0.7744909439643708, 0.6646566048596142],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "0",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": null,
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": null,
+      "targetUrl": null,
+      "theme": "",
+      "title": "看书",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "education7",
+        "scale": 1,
+        "steps": 1,
+        "type": "education7",
+        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/49fe67c0-9c63-41e6-3fdb-a9960310d6cc.png"
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "normal": [0.8020409106026894, 0, 0.5972690999203029],
+    "extend": "",
+    "enabled": true
+  },
+  {
+    "id": 9204501,
+    "stickType": "2DPoint",
+    "contentType": "Link",
+    "fiveState": {
+      "distance": 0,
+      "fov": 112.5,
+      "latitude": 0.5883355315668449,
+      "longitude": 4.839081647805157,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
+    },
+    "position": [-4.035439720405369, -1.1729867425677238, 0.8893032740642985],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": "https://www.baidu.com"
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": null,
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": null,
+      "targetUrl": "https://www.baidu.com",
+      "theme": "",
+      "title": "跳转链接",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "jump2",
+        "scale": 1,
+        "steps": 28,
+        "type": "jump2",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/2e006f16-bec2-4f39-9e1b-e09ceac575c5.png"
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "normal": [-0.21014989556136163, 0, 0.9776691778897137],
+    "extend": "",
+    "enabled": true
+  },
+  {
+    "id": 9204503,
+    "stickType": "Model",
+    "contentType": "MediaModel",
+    "fiveState": {
+      "distance": 0,
+      "fov": 110.98950714764585,
+      "latitude": 0,
+      "longitude": 4.433642220175043,
+      "mode": "Panorama",
+      "offset": {
+        "x": -6.335770130157471,
+        "y": -0.023570699617266655,
+        "z": 2.6235198974609375
+      },
+      "panoIndex": 20
+    },
+    "position": [-4.613842482675804, -0.5681022152254142, 3.116332054696249],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "defaultImageUrl": "https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png",
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "iconUrl": "https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png",
+      "id": "",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": [
+        {
+          "type": "Image",
+          "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/28c34bc890c78284d025e43570c4dcba.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1"
+        }
+      ],
+      "mediaPosition": [
         [-0.27, 0.1172, 0.028],
         [0.27, 0.1172, 0.028],
         [0.27, 1.6172, 0.028],
-        [-0.27, 1.6172, 0.028],
+        [-0.27, 1.6172, 0.028]
       ],
+      "modelType": "billboard1",
+      "modelUrl": "https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf",
+      "objectFit": "fill",
+      "previewUrl": "https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "size": "540x1500",
+      "tags": null,
+      "targetUrl": null,
+      "theme": "",
+      "title": null,
+      "type": "billboard1",
+      "vrLinkCode": "",
+      "vrLinkName": ""
     },
-    style: { point: { iconType: 'circle' } },
-    config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
-    matrix: [
-      0.05233595624294407,
-      0,
-      -0.9986295347545739,
-      0,
-      0,
-      1,
-      0,
-      0,
-      0.9986295347545739,
-      0,
-      0.05233595624294407,
-      0,
-      1.3993954141045577,
-      0.005288434039257162,
-      -3.054760281604037,
-      1
-  ]
+    "style": {
+      "point": {
+        "iconType": "circle",
+        "scale": 1
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      },
+      "clickable": false
+    },
+    "matrix": [
+      0.9998476951563913, 0, -0.01745240643728351, 0, 0, 1, 0, 0, 0.01745240643728351, 0, 0.9998476951563913, 0, -4.613842482675804,
+      -0.5681022152254142, 3.116332054696249, 1
+    ],
+    "extend": "",
+    "enabled": true
   },
+  {
+    "id": 9238927,
+    "stickType": "2DPoint",
+    "contentType": "Marketing",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.0051983486400709236,
+      "longitude": 1.2686312168447784,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
+    },
+    "position": [-7.095214645446699, -0.4567359911873952, -1.2654845998011734],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": ["688toys"],
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "了解更多",
+      "id": "52274",
+      "idType": "goods",
+      "info": [],
+      "initialState": null,
+      "mediaData": [
+        {
+          "type": "Image",
+          "url": "https://vrlab-image4.ljcdn.com/release/vrsaas/work/tag/b65beb77-2d79-436e-8f5f-3e883632a694.jpeg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1"
+        }
+      ],
+      "modelType": "",
+      "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/8e50f93b01835ae5d5fc33822512f5e5/pbr/model.pbr",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": ["没有", "pv"],
+      "targetUrl": null,
+      "theme": "dark",
+      "title": "张小橘🍊",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "goods6",
+        "scale": 1,
+        "size": "XL",
+        "steps": 1,
+        "type": "goods6",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+      }
+    },
+    "config": {
+      "unfoldedConfig": {
+        "autoUnfold": {
+          "enable": true
+        }
+      },
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "extend": "688.688",
+    "enabled": true
+  },
+  {
+    "id": 9239500,
+    "stickType": "2DPoint",
+    "contentType": "Marketing",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.0051983486400709236,
+      "longitude": 1.2686312168447784,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
+    },
+    "position": [-5.358799934387207, -0.8792999982833862, 1.6575000286102295],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": ["TORY BURCH"],
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "了解更多",
+      "id": "50466",
+      "idType": "goods",
+      "info": [],
+      "initialState": null,
+      "mediaData": [
+        {
+          "type": "Image",
+          "url": "https://vrlab-image4.ljcdn.com/release/vrsaas/work/tag/144c3d12-15e6-48c8-5110-ab492b258a49.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1"
+        }
+      ],
+      "modelType": "",
+      "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/2cb677281306ef2269a1519ecd8bf2b0/pbr/model.pbr",
+      "price": {
+        "unit": "元",
+        "value": "10000"
+      },
+      "tags": ["92088"],
+      "targetUrl": null,
+      "theme": "dark",
+      "title": "2号包",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "goods6",
+        "scale": 1,
+        "size": "XL",
+        "steps": 1,
+        "type": "goods6",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+      }
+    },
+    "config": {
+      "unfoldedConfig": {
+        "autoUnfold": {
+          "enable": true
+        }
+      },
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "extend": "",
+    "enabled": true
+  },
+  {
+    "id": 9432497,
+    "stickType": "2DPoint",
+    "contentType": "VRLink",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.0051983486400709236,
+      "longitude": 1.9811144469576196,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21
+    },
+    "position": [-8.794214233834175, 0.053972777192769494, 0.5935543290705816],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": "https://realsee.cn/wO22Yg2M"
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "",
+      "idType": "",
+      "info": null,
+      "initialState": {
+        "distance": 0,
+        "fov": 120,
+        "latitude": 0,
+        "longitude": 0.21967963386727687,
+        "mode": "Panorama",
+        "offset": {
+          "x": -69.6680393491,
+          "y": 36.3974963867,
+          "z": 69.7496025126
+        },
+        "panoIndex": 0
+      },
+      "mediaData": null,
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": null,
+      "targetUrl": "https://realsee.cn/wO22Yg2M",
+      "theme": "",
+      "title": null,
+      "vrLinkCode": "9oE78Pr0kduy1BqFGm",
+      "vrLinkName": "水泥厂"
+    },
+    "style": {
+      "point": {
+        "iconType": "jump2",
+        "scale": 1,
+        "steps": 28,
+        "type": "jump2",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/2e006f16-bec2-4f39-9e1b-e09ceac575c5.png"
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "current"
+      }
+    },
+    "normal": [0.9244930154852569, 0, 0.38119898257862167],
+    "extend": "",
+    "enabled": true
+  },
+  {
+    "id": 9883269,
+    "stickType": "2DPoint",
+    "contentType": "Text",
+    "fiveState": {
+      "distance": 0,
+      "fov": 95,
+      "latitude": 0.02431746857028025,
+      "longitude": 5.8578617961346175,
+      "mode": "Panorama",
+      "offset": {
+        "x": -4.364480018615723,
+        "y": -0.024309400469064713,
+        "z": 2.4200799465179443
+      },
+      "panoIndex": 21,
+      "workCode": "9oE70zOOX9Cy1BqFGm"
+    },
+    "position": [-5.163818744472738, 0.23149246098976617, -1.7353526309111897],
+    "mediaData": null,
+    "data": {
+      "action": {
+        "type": "iframe",
+        "url": ""
+      },
+      "appearance": "plane",
+      "brandTags": null,
+      "description": null,
+      "headerPictureType": "",
+      "highlightText": "",
+      "id": "",
+      "idType": "",
+      "info": null,
+      "initialState": null,
+      "mediaData": null,
+      "modelType": "",
+      "price": {
+        "unit": "",
+        "value": ""
+      },
+      "tags": null,
+      "targetUrl": null,
+      "theme": "",
+      "title": "小白",
+      "vrLinkCode": "",
+      "vrLinkName": ""
+    },
+    "style": {
+      "point": {
+        "iconType": "circle",
+        "scale": 1,
+        "size": "S",
+        "steps": 1,
+        "type": "circle",
+        "url": "http://vrlab-public.ljcdn.com/common/file/web/87f60c66-a572-49d4-abb3-17b85fdc7ead.png"
+      }
+    },
+    "config": {
+      "visibleConfig": {
+        "visiblePanoIndex": "all"
+      }
+    },
+    "normal": [0.18889686263273534, 0, 0.9819969324226576],
+    "extend": "",
+    "enabled": true
+  },
+
+  // {
+  //   "id": 9883270,
+  //   "stickType": "2DPoint",
+  //   "contentType": "Image",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": 0.06379301918895856,
+  //     "longitude": 6.159322183085343,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364480018615723,
+  //       "y": -0.024309400469064713,
+  //       "z": 2.4200799465179443
+  //     },
+  //     "panoIndex": 21,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [-4.799456681111709, -1.1752150163961812, 0.7851500122214023],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": ""
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": null,
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "",
+  //     "id": "0",
+  //     "idType": "",
+  //     "info": null,
+  //     "initialState": null,
+  //     "mediaData": [
+  //       {
+  //         "height": 1050,
+  //         "type": "Image",
+  //         "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/c648bc2800733d9b1d7c0b75201c53fd.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1",
+  //         "width": 1400
+  //       },
+  //       {
+  //         "height": 1050,
+  //         "type": "Image",
+  //         "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/bc3a49306da162e594f3f80cbceea7fb.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1",
+  //         "width": 1400
+  //       },
+  //       {
+  //         "height": 1050,
+  //         "type": "Image",
+  //         "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/8414dbe692f5a4c183cc9072d17f5981.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1",
+  //         "width": 1400
+  //       },
+  //       {
+  //         "height": 1050,
+  //         "type": "Image",
+  //         "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/edffa6055bc481d32a22cb9ea7123ea2.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1",
+  //         "width": 1400
+  //       }
+  //     ],
+  //     "modelType": "",
+  //     "price": {
+  //       "unit": "",
+  //       "value": ""
+  //     },
+  //     "tags": null,
+  //     "targetUrl": null,
+  //     "theme": "",
+  //     "title": "图片标签",
+  //     "vrLinkCode": "",
+  //     "vrLinkName": ""
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "circle",
+  //       "scale": 1,
+  //       "size": "S",
+  //       "steps": 1,
+  //       "type": "circle",
+  //       "url": "http://vrlab-public.ljcdn.com/common/file/web/87f60c66-a572-49d4-abb3-17b85fdc7ead.png"
+  //     }
+  //   },
+  //   "config": {
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "all"
+  //     }
+  //   },
+  //   "normal": [0.25710819736739654, 0, 0.9663826234191548],
+  //   "extend": "",
+  //   "enabled": true
+  // },
+  // {
+  //   "id": 9883271,
+  //   "stickType": "2DPoint",
+  //   "contentType": "Video",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": 0.1803644477603871,
+  //     "longitude": 5.6518936116567655,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364480018615723,
+  //       "y": -0.024309400469064713,
+  //       "z": 2.4200799465179443
+  //     },
+  //     "panoIndex": 21,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [-4.81387161088787, -1.1734288693496848, 0.3359440645112448],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": ""
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": null,
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "",
+  //     "id": "",
+  //     "idType": "",
+  //     "info": null,
+  //     "initialState": null,
+  //     "mediaData": [
+  //       {
+  //         "type": "Video",
+  //         "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/617b22a22cdb0c691c1f4a3cd75de03e_transcode.mp4",
+  //         "videoCoverUrl": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/617b22a22cdb0c691c1f4a3cd75de03e_transcode.png"
+  //       }
+  //     ],
+  //     "modelType": "",
+  //     "price": {
+  //       "unit": "",
+  //       "value": ""
+  //     },
+  //     "tags": null,
+  //     "targetUrl": null,
+  //     "theme": "",
+  //     "title": "视频标签",
+  //     "vrLinkCode": "",
+  //     "vrLinkName": ""
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "circle",
+  //       "scale": 1,
+  //       "size": "S",
+  //       "steps": 1,
+  //       "type": "circle",
+  //       "url": "http://vrlab-public.ljcdn.com/common/file/web/87f60c66-a572-49d4-abb3-17b85fdc7ead.png"
+  //     }
+  //   },
+  //   "config": {
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "all"
+  //     }
+  //   },
+  //   "normal": [0.21078054372476268, 0, 0.9775334072997676],
+  //   "extend": "",
+  //   "enabled": true
+  // },
+  // {
+  //   "id": 9883272,
+  //   "stickType": "2DPoint",
+  //   "contentType": "PanoLink",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": 0.3495073049032441,
+  //     "longitude": 5.757019613664682,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364480018615723,
+  //       "y": -0.024309400469064713,
+  //       "z": 2.4200799465179443
+  //     },
+  //     "panoIndex": 21,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [-3.4259139490644013, -0.8148521239217269, 1.3703145227955154],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": ""
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": null,
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "",
+  //     "id": "",
+  //     "idType": "",
+  //     "info": null,
+  //     "initialState": {
+  //       "distance": 0,
+  //       "fov": 90,
+  //       "latitude": 0,
+  //       "longitude": 5.757019613664682,
+  //       "mode": "Panorama",
+  //       "offset": {
+  //         "x": -6.415140151977539,
+  //         "y": -0.01935819908976555,
+  //         "z": -2.1658999919891357
+  //       },
+  //       "panoIndex": 22,
+  //       "workCode": "9oE70zOOX9Cy1BqFGm"
+  //     },
+  //     "mediaData": null,
+  //     "modelType": "",
+  //     "price": {
+  //       "unit": "",
+  //       "value": ""
+  //     },
+  //     "tags": null,
+  //     "targetUrl": null,
+  //     "theme": "",
+  //     "title": "跳转点位",
+  //     "vrLinkCode": "",
+  //     "vrLinkName": ""
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "jump6",
+  //       "scale": 1.5,
+  //       "steps": 28,
+  //       "type": "jump6",
+  //       "url": "http://vrlab-public.ljcdn.com/common/file/web/c28feac9-cab9-473d-8d3f-4b9820626727.png"
+  //     }
+  //   },
+  //   "config": {
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "current"
+  //     }
+  //   },
+  //   "normal": [-0.6665196258650485, 0, 0.7454874836888381],
+  //   "extend": "",
+  //   "enabled": true
+  // },
+  // {
+  //   "id": 9883273,
+  //   "stickType": "2DPoint",
+  //   "contentType": "VRLink",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": 0.3495073049032441,
+  //     "longitude": 5.757019613664682,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364480018615723,
+  //       "y": -0.024309400469064713,
+  //       "z": 2.4200799465179443
+  //     },
+  //     "panoIndex": 21,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [-3.194788358461405, -0.2865318303102828, 1.6075330472387175],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": "https://realsee.cn/Qw55d610"
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": null,
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "",
+  //     "id": "",
+  //     "idType": "",
+  //     "info": null,
+  //     "initialState": null,
+  //     "mediaData": null,
+  //     "modelType": "",
+  //     "price": {
+  //       "unit": "",
+  //       "value": ""
+  //     },
+  //     "tags": null,
+  //     "targetUrl": "https://realsee.cn/Qw55d610",
+  //     "theme": "",
+  //     "title": "跳转VR",
+  //     "vrLinkCode": "9oE7r8ePzGhy1BqFGm",
+  //     "vrLinkName": "小白线上验收"
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "jump5",
+  //       "scale": 1,
+  //       "steps": 28,
+  //       "type": "jump5",
+  //       "url": "http://vrlab-public.ljcdn.com/common/file/web/a0349403-db3b-42b3-8fbe-97e7248b7d55.png"
+  //     }
+  //   },
+  //   "config": {
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "current"
+  //     }
+  //   },
+  //   "normal": [-0.8213368066596464, 0, 0.5704435555128434],
+  //   "extend": "",
+  //   "enabled": true
+  // },
+  // {
+  //   "id": 9883296,
+  //   "stickType": "Plane",
+  //   "contentType": "MediaPlane",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": -0.2036355522396131,
+  //     "longitude": 4.923831792471272,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364480018615723,
+  //       "y": -0.024309400469064713,
+  //       "z": 2.4200799465179443
+  //     },
+  //     "panoIndex": 21,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [
+  //     [-2.991871746940582, 0.25037572166733624, 1.824342635357623],
+  //     [-2.96955157488252, 0.25037572166733624, 2.848634737058944],
+  //     [-2.96130352348582, 0.7572378290083636, 2.848455005197288],
+  //     [-2.9836236955438826, 0.7572378290083636, 1.8241629034959677]
+  //   ],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": ""
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": null,
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "",
+  //     "id": "",
+  //     "idType": "",
+  //     "info": null,
+  //     "initialState": null,
+  //     "mediaData": [
+  //       {
+  //         "type": "Image",
+  //         "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/bc3a49306da162e594f3f80cbceea7fb.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1"
+  //       }
+  //     ],
+  //     "modelType": "",
+  //     "objectFit": "fill",
+  //     "price": {
+  //       "unit": "",
+  //       "value": ""
+  //     },
+  //     "tags": null,
+  //     "targetUrl": null,
+  //     "theme": "",
+  //     "title": null,
+  //     "vrLinkCode": "",
+  //     "vrLinkName": ""
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "",
+  //       "scale": 1
+  //     }
+  //   },
+  //   "config": {
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "all"
+  //     },
+  //     "clickable": false
+  //   },
+  //   "extend": "",
+  //   "enabled": true
+  // },
+  // {
+  //   "id": 9883297,
+  //   "stickType": "Model",
+  //   "contentType": "MediaModel",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": 0,
+  //     "longitude": 3.769862743462417,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364534689666224,
+  //       "y": -0.024309268468946193,
+  //       "z": 2.4199576832834193
+  //     },
+  //     "panoIndex": 22,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [-5.181503419168741, -1.182589926096772, -0.46777171863315115],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": ""
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": null,
+  //     "defaultImageUrl": "https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png",
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "",
+  //     "iconUrl": "https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png",
+  //     "id": "",
+  //     "idType": "",
+  //     "info": null,
+  //     "initialState": null,
+  //     "mediaData": [
+  //       {
+  //         "type": "Image",
+  //         "url": "https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/9oE70zOOX9Cy1BqFGm/8414dbe692f5a4c183cc9072d17f5981.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1"
+  //       }
+  //     ],
+  //     "mediaPosition": [
+  //       [-0.27, 0.1172, 0.028],
+  //       [0.27, 0.1172, 0.028],
+  //       [0.27, 1.6172, 0.028],
+  //       [-0.27, 1.6172, 0.028]
+  //     ],
+  //     "modelType": "billboard1",
+  //     "modelUrl": "https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf",
+  //     "objectFit": "contain",
+  //     "previewUrl": "https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png",
+  //     "price": {
+  //       "unit": "",
+  //       "value": ""
+  //     },
+  //     "size": "540x1500",
+  //     "tags": null,
+  //     "targetUrl": null,
+  //     "theme": "",
+  //     "title": null,
+  //     "type": "billboard1",
+  //     "vrLinkCode": "",
+  //     "vrLinkName": ""
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "",
+  //       "scale": 1
+  //     }
+  //   },
+  //   "config": {
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "all"
+  //     },
+  //     "clickable": false
+  //   },
+  //   "matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -5.181503419168741, -1.182589926096772, -0.46777171863315115, 1],
+  //   "extend": "",
+  //   "enabled": true
+  // },
+  // {
+  //   "id": 9883298,
+  //   "stickType": "2DPoint",
+  //   "contentType": "Marketing",
+  //   "fiveState": {
+  //     "distance": 0,
+  //     "fov": 95,
+  //     "latitude": 0.11020898486430976,
+  //     "longitude": 5.564649742203108,
+  //     "mode": "Panorama",
+  //     "offset": {
+  //       "x": -4.364480018615723,
+  //       "y": -0.024309400469064713,
+  //       "z": 2.4200799465179443
+  //     },
+  //     "panoIndex": 21,
+  //     "workCode": "9oE70zOOX9Cy1BqFGm"
+  //   },
+  //   "position": [-3.1860874659546683, 0.13180953705771278, 1.3027517889360016],
+  //   "mediaData": null,
+  //   "data": {
+  //     "action": {
+  //       "type": "iframe",
+  //       "url": ""
+  //     },
+  //     "appearance": "plane",
+  //     "brandTags": ["TORY BURCH"],
+  //     "description": null,
+  //     "headerPictureType": "",
+  //     "highlightText": "了解更多",
+  //     "id": "50460",
+  //     "idType": "goods",
+  //     "info": [],
+  //     "initialState": null,
+  //     "mediaData": [
+  //       {
+  //         "type": "Image",
+  //         "url": "https://vrlab-image4.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1"
+  //       }
+  //     ],
+  //     "modelType": "",
+  //     "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+  //     "price": {
+  //       "unit": "元",
+  //       "value": "10000"
+  //     },
+  //     "tags": ["92087"],
+  //     "targetUrl": null,
+  //     "theme": "dark",
+  //     "title": "1号包",
+  //     "vrLinkCode": "",
+  //     "vrLinkName": ""
+  //   },
+  //   "style": {
+  //     "point": {
+  //       "iconType": "goods6",
+  //       "scale": 1,
+  //       "size": "XL",
+  //       "steps": 1,
+  //       "type": "goods6",
+  //       "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+  //     }
+  //   },
+  //   "config": {
+  //     "unfoldedConfig": {
+  //       "autoUnfold": {
+  //         "enable": true
+  //       }
+  //     },
+  //     "visibleConfig": {
+  //       "visiblePanoIndex": "all"
+  //     }
+  //   },
+  //   "extend": "",
+  //   "enabled": true
+  // }
 ]
 
 export const AddTagData = {

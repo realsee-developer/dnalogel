@@ -6,6 +6,7 @@ import { Box } from '@mui/material'
 import PanoTagPluginUse from './PanoTagPluginUse'
 import { FivePluginInit, parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
+import work from './mocks/work.json'
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
@@ -25,7 +26,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const work = useFetchDatas(DATA_TYPES.WORK)
+  // const work = useFetchDatas(DATA_TYPES.WORK)
 
   // React.useEffect(() => {
   //     setTimeout(() => {
@@ -39,7 +40,7 @@ const App: React.FC = () => {
       <FiveProvider
         initialWork={parseWork(work)}
         // initialState={{ mode: 'Floorplan' }}
-        initialState={{ panoIndex: 4 }}
+        initialState={{ panoIndex: 21 }}
         ref={(ref) => Object.assign(window, { $five: ref?.five })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
