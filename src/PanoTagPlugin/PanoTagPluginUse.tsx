@@ -5,6 +5,7 @@ import { TagsList, AddTagData } from './mocks/mock_data'
 import TagsList2 from './mocks/marketingData'
 import TagsList3 from './mocks/mediaModel'
 import TagsList4 from './mocks/textTagData'
+import TagsList5 from './mocks/mjyygrw5.ts'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import ImageIcon from '@mui/icons-material/Image'
@@ -61,7 +62,7 @@ const ContentTypeOptions = {
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
   const [fiveState, setFiveState] = useFiveState()
-  const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
+  const [currentTagList, setCurrentTagList] = useState(TagsList5.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const [enabled, setEnabled] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
