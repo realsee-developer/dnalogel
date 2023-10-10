@@ -1443,5 +1443,677 @@
               },
               "extend": "",
               "enabled": true
-          }
+          },
+          {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        },
+        {
+            "id": 9883298,
+            "stickType": "2DPoint",
+            "contentType": "Marketing",
+            "fiveState": {
+                "distance": 0,
+                "fov": 95,
+                "latitude": 0.11020898486430976,
+                "longitude": 5.564649742203108,
+                "mode": "Panorama",
+                "offset": {
+                    "x": -4.364480018615723,
+                    "y": -0.024309400469064713,
+                    "z": 2.4200799465179443
+                },
+                "panoIndex": 21,
+                "workCode": "9oE70zOOX9Cy1BqFGm"
+            },
+            "position": [
+                -3.1860874659546683,
+                0.13180953705771278,
+                1.3027517889360016
+            ],
+            "mediaData": null,
+            "data": {
+                "action": {
+                    "type": "iframe",
+                    "url": ""
+                },
+                "appearance": "plane",
+                "brandTags": [
+                    "TORY BURCH"
+                ],
+                "description": null,
+                "headerPictureType": "",
+                "highlightText": "了解更多",
+                "id": "50460",
+                "idType": "goods",
+                "info": [],
+                "initialState": null,
+                "mediaData": [
+                    {
+                        "type": "Image",
+                        "url": "https://vrlab-public.ljcdn.com/release/vrsaas/work/tag/35ceeec2-47fa-4380-970d-154007e205f4.png"
+                    }
+                ],
+                "modelType": "",
+                "modelUrl": "https://vrlab-public.ljcdn.com/release/ue4furniture/999924cab07a98d58514e7037a7abe90/pbr/model.pbr",
+                "price": {
+                    "unit": "元",
+                    "value": "10000"
+                },
+                "tags": [
+                    "92087"
+                ],
+                "targetUrl": null,
+                "theme": "dark",
+                "title": "1号包",
+                "vrLinkCode": "",
+                "vrLinkName": ""
+            },
+            "style": {
+                "point": {
+                    "iconType": "goods6",
+                    "scale": 1,
+                    "size": "XL",
+                    "steps": 1,
+                    "type": "goods6",
+                    "url": "http://vrlab-public.ljcdn.com/common/file/web/ebca06af-0123-46a1-8f08-9df78afd4500.png"
+                }
+            },
+            "config": {
+                "unfoldedConfig": {
+                    "autoUnfold": {
+                        "enable": true
+                    }
+                },
+                "visibleConfig": {
+                    "visiblePanoIndex": "all"
+                }
+            },
+            "extend": "",
+            "enabled": true
+        }
       ]
