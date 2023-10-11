@@ -1,0 +1,178 @@
+{
+  "lines": [
+    {
+      "id": 284,
+      "custom_id": 37335139730,
+      "name": "去就餐",
+      "display_index": 1,
+      "pano_group": [13, 12, 9, 7, 1, 2, 4],
+      "path": null,
+      "type": "",
+      "visible_floor_indexes": null,
+      "user_id": 36184089396510730
+    },
+    {
+      "id": 285,
+      "custom_id": 37335139730,
+      "name": "去打乒乓球",
+      "display_index": 2,
+      "pano_group": [1, 0, 17, 18, 23, 23],
+      "path": null,
+      "type": "",
+      "visible_floor_indexes": null,
+      "user_id": 36184089396510730
+    },
+    {
+      "id": 624,
+      "custom_id": 37335139730,
+      "name": "随便填一填",
+      "display_index": 3,
+      "pano_group": null,
+      "path": [
+        {
+          "curve_type": "catmullrom",
+          "points": [
+            [-6.130486737022816, -1.1371740647018505, 1.401460308168021],
+            [-2.0493126876519825, -1.1371740647018505, 1.344380950548766],
+            [0.833194857707837, -1.1371740647018505, 2.5430474605531113],
+            [1.3754487523794872, -1.1371740647018505, 1.4585396657872753],
+            [2.2316391123873545, -1.1371740647018505, 0.4596509074503213],
+            [2.6311946137243565, -1.1371740647018505, 0.3454921922118103],
+            [2.5741152563905016, -1.1371740647018505, -1.6808250032717271],
+            [2.4314168630558575, -1.1371740647018505, -4.135237380899674],
+            [0.1197028910346134, -1.1371740647018505, -4.106697702090047],
+            [-0.6223287543055355, -1.1371740647018505, -6.504030722098739],
+            [-0.8221065049740386, -1.1371740647018505, -4.991427745188493]
+          ],
+          "tension": 0.5,
+          "type": "CatmullRomCurve3"
+        }
+      ],
+      "type": "",
+      "visible_floor_indexes": [0],
+      "user_id": 36184089396510730,
+      "model_style": {
+        "background_color": "#52E2FF",
+        "background_opacity": 0.3,
+        "border_color": "#52E2FF",
+        "border_opacity": 0.4,
+        "color": "#52E2FF",
+        "end_tag": {
+          "data": {
+            "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/end2.5e3a17c2.png",
+            "text": ""
+          },
+          "id": "01f36072-ffdd-45f4-1d4b-20e0c09205e9",
+          "position": [-0.8221065049740386, -1.1371740647018505, -4.991427745188493]
+        },
+        "opacity": 1,
+        "scale": 1,
+        "start_tag": {
+          "data": {
+            "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/start2.d28f9bf8.png",
+            "text": ""
+          },
+          "id": "faf91ebc-4621-434c-494d-3d8f8318389d",
+          "position": [-6.130486737022816, -1.1371740647018505, 1.401460308168021]
+        },
+        "texture": {
+          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow-white.5c2c79a5.png"
+        },
+        "unit_length": 0.5,
+        "visible": true,
+        "width": 0.5
+      },
+      "panorama_style": {
+        "background_opacity": 0,
+        "border_opacity": 0,
+        "opacity": 0,
+        "scale": 1,
+        "visible": false,
+        "start_tag": {
+          "data": null
+        },
+        "end_tag": {
+          "data": null
+        },
+        "texture": null
+      }
+    },
+    {
+      "id": 628,
+      "custom_id": 37335139730,
+      "name": "贪吃蛇",
+      "display_index": 4,
+      "pano_group": null,
+      "path": [
+        {
+          "curve_type": "catmullrom",
+          "points": [
+            [-6.55858191702675, -1.1371740647018505, -5.876157788286938],
+            [-3.9614711583362205, -1.1371740647018505, -5.876157788286938],
+            [-2.1920110809866262, -1.1371740647018505, -5.847618109477311],
+            [-2.277630116987413, -1.1371740647018505, -4.392094490186319],
+            [-2.762804654325206, -1.1371740647018505, -3.9069199504226555],
+            [-3.5333759783322867, -1.1371740647018505, -3.507364447087873],
+            [-5.217217019681092, -1.1371740647018505, -3.2505073378012272],
+            [-6.472962881025963, -1.1371740647018505, -3.107808943753091],
+            [-6.53004223835982, -1.1371740647018505, -4.0781580232804195],
+            [-6.244645451690532, -1.1371740647018505, -4.1637770597093]
+          ],
+          "tension": 0.5,
+          "type": "CatmullRomCurve3"
+        }
+      ],
+      "type": "",
+      "visible_floor_indexes": [0],
+      "user_id": 36184089396510730,
+      "model_style": {
+        "background_color": "#FF0000",
+        "background_opacity": 0.3,
+        "border_color": "#FF0000",
+        "border_opacity": 0.4,
+        "color": "#FF0000",
+        "end_tag": {
+          "data": {
+            "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/end2.5e3a17c2.png",
+            "text": ""
+          },
+          "id": "0d1799b6-6c46-49eb-8716-04db3a7ecb49",
+          "position": [-6.244645451690532, -1.1371740647018505, -4.1637770597093]
+        },
+        "opacity": 1,
+        "scale": 1,
+        "start_tag": {
+          "data": {
+            "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/start2.d28f9bf8.png",
+            "text": "跑圈"
+          },
+          "id": "16dfa4a3-1980-49d0-ce73-72770be49647",
+          "position": [-6.55858191702675, -1.1371740647018505, -5.876157788286938]
+        },
+        "texture": {
+          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow-white.5c2c79a5.png"
+        },
+        "unit_length": 0.5,
+        "visible": true,
+        "width": 0.5
+      },
+      "panorama_style": {
+        "background_opacity": 0,
+        "border_opacity": 0,
+        "opacity": 0,
+        "scale": 1,
+        "visible": false,
+        "start_tag": {
+          "data": null
+        },
+        "end_tag": {
+          "data": null
+        },
+        "texture": null
+      }
+    }
+  ],
+  "config": {
+    "arrowTextureUrl": "https://vr-image-4.realsee-cdn.cn/release/web/arrow-white.5c2c79a5.png"
+  }
+}
