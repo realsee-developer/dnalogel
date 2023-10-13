@@ -8,7 +8,6 @@ import { Box } from '@mui/material'
 import getInitialParamFromUrl from '../utils/getInitialParamFromUrl'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import * as THREE from 'three'
-// import { work } from '../../mock/BigSpace/work'
 
 Object.assign(window, { THREE })
 
