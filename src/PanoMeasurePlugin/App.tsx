@@ -7,6 +7,7 @@ import { parseWork } from '@realsee/five'
 import { Box } from '@mui/material'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { PanoMeasureParameterType } from '@realsee/dnalogel/dist'
+// import work from './mocks/Wox6RD.json'
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率

@@ -1,12 +1,14 @@
-import { Box, Paper, ButtonGroup, Button } from '@mui/material'
+import { Box, Paper, ButtonGroup, Button, BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { PanoMeasurePlugin, PanoMeasurePluginPolylineJson, PanoMeasurePluginPolyline } from '@realsee/dnalogel/dist'
-import { unsafe__useFiveInstance } from '@realsee/five/react'
+import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { mockMeasureRulerServerData } from './mockData'
+import { Five, Mode } from '@realsee/five'
 
 const PanoMeasurePluginUsage = () => {
   const five = unsafe__useFiveInstance()
+  const [fiveState, setFiveState] = useFiveState()
   const panoMeasurePlugin = five.plugins.panoMeasurePlugin as ReturnType<typeof PanoMeasurePlugin>
   const [measureEnableBtn, setMeasureEnableBtn] = React.useState<boolean>(true)
   const [isDefaultUnit, setIsDefaultUnit] = React.useState(true)
@@ -52,10 +54,10 @@ const PanoMeasurePluginUsage = () => {
   }, [])
 
   // DELETE debug
-  useEffect( () => {
-      panoMeasurePlugin.changeIsMobile(false)
-      panoMeasurePlugin.enable()
-      setMeasureEnableBtn(false)
+  useEffect(() => {
+    panoMeasurePlugin.changeIsMobile(false)
+    panoMeasurePlugin.enable()
+    setMeasureEnableBtn(false)
   }, [])
 
   const handleMeasureEnable = (isMobile: boolean) => {
@@ -190,6 +192,18 @@ const PanoMeasurePluginUsage = () => {
 
   return (
     <Box>
+      <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
+        <BottomNavigation
+          showLabels
+          value={fiveState.mode}
+          onChange={(_, newValue: Mode) => {
+            setFiveState({ mode: newValue })
+          }}
+        >
+          <BottomNavigationAction label="全景漫游" value={Five.Mode.Panorama} />
+          <BottomNavigationAction label="空间总览" value={Five.Mode.Floorplan} />
+        </BottomNavigation>
+      </Paper>
       <Paper
         sx={{
           display: `${measureEnableBtn ? 'block' : 'none'}`,

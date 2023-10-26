@@ -42,9 +42,9 @@ const App: React.FC = () => {
     work && (
       <FiveProvider
         initialWork={parseWork(work)}
-        // initialState={{ mode: 'Floorplan' }}
-        // initialState={{ panoIndex: 20 }}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
+        // initialState={{ mode: 'Mapview' }}
+        initialState={{ panoIndex: 1 }}
+        ref={(ref) => Object.assign(window, { $five: ref ? ref.five : undefined })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
           <FiveCanvas {...size} />

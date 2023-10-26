@@ -54,7 +54,7 @@
 //     // test
 //     meshes.forEach((mesh) => {
 //       fiveDomEvent.addAutoBindEventListener(mesh, 'click', () => {
-//         console.log('click', mesh)
+//         console.info('click', mesh)
 //       })
 
 //       fiveDomEvent.addAutoBindEventListener(mesh, 'hover', () => {
