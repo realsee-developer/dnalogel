@@ -349,19 +349,23 @@ export const TagsList = [
       text: '2D跳转标签',
     },
     id: 6,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 2.439458631185228,
-      latitude: -0.01238390092879257,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
+  },
+  {
+    dimensionType: '2D',
+    pointType: 'PointTag',
+    contentType: 'Panorama',
+    enable: true,
+    position: [-0.8070892936181384, 0.1, 1.0212990045547485],
+    data: {
+      mediaData: [
+        {
+          type: 'Image',
+          // url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+          thumbnail: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        },
+      ],
     },
+    id: 100,
   },
   {
     id: 'MediaModel',
