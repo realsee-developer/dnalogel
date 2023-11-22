@@ -84,6 +84,7 @@ const PanoTagPluginUse = () => {
     //   ReactDOM.render(<CommentTag tag={tag}></CommentTag>, container)
     //   return () => ReactDOM.unmountComponentAtNode(container)
     // })
+    pluginInstance.bindRenderer('OCR', 'Text')
     const list = currentTagList as unknown as Tag[]
     pluginInstance.load({
       tagList: list,
