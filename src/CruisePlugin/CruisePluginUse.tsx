@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { WorkObserver } from '@realsee/five'
+import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
+import { Five, Mode, WorkObserver } from '@realsee/five'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import List from '@mui/material/List'
@@ -19,18 +19,22 @@ import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
+import data from '../GuideLinePlugin/mocks/data.json'
+import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
+import { GuideLinePluginExportType } from '@realsee/dnalogel/dist'
+import { MoveController } from '@realsee/dnalogel/dist'
 
 export interface State extends SnackbarOrigin {
   open: boolean
 }
 
 const CruisePluginUse = () => {
+  const [fiveState, setFiveState] = useFiveState()
   const [visible, setVisible] = useState<boolean>(true)
   const [startIndex, setStartIndex] = useState<number>(0)
   const [currentSpeed, setCurrentSpeed] = useState<number>(1)
   const [currentGuideLine, setCurrentGuideLine] = useState<number[]>([0, 1, 2, 3, 4])
   // 可选的路径
-  const [observersData, setCurrentObserversData] = useState<WorkObserver[]>([])
   const [toastMessage, setToastMessage] = useState<string>('')
   const [currentState, setCurrentState] = useState<State>({
     open: false,
@@ -40,29 +44,19 @@ const CruisePluginUse = () => {
   const { vertical, horizontal, open } = currentState
 
   const five = unsafe__useFiveInstance()
+  const observersData = five.observers
   const cruisePlugin = five.plugins.cruisePlugin
+  const movePlugin = React.useRef<MoveController>(new MoveController(five))
+  const modelGuideLine = five.plugins.guideLinePlugin as GuideLinePluginExportType
 
   useEffect(() => {
-    initData()
-  }, [])
-
-  const initData = async () => {
-    if (!five.work) return
-
-    await cruisePlugin.load({
-      panoIndexList: currentGuideLine,
-      moveToFirstPanoEffect: 'montage',
-      stay: 1000,
+    cruisePlugin.load({ panoIndexList: currentGuideLine, moveToFirstPanoEffect: 'montage', stay: 1000 })
+    modelGuideLine.load(data as any).then(() => {
+      modelGuideLine.show()
+      movePlugin.current.load({ path: modelGuideLine.getGuideLineItemByID(624)?.modelItem.curvePath })
     })
-
-    setCurrentObserversData(five.work.observers)
-
-    if (visible) {
-      handleVisibleChange(true)
-    } else {
-      handleVisibleChange(false)
-    }
-  }
+    return () => modelGuideLine.clear()
+  }, [])
 
   // 显示/隐藏路径
   const handleVisibleChange = async (value: boolean) => {
@@ -83,8 +77,6 @@ const CruisePluginUse = () => {
       moveToFirstPanoEffect: 'montage',
       stay: 1000,
     })
-
-    setCurrentObserversData(five.work.observers)
 
     if (visible) {
       handleVisibleChange(true)
@@ -239,6 +231,19 @@ const CruisePluginUse = () => {
       direction="row"
       sx={{ position: 'fixed', top: '10px', left: '10px', width: '100%', backgroundColor: 'transparent', overflow: 'scroll' }}
     >
+      <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
+        <BottomNavigation
+          showLabels
+          value={fiveState.mode}
+          onChange={(_, newValue: Mode) => {
+            setFiveState({ mode: newValue })
+          }}
+        >
+          <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
+          <BottomNavigationAction label="Model" value={Five.Mode.Model} />
+          <BottomNavigationAction label="Mapview" value={Five.Mode.Mapview} />
+        </BottomNavigation>
+      </Paper>
       <Box component="span">
         <Stack spacing={1} direction="row" sx={{ backgroundColor: 'transparent' }}>
           <Button variant="contained" onClick={() => handleVisibleChange(!visible)}>
@@ -247,13 +252,28 @@ const CruisePluginUse = () => {
           <Button variant="contained" onClick={() => reloadCruisePlugin()}>
             重载路径
           </Button>
-          <Button variant="contained" onClick={() => cruisePlugin.play()}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              five.state.mode !== 'Panorama' ? movePlugin.current.play() : cruisePlugin.play()
+            }}
+          >
             开始漫游
           </Button>
-          <Button variant="contained" onClick={() => cruisePlugin.pause()}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              five.state.mode !== 'Panorama' ? movePlugin.current.pause() : cruisePlugin.pause()
+            }}
+          >
             暂停漫游
           </Button>
-          <Button variant="contained" onClick={() => cruisePlugin.playFromStart()}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              five.state.mode !== 'Panorama' ? movePlugin.current.playFromStart() : cruisePlugin.playFromStart()
+            }}
+          >
             从头开始
           </Button>
           <Box>{renderStartIndexSelect()}</Box>

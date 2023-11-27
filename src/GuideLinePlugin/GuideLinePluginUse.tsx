@@ -15,9 +15,10 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { GuideLinePluginType } from '@realsee/dnalogel/dist'
+import data from './mocks/data.json'
 
 const GuideLinePluginUse = () => {
-  const id = 1
+  const id = 624
   const five = unsafe__useFiveInstance()
   const [visible, setVisible] = useState<boolean>(true)
   // 可选的路径
@@ -41,10 +42,12 @@ const GuideLinePluginUse = () => {
 
   // 重载路径
   useEffect(() => {
-    if (panoIndexGroup.length === 0) return guideLine.clear()
-    guideLine.load({
-      lines: [{ id, pano_group: panoIndexGroup, panorama_style: { visible: true } }],
-    })
+    // if (panoIndexGroup.length === 0) return guideLine.clear()
+    // guideLine.load({
+    //   lines: [{ id, pano_group: panoIndexGroup, panorama_style: { visible: true } }],
+    // })
+    guideLine.load(data as any)
+    return () => guideLine.clear()
   }, [panoIndexGroup])
 
   useFiveEventCallback('loaded', (_, work) => {
@@ -60,7 +63,7 @@ const GuideLinePluginUse = () => {
         <Button
           variant="contained"
           onClick={() => {
-            const item = guideLine.getGuideLineItemByID(1)
+            const item = guideLine.getGuideLineItemByID(id)
             item?.walk()
           }}
         >
