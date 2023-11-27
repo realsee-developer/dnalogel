@@ -115,13 +115,14 @@ const PluginUse2: React.FC = () => {
 
   React.useEffect(() => {
     const loader = new GLTFLoader()
-    loader.load('//vrlab-static.ljcdn.com/release/web/adPlane2.ca03e881.glb', (gltf) =>{
+    loader.load('https://global-public.realsee-cdn.com/release/vrsaas/file/signwork/tag/45a72c19-17d0-409a-975e-fb9bffd8e48e.glb', (gltf) =>{
       const object = gltf.scene
       objectRef.current = object
       object.position.copy(new Vector3(...vector))
       window['$object'] = object
       // five.scene.add(sphere)
       five.scene.add(object)
+      five.needsRender = true
     }, undefined, (e) => console.warn(e))
     return () => {
       // five.scene.remove(sphere)
