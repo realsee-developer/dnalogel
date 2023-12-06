@@ -1,7 +1,7 @@
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
 import { Five, Mode } from '@realsee/five/five'
 import { ContentType } from '@realsee/dnalogel/dist'
-import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
+import { Paper, BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@mui/material'
 import { AreaMakerController } from '@realsee/dnalogel/dist/AreaMakerPlugin/typing'
 import React from 'react'
 
@@ -17,7 +17,7 @@ const AreaMakerPluginUse = () => {
       list: [
         {
           id: 1,
-          name: '123456',
+          name: '有模型',
           object_data: {
             points: [
               [0, 0, 0],
@@ -29,6 +29,23 @@ const AreaMakerPluginUse = () => {
             fixedY: 0,
             fixedHeight: 2,
             color: '#000000',
+          },
+        },
+        {
+          id: 2,
+          name: '没有模型',
+          object_data: {
+            points: [
+              [0, 0, 0],
+              [-1, 0, -1],
+              [0, 0, 1],
+            ],
+            floorIndex: 0,
+            height: 2,
+            fixedY: 0,
+            fixedHeight: 2,
+            color: '#000000',
+            visible: false,
           },
         },
       ],
@@ -49,6 +66,12 @@ const AreaMakerPluginUse = () => {
           <BottomNavigationAction label="Floorplan" value={Five.Mode.Floorplan} />
           <BottomNavigationAction label="Mapview" value={Five.Mode.Mapview} />
         </BottomNavigation>
+      </Paper>
+      <Paper sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
+        <ButtonGroup size="large" aria-label="large button group" orientation="vertical">
+          <Button onClick={() => pluginInstance?.show()}>show</Button>
+          <Button onClick={() => pluginInstance?.hide()}>hide</Button>
+        </ButtonGroup>
       </Paper>
     </>
   )
