@@ -184,8 +184,9 @@ const PanoTagPluginUse = () => {
             setFiveState({ mode: newValue })
           }}
         >
-          <BottomNavigationAction label="全景漫游" value={Five.Mode.Panorama} />
-          <BottomNavigationAction label="空间总览" value={Five.Mode.Floorplan} />
+          <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
+          <BottomNavigationAction label="Model" value={Five.Mode.Model} />
+          <BottomNavigationAction label="Floorplan" value={Five.Mode.Floorplan} />
         </BottomNavigation>
       </Paper>
       <Stack direction={'column'} spacing={1} sx={{ position: 'fixed', top: '10px', right: '10px' }}>

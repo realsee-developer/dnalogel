@@ -21,14 +21,14 @@ const FiveProvider = createFiveProvider({
             modelConfig: { autoLookAtEnabled: false },
             // clickable: false
           },
-          contentTypeConfig: {
-            '[ModelLike]-Any': {
-              visibleConfig: { keep: 'visible' },
-            },
-            '[PanoramaLike]-Any': {
-              visibleConfig: { keep: 'hidden' },
-            },
-          },
+          // contentTypeConfig: {
+          //   '[ModelLike]-Any': {
+          //     visibleConfig: { keep: 'visible' },
+          //   },
+          //   '[PanoramaLike]-Any': {
+          //     visibleConfig: { keep: 'hidden' },
+          //   },
+          // },
         },
       },
     ] as FivePluginInit<typeof PanoTagPlugin>,
