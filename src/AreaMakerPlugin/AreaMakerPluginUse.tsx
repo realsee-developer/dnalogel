@@ -50,7 +50,16 @@ const AreaMakerPluginUse = () => {
         },
       ],
     })
+
+    pluginInstance.itemMap.forEach((item) => {
+      item.hooks.on('tagShow', () => console.log('tagShow', item.id))
+      item.hooks.on('tagHide', () => console.log('tagHide', item.id))
+    })
   }, [])
+
+  // React.useEffect(() => {}, [
+  //   five.
+  // ])
 
   return (
     <>

@@ -22,7 +22,11 @@ const App: React.FC = () => {
     work && (
       <FiveProvider
         initialWork={parseWork(work)}
-        initialState={{ mode: 'Mapview' }}
+        initialState={{
+          mode: 'Mapview',
+          latitude: 0,
+          longitude: 3.924002093459407,
+        }}
         ref={(ref) => Object.assign(window, { $five: ref ? ref.five : undefined })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
