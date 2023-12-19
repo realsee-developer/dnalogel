@@ -90,9 +90,9 @@ const PanoTagPluginUse = () => {
       tagList: list,
       globalConfig: {
         renderType: 'Mesh',
-        visibleConfig: {
-          visibleFiveMode: 'all',
-        },
+        // visibleConfig: {
+        //   visibleFiveMode: 'all',
+        // },
       },
     })
   }, [])

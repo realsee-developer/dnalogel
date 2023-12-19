@@ -52,8 +52,8 @@ const AreaMakerPluginUse = () => {
     })
 
     pluginInstance.itemMap.forEach((item) => {
-      item.hooks.on('tagShow', () => console.log('tagShow', item.id))
-      item.hooks.on('tagHide', () => console.log('tagHide', item.id))
+      item.hooks.on('tagShow', () => console.info('tagShow', item.id))
+      item.hooks.on('tagHide', () => console.info('tagHide', item.id))
     })
   }, [])
 
