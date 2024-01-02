@@ -1,5 +1,5 @@
 import { ContentType } from '@realsee/dnalogel'
-import { Mode } from '@realsee/five/five'
+import { Mode } from '@realsee/five'
 import { Vector3 } from 'three'
 export const TagsList = [
   {

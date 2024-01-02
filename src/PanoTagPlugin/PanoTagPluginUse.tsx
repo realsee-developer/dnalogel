@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
-import { Five, Mode } from '@realsee/five/five'
+import { Five, Mode } from '@realsee/five'
 import { TagsList, AddTagData } from './mocks/mock_data'
 import TagsList2 from './mocks/marketingData'
 import TagsList3 from './mocks/mediaModel'
 import TagsList4 from './mocks/textTagData'
 import TagsList5 from './mocks/mjyygrw5.ts'
+import TagsListCrash from './mocks/crash/tag.json'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import ImageIcon from '@mui/icons-material/Image'
@@ -61,8 +62,9 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [fiveState, setFiveState] = useFiveState()
-  const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
+  // const [fiveState, setFiveState] = useFiveState()
+  // const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
+  const [currentTagList, setCurrentTagList] = useState(TagsListCrash.data.tagList.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const [enabled, setEnabled] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
@@ -177,7 +179,7 @@ const PanoTagPluginUse = () => {
   return (
     <>
       <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
-        <BottomNavigation
+        {/* <BottomNavigation
           showLabels
           value={fiveState.mode}
           onChange={(_, newValue: Mode) => {
@@ -187,7 +189,7 @@ const PanoTagPluginUse = () => {
           <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
           <BottomNavigationAction label="Model" value={Five.Mode.Model} />
           <BottomNavigationAction label="Floorplan" value={Five.Mode.Floorplan} />
-        </BottomNavigation>
+        </BottomNavigation> */}
       </Paper>
       <Stack direction={'column'} spacing={1} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
         <Stack direction={'row'} spacing={1} justifyContent="flex-end">

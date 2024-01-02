@@ -1,5 +1,5 @@
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
-import { Five, Mode } from '@realsee/five/five'
+import { Five, Mode } from '@realsee/five'
 import { ContentType } from '@realsee/dnalogel/dist'
 import { Paper, BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@mui/material'
 import { AreaMakerController } from '@realsee/dnalogel/dist/AreaMakerPlugin/typing'
@@ -7,7 +7,7 @@ import React from 'react'
 
 const AreaMakerPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [fiveState, setFiveState] = useFiveState()
+  // const [fiveState, setFiveState] = useFiveState()
   const pluginInstance = five.plugins.areaMakerPlugin as AreaMakerController
 
   React.useEffect(() => {
@@ -66,10 +66,10 @@ const AreaMakerPluginUse = () => {
       <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
         <BottomNavigation
           showLabels
-          value={fiveState.mode}
-          onChange={(_, newValue: Mode) => {
-            setFiveState({ mode: newValue })
-          }}
+          // value={fiveState.mode}
+          // onChange={(_, newValue: Mode) => {
+          //   setFiveState({ mode: newValue })
+          // }}
         >
           <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
           <BottomNavigationAction label="Floorplan" value={Five.Mode.Floorplan} />
