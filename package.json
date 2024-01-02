@@ -6,22 +6,21 @@
   "scripts": {
     "dev": "vite",
     "light-dev": "vite",
-    "build": "tsc && vite build",
-    "deploy": "sh ./bin/deploy.sh"
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.1",
-    "@realsee/dnalogel": "workspace:*",
+    "@realsee/dnalogel": "latest",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "three": "0.117.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
-    "@realsee/five": "6.0.0-alpha.74",
+    "@realsee/five": "alpha",
     "@types/react": "^17.0.62",
     "@types/react-dom": "^17.0.20",
     "@vitejs/plugin-react": "^4.0.3",
