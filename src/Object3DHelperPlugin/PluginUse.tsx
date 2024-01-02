@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { Five, Mode } from "@realsee/five"
 import { unsafe__useFiveInstance } from "@realsee/five/react"
 import useFetchDatas, { DATA_TYPES } from "../utils/useFetchDatas";
-import { Object3DHelperPlugin, PanoTagPlugin } from "../../../plugins/dist";
+import { Object3DHelperPlugin, PanoTagPlugin } from "@realsee/dnalogel"
 import {useFivePlugin} from "../utils/hooks/useFivePlugin";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { ObjectLoader, Vector3 } from 'three';
