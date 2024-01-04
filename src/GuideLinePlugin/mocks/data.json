@@ -56,6 +56,7 @@
         "background_opacity": 0.3,
         "border_color": "#52E2FF",
         "border_opacity": 0.4,
+        "border_width": 0.05,
         "color": "#52E2FF",
         "end_tag": {
           "data": {
@@ -83,18 +84,23 @@
         "width": 0.5
       },
       "panorama_style": {
-        "background_opacity": 0,
-        "border_opacity": 0,
-        "opacity": 0,
+        "background_color": "#52E2FF",
+        "background_opacity": 0.3,
+        "border_color": "#ffffff",
+        "border_opacity": 0.3,
+        "border_width": 0.04,
+        "opacity": 1,
         "scale": 1,
-        "visible": false,
+        "texture": {
+          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow-white.5c2c79a5.png"
+        },
+        "visible": true,
         "start_tag": {
           "data": null
         },
         "end_tag": {
           "data": null
-        },
-        "texture": null
+        }
       }
     },
     {
