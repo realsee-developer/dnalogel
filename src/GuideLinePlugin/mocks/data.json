@@ -57,6 +57,7 @@
         "border_color": "#52E2FF",
         "border_opacity": 0.4,
         "border_width": 0.05,
+        "background_clip": "border-box",
         "color": "#52E2FF",
         "end_tag": {
           "data": {
@@ -86,9 +87,10 @@
       "panorama_style": {
         "background_color": "#52E2FF",
         "background_opacity": 0.3,
-        "border_color": "#ffffff",
-        "border_opacity": 0.3,
-        "border_width": 0.04,
+        "border_color": "#FFFFFF",
+        "border_opacity": 0.8,
+        "border_width": 0.02,
+        "background_clip": "padding-box",
         "opacity": 1,
         "scale": 1,
         "texture": {
