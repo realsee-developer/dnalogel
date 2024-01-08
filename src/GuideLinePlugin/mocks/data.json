@@ -52,13 +52,13 @@
       "visible_floor_indexes": [0],
       "user_id": 36184089396510730,
       "model_style": {
-        "background_color": "#52E2FF",
-        "background_opacity": 0.3,
-        "border_color": "#52E2FF",
+        "background_color": "#FFFFFF",
+        "background_opacity": 0.4,
+        "border_color": "#FFFFFF",
         "border_opacity": 0.4,
         "border_width": 0.05,
         "background_clip": "border-box",
-        "color": "#52E2FF",
+        "color": "#FFFFFF",
         "end_tag": {
           "data": {
             "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/end2.5e3a17c2.png",
@@ -78,7 +78,7 @@
           "position": [-6.130486737022816, -1.1371740647018505, 1.401460308168021]
         },
         "texture": {
-          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow-white.5c2c79a5.png"
+          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow1.ebe7d0ff.png"
         },
         "unit_length": 0.5,
         "visible": true,
@@ -86,7 +86,7 @@
       },
       "panorama_style": {
         "background_color": "#52E2FF",
-        "background_opacity": 0.3,
+        "background_opacity": 0.4,
         "border_color": "#FFFFFF",
         "border_opacity": 0.8,
         "border_width": 0.02,
@@ -94,7 +94,7 @@
         "opacity": 1,
         "scale": 1,
         "texture": {
-          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow-white.5c2c79a5.png"
+          "url": "https://vr-image-4.realsee-cdn.cn/release/web/arrow1.ebe7d0ff.png"
         },
         "visible": true,
         "start_tag": {
@@ -138,7 +138,7 @@
         "background_opacity": 0.3,
         "border_color": "#FF0000",
         "border_opacity": 0.4,
-        "color": "#FF0000",
+        "color": "#FFFFFF",
         "end_tag": {
           "data": {
             "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/end2.5e3a17c2.png",
