@@ -7,6 +7,7 @@ import { Object3DHelperPlugin, PanoTagPlugin } from '@realsee/dnalogel'
 import { useFivePlugin } from '../utils/hooks/useFivePlugin'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { ObjectLoader, Vector3 } from 'three'
+import { ObjectHelperControllers } from '@realsee/dnalogel/dist'
 
 // const vector0 = [2.7818808289123007, -1.4285811161048776, -3.616888414534893]
 // const vector1 = [4.829741729794315, -1.4285811161048776, -3.616888414534893]
@@ -123,6 +124,7 @@ const PluginUse: React.FC = () => {
 const PluginUse2: React.FC = () => {
   const five = unsafe__useFiveInstance()
   const objectRef = React.useRef<THREE.Object3D>()
+  const controller = React.useRef<ObjectHelperControllers>()
   const object3DHelperPlugin = useFivePlugin<typeof Object3DHelperPlugin>('object3DHelperPlugin')
 
   React.useEffect(() => {
@@ -157,22 +159,19 @@ const PluginUse2: React.FC = () => {
     const obj = getObject()
     if (obj) {
       const controllers = object3DHelperPlugin.addObject3DHelper(obj, {
-        // moveHelper: {
-        //   enable: true,
-        //   yArrowEnable: false,
-        //   offset: { x: 0, y: { percents: 0.5 }, z: 0 },
-        // },
-        rotateHelper: {
+        moveHelper: {
           enable: true,
-          // offset: { x: 0, y: { percents: 0.5 }, z: 0 },
-          yzCircleEnable: false,
-          xzCircleEnable: true,
-          xyCircleEnable: false,
+          yArrowEnable: false,
+          xArrowEnable: false,
+          zArrowEnable: false,
+          offset: { x: 0, y: { percents: 0.5 }, z: 0 },
         },
-        scaleHelper: true,
+        rotateHelper: false,
+        scaleHelper: false,
         boundingBoxHelper: true,
       })
       window['controllers'] = controllers
+      controller.current = controllers
     } else {
       console.error('objectRef.current is null')
     }
@@ -195,6 +194,9 @@ const PluginUse2: React.FC = () => {
         left: '0',
       }}
     >
+      <button type="button" onClick={() => controller.current?.moveController?.moveByMouse()}>
+        move
+      </button>
       <button type="button" onClick={() => object3DHelperPlugin.show()}>
         show
       </button>
