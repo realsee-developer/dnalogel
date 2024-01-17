@@ -1,5 +1,4 @@
 import { Object3DHelperPlugin, PanoTagPlugin } from '@realsee/dnalogel/dist'
-import { ModelViewPlugin } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 // @ts-ignore
 import React, { FC } from 'react'

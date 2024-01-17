@@ -1,12 +1,10 @@
 import * as React from 'react'
 import * as THREE from 'three'
-import { Five, Mode } from '@realsee/five'
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
-import { Object3DHelperPlugin, PanoTagPlugin } from '@realsee/dnalogel'
+import { Object3DHelperPlugin, PanoTagPlugin } from '@realsee/dnalogel/dist'
 import { useFivePlugin } from '../utils/hooks/useFivePlugin'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { ObjectLoader, Vector3 } from 'three'
+import { Vector3 } from 'three'
 import { ObjectHelperControllers } from '@realsee/dnalogel/dist'
 
 // const vector0 = [2.7818808289123007, -1.4285811161048776, -3.616888414534893]
@@ -161,12 +159,12 @@ const PluginUse2: React.FC = () => {
       const controllers = object3DHelperPlugin.addObject3DHelper(obj, {
         moveHelper: {
           enable: true,
-          yArrowEnable: false,
-          xArrowEnable: false,
-          zArrowEnable: false,
-          offset: { x: 0, y: { percents: 0.5 }, z: 0 },
+          yArrowEnable: true,
+          xArrowEnable: true,
+          zArrowEnable: true,
+          // offset: { x: 0, y: { percents: 0.5 }, z: 0 },
         },
-        rotateHelper: false,
+        rotateHelper: true,
         scaleHelper: false,
         boundingBoxHelper: true,
       })
@@ -194,7 +192,7 @@ const PluginUse2: React.FC = () => {
         left: '0',
       }}
     >
-      <button type="button" onClick={() => controller.current?.moveController?.moveByMouse()}>
+      <button type="button" onClick={() => controller.current?.moveController?.moveByMouse({ useFaceNormal: true })}>
         move
       </button>
       <button type="button" onClick={() => object3DHelperPlugin.show()}>
