@@ -192,7 +192,20 @@ const PluginUse2: React.FC = () => {
         left: '0',
       }}
     >
-      <button type="button" onClick={() => controller.current?.moveController?.moveByMouse({ useFaceNormal: true })}>
+      <button
+        type="button"
+        onClick={() =>
+          controller.current?.moveController?.moveByMouse({
+            useFaceNormal: {
+              enable: true,
+              fixedFaceNormal: (vector) => {
+                vector.y = 0
+                return vector.normalize()
+              },
+            },
+          })
+        }
+      >
         move
       </button>
       <button type="button" onClick={() => object3DHelperPlugin.show()}>
