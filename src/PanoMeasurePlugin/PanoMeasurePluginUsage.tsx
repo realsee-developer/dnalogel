@@ -53,16 +53,9 @@ const PanoMeasurePluginUsage = () => {
     }
   }, [])
 
-  // DELETE debug
-  useEffect(() => {
-    panoMeasurePlugin.changeIsMobile(false)
-    panoMeasurePlugin.enable()
-    setMeasureEnableBtn(false)
-  }, [])
-
   const handleMeasureEnable = (isMobile: boolean) => {
     panoMeasurePlugin.changeIsMobile(isMobile)
-    panoMeasurePlugin.enable()
+    panoMeasurePlugin.enable({ mode: 'Mixed' })
     setMeasureEnableBtn(false)
   }
 
@@ -90,9 +83,9 @@ const PanoMeasurePluginUsage = () => {
 
   // 当前编辑的虚线发生改变时，查看线段展示的文字内容
   // 虚线不存在时 line === null
-  panoMeasurePlugin.hook.on('editedDashedLineChange', (line) => {
-    // console.info('__editedDashedLineChange__', line?.distanceItem.getCurrentContent())
-  })
+  // panoMeasurePlugin.hook.on('editedDashedLineChange', (line) => {
+  //   console.info('__editedDashedLineChange__', line?.distanceItem.getCurrentContent())
+  // })
 
   // 监听编辑态下的折线变化
   function listenPolylineChange() {
@@ -206,7 +199,6 @@ const PanoMeasurePluginUsage = () => {
       </Paper>
       <Paper
         sx={{
-          display: `${measureEnableBtn ? 'block' : 'none'}`,
           position: 'fixed',
           top: '10px',
           right: '10px',
@@ -228,21 +220,6 @@ const PanoMeasurePluginUsage = () => {
           >
             开启测量工具(移动端)
           </Button>
-          <Button variant="contained" onClick={toggleUnit}>
-            切换单位
-          </Button>
-        </ButtonGroup>
-      </Paper>
-      <Paper
-        sx={{
-          display: `${!measureEnableBtn ? 'block' : 'none'}`,
-          position: 'fixed',
-          top: '10px',
-          right: '10px',
-          backgroundColor: 'transparent',
-        }}
-      >
-        <ButtonGroup size="large" aria-label="large button group" orientation="vertical" variant="contained">
           <Button variant="contained" onClick={toggleUnit}>
             切换单位
           </Button>

@@ -20,10 +20,10 @@ const FiveProvider = createFiveProvider({
       {
         useGuideController: true,
         useUIController: {
-          useNewUI: true,
+          // useNewUI: true,
         },
         editParams: {
-          allowMeasureType: ['area', 'line'],
+          // allowMeasureType: ['area', 'line'],
           // pointSelectorMode: 'cursor',
           autoEndConfig: {
             // line: 2

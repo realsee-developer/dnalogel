@@ -34,12 +34,12 @@ const PanoRulerPluginUsage = ({ vrCode }: { vrCode: string }) => {
   React.useEffect(() => {
     panoRulerPlugin.disable()
     if (panoRulerData) {
+      console.log(panoRulerData?.pano_ruler_data.roomInfo, panoRulerData?.pano_ruler_data.roomRules)
       panoRulerPlugin.load(panoRulerData?.pano_ruler_data.roomInfo, panoRulerData?.pano_ruler_data.roomRules).then(() => {
         panoRulerPlugin.enable()
         setRulerEnable(panoRulerPlugin.state.enable)
       })
     }
-
   }, [panoRulerData])
 
   // useFiveEventCallback(
