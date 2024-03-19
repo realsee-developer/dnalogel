@@ -1,0 +1,1 @@
+import"./index-8e67cb99.js";const i=window.requestAnimationFrame||(n=>setTimeout(n,16)),a=window.cancelAnimationFrame||clearTimeout;function l(n,o=0){o<=0?i(n):i(()=>l(n,o-1))}function f(n,o=60){let e=-1,c=0,u=-1;const m=1e3/o;function r(t){u===-1&&(u=t),e=i(r),!(t-c<m)&&(c=t,n==null||n(t-u))}return e=i(r),function(){a(e)}}export{f as F,l as T};
