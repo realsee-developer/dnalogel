@@ -14,9 +14,13 @@ const ModelFloorplanPluginUse = (props: { isDefaultUnit: boolean }) => {
   const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
   const plugin = five.plugins.modelFloorplanPlugin as ReturnType<typeof ModelFloorplanPlugin>
 
-  useFiveEventCallback('modeChange', (mode) => {
-    setMode(mode)
-  }, [setMode])
+  useFiveEventCallback(
+    'modeChange',
+    (mode) => {
+      setMode(mode)
+    },
+    [setMode],
+  )
 
   React.useEffect(() => {
     plugin.changeConfigs({
@@ -24,7 +28,9 @@ const ModelFloorplanPluginUse = (props: { isDefaultUnit: boolean }) => {
         return props.isDefaultUnit ? (areaSize / 1000000).toFixed(1) + '㎡' : (areaSize * 0.000010764).toFixed(1) + 'ft²'
       },
       getRoomDimensionText(width: number, height: number) {
-        return props.isDefaultUnit ? (width * 0.001).toFixed(1) + 'm × ' + (height * 0.001).toFixed(1) + 'm' : (width * 0.0032808).toFixed(1) + 'ft × ' + (height * 0.0032808).toFixed(1) + 'ft'
+        return props.isDefaultUnit
+          ? (width * 0.001).toFixed(1) + 'm × ' + (height * 0.001).toFixed(1) + 'm'
+          : (width * 0.0032808).toFixed(1) + 'ft × ' + (height * 0.0032808).toFixed(1) + 'ft'
       },
       getRuleDistanceText(distance) {
         return props.isDefaultUnit ? distance.toString() : (distance * 0.0032808).toFixed(1) + 'ft'
@@ -33,7 +39,7 @@ const ModelFloorplanPluginUse = (props: { isDefaultUnit: boolean }) => {
   }, [props.isDefaultUnit])
 
   // 插件事件监听
-  React.useEffect(() => { 
+  React.useEffect(() => {
     five.plugins.modelFloorplanPlugin.hooks.on('showAnimationEnded', () => {
       console.info('🐶-- ModelFloorplanPlugin -- showAnimationEnded')
     })

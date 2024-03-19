@@ -16,8 +16,8 @@ export default defineConfig(({ mode }) => {
       host: true,
       open: '/',
       hmr: {
-        overlay: false
-      }
+        overlay: false,
+      },
     },
     build: {
       rollupOptions: {

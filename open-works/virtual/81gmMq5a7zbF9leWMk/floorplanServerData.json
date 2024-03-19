@@ -127,11 +127,7 @@
             "floor_type": 0,
             "id": "u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb",
             "name": "卧室",
-            "observer_indexs": [
-              11,
-              12,
-              13
-            ],
+            "observer_indexs": [11, 12, 13],
             "path": [
               {
                 "x": 37177.1141,
@@ -176,10 +172,7 @@
             "floor_type": 3,
             "id": "u-800df8b4-ac4d-40e4-1a14-30c7fe9365cd",
             "name": "卫生间",
-            "observer_indexs": [
-              9,
-              10
-            ],
+            "observer_indexs": [9, 10],
             "path": [
               {
                 "x": 37177.1141,
@@ -216,9 +209,7 @@
             "floor_type": 4,
             "id": "u-88ff6d59-a88e-4350-8543-2310b083a2de",
             "name": "阳台",
-            "observer_indexs": [
-              6
-            ],
+            "observer_indexs": [6],
             "path": [
               {
                 "x": 32701.1141,
@@ -255,10 +246,7 @@
             "floor_type": 3,
             "id": "u-11d2fd7e-7de9-4584-3d88-26b2402f44fd",
             "name": "厨房",
-            "observer_indexs": [
-              4,
-              5
-            ],
+            "observer_indexs": [4, 5],
             "path": [
               {
                 "x": 33918.3488,
@@ -303,14 +291,7 @@
             "floor_type": 1,
             "id": "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
             "name": "客厅",
-            "observer_indexs": [
-              0,
-              1,
-              2,
-              3,
-              7,
-              8
-            ],
+            "observer_indexs": [0, 1, 2, 3, 7, 8],
             "path": [
               {
                 "x": 37177.1141,

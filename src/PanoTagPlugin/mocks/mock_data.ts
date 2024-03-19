@@ -2,7 +2,6 @@ import { ContentType } from '@realsee/dnalogel'
 import { Mode } from '@realsee/five'
 import { Vector3 } from 'three'
 export const TagsList = [
-
   {
     dimensionType: '2D',
     pointType: 'PointTag',
@@ -331,7 +330,8 @@ export const TagsList = [
         {
           type: 'Image',
           // url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-          thumbnail: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+          thumbnail:
+            'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
         },
       ],
     },

@@ -1,3 +1,3 @@
 declare interface OpenWorks {
-    [key: string]: Record<string, any>
+  [key: string]: Record<string, any>
 }

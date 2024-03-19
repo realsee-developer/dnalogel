@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "light-dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^17.0.20",
     "@vitejs/plugin-react": "^4.0.3",
     "glob": "^8.1.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.1.6",
     "vite": "^4.4.6"
   }

@@ -32,7 +32,9 @@ const PluginUse = () => {
         return isDefaultUnit ? (areaSize / 1000000).toFixed(1) + '㎡' : (areaSize * 0.000010764).toFixed(1) + 'ft²'
       },
       getRoomDimensionText(width: number, height: number) {
-        return isDefaultUnit ? (width * 0.001).toFixed(1) + 'm × ' + (height * 0.001).toFixed(1) + 'm' : (width * 0.0032808).toFixed(1) + 'ft × ' + (height * 0.0032808).toFixed(1) + 'ft'
+        return isDefaultUnit
+          ? (width * 0.001).toFixed(1) + 'm × ' + (height * 0.001).toFixed(1) + 'm'
+          : (width * 0.0032808).toFixed(1) + 'ft × ' + (height * 0.0032808).toFixed(1) + 'ft'
       },
       getRuleDistanceText(distance) {
         return isDefaultUnit ? distance.toString() : (distance * 0.0032808).toFixed(1) + 'ft'

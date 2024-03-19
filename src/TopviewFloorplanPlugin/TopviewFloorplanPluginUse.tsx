@@ -24,13 +24,11 @@ const TopviewFloorplanPluginUse = () => {
   React.useEffect(() => {
     plugin.changeConfigs({
       getRoomAreaText(areaSize) {
-        return isDefaultUnit
-          ? (areaSize / 1000000).toFixed(1) + '㎡'
-          : (areaSize * 0.000010764).toFixed(1) + 'ft²'
+        return isDefaultUnit ? (areaSize / 1000000).toFixed(1) + '㎡' : (areaSize * 0.000010764).toFixed(1) + 'ft²'
       },
       getRuleDistanceText(distance) {
         return isDefaultUnit ? distance.toString() : (distance * 0.0032808).toFixed(1) + 'ft'
-      }
+      },
     })
   }, [isDefaultUnit])
 
@@ -51,12 +49,7 @@ const TopviewFloorplanPluginUse = () => {
           backgroundColor: 'transparent',
         }}
       >
-        <ButtonGroup
-          size="large"
-          aria-label="large button group"
-          orientation="vertical"
-          variant="contained"
-        >
+        <ButtonGroup size="large" aria-label="large button group" orientation="vertical" variant="contained">
           <Button variant="contained" onClick={toggleUnit}>
             切换单位
           </Button>
@@ -74,18 +67,8 @@ const TopviewFloorplanPluginUse = () => {
             setFiveState({ mode: newValue })
           }}
         >
-          <BottomNavigationAction
-            key={1}
-            label="全景漫游"
-            icon={<DirectionsWalkIcon />}
-            value={Five.Mode.Panorama}
-          />
-          <BottomNavigationAction
-            key={2}
-            label="俯视模型"
-            icon={<ViewInArIcon />}
-            value={Five.Mode.Topview}
-          />
+          <BottomNavigationAction key={1} label="全景漫游" icon={<DirectionsWalkIcon />} value={Five.Mode.Panorama} />
+          <BottomNavigationAction key={2} label="俯视模型" icon={<ViewInArIcon />} value={Five.Mode.Topview} />
         </BottomNavigation>
       </Paper>
     </Paper>

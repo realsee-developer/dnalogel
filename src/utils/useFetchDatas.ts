@@ -7,7 +7,7 @@
 import * as React from 'react'
 import * as THREE from 'three'
 
-import getQueryValueByName from "./getQueryValueByName";
+import getQueryValueByName from './getQueryValueByName'
 
 Object.assign(window, { THREE })
 
@@ -19,36 +19,35 @@ const renderCodeFromQuery = getQueryValueByName('renderCode')
 const spaceTypeFromQuery = getQueryValueByName('spaceType')
 
 export enum DATA_TYPES {
-    WORK = 'work',
-    FLOOR_PLAN_SERVER_PLUGIN_DATA = 'floorplanServerData',
-    MODEL_ROOM_LABEL_PLUGIN_DATA = 'modelRoomLabels',
-    MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA = 'modelEntryDoorGuidePluginServerData',
-    PANO_RULER_PLUGIN_SERVER_DATA = 'panoRulerPluginServerData',
-    MODEL_TAG = 'modelTag',
-    PIPELINE_DATA = 'pipelineData',
-    PANO_RULER_PRO_PLUGIN_SERVER_DATA = 'panoRulerProPluginServerData',
+  WORK = 'work',
+  FLOOR_PLAN_SERVER_PLUGIN_DATA = 'floorplanServerData',
+  MODEL_ROOM_LABEL_PLUGIN_DATA = 'modelRoomLabels',
+  MODEL_ENTRY_DOOR_GUIDE_PLUGIN_SERVER_DATA = 'modelEntryDoorGuidePluginServerData',
+  PANO_RULER_PLUGIN_SERVER_DATA = 'panoRulerPluginServerData',
+  MODEL_TAG = 'modelTag',
+  PIPELINE_DATA = 'pipelineData',
+  PANO_RULER_PRO_PLUGIN_SERVER_DATA = 'panoRulerProPluginServerData',
 }
 
-const useFetchDatas = (dataType: DATA_TYPES, renderCode?: string, spaceType?: 'real'):any => {
-    const [returnDatas, setReturnData] = React.useState(null)
-    const dataCode = renderCodeFromQuery || renderCode || DEFAULT_RENDER_CODE
-    const space = spaceTypeFromQuery || spaceType || DEFAULT_SPACE_TYPE
+const useFetchDatas = (dataType: DATA_TYPES, renderCode?: string, spaceType?: 'real'): any => {
+  const [returnDatas, setReturnData] = React.useState(null)
+  const dataCode = renderCodeFromQuery || renderCode || DEFAULT_RENDER_CODE
+  const space = spaceTypeFromQuery || spaceType || DEFAULT_SPACE_TYPE
 
-    React.useEffect( () => {
-        setReturnData(null)
+  React.useEffect(() => {
+    setReturnData(null)
 
-        const requestUrl = `/dnalogel/open-works/${space}/${dataCode}/${dataType}.json`
+    const requestUrl = `/dnalogel/open-works/${space}/${dataCode}/${dataType}.json`
 
-        fetch(requestUrl)
-            .then(response => response.json())
-            .then(response => setReturnData(response))
-            .catch(error => {
-                console.warn(`拉取${requestUrl}数据失败，error log: ${error}`)
-            })
+    fetch(requestUrl)
+      .then((response) => response.json())
+      .then((response) => setReturnData(response))
+      .catch((error) => {
+        console.warn(`拉取${requestUrl}数据失败，error log: ${error}`)
+      })
+  }, [dataType, dataCode])
 
-    }, [dataType, dataCode])
-
-    return returnDatas
+  return returnDatas
 }
 
 export default useFetchDatas

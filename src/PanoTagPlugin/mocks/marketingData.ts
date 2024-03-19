@@ -1,4 +1,4 @@
-import { Tag } from "@realsee/dnalogel"
+import { Tag } from '@realsee/dnalogel'
 
 const position = [
   [-0.2618608363261276, 0.7966536323282932, 1.0212990045547485],
@@ -12,7 +12,7 @@ const position = [
   [-0.13450229902227245, 1.9479987642711007, -2.339700937271118],
   [0.40453655275837064, 1.8774880405246819, -2.339700937271118],
   [-0.17904231756003058, 0.8062602516079178, -2.339700937271118],
-  [0.490196703883047, 0.7845569305289914, -2.339700937271118]
+  [0.490196703883047, 0.7845569305289914, -2.339700937271118],
 ]
 
 const datas: Tag<'Marketing'>['data'][] = [
@@ -24,11 +24,11 @@ const datas: Tag<'Marketing'>['data'][] = [
   },
   {
     title: 'tag很短标题很长长长长长长长长长长长长长长长长长长长长长长长长',
-    tags: ['tags1']
+    tags: ['tags1'],
   },
   {
     title: '标题很短',
-    tags: ['tags很少']
+    tags: ['tags很少'],
   },
   {
     title: '标题很短',
@@ -36,9 +36,9 @@ const datas: Tag<'Marketing'>['data'][] = [
     tags: ['tags很多', 'tags2', 'tags3dsjadklsajdklsa', 't', 'tags5', 'tags6'],
     price: {
       value: '100',
-      unit: '元'
+      unit: '元',
     },
-    headerPictureUrl: "//vrlab-static.ljcdn.com/release/web/cardHeader.19ff7aa0.png",
+    headerPictureUrl: '//vrlab-static.ljcdn.com/release/web/cardHeader.19ff7aa0.png',
     highlightText: '了解不多',
   },
   {
@@ -50,7 +50,7 @@ const datas: Tag<'Marketing'>['data'][] = [
     brandTags: ['tags1'],
     tags: ['tags1', 'tags2', 'tags3', 't', 'tags5', 'tags6'],
     highlightText: '了解更多',
-    limitWidth: false
+    limitWidth: false,
   },
   {
     title: 'limitWidth true',
@@ -58,7 +58,7 @@ const datas: Tag<'Marketing'>['data'][] = [
     tags: ['tags1', 'tags2', 'tags3', 't', 'tags5', 'tags6'],
     price: {
       value: '100',
-      unit: '元'
+      unit: '元',
     },
     highlightText: '了解超多多多多多了解超多多多多多了解超多多多多多了解超多多多多多',
   },
@@ -76,7 +76,7 @@ const tags: Tag<'Marketing'>[] = datas.map((data, index) => ({
   stickType: '2DPoint',
   position: position[index],
   contentType: 'Marketing',
-  data: {...data, title: `${index}${data.title}`}
+  data: { ...data, title: `${index}${data.title}` },
 }))
 
 export default tags

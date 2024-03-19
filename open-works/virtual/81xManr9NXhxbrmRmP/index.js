@@ -1,3 +1,3 @@
-import work from "./work.json"
+import work from './work.json'
 
 export default { work }

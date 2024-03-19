@@ -86,18 +86,10 @@ const TopviewFloorplanPluginUse = () => {
   return (
     <div className="pipeline-plugin-btn-group">
       <div className="left-group" key="left-group">
-        <Button
-          key="showFiveFloorplan"
-          variant="contained"
-          onClick={() => five.changeMode('Floorplan')}
-        >
+        <Button key="showFiveFloorplan" variant="contained" onClick={() => five.changeMode('Floorplan')}>
           模型
         </Button>
-        <Button
-          key="showFivePanorama"
-          variant="contained"
-          onClick={() => five.changeMode('Panorama')}
-        >
+        <Button key="showFivePanorama" variant="contained" onClick={() => five.changeMode('Panorama')}>
           全景
         </Button>
       </div>

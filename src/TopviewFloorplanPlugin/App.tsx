@@ -23,13 +23,7 @@ const pluginParams = Object.assign(defaultPluginParam, JSON.stringify(initialPar
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率
-  plugins: [
-    [
-      TopviewFloorplanPlugin,
-      'topviewFloorplanPlugin',
-      { ...pluginParams },
-    ],
-  ],
+  plugins: [[TopviewFloorplanPlugin, 'topviewFloorplanPlugin', { ...pluginParams }]],
 })
 
 const App: React.FC = () => {
@@ -38,10 +32,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider
-        initialWork={parseWork(work)}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
-      >
+      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
         <FiveCanvas key="five-canvas" {...size} />
         <Box
           key="box"
@@ -55,7 +46,7 @@ const App: React.FC = () => {
             pointerEvents: 'none',
           }}
         />
-        <TopviewFloorplanPluginUse key="plugin-use"/>
+        <TopviewFloorplanPluginUse key="plugin-use" />
       </FiveProvider>
     )
   )

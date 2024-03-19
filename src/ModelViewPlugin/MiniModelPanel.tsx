@@ -51,7 +51,7 @@ const MiniModelPanel: React.FC = () => {
   }, [fiveState.mode, fiveModeReadyState])
 
   React.useEffect(() => {
-    const config: Parameters<typeof plugin['changeConfigs']>[0] = {
+    const config: Parameters<(typeof plugin)['changeConfigs']>[0] = {
       lookAtCurrentCamera: checkedState.currentPanoIndex,
       lockedLatitude: checkedState.latitude ? calculateLatitude(lockedLatitude) : null,
       lockedLongitude: checkedState.longitude ? calculateLongitude(lockedLongitude) : null,

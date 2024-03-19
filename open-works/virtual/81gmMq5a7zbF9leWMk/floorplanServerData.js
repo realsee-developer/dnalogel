@@ -16,9 +16,9 @@ export const floorplanServerData = {
     },
     doors: [
       {
-        id: "ac8afef4-35a0-4526-bfc5-ffb3e3494e83",
-        localName: "客厅",
-        name: "客厅",
+        id: 'ac8afef4-35a0-4526-bfc5-ffb3e3494e83',
+        localName: '客厅',
+        name: '客厅',
         position: {
           x: -0.3228859000000011,
           y: 0,
@@ -27,9 +27,9 @@ export const floorplanServerData = {
         rad: 0,
       },
       {
-        id: "e907c134-7380-43a1-4758-a22db903e6fc",
-        localName: "客厅",
-        name: "客厅",
+        id: 'e907c134-7380-43a1-4758-a22db903e6fc',
+        localName: '客厅',
+        name: '客厅',
         position: {
           x: 0.2998362999999954,
           y: 0,
@@ -38,9 +38,9 @@ export const floorplanServerData = {
         rad: 1.5708,
       },
       {
-        id: "c4cff70b-8f2c-473c-08d2-29f4c9e34442",
-        localName: "厨房",
-        name: "厨房",
+        id: 'c4cff70b-8f2c-473c-08d2-29f4c9e34442',
+        localName: '厨房',
+        name: '厨房',
         position: {
           x: -3.5816512,
           y: 0,
@@ -49,9 +49,9 @@ export const floorplanServerData = {
         rad: 0,
       },
       {
-        id: "83d42cfe-a15b-43ca-7128-ec8d465bce61",
-        localName: "客厅",
-        name: "客厅",
+        id: '83d42cfe-a15b-43ca-7128-ec8d465bce61',
+        localName: '客厅',
+        name: '客厅',
         position: {
           x: -0.7103069000000032,
           y: 0,
@@ -60,9 +60,9 @@ export const floorplanServerData = {
         rad: -1.5708,
       },
       {
-        id: "8e997964-bda6-492a-103a-a95ffcc981d2",
-        localName: "阳台",
-        name: "阳台",
+        id: '8e997964-bda6-492a-103a-a95ffcc981d2',
+        localName: '阳台',
+        name: '阳台',
         position: {
           x: -3.5816512,
           y: 0,
@@ -71,9 +71,9 @@ export const floorplanServerData = {
         rad: 3.1416,
       },
       {
-        id: "01c68fa4-826a-413f-d337-702302d38b4e",
-        localName: "卧室",
-        name: "卧室",
+        id: '01c68fa4-826a-413f-d337-702302d38b4e',
+        localName: '卧室',
+        name: '卧室',
         position: {
           x: -0.3228859000000011,
           y: 0,
@@ -82,9 +82,9 @@ export const floorplanServerData = {
         rad: 3.1416,
       },
       {
-        id: "cbbcdcd9-2d28-4ae8-b02b-b1b3ce548010",
-        localName: "厨房",
-        name: "厨房",
+        id: 'cbbcdcd9-2d28-4ae8-b02b-b1b3ce548010',
+        localName: '厨房',
+        name: '厨房',
         position: {
           x: -0.7103069000000032,
           y: 0,
@@ -93,9 +93,9 @@ export const floorplanServerData = {
         rad: 1.5708,
       },
       {
-        id: "dbd1a23a-a8ef-4b77-6bd2-baae4cf02d64",
-        localName: "卫生间",
-        name: "卫生间",
+        id: 'dbd1a23a-a8ef-4b77-6bd2-baae4cf02d64',
+        localName: '卫生间',
+        name: '卫生间',
         position: {
           x: 0.2998362999999954,
           y: 0,
@@ -116,17 +116,17 @@ export const floorplanServerData = {
         y: 0.18456287176516062,
       },
       rad: 1.5708,
-      room_id: "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
+      room_id: 'u-7654185f-3853-4aa0-b2dc-ae40bf304d7f',
     },
     floor_datas: [
       {
         floor_index: 0,
-        floor_name: "一层",
+        floor_name: '一层',
         rooms: [
           {
             floor_type: 0,
-            id: "u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb",
-            name: "卧室",
+            id: 'u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb',
+            name: '卧室',
             observer_indexs: [11, 12, 13],
             path: [
               {
@@ -164,14 +164,14 @@ export const floorplanServerData = {
                 y: 0.7566822614909234,
               },
             },
-            room_type: "100900000001",
+            room_type: '100900000001',
             size: 15299220.925499797,
             type: 3,
           },
           {
             floor_type: 3,
-            id: "u-800df8b4-ac4d-40e4-1a14-30c7fe9365cd",
-            name: "卫生间",
+            id: 'u-800df8b4-ac4d-40e4-1a14-30c7fe9365cd',
+            name: '卫生间',
             observer_indexs: [9, 10],
             path: [
               {
@@ -201,14 +201,14 @@ export const floorplanServerData = {
                 y: 0.8168406237929705,
               },
             },
-            room_type: "100900000004",
+            room_type: '100900000004',
             size: 3257350.4335000515,
             type: 5,
           },
           {
             floor_type: 4,
-            id: "u-88ff6d59-a88e-4350-8543-2310b083a2de",
-            name: "阳台",
+            id: 'u-88ff6d59-a88e-4350-8543-2310b083a2de',
+            name: '阳台',
             observer_indexs: [6],
             path: [
               {
@@ -238,14 +238,14 @@ export const floorplanServerData = {
                 y: 0.18421219582850548,
               },
             },
-            room_type: "100900000005",
+            room_type: '100900000005',
             size: 1770936.805799961,
             type: 12,
           },
           {
             floor_type: 3,
-            id: "u-11d2fd7e-7de9-4584-3d88-26b2402f44fd",
-            name: "厨房",
+            id: 'u-11d2fd7e-7de9-4584-3d88-26b2402f44fd',
+            name: '厨房',
             observer_indexs: [4, 5],
             path: [
               {
@@ -283,14 +283,14 @@ export const floorplanServerData = {
                 y: 0.18517781962147575,
               },
             },
-            room_type: "100900000003",
+            room_type: '100900000003',
             size: 5675644.130199909,
             type: 8,
           },
           {
             floor_type: 1,
-            id: "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
-            name: "客厅",
+            id: 'u-7654185f-3853-4aa0-b2dc-ae40bf304d7f',
+            name: '客厅',
             observer_indexs: [0, 1, 2, 3, 7, 8],
             path: [
               {
@@ -352,7 +352,7 @@ export const floorplanServerData = {
                 y: 0.4431350217416235,
               },
             },
-            room_type: "100900000002",
+            room_type: '100900000002',
             size: 24850652.69071412,
             type: 1,
           },
@@ -692,9 +692,9 @@ export const floorplanServerData = {
   },
   outlines: [
     {
-      checksum: "db3a8e018d0000ba0253450f1950f1db",
+      checksum: 'db3a8e018d0000ba0253450f1950f1db',
       index: 0,
-      url: "https://vrlab-public.ljcdn.com/release/vrlab/outlinefloorplan/1c4bd2cd32436acfc07abd87852c2a15.jpg",
+      url: 'https://vrlab-public.ljcdn.com/release/vrlab/outlinefloorplan/1c4bd2cd32436acfc07abd87852c2a15.jpg',
     },
   ],
-};
+}

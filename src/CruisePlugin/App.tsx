@@ -25,7 +25,7 @@ const App: React.FC = () => {
       <FiveProvider
         initialWork={parseWork(work)}
         initialState={{ mode: 'Model' }}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
+        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
       >
         <FiveCanvas {...size} />
         <CruisePluginUse />
