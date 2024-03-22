@@ -23,7 +23,7 @@ const App: FC = () => {
   const work = useFetchDatas(DATA_TYPES.WORK)
   return (
     work && (
-      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
+      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.five })}>
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           <FiveCanvas {...size} />
         </div>

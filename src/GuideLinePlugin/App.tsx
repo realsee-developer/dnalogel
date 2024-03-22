@@ -23,7 +23,7 @@ const App: React.FC = () => {
       <FiveProvider
         initialState={{ mode: 'Mapview' }}
         initialWork={parseWork(work)}
-        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
+        ref={(ref) => Object.assign(window, { $five: ref?.five })}
       >
         <FiveCanvas {...size} />
         <GuideLinePluginUse />

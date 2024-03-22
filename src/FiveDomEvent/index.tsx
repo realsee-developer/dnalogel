@@ -91,7 +91,7 @@
 //       <FiveProvider
 //         initialState={{ mode: 'Floorplan' }}
 //         initialWork={parseWork(work)}
-//         ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
+//         ref={(ref) => Object.assign(window, { $five: ref?.five })}
 //       >
 //         <FiveDomEventApp />
 //         <FiveCanvas width={document.body.clientWidth} height={document.body.clientHeight} />
