@@ -25,7 +25,7 @@ const PanoRulerProPluginUsage = (props: PanoRulerProPluginUsePropTypes) => {
     async () => {
       if (!panoRulerProData) return
 
-      console.log({
+      console.info({
         data: panoRulerProData,
         version: 0,
       })
