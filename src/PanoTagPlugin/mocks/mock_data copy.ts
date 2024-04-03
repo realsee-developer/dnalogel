@@ -93,8 +93,8 @@ export const TagsList = [
     data: {
       mediaData: [
         {
-          url: 'http://10.33.192.249:81/local/uwork/vrcustomer/XINGZHEN/jXrqvOgEU8l4ZH4m7O/2f3031fadbbaab2ea7a631df854be567.jpg',
-          // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          // url: 'http://10.33.192.249:81/local/uwork/vrcustomer/XINGZHEN/jXrqvOgEU8l4ZH4m7O/2f3031fadbbaab2ea7a631df854be567.jpg',
+          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
           // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
           // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
           // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
