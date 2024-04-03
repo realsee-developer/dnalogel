@@ -152,9 +152,9 @@ const PanoTagPluginUse = () => {
 
   const handlerTagVisibleChange = async () => {
     if (visible) {
-      await pluginInstance.hide()
+      await pluginInstance.hide({ withAnimation: true })
     } else {
-      await pluginInstance.show()
+      await pluginInstance.show({ withAnimation: true })
     }
     setVisible(!visible)
   }
