@@ -29,7 +29,7 @@ for (let i = 0; i < 100; i++) {
   tagList.push(textTag)
 }
 
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 20000; i++) {
   tagList.push(textTag2)
 }
 
