@@ -6,7 +6,9 @@ import TagsList2 from './mocks/marketingData'
 import TagsList3 from './mocks/mediaModel'
 import TagsList4 from './mocks/textTagData'
 import TagsList5 from './mocks/mjyygrw5.ts'
+import TagsList6 from './mocks/crash/maxTest.ts'
 import TagsListCrash from './mocks/crash/tag.json'
+import { Slot, Vapor, Button as VaporButton } from '@realsee/vapor'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import ImageIcon from '@mui/icons-material/Image'
@@ -62,8 +64,8 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [fiveState, setFiveState] = useFiveState()
-  const [currentTagList, setCurrentTagList] = useState(TagsList.map((v, i) => ({ ...v, id: i })))
+  // const [fiveState, setFiveState] = useFiveState()
+  // const [currentTagList, setCurrentTagList] = useState(TagsList6.map((v, i) => ({ ...v, id: i })))
   // const [currentTagList, setCurrentTagList] = useState(TagsListCrash.data.tagList.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const [enabled, setEnabled] = useState(true)
@@ -83,11 +85,17 @@ const PanoTagPluginUse = () => {
 
   useEffect(() => {
     // pluginInstance.registerRenderer('Text', (container: HTMLElement, tag: TagInstance<'Unknown'>) => {
-    //   ReactDOM.render(<CommentTag tag={tag}></CommentTag>, container)
+    //   ReactDOM.render(
+    //     <div>
+    //       {/* <VaporButton></VaporButton> */}
+    //       <Slot name="slot_symbol" />
+    //     </div>,
+    //     container,
+    //   )
     //   return () => ReactDOM.unmountComponentAtNode(container)
     // })
-    pluginInstance.bindRenderer('OCR', 'Text')
-    const list = currentTagList as unknown as Tag[]
+    // pluginInstance.bindRenderer('OCR', 'Text')
+    const list = TagsList.map((v, i) => ({ ...v, id: i })) as any
     pluginInstance.load({
       tagList: list,
       globalConfig: {
@@ -141,15 +149,6 @@ const PanoTagPluginUse = () => {
     five.setState(tagData.fiveState, false, false)
   }
 
-  // 删除tag
-  const deleteTag = (id: number) => {
-    // 调用pluginInstance中对应的方法，删除tag
-    pluginInstance.destroyTagById(id)
-    // 从mock数据中删除tag
-    const tagList = currentTagList.filter((item) => item.id !== id)
-    setCurrentTagList(tagList)
-  }
-
   const handlerTagVisibleChange = async () => {
     if (visible) {
       await pluginInstance.hide({ withAnimation: true })
@@ -168,23 +167,15 @@ const PanoTagPluginUse = () => {
     setEnabled(!enabled)
   }
 
-  const move2Tag = (id: number) => {
-    const tagItem = currentTagList.find((item) => item.id === id)
-    const state = tagItem ? tagItem.fiveState : undefined
-    if (state) {
-      five.setState(state as any, false, false)
-    }
-  }
-
   return (
     <>
       <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
         <BottomNavigation
           showLabels
-          value={fiveState.mode}
-          onChange={(_, newValue: Mode) => {
-            setFiveState({ mode: newValue })
-          }}
+          // value={fiveState.mode}
+          // onChange={(_, newValue: Mode) => {
+          //   setFiveState({ mode: newValue })
+          // }}
         >
           <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
           <BottomNavigationAction label="Model" value={Five.Mode.Model} />
@@ -222,34 +213,6 @@ const PanoTagPluginUse = () => {
           <Button variant="contained" size="small" startIcon={<ImageIcon />} onClick={() => pluginInstance.dispose()}>
             dispose
           </Button>
-        </Stack>
-        <Stack direction={'row'} justifyContent="flex-end" spacing={1}>
-          <Accordion sx={{ width: '300px' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-              <Typography>标签列表</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={{ height: '375px', overflow: 'scroll' }}>
-              {currentTagList.map((item) => {
-                return (
-                  <Card sx={{ maxWidth: 268, marginBottom: '10px', cursor: 'pointer' }} key={item.id} onClick={() => move2Tag(item.id)}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h6" component="div">
-                        {ContentTypeOptions[item.contentType]}
-                      </Typography>
-                      <Typography gutterBottom variant="body2" color="text.secondary">
-                        {item.data['text']}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small" onClick={() => deleteTag(item.id)}>
-                        删除
-                      </Button>
-                    </CardActions>
-                  </Card>
-                )
-              })}
-            </AccordionDetails>
-          </Accordion>
         </Stack>
       </Stack>
     </>

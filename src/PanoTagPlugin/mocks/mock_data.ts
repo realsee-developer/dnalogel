@@ -388,7 +388,7 @@ export const TagsList = [
   {
     dimensionType: '2D',
     pointType: 'PointTag',
-    contentType: 'OCR',
+    contentType: 'Text',
     enable: true,
     position: [-2.0543282763294135, 0.3319934118281651, -2.2450259661695933],
     data: {

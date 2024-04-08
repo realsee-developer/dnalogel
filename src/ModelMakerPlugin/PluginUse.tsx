@@ -1,10 +1,8 @@
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
 import { Five, Mode } from '@realsee/five'
-import { ContentType } from '@realsee/dnalogel/dist'
 import { Paper, BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@mui/material'
-import { AreaMakerController } from '@realsee/dnalogel/dist/AreaMakerPlugin/typing'
 import React from 'react'
-import { ModelMakerController } from '@realsee/dnalogel/dist/ModelMakerPlugin/typings'
+import { type ModelMakerController } from '@realsee/dnalogel/dist/ModelMakerPlugin/typings'
 import { data } from './data'
 
 const PluginUse = () => {
