@@ -25,7 +25,7 @@ const textTag2: Tag = {
 
 const tagList: Tag[] = []
 
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 100; i++) {
   tagList.push(textTag)
 }
 
