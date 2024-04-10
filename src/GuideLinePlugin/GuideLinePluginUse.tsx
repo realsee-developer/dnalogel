@@ -15,7 +15,7 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { GuideLinePluginType } from '@realsee/dnalogel/dist'
-import data from './mocks/data.json'
+import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 const GuideLinePluginUse = () => {
   const id = 624
@@ -42,11 +42,38 @@ const GuideLinePluginUse = () => {
 
   // 重载路径
   useEffect(() => {
-    // if (panoIndexGroup.length === 0) return guideLine.clear()
-    // guideLine.load({
-    //   lines: [{ id, pano_group: panoIndexGroup, panorama_style: { visible: true } }],
-    // })
-    guideLine.load(data as any)
+    if (panoIndexGroup.length === 0) return guideLine.clear()
+    guideLine.load({
+      lines: [
+        {
+          id,
+          pano_group: panoIndexGroup,
+          panorama_style: {
+            visible: true,
+            border_color: '#FFFFFF',
+            border_opacity: 0.4,
+            border_width: 0.05,
+            background_clip: 'border-box',
+            color: '#FFFFFF',
+            unit_length: 0.5,
+            opacity: 0.8,
+            width: 0.5,
+          },
+          model_style: {
+            visible: true,
+            background_color: '#FFFFFF',
+            background_opacity: 0.6,
+            border_color: '#FFFFFF',
+            border_opacity: 0.4,
+            border_width: 0.05,
+            background_clip: 'border-box',
+            color: 'green',
+            unit_length: 0.5,
+            width: 0.5,
+          },
+        },
+      ],
+    })
     return () => guideLine.clear()
   }, [panoIndexGroup])
 
@@ -55,69 +82,63 @@ const GuideLinePluginUse = () => {
   })
 
   return (
-    <Stack spacing={2} direction="row" sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
-      <Stack spacing={2} direction="column" sx={{ backgroundColor: 'transparent' }}>
-        <Button variant="contained" onClick={() => setVisible(!visible)}>
-          {visible ? '隐藏' : '显示'}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => {
-            const item = guideLine.getGuideLineItemByID(id)
-            item?.walk()
-          }}
-        >
-          播放
-        </Button>
-        <Button variant="contained" onClick={() => five.changeMode('Mapview')}>
-          切换到模型
-        </Button>
-        <Button variant="contained" onClick={() => five.changeMode('Panorama')}>
-          切换到全景
-        </Button>
+    <>
+      <FiveModeSwitcher modeList={['Mapview', 'Panorama']} />
+      <Stack spacing={2} direction="row" sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
+        <Stack spacing={2} direction="column" sx={{ backgroundColor: 'transparent' }}>
+          <Button variant="contained" onClick={() => setVisible(!visible)}>
+            {visible ? '隐藏' : '显示'}
+          </Button>
+        </Stack>
+        <Stack spacing={2} direction="column" sx={{ backgroundColor: 'transparent' }}>
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+              <Typography>当前路径：{panoIndexGroup?.join(',')}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>选择节点，添加到当前路径中</Typography>
+              <List
+                sx={{
+                  width: '100%',
+                  maxWidth: 360,
+                  bgcolor: 'background.paper',
+                  position: 'relative',
+                  overflow: 'auto',
+                  maxHeight: 300,
+                  '& ul': { padding: 0 },
+                }}
+              >
+                {checkedObserverGroup?.map((checked, index) => {
+                  const labelId = `checkbox-list-label-${index}`
+                  return (
+                    <ListItem key={index} disablePadding>
+                      <ListItemButton
+                        role={undefined}
+                        onClick={() =>
+                          setCheckedObserverGroup(checkedObserverGroup.map((value, _index) => (_index === index ? !value : value)))
+                        }
+                        dense
+                      >
+                        <ListItemIcon>
+                          <Checkbox
+                            edge="start"
+                            checked={checked}
+                            tabIndex={-1}
+                            disableRipple
+                            inputProps={{ 'aria-labelledby': labelId }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText id={labelId} primary={`Available PanoIndex ${index}`} />
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                })}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        </Stack>
       </Stack>
-      <Stack spacing={2} direction="column" sx={{ backgroundColor: 'transparent' }}>
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography>当前路径：{panoIndexGroup?.join(',')}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>选择节点，添加到当前路径中，然后点击重载路径</Typography>
-            <List
-              sx={{
-                width: '100%',
-                maxWidth: 360,
-                bgcolor: 'background.paper',
-                position: 'relative',
-                overflow: 'auto',
-                maxHeight: 300,
-                '& ul': { padding: 0 },
-              }}
-            >
-              {checkedObserverGroup?.map((checked, index) => {
-                const labelId = `checkbox-list-label-${index}`
-                return (
-                  <ListItem key={index} disablePadding>
-                    <ListItemButton
-                      role={undefined}
-                      onClick={() =>
-                        setCheckedObserverGroup(checkedObserverGroup.map((value, _index) => (_index === index ? !value : value)))
-                      }
-                      dense
-                    >
-                      <ListItemIcon>
-                        <Checkbox edge="start" checked={checked} tabIndex={-1} disableRipple inputProps={{ 'aria-labelledby': labelId }} />
-                      </ListItemIcon>
-                      <ListItemText id={labelId} primary={`Available PanoIndex ${index}`} />
-                    </ListItemButton>
-                  </ListItem>
-                )
-              })}
-            </List>
-          </AccordionDetails>
-        </Accordion>
-      </Stack>
-    </Stack>
+    </>
   )
 }
 

@@ -1,26 +1,12 @@
 {
   "lines": [
     {
-      "id": 284,
-      "custom_id": 37335139730,
-      "name": "去就餐",
-      "display_index": 1,
-      "pano_group": [13, 12, 9, 7, 1, 2, 4],
-      "path": null,
-      "type": "",
-      "visible_floor_indexes": null,
-      "user_id": 36184089396510730
-    },
-    {
       "id": 285,
-      "custom_id": 37335139730,
       "name": "去打乒乓球",
-      "display_index": 2,
       "pano_group": [1, 0, 17, 18, 23, 23],
-      "path": null,
-      "type": "",
-      "visible_floor_indexes": null,
-      "user_id": 36184089396510730
+      "model_style": {
+        "visible": true
+      }
     },
     {
       "id": 624,
