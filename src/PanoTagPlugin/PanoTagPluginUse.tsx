@@ -29,6 +29,7 @@ import { Vector3 } from 'three'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
+import { FiveModeSwitcher } from '../components/FiveModeSwitcher.tsx'
 
 // function CommentTag(props: { tag: TagInstance<'Unknown'> }) {
 //   const [data, setData] = React.useState(props.tag.data)
@@ -169,19 +170,7 @@ const PanoTagPluginUse = () => {
 
   return (
     <>
-      <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
-        <BottomNavigation
-          showLabels
-          // value={fiveState.mode}
-          // onChange={(_, newValue: Mode) => {
-          //   setFiveState({ mode: newValue })
-          // }}
-        >
-          <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
-          <BottomNavigationAction label="Model" value={Five.Mode.Model} />
-          <BottomNavigationAction label="Floorplan" value={Five.Mode.Floorplan} />
-        </BottomNavigation>
-      </Paper>
+      <FiveModeSwitcher modeList={['Mapview', 'Panorama']} />
       <Stack direction={'column'} spacing={1} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
         <Stack direction={'row'} spacing={1} justifyContent="flex-end">
           <Button variant="contained" size="small" startIcon={<TitleIcon />} onClick={() => addTag(ContentType.Text)}>
