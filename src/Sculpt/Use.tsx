@@ -15,6 +15,7 @@ export const PanoPluginUse = () => {
     sculpt.load(data, {
       occlusionVisibility: false,
     })
+    sculpt.items.forEach((item) => item.on('click', (...args) => console.log('click', ...args)))
     return () => {
       sculpt.clear()
     }
