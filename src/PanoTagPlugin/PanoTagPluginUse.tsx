@@ -60,7 +60,6 @@ const ContentTypeOptions = {
   [ContentType.MediaPlane]: '图片视频贴片',
   [ContentType.Marketing]: '营销标签',
   [ContentType.Link]: 'VR跳转标签',
-  [ContentType.Custom]: '自定义标签',
   // [ContentType.MediaModel]: 'MR标签',
 }
 const PanoTagPluginUse = () => {
@@ -98,12 +97,19 @@ const PanoTagPluginUse = () => {
     // pluginInstance.bindRenderer('OCR', 'Text')
     const list = TagsList.map((v, i) => ({ ...v, id: i })) as any
     pluginInstance.load({
-      tagList: list,
+      tagList: [list.at(-1)],
       globalConfig: {
         renderType: 'Mesh',
-        // visibleConfig: {
-        //   visibleFiveMode: 'all',
-        // },
+        visibleConfig: {
+          visibleFiveMode: 'all',
+        },
+      },
+      contentTypeConfig: {
+        '[Mapview]-Any': {
+          initialState: {
+            visible: false,
+          },
+        },
       },
     })
   }, [])
