@@ -105,9 +105,9 @@ const PanoTagPluginUse = () => {
         },
       },
       contentTypeConfig: {
-        '[Mapview]-Any': {
-          initialState: {
-            visible: false,
+        '[ModelLike]-Any-Text': {
+          visibleConfig: {
+            intersectRaycaster: false,
           },
         },
       },
