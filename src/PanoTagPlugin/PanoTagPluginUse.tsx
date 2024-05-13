@@ -97,7 +97,7 @@ const PanoTagPluginUse = () => {
     // pluginInstance.bindRenderer('OCR', 'Text')
     const list = TagsList.map((v, i) => ({ ...v, id: i })) as any
     pluginInstance.load({
-      tagList: [list.at(-1)],
+      tagList: list,
       globalConfig: {
         renderType: 'Mesh',
         visibleConfig: {
@@ -105,6 +105,11 @@ const PanoTagPluginUse = () => {
         },
       },
       contentTypeConfig: {
+        Text: {
+          unfoldedConfig: {
+            autoUnfold: false,
+          },
+        },
         '[ModelLike]-Any-Text': {
           visibleConfig: {
             intersectRaycaster: false,
