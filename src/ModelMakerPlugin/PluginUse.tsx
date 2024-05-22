@@ -2,7 +2,7 @@ import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { Paper, ButtonGroup, Button } from '@mui/material'
 import React from 'react'
 import { type ModelMakerController } from '@realsee/dnalogel/dist/ModelMakerPlugin/typings'
-import { data } from './data'
+import { data } from './mocks/data'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 const PluginUse = () => {
