@@ -9,7 +9,6 @@ const ModeName: Record<Mode, string> = {
   Floorplan: '模型(Floorplan)',
   Topview: '模型(Topview)',
   VRPanorama: 'VRPanorama',
-  DepthPanorama: 'DepthPanorama',
   XRPanorama: 'XRPanorama',
 }
 
