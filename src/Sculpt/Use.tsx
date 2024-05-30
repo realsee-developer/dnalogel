@@ -16,7 +16,7 @@ export const PanoPluginUse = () => {
     sculpt.load(data, {
       occlusionVisibility: false,
     })
-    sculpt.items.forEach((item) => item.on('click', (...args) => console.log('click', ...args)))
+    sculpt.items.forEach((item) => item.on('click', (...args) => console.info('click', ...args)))
     window['blink'] = () => {
       const item = sculpt.items[4]
       if (item) {
