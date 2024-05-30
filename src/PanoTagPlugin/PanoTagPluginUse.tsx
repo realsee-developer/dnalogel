@@ -117,7 +117,9 @@ const PanoTagPluginUse = () => {
         },
       },
     })
-  }, [])
+
+    return () => pluginInstance.dispose()
+  }, [five])
 
   const addTag = (type: ContentType) => {
     pluginInstance.addTag(AddTagData[type])

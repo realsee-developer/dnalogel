@@ -35,7 +35,7 @@ const App: React.FC = () => {
   if (!work) return null
 
   return (
-    <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.five })}>
+    <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
       <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
         <FiveCanvas {...size} />
       </div>

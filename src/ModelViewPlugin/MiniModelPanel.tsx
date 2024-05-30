@@ -18,10 +18,6 @@ const MiniModelPanel: React.FC = () => {
   const [lockedLongitude, setLockedLongitude] = React.useState(0)
   const plugin = five.plugins.modelViewPlugin as ReturnType<typeof ModelViewPlugin>
 
-  // React.useEffect(() => {
-  //   Object.assign(window, { plugin })
-  // }, [])
-
   function calculateLatitude(value: number) {
     return Math.ceil((value / 100) * (Math.PI / 2) * 10000) / 10000
   }
@@ -48,7 +44,7 @@ const MiniModelPanel: React.FC = () => {
   React.useEffect(() => {
     if (!miniModeRef.current || fiveState.mode !== Five.Mode.Panorama) return
     five.plugins.modelViewPlugin.appendTo(miniModeRef.current)
-  }, [fiveState.mode, fiveModeReadyState])
+  }, [fiveState.mode, fiveModeReadyState, five])
 
   React.useEffect(() => {
     const config: Parameters<(typeof plugin)['changeConfigs']>[0] = {
@@ -57,7 +53,7 @@ const MiniModelPanel: React.FC = () => {
       lockedLongitude: checkedState.longitude ? calculateLongitude(lockedLongitude) : null,
     }
     plugin.changeConfigs(config)
-  }, [lockedLatitude, lockedLongitude, checkedState])
+  }, [lockedLatitude, lockedLongitude, checkedState, five])
 
   if (fiveState.mode !== Five.Mode.Panorama) return null
   if (fiveModeReadyState !== 'Loaded') return null

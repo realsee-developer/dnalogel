@@ -46,17 +46,17 @@ const CruisePluginUse = () => {
   const five = unsafe__useFiveInstance()
   const observersData = five.observers
   const cruisePlugin = five.plugins.cruisePlugin
-  const movePlugin = React.useRef<MoveController>(new MoveController(five))
+  const movePlugin = five.plugins.movePlugin as MoveController
   const modelGuideLine = five.plugins.guideLinePlugin as GuideLinePluginExportType
 
   useEffect(() => {
     cruisePlugin.load({ panoIndexList: currentGuideLine, moveToFirstPanoEffect: 'montage', stay: 1000 })
     modelGuideLine.load(data as any).then(() => {
       modelGuideLine.show()
-      movePlugin.current.load({ path: modelGuideLine.getGuideLineItemByID(624)?.modelItem.curvePath })
+      movePlugin.load({ path: modelGuideLine.getGuideLineItemByID(624)?.modelItem.curvePath })
     })
     return () => modelGuideLine.clear()
-  }, [])
+  }, [five])
 
   // 显示/隐藏路径
   const handleVisibleChange = async (value: boolean) => {
@@ -255,7 +255,7 @@ const CruisePluginUse = () => {
           <Button
             variant="contained"
             onClick={() => {
-              five.state.mode !== 'Panorama' ? movePlugin.current.play() : cruisePlugin.play()
+              five.state.mode !== 'Panorama' ? movePlugin.play() : cruisePlugin.play()
             }}
           >
             开始漫游
@@ -263,7 +263,7 @@ const CruisePluginUse = () => {
           <Button
             variant="contained"
             onClick={() => {
-              five.state.mode !== 'Panorama' ? movePlugin.current.pause() : cruisePlugin.pause()
+              five.state.mode !== 'Panorama' ? movePlugin.pause() : cruisePlugin.pause()
             }}
           >
             暂停漫游
@@ -271,7 +271,7 @@ const CruisePluginUse = () => {
           <Button
             variant="contained"
             onClick={() => {
-              five.state.mode !== 'Panorama' ? movePlugin.current.playFromStart() : cruisePlugin.playFromStart()
+              five.state.mode !== 'Panorama' ? movePlugin.playFromStart() : cruisePlugin.playFromStart()
             }}
           >
             从头开始

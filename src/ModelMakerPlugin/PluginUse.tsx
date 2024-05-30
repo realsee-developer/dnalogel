@@ -11,7 +11,10 @@ const PluginUse = () => {
 
   React.useEffect(() => {
     pluginInstance.load(data)
-  }, [])
+    return () => {
+      pluginInstance.dispose()
+    }
+  }, [five])
 
   return (
     <>

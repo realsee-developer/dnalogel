@@ -1085,21 +1085,30 @@ const PluginShow = (props: PluginShowPropTypes) => {
     if (wrapper) {
       five.plugins.modelItemLabelPlugin.appendTo(wrapper)
     }
-  }, [])
+  }, [five])
 
-  useFiveEventCallback(
-    'modelLoaded',
-    () => {
-      if (!modelItemLabels) return
-      five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
-      five.plugins.modelItemLabelPlugin.hooks.on('onLabelClick', (itemLabel) => {})
-      setFiveState({ mode: Five.Mode.Floorplan })
-      // addHelper(7.04986,
-      //     -1.1e-05 + 0.70497,
-      //     2.898, 'ball', true)
-    },
-    [modelItemLabels],
-  )
+  React.useEffect(() => {
+    console.log(modelItemLabels[labelType])
+    five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
+    setFiveState({ mode: Five.Mode.Floorplan })
+    return () => {
+      five.plugins.modelItemLabelPlugin.dispose()
+    }
+  }, [five, modelItemLabels])
+
+  // useFiveEventCallback(
+  //   'modelLoaded',
+  //   () => {
+  //     if (!modelItemLabels) return
+  //     five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
+  //     five.plugins.modelItemLabelPlugin.hooks.on('onLabelClick', (itemLabel) => {})
+  //     setFiveState({ mode: Five.Mode.Floorplan })
+  //     // addHelper(7.04986,
+  //     //     -1.1e-05 + 0.70497,
+  //     //     2.898, 'ball', true)
+  //   },
+  //   [modelItemLabels, five],
+  // )
 
   const switchLabel = () => {
     const newLabelType = Number(!labelType)

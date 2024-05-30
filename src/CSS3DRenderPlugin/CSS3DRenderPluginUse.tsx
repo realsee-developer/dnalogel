@@ -50,9 +50,9 @@ const CSS3DRenderPluginUse: React.FC = () => {
     container && ReactDOM.render(<img src="//vrlab-static.ljcdn.com/release/web/catCoding.1cd4e989.gif" width="100%" />, container)
     Object.assign(window, { setCatCodingVisible: setVisible })
     return () => {
-      dispose()
+      dispose?.()
     }
-  }, [])
+  }, [five])
 
   React.useEffect(() => {
     const { container, dispose } =
@@ -62,9 +62,9 @@ const CSS3DRenderPluginUse: React.FC = () => {
       }) || {}
     container && ReactDOM.render(<iframe width="100%" height="100%" src="//home.realsee.com/" />, container)
     return () => {
-      dispose()
+      dispose?.()
     }
-  }, [])
+  }, [five])
 
   React.useEffect(() => {
     const disposers: any[] = []
@@ -105,7 +105,7 @@ const CSS3DRenderPluginUse: React.FC = () => {
       )
     disposers.push(dispose)
     return () => disposers.forEach((dispose) => dispose?.())
-  }, [])
+  }, [five])
   return (
     <>
       <HooksLog />

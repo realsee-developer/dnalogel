@@ -26,7 +26,7 @@ const PanoMeasurePluginUsage = () => {
         return isDefaultUnit ? area.toFixed(2).toString() + '㎡' : (area * 10.7639).toFixed(2) + 'ft²'
       },
     })
-  }, [isDefaultUnit])
+  }, [isDefaultUnit, panoMeasurePlugin])
 
   const handlePanoMeasurePluginListener = () => {
     panoMeasurePlugin.hook.on('modeChange', (mode) => {
@@ -51,7 +51,7 @@ const PanoMeasurePluginUsage = () => {
     if (container) {
       panoMeasurePlugin.appendTo(container)
     }
-  }, [])
+  }, [five])
 
   const handleMeasureEnable = (isMobile: boolean) => {
     panoMeasurePlugin.changeIsMobile(isMobile)

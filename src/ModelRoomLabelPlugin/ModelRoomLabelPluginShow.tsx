@@ -19,7 +19,7 @@ const ModelRoomLabelPluginShow = (props: ModelRoomLabelPluginShowPropTypes) => {
     if (wrapper) {
       five.plugins.modelRoomLabelPlugin.appendTo(wrapper)
     }
-  }, [])
+  }, [five])
 
   useFiveEventCallback(
     'modelLoaded',

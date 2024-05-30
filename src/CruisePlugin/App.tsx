@@ -1,4 +1,4 @@
-import { CruisePlugin, GuideLinePlugin } from '@realsee/dnalogel/dist'
+import { CruisePlugin, GuideLinePlugin, MovePlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
@@ -12,6 +12,7 @@ const FiveProvider = createFiveProvider({
   onlyRenderIfNeeds: true,
   plugins: [
     [CruisePlugin, 'cruisePlugin'],
+    [MovePlugin, 'movePlugin'],
     [GuideLinePlugin, 'guideLinePlugin'],
   ],
 })
@@ -25,7 +26,7 @@ const App: React.FC = () => {
       <FiveProvider
         initialWork={parseWork(work)}
         initialState={{ mode: 'Model' }}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
+        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
       >
         <FiveCanvas {...size} />
         <CruisePluginUse />

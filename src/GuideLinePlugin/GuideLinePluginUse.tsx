@@ -38,7 +38,7 @@ const GuideLinePluginUse = () => {
   // 显示/隐藏路径
   useEffect(() => {
     visible ? guideLine.show() : guideLine.hide()
-  }, [visible])
+  }, [visible, five])
 
   // 重载路径
   useEffect(() => {
@@ -75,7 +75,7 @@ const GuideLinePluginUse = () => {
       ],
     })
     return () => guideLine.clear()
-  }, [panoIndexGroup])
+  }, [panoIndexGroup, five])
 
   useFiveEventCallback('loaded', (_, work) => {
     setCheckedObserverGroup(work.observers.map(() => false))

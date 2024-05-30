@@ -26,7 +26,7 @@ const App: React.FC = () => {
           latitude: 0,
           longitude: 3.924002093459407,
         }}
-        ref={(ref) => Object.assign(window, { $five: ref?.five })}
+        ref={(ref) => Object.assign(window, { $five: ref?.state?.five })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
           <FiveCanvas {...size} />

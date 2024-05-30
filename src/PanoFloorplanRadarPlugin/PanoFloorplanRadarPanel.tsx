@@ -17,12 +17,12 @@ const PanoFloorplanRadarPanel: React.FC = () => {
   React.useEffect(() => {
     if (!panoFloorplanRadarPanelRef.current || fiveState.mode !== Five.Mode.Panorama) return
     panoFloorplanRadarPlugin.appendTo(panoFloorplanRadarPanelRef.current)
-  }, [])
+  }, [five])
 
   React.useEffect(() => {
     if (!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return
     panoFloorplanRadarPlugin.load(floorplanServerData)
-  }, [floorplanServerData])
+  }, [floorplanServerData, five])
 
   React.useEffect(() => {
     if (fiveState.mode === Five.Mode.Panorama) {
