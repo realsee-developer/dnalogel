@@ -7,7 +7,6 @@ export const data: ModelMakerPluginType.ServerData = {
       name: '多边形',
       type: 'triangles',
       object_data: {
-          panoIndex: 1,
           points: [
             [
                 -4.123815036198345,
