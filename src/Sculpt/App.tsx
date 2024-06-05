@@ -7,8 +7,8 @@ import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { Sculpt } from '@realsee/dnalogel/dist'
 
 const FiveProvider = createFiveProvider({
-  imageOptions: { size: 512 }, // 图片默认分辨率
-  textureOptions: { size: 128 }, // 贴图默认分辨率
+  imageOptions: { size: 1024 }, // 图片默认分辨率
+  textureOptions: { size: 1024 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
   plugins: [
     [

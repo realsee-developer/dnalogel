@@ -7,6 +7,7 @@ import TagsList3 from './mocks/mediaModel'
 import TagsList4 from './mocks/textTagData'
 import TagsList5 from './mocks/mjyygrw5.ts'
 import TagsList6 from './mocks/crash/maxTest.ts'
+import TagsList7 from './mocks/qingxiesheying.ts'
 import TagsListCrash from './mocks/crash/tag.json'
 import { Slot, Vapor, Button as VaporButton } from '@realsee/vapor'
 import Stack from '@mui/material/Stack'
@@ -95,7 +96,7 @@ const PanoTagPluginUse = () => {
     //   return () => ReactDOM.unmountComponentAtNode(container)
     // })
     // pluginInstance.bindRenderer('OCR', 'Text')
-    const list = TagsList.map((v, i) => ({ ...v, id: i })) as any
+    const list = TagsList7.map((v, i) => ({ ...v, id: i })) as any
     pluginInstance.load({
       tagList: list,
       globalConfig: {
@@ -110,11 +111,11 @@ const PanoTagPluginUse = () => {
             autoUnfold: false,
           },
         },
-        '[ModelLike]-Any-Text': {
-          visibleConfig: {
-            intersectRaycaster: false,
-          },
-        },
+        // '[ModelLike]-Any-Text': {
+        //   visibleConfig: {
+        //     intersectRaycaster: false,
+        //   },
+        // },
       },
     })
 
