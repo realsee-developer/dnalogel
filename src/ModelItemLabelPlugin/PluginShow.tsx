@@ -1088,7 +1088,6 @@ const PluginShow = (props: PluginShowPropTypes) => {
   }, [five])
 
   React.useEffect(() => {
-    console.log(modelItemLabels[labelType])
     five.plugins.modelItemLabelPlugin.load(modelItemLabels[labelType])
     setFiveState({ mode: Five.Mode.Floorplan })
     return () => {

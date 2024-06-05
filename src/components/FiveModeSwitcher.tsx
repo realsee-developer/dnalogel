@@ -12,8 +12,9 @@ const ModeName: Record<Mode, string> = {
   XRPanorama: 'XRPanorama',
 }
 
-export function FiveModeSwitcher(props: { modeList: Mode[] }) {
+export function FiveModeSwitcher(props?: { modeList?: Mode[] }) {
   const [fiveState, setFiveState] = useFiveState()
+  const modeList = props?.modeList ?? ['Panorama', 'Mapview']
 
   return (
     <>
@@ -25,7 +26,7 @@ export function FiveModeSwitcher(props: { modeList: Mode[] }) {
             setFiveState({ mode: newValue })
           }}
         >
-          {props.modeList.map((mode) => (
+          {modeList.map((mode) => (
             <BottomNavigationAction style={{ width: 100 }} key={mode} label={ModeName[mode]} value={mode} />
           ))}
         </BottomNavigation>

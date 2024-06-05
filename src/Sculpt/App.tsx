@@ -15,13 +15,13 @@ const FiveProvider = createFiveProvider({
       (five) =>
         new Sculpt(five, {
           point: { color: 0x67af6a },
-          polyline: { lineColor: 0x67af6a, lineWidth: 4 },
-          polygon: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 4 },
-          prism: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 4 },
-          rectangle: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 4 },
-          circle: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 4 },
-          cylinder: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 4 },
-          box: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 4 },
+          polyline: { lineColor: 0x67af6a, lineWidth: 2 },
+          polygon: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 2 },
+          prism: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 2 },
+          rectangle: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 2 },
+          circle: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 2 },
+          cylinder: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 2 },
+          box: { color: 0x67af6a, lineColor: 0xa9eadc, lineWidth: 2 },
         }),
       'Sculpt',
     ],
@@ -35,7 +35,7 @@ const App: React.FC = () => {
   if (!work) return null
 
   return (
-    <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
+    <FiveProvider initialWork={parseWork(work)} initialState={{mode:'Mapview'}} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
       <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
         <FiveCanvas {...size} />
       </div>

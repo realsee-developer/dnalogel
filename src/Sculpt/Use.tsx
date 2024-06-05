@@ -1,20 +1,19 @@
-import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
-import { Five, Mode } from '@realsee/five'
-import { Paper, BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@mui/material'
+import { unsafe__useFiveInstance } from '@realsee/five/react'
+import { ButtonGroup, Button } from '@mui/material'
 import type { Sculpt } from '@realsee/dnalogel/dist'
 // import { reblink, blink } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
-import boxData from './mocks/boxData.json'
 import { useEffect } from 'react'
+import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 export const PanoPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  const [fiveState, setFiveState] = useFiveState()
   const sculpt = five.plugins.Sculpt as Sculpt
 
   useEffect(() => {
     sculpt.load(data, {
       occlusionVisibility: false,
+      canEdit: true
     })
     sculpt.items.forEach((item) => item.on('click', (...args) => console.info('click', ...args)))
     // window['blink'] = () => {
@@ -41,19 +40,7 @@ export const PanoPluginUse = () => {
 
   return (
     <>
-      <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
-        <BottomNavigation
-          showLabels
-          value={fiveState.mode}
-          onChange={(_, newValue: Mode) => {
-            setFiveState({ mode: newValue })
-          }}
-        >
-          <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
-          <BottomNavigationAction label="Model" value={Five.Mode.Model} />
-          <BottomNavigationAction label="Floorplan" value={Five.Mode.Floorplan} />
-        </BottomNavigation>
-      </Paper>
+      <FiveModeSwitcher />
       <ButtonGroup sx={{ position: 'fixed', top: 0 }}>
         <Button onClick={() => sculpt.createPoint()}>Point</Button>
         <Button onClick={() => sculpt.createPolyline()}>PolyLine</Button>
