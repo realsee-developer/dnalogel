@@ -96,7 +96,7 @@ const PanoTagPluginUse = () => {
     //   return () => ReactDOM.unmountComponentAtNode(container)
     // })
     // pluginInstance.bindRenderer('OCR', 'Text')
-    const list = TagsList7.map((v, i) => ({ ...v, id: i })) as any
+    const list = TagsList.map((v, i) => ({ ...v, id: i })) as any
     pluginInstance.load({
       tagList: list,
       globalConfig: {

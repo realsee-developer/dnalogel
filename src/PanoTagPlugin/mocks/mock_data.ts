@@ -329,6 +329,7 @@ export const TagsList = [
       mediaData: [
         {
           type: 'Image',
+
           // url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
           thumbnail:
             'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
@@ -357,8 +358,8 @@ export const TagsList = [
       description: null,
       mediaData: [
         {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+          type: 'Video',
+          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
         },
       ],
       targetUrl: null,
