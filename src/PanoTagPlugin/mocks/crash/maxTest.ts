@@ -17,19 +17,19 @@ const textTag = {
   },
 }
 
-const textTag2 = {
+const textTagInRoom = {
   ...textTag,
   position: positionInRoom
 }
 
 const tagList: any[] = []
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 50; i++) {
   tagList.push(textTag)
 }
 
-for (let i = 0; i < 20000; i++) {
-  tagList.push(textTag2)
+for (let i = 0; i < 5000; i++) {
+  tagList.push(textTagInRoom)
 }
 
 export default tagList

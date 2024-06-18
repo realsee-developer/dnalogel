@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
+import { unsafe__useFiveInstance, useFiveEventCallback, useFiveState } from '@realsee/five/react'
 import { Five, Mode } from '@realsee/five'
 import { TagsList, AddTagData } from './mocks/mock_data'
 import TagsList2 from './mocks/marketingData'
@@ -32,28 +32,6 @@ import React from 'react'
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher.tsx'
 
-// function CommentTag(props: { tag: TagInstance<'Unknown'> }) {
-//   const [data, setData] = React.useState(props.tag.data)
-
-//   React.useEffect(() => {
-//     console.info('data change', data)
-//   }, [data])
-
-//   React.useEffect(() => {
-//     props.tag.hooks.on('dataChanged', setData)
-//     return () => {
-//       props.tag.hooks.off('dataChanged', setData)
-//     }
-//   }, [props.tag])
-
-//   return (
-//     <div>
-//       <div>CommentTag</div>
-//       <div>{JSON.stringify(props.tag.data)}</div>
-//     </div>
-//   )
-// }
-
 const ContentTypeOptions = {
   [ContentType.Text]: '文字标签',
   [ContentType.ImageText]: '图文标签',
@@ -65,37 +43,17 @@ const ContentTypeOptions = {
 }
 const PanoTagPluginUse = () => {
   const five = unsafe__useFiveInstance()
-  // const [fiveState, setFiveState] = useFiveState()
-  // const [currentTagList, setCurrentTagList] = useState(TagsList6.map((v, i) => ({ ...v, id: i })))
-  // const [currentTagList, setCurrentTagList] = useState(TagsListCrash.data.tagList.map((v, i) => ({ ...v, id: i })))
   const [visible, setVisible] = useState(true)
   const [enabled, setEnabled] = useState(true)
   const pluginInstance = five.plugins.panoTagPlugin as PanoTagPluginExportInterface
 
-  // const modelIntersectRaycaster = useFiveModelIntersectRaycaster();
-  // // 获取坐标
-  // useFiveEventCallback("wantsTapGesture", (raycaster) => {
-  //   const [intersect] = modelIntersectRaycaster(raycaster);
-  //   if (intersect) {
-  //     console.info(intersect.point)
-  //   }
-  //   return false;
-  // },);
-
-  // globalConfig: {renderType: 'Mesh',}
+  // useFiveEventCallback('mode.change', ({mode}) => {
+  //   pluginInstance.tags?.forEach((tag) => {
+  //     mode === 'Panorama' ? tag.enable() : tag.disable()
+  //   })
+  // }, [])
 
   useEffect(() => {
-    // pluginInstance.registerRenderer('Text', (container: HTMLElement, tag: TagInstance<'Unknown'>) => {
-    //   ReactDOM.render(
-    //     <div>
-    //       {/* <VaporButton></VaporButton> */}
-    //       <Slot name="slot_symbol" />
-    //     </div>,
-    //     container,
-    //   )
-    //   return () => ReactDOM.unmountComponentAtNode(container)
-    // })
-    // pluginInstance.bindRenderer('OCR', 'Text')
     const list = TagsList.map((v, i) => ({ ...v, id: i })) as any
     pluginInstance.load({
       tagList: list,
@@ -111,11 +69,6 @@ const PanoTagPluginUse = () => {
             autoUnfold: false,
           },
         },
-        // '[ModelLike]-Any-Text': {
-        //   visibleConfig: {
-        //     intersectRaycaster: false,
-        //   },
-        // },
       },
     })
 
@@ -134,11 +87,6 @@ const PanoTagPluginUse = () => {
               autoUnfold: false,
             },
           },
-          // '[ModelLike]-Any-Text': {
-          //   visibleConfig: {
-          //     intersectRaycaster: false,
-          //   },
-          // },
         },
       })
     }

@@ -2,14 +2,11 @@ import path from 'path'
 import glob from 'glob'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import pkg from './package.json'
 
 const appSrc = path.resolve(process.cwd(), 'src')
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const isEnvDevelopment = mode === 'development'
-
+export default defineConfig(() => {
   return {
     base: '/dnalogel/',
     server: {
@@ -33,10 +30,5 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [react()],
-    // optimizeDeps: {
-    //   include: Object.keys(pkg.dependencies),
-    //   force: true,
-    // },
-    // appType: 'mpa',
   }
 })
