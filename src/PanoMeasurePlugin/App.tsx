@@ -2,7 +2,7 @@ import { PanoMeasurePlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
-import PanoMeasurePluginUsage from './PanoMeasurePluginUsage'
+import PanoMeasurePluginUsage from './Usage'
 import { parseWork } from '@realsee/five'
 import { Box } from '@mui/material'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
@@ -16,21 +16,49 @@ const FiveProvider = createFiveProvider({
   plugins: [
     [
       PanoMeasurePlugin,
-      'panoMeasurePlugin',
+      'panoMeasurePluginPC',
       {
         useGuideController: true,
         useUIController: {
-          // useNewUI: true,
+          useNewUI: true,
         },
         editParams: {
-          // allowMeasureType: ['area', 'line'],
-          // pointSelectorMode: 'cursor',
+          allowMeasureType: ['area', 'line'],
+          pointSelectorMode: 'auto',
           autoEndConfig: {
-            // line: 2
+            line: 2
           },
         },
         openParams: {
           isMobile: false,
+        },
+        magnifierParams: {
+          height: 120,
+          scale: 2,
+          width: 120,
+          dragEnabled: true,
+          autoFixPCPosition: true,
+          initialPosition: { left: '35%', top: '20%' },
+        },
+      },
+    ],
+    [
+      PanoMeasurePlugin,
+      'panoMeasurePluginMobile',
+      {
+        useGuideController: true,
+        useUIController: {
+          useNewUI: true,
+        },
+        editParams: {
+          allowMeasureType: ['line'],
+          pointSelectorMode: 'fixed',
+          autoEndConfig: {
+            line: 2
+          },
+        },
+        openParams: {
+          isMobile: true,
         },
         magnifierParams: {
           height: 120,
