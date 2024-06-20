@@ -26,7 +26,7 @@ const FiveProvider = createFiveProvider({
           allowMeasureType: ['area', 'line'],
           pointSelectorMode: 'auto',
           autoEndConfig: {
-            line: 2
+            line: 3
           },
         },
         openParams: {
@@ -54,7 +54,7 @@ const FiveProvider = createFiveProvider({
           allowMeasureType: ['line'],
           pointSelectorMode: 'fixed',
           autoEndConfig: {
-            line: 2
+            line: 3
           },
         },
         openParams: {

@@ -40,6 +40,12 @@ const PanoMeasurePluginUsage = () => {
               关闭
             </Button>
           </ButtonGroup>
+          <Button onClick={() => {
+            panoMeasurePluginPC.load(mockMeasureRulerServerData)
+            panoMeasurePluginPC.enable({ mode:'View' })
+          }}>
+              加载数据
+          </Button>
           {/* <ButtonGroup variant="contained">
             <Button
               onClick={() => {
