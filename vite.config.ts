@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
     base: '/dnalogel/',
     server: {
       host: true,
-      // open: '/',
+      open: '/',
       hmr: {
         overlay: false,
       },
