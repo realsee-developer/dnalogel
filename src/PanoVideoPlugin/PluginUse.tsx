@@ -32,6 +32,12 @@ const PluginUse = () => {
         }
       ]
     }, {initialState: {enabled: false}})
+
+    pluginInstance.hooks.on('click', (e) => {
+      e.preventDefault()
+      const video = e.target.video
+      video.paused ? video.play() : video.pause()
+    })
     return () => {
       pluginInstance.dispose()
     }
