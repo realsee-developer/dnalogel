@@ -5,7 +5,6 @@ import { useWindowDimensions } from './useWindowDimensions'
 import PanoRulerPluginUsage from './PanoRulerPluginUsage'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
-import { Box, Button, Paper } from '@mui/material'
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
