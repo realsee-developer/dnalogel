@@ -58,7 +58,7 @@ const PanoTagPluginUse = () => {
     pluginInstance.load({
       tagList: list,
       globalConfig: {
-        renderType: 'Mesh',
+        // renderType: 'Mesh',
         visibleConfig: {
           visibleFiveMode: 'all',
         },
@@ -71,25 +71,6 @@ const PanoTagPluginUse = () => {
         },
       },
     })
-
-    window['load'] = () => {
-      pluginInstance.load({
-        tagList: list,
-        globalConfig: {
-          renderType: 'Mesh',
-          visibleConfig: {
-            visibleFiveMode: 'all',
-          },
-        },
-        contentTypeConfig: {
-          Text: {
-            unfoldedConfig: {
-              autoUnfold: false,
-            },
-          },
-        },
-      })
-    }
 
     return () => pluginInstance.dispose()
   }, [five])
