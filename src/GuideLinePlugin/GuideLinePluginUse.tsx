@@ -16,13 +16,15 @@ import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { GuideLinePluginType } from '@realsee/dnalogel/dist'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
+import data2 from './mocks/data2.json'
+import data from './mocks/data.json'
 
 const GuideLinePluginUse = () => {
   const id = 624
   const five = unsafe__useFiveInstance()
   const [visible, setVisible] = useState<boolean>(true)
   // 可选的路径
-  const [checkedObserverGroup, setCheckedObserverGroup] = useState<boolean[]>([])
+  const [checkedObserverGroup, setCheckedObserverGroup] = useState<boolean[]>([true, true, true, true, true, true, true])
   const guideLine: GuideLinePluginType.GuideLinePluginExportType = five.plugins.guideLinePlugin
   const panoIndexGroup = React.useMemo(
     () =>
@@ -43,6 +45,7 @@ const GuideLinePluginUse = () => {
   // 重载路径
   useEffect(() => {
     if (panoIndexGroup.length === 0) return guideLine.clear()
+    // guideLine.load(data as any)
     guideLine.load({
       lines: [
         {
@@ -50,7 +53,9 @@ const GuideLinePluginUse = () => {
           pano_group: panoIndexGroup,
           panorama_style: {
             visible: true,
-            border_color: '#FFFFFF',
+            border_color: '#FF0000',
+            background_color: '#FFFFFF',
+            background_opacity: 0.4,
             border_opacity: 0.4,
             border_width: 0.05,
             background_clip: 'border-box',
@@ -78,7 +83,15 @@ const GuideLinePluginUse = () => {
   }, [panoIndexGroup, five])
 
   useFiveEventCallback('loaded', (_, work) => {
-    setCheckedObserverGroup(work.observers.map(() => false))
+    setCheckedObserverGroup((checkedObserverGroup) => {
+      return work.observers.map((_, index) => {
+        if (typeof checkedObserverGroup[index] === 'boolean') {
+          return checkedObserverGroup[index]
+        } else {
+          return false
+        }
+      })
+    })
   })
 
   return (

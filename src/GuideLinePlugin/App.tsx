@@ -6,6 +6,7 @@ import GuideLinePluginUse from './GuideLinePluginUse'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import work from './mocks/work.json'
+import '../utils/$five.ts'
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
@@ -16,14 +17,17 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  // const work = useFetchDatas(DATA_TYPES.WORK)
+  // const work = useFetchDatas(DATA_TYPES.WORK, 'REQQYY2m', 'real')
 
   return (
     work && (
       <FiveProvider
-        initialState={{ mode: 'Mapview' }}
+        initialState={{
+          fov: 80,
+          latitude: 0.31,
+          longitude: 1.25,
+        }}
         initialWork={parseWork(work)}
-        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
       >
         <FiveCanvas {...size} />
         <GuideLinePluginUse />
