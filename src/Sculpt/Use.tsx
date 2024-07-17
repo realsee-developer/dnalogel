@@ -1,7 +1,7 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { ButtonGroup, Button } from '@mui/material'
 import type { Sculpt } from '@realsee/dnalogel/dist'
-// import { reblink, blink } from '@realsee/dnalogel/dist'
+import { Util } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
 import { useEffect } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
@@ -13,26 +13,30 @@ export const PanoPluginUse = () => {
   useEffect(() => {
     sculpt.load(data, {
       occlusionVisibility: false,
-      canEdit: true
+      canEdit: true,
     })
     sculpt.items.forEach((item) => item.on('click', (...args) => console.info('click', ...args)))
-    // window['blink'] = () => {
-    //   const item = sculpt.items[4]
-    //   if (item) {
-    //     blink(item.model, {updateRender: () => {
-    //       five.needsRender = true
-    //     }})
-    //   }
-    // }
-    // window['reblink'] = () => {
-    //   const item = sculpt.items[3]
-    //   item.visible = false
-    //   if (item) {
-    //     reblink(item, {updateRender: () => {
-    //       five.needsRender = true
-    //     }})
-    //   }
-    // }
+    window['blink'] = () => {
+      const item = sculpt.items[4]
+      if (item) {
+        Util.blink(item, {
+          updateRender: () => {
+            five.needsRender = true
+          },
+        })
+      }
+    }
+    window['reblink'] = () => {
+      const item = sculpt.items[3]
+      item.visible = false
+      if (item) {
+        Util.reblink(item, {
+          updateRender: () => {
+            five.needsRender = true
+          },
+        })
+      }
+    }
     return () => {
       sculpt.clear()
     }

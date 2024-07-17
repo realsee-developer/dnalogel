@@ -5,6 +5,7 @@ import PanoPluginUse from './Use'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { Sculpt } from '@realsee/dnalogel/dist'
+import '../utils/$five.ts'
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 1024 }, // 图片默认分辨率
@@ -35,7 +36,7 @@ const App: React.FC = () => {
   if (!work) return null
 
   return (
-    <FiveProvider initialWork={parseWork(work)} initialState={{mode:'Mapview'}} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
+    <FiveProvider initialWork={parseWork(work)} initialState={{ mode: 'Mapview', latitude: 0.78, longitude: 2 }}>
       <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
         <FiveCanvas {...size} />
       </div>
