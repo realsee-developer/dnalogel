@@ -58,7 +58,7 @@
         "start_tag": {
           "data": {
             "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/start2.d28f9bf8.png",
-            "text": ""
+            "text": "随便填一填"
           },
           "id": "faf91ebc-4621-434c-494d-3d8f8318389d",
           "position": [-6.130486737022816, -1.1371740647018505, 1.401460308168021]
@@ -138,7 +138,7 @@
         "start_tag": {
           "data": {
             "icon_url": "https://vr-image-4.realsee-cdn.cn/release/web/start2.d28f9bf8.png",
-            "text": "跑圈"
+            "text": "贪吃蛇"
           },
           "id": "16dfa4a3-1980-49d0-ce73-72770be49647",
           "position": [-6.55858191702675, -1.1371740647018505, -5.876157788286938]

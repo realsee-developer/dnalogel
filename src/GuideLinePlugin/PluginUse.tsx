@@ -45,40 +45,40 @@ const GuideLinePluginUse = () => {
   // 重载路径
   useEffect(() => {
     if (panoIndexGroup.length === 0) return guideLine.clear()
-    // guideLine.load(data as any)
-    guideLine.load({
-      lines: [
-        {
-          id,
-          pano_group: panoIndexGroup,
-          panorama_style: {
-            visible: true,
-            border_color: '#FF0000',
-            background_color: '#FFFFFF',
-            background_opacity: 0.4,
-            border_opacity: 0.4,
-            border_width: 0.05,
-            background_clip: 'border-box',
-            color: '#FFFFFF',
-            unit_length: 0.5,
-            opacity: 0.8,
-            width: 0.5,
-          },
-          model_style: {
-            visible: true,
-            background_color: '#FFFFFF',
-            background_opacity: 0.6,
-            border_color: '#FFFFFF',
-            border_opacity: 0.4,
-            border_width: 0.05,
-            background_clip: 'border-box',
-            color: 'green',
-            unit_length: 0.5,
-            width: 0.5,
-          },
-        },
-      ],
-    })
+    guideLine.load(data as any)
+    // guideLine.load({
+    //   lines: [
+    //     {
+    //       id,
+    //       pano_group: panoIndexGroup,
+    //       panorama_style: {
+    //         visible: true,
+    //         border_color: '#FF0000',
+    //         background_color: '#FFFFFF',
+    //         background_opacity: 0.4,
+    //         border_opacity: 0.4,
+    //         border_width: 0.05,
+    //         background_clip: 'border-box',
+    //         color: '#FFFFFF',
+    //         unit_length: 0.5,
+    //         opacity: 0.8,
+    //         width: 0.5,
+    //       },
+    //       model_style: {
+    //         visible: true,
+    //         background_color: '#FFFFFF',
+    //         background_opacity: 0.6,
+    //         border_color: '#FFFFFF',
+    //         border_opacity: 0.4,
+    //         border_width: 0.05,
+    //         background_clip: 'border-box',
+    //         color: 'green',
+    //         unit_length: 0.5,
+    //         width: 0.5,
+    //       },
+    //     },
+    //   ],
+    // })
     return () => guideLine.clear()
   }, [panoIndexGroup, five])
 

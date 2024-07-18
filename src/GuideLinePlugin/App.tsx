@@ -2,7 +2,7 @@ import { GuideLinePlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
-import GuideLinePluginUse from './GuideLinePluginUse'
+import GuideLinePluginUse from './PluginUse.tsx'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import work from './mocks/work.json'
@@ -23,9 +23,11 @@ const App: React.FC = () => {
     work && (
       <FiveProvider
         initialState={{
+          mode: 'Mapview',
+          distance: 18,
           fov: 80,
-          latitude: 0.31,
-          longitude: 1.25,
+          latitude: 0.9,
+          longitude: 1,
         }}
         initialWork={parseWork(work)}
       >
