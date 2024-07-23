@@ -12,7 +12,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 512 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[GuideLinePlugin, 'guideLinePlugin']],
+  plugins: [[GuideLinePlugin, 'guideLinePlugin', { useAutoDepthTest: true, autoDepthTestEffectDistance: 3 }]],
 })
 
 const App: React.FC = () => {
