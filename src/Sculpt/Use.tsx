@@ -19,7 +19,7 @@ export const PanoPluginUse = () => {
     window['blink'] = () => {
       const item = sculpt.items[4]
       if (item) {
-        Util.blink(item, {
+        Util.blink(five.scene, {
           updateRender: () => {
             five.needsRender = true
           },
