@@ -82,13 +82,6 @@ const GuideLinePluginUse = () => {
               },
               position: five.observers[panoIndexGroup[0]]?.standingPosition.toArray(),
             },
-            end_tag: {
-              data: {
-                icon_url: 'https://vr-image-4.realsee-cdn.cn/release/web/end2.5e3a17c2.png',
-                text: '终点',
-              },
-              position: five.observers[panoIndexGroup.at(-1)!]?.standingPosition.toArray(),
-            },
           },
         },
       ],
