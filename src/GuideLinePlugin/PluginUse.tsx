@@ -21,7 +21,6 @@ import data2 from './mocks/data2.json'
 import data from './mocks/data.json'
 
 const GuideLinePluginUse = () => {
-  const id = 624
   const five = unsafe__useFiveInstance()
   const [visible, setVisible] = useState<boolean>(true)
   // 可选的路径
@@ -50,7 +49,7 @@ const GuideLinePluginUse = () => {
     guideLine.load({
       lines: [
         {
-          id,
+          id: 1,
           pano_group: panoIndexGroup,
           panorama_style: {
             visible: true,
@@ -76,6 +75,20 @@ const GuideLinePluginUse = () => {
             color: 'green',
             unit_length: 0.5,
             width: 0.5,
+            start_tag: {
+              data: {
+                icon_url: 'https://vr-image-4.realsee-cdn.cn/release/web/start2.d28f9bf8.png',
+                text: '起点',
+              },
+              position: five.observers[panoIndexGroup[0]]?.standingPosition.toArray(),
+            },
+            end_tag: {
+              data: {
+                icon_url: 'https://vr-image-4.realsee-cdn.cn/release/web/end2.5e3a17c2.png',
+                text: '终点',
+              },
+              position: five.observers[panoIndexGroup.at(-1)!]?.standingPosition.toArray(),
+            },
           },
         },
       ],
