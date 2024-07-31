@@ -1,0 +1,11 @@
+import type { TagContentType, TagInstance } from '../../typings';
+export declare function isPointTag(tag: TagInstance): boolean;
+export declare function isPlaneTag<T extends TagContentType>(tag: TagInstance<T>): tag is TagInstance<T, 'Plane'>;
+export declare function isPoint2DTag(tag: TagInstance): boolean;
+export declare function isPoint3DTag<T extends TagContentType>(tag: TagInstance<T>): tag is TagInstance<T, '3DPoint'>;
+export declare function is2DTag(tag: TagInstance): boolean;
+export declare function is3DTag<T extends TagContentType>(tag: TagInstance): tag is TagInstance<T, '3DPoint'> | TagInstance<T, 'Plane'>;
+export declare function isMediaModelTag(tag: TagInstance): tag is TagInstance<'MediaModel', 'Model'>;
+export declare function isModelTag(tag: TagInstance): tag is TagInstance<'Model', 'Model'>;
+export declare function isStickModelTag(tag: TagInstance): tag is TagInstance<'Model', 'Model'> | TagInstance<'MediaModel', 'Model'>;
+export declare function isMediaPlaneTag(tag: TagInstance): tag is TagInstance<'MediaModel', 'Model'>;

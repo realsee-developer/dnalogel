@@ -1,0 +1,46 @@
+var l = Object.defineProperty;
+var c = (o, t, e) => t in o ? l(o, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[t] = e;
+var s = (o, t, e) => (c(o, typeof t != "symbol" ? t + "" : t, e), e);
+import * as r from "three";
+import { IObject3D as h } from "../../shared-utils/three/IObject3D.js";
+import { generatePolygonGeometry as d } from "../../shared-utils/three/generatePolygonGeometry.js";
+import "../../shared-utils/three/earcut3D.js";
+import "earcut";
+import "../../shared-utils/three/getNormal.js";
+const p = new r.BufferGeometry();
+class w extends h {
+  constructor(e) {
+    super();
+    s(this, "isPolygonMesh", !0);
+    s(this, "geometry", new r.BufferGeometry());
+    s(this, "isBlank", !0);
+    s(this, "points", []);
+    const i = new r.MeshBasicMaterial({
+      color: 4090367,
+      transparent: !0,
+      side: r.DoubleSide,
+      depthTest: !0,
+      opacity: 0.5
+    }), m = new r.MeshBasicMaterial({
+      color: 16777215,
+      transparent: !0,
+      side: r.DoubleSide,
+      depthTest: !1,
+      depthWrite: !1,
+      opacity: 0.3
+    }), n = new r.Mesh(this.geometry, i), a = new r.Mesh(this.geometry, m);
+    n.renderOrder = 1, a.renderOrder = 0, e && this.updatePoints(e), this.add(n, a);
+  }
+  /**
+   * @description: 按照新的端点来更新多边形的geometry
+   */
+  updatePoints(e) {
+    this.points = e;
+    const i = d(e);
+    i ? (this.geometry.copy(i), this.isBlank = !1) : (this.geometry.copy(p), this.isBlank = !0);
+  }
+}
+export {
+  p as blankGeometry,
+  w as default
+};
