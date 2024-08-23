@@ -28,7 +28,6 @@ const PanoTagPluginUse = () => {
         renderType: 'Mesh',
         simulate3D: true,
         visibleConfig: {
-          visibleFiveMode: 'all',
           // visibleDistance: { max: 1 },
           entryFromModel: true,
         },
