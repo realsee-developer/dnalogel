@@ -47,7 +47,7 @@ const CSS3DRenderPluginUse: React.FC = () => {
         pointerEvents: 'auto',
         // ratio: 0.005,
       }) || {}
-    container && ReactDOM.render(<img src="//vrlab-static.ljcdn.com/release/web/catCoding.1cd4e989.gif" width="100%" />, container)
+    container && ReactDOM.render(<img src="//vr-static.realsee-cdn.cn/release/web/catCoding.1cd4e989.gif" width="100%" />, container)
     Object.assign(window, { setCatCodingVisible: setVisible })
     return () => {
       dispose?.()

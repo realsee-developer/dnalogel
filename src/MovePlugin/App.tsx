@@ -19,11 +19,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider
-        initialWork={parseWork(work)}
-        initialState={{ mode: 'Mapview' }}
-        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
-      >
+      <FiveProvider initialWork={parseWork(work)} initialState={{ mode: 'Mapview' }}>
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
           <FiveCanvas {...size} />
         </div>

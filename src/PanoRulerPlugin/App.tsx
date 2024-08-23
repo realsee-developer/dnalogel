@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const work = useFetchDatas(DATA_TYPES.WORK)
 
   return (
-    <FiveProvider work={work && parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
+    <FiveProvider work={work && parseWork(work)}>
       <FiveCanvas {...size} />
       <PanoRulerPluginUsage vrCode={vrCode} />
     </FiveProvider>

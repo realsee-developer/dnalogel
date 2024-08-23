@@ -5,6 +5,7 @@ import { Util } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
 import { useEffect } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
+import * as THREE from 'three'
 
 export const PanoPluginUse = () => {
   const five = unsafe__useFiveInstance()
@@ -54,6 +55,16 @@ export const PanoPluginUse = () => {
         <Button onClick={() => sculpt.createBox()}>Box</Button>
         <Button onClick={() => sculpt.createCircle()}>Circle</Button>
         <Button onClick={() => sculpt.createCylinder()}>Cylinder</Button>
+      </ButtonGroup>
+      <ButtonGroup sx={{ position: 'fixed', top: 50 }}>
+        <Button onClick={() => Util.lookPoint(five, new THREE.Vector3(0, 0, 0))}>P000</Button>
+        <Button onClick={() => Util.lookPoint(five, new THREE.Vector3(-4.738885879516602, 2.3911326683585354, 0.1066827454160853))}>
+          P0
+        </Button>
+        <Button onClick={() => Util.lookObject(five, sculpt.items[2])}>P2</Button>
+        <Button onClick={() => Util.lookObject(five, sculpt.items[3])}>P3</Button>
+        <Button onClick={() => Util.lookObject(five, sculpt.items[5])}>P5</Button>
+        <Button onClick={() => Util.lookObject(five, sculpt.items[7])}>P7</Button>
       </ButtonGroup>
     </>
   )

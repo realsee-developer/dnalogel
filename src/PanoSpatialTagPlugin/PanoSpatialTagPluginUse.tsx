@@ -30,7 +30,7 @@ const PanoSpatialTagPluginUse: React.FC = () => {
       points,
       template: `
             <div class="tag-wrapper" style="pointer-events: auto;">
-              <%if (brand) {%><div style="background:url('//vrlab-static.ljcdn.com/release/web/brand_bg.15e354d0.png') no-repeat;background-size:100% 100%;box-shadow: 0 -0.625rem 0.625rem 0 rgba(0, 0, 0, 0.1);
+              <%if (brand) {%><div style="background:url('//vr-static.realsee-cdn.cn/release/web/brand_bg.15e354d0.png') no-repeat;background-size:100% 100%;box-shadow: 0 -0.625rem 0.625rem 0 rgba(0, 0, 0, 0.1);
                 border-radius: 0.0625rem;overflow: hidden;font-size: 0.6875rem;padding:0.125rem;width:max-content;margin-bottom:0.375rem;line-height:1;">
                 <%= brand %>
               </div><% } %>

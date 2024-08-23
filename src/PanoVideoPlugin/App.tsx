@@ -23,10 +23,9 @@ const App: React.FC = () => {
         initialWork={parseWork(work)}
         initialState={{
           latitude: 0.27,
-          longitude: 0.20,
+          longitude: 0.2,
           panoIndex: 305,
         }}
-        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
           <FiveCanvas {...size} />

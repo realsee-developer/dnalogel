@@ -23,11 +23,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider
-        initialWork={parseWork(work)}
-        initialState={{ mode: 'Model' }}
-        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
-      >
+      <FiveProvider initialWork={parseWork(work)} initialState={{ mode: 'Model' }}>
         <FiveCanvas {...size} />
         <CruisePluginUse />
       </FiveProvider>

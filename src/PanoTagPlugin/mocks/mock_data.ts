@@ -12,15 +12,15 @@ export const TagsList = [
       text: '2D图文标签哈哈哈哈哈',
       mediaData: [
         {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
           type: 'Image',
         },
         {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
           type: 'Image',
         },
         {
-          url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
           type: 'Image',
         },
       ],
@@ -29,15 +29,6 @@ export const TagsList = [
     fiveState: {
       mode: 'Panorama' as Mode,
       panoIndex: 0,
-      longitude: 0.9079828829912141,
-      latitude: 0.2043343653250773,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
     },
   },
   // {
@@ -54,13 +45,13 @@ export const TagsList = [
   //   data: {
   //     mediaData: [
   //       {
-  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+  //         url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
+  //         videoCoverUrl: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
   //         type: 'Video',
   //       },
   //       {
-  //         url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-  //         videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+  //         url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
+  //         videoCoverUrl: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
   //         type: 'Video',
   //       },
   //     ],
@@ -90,13 +81,17 @@ export const TagsList = [
       [-1.4865722199099451, 2.1293509755511106, -2.3397009372711177 + 0.01],
       [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
     ],
+    fiveState: {
+      mode: 'Panorama' as Mode,
+      panoIndex: 0,
+    },
     data: {
       mediaData: [
         {
           // url: 'http://10.33.192.249:81/local/uwork/vrcustomer/XINGZHEN/jXrqvOgEU8l4ZH4m7O/2f3031fadbbaab2ea7a631df854be567.jpg',
-          url: 'http://vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
+          url: 'http://vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
           // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
           // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
           type: 'Image',
         },
@@ -108,6 +103,10 @@ export const TagsList = [
     pointType: 'PlaneTag',
     contentType: 'MediaPlane',
     enable: true,
+    fiveState: {
+      mode: 'Panorama' as Mode,
+      panoIndex: 0,
+    },
     position: [
       [-0.16450234208682218, 1.2079436283327727, -2.3397009372711186],
       [0.4534614669340434, 1.2009985563997523, -2.3397009372711186],
@@ -117,9 +116,9 @@ export const TagsList = [
     data: {
       mediaData: [
         {
-          url: '//vrlab-static.ljcdn.com/release/web/catCoding.1cd4e989.gif',
+          url: '//vr-static.realsee-cdn.cn/release/web/catCoding.1cd4e989.gif',
           // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          // url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
           // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
           type: 'Image',
         },
@@ -140,8 +139,8 @@ export const TagsList = [
     data: {
       mediaData: [
         {
-          // url: '//vrlab-static.ljcdn.com/release/web/arrow.c5d028e4.png',
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+          // url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
+          url: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
           type: 'Image',
         },
       ],
@@ -170,7 +169,7 @@ export const TagsList = [
       title: '2D营销标签',
       brandTags: ['品牌名称'],
       tags: ['标签描述', '标签描述'],
-      headerPictureUrl: '//vrlab-static.ljcdn.com/release/web/cardHeader.19ff7aa0.png',
+      headerPictureUrl: '//vr-static.realsee-cdn.cn/release/web/cardHeader.19ff7aa0.png',
       highlightText: '立即查看',
       price: {
         value: '20.30',
@@ -179,7 +178,7 @@ export const TagsList = [
     },
     style: {
       point: {
-        iconUrl: '//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png',
+        iconUrl: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
       },
     },
     id: 3,
@@ -259,7 +258,7 @@ export const TagsList = [
     position: [-2.1892900647187052, 1.5567515982674699, 1.0212990045547485],
     data: {
       appearance: 'plane',
-      audioUrl: '//vrlab-static.ljcdn.com/release/web/test.145da774.m4a',
+      audioUrl: '//vr-static.realsee-cdn.cn/release/web/test.145da774.m4a',
       text: 'test.m4a',
     },
     id: 51,
@@ -289,7 +288,7 @@ export const TagsList = [
     position: [-2.1892900647187052, 1.6567515982674699, 1.0212990045547485],
     data: {
       appearance: 'plane',
-      audioUrl: '//vrlab-static.ljcdn.com/release/web/Bling.678be963.mp3',
+      audioUrl: '//vr-static.realsee-cdn.cn/release/web/Bling.678be963.mp3',
       text: '2D音频标签标题标题标题标标题标题标题标题标题标题标题标题标题标题标题标标题标题',
     },
     id: 5,
@@ -317,6 +316,10 @@ export const TagsList = [
       linkType: 'vr',
       text: '2D跳转标签',
     },
+    fiveState: {
+      mode: 'Panorama' as Mode,
+      panoIndex: 0,
+    },
     id: 6,
   },
   {
@@ -325,6 +328,10 @@ export const TagsList = [
     contentType: 'Panorama',
     enable: true,
     position: [-0.8070892936181384, 0.1, 1.0212990045547485],
+    fiveState: {
+      mode: 'Panorama' as Mode,
+      panoIndex: 0,
+    },
     data: {
       mediaData: [
         {
@@ -359,7 +366,7 @@ export const TagsList = [
       mediaData: [
         {
           type: 'Video',
-          url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
+          url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
         },
       ],
       targetUrl: null,
@@ -382,23 +389,9 @@ export const TagsList = [
     style: { point: { iconType: 'circle' } },
     config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
     matrix: [
-      0.3012921352579293,
-      0,
-      0.9535318816021398,
-      0,
-      0,
-      1,
-      0,
-      0,
-      -0.9535318816021398,
-      0,
-      0.3012921352579293,
-      0,
-      1.347059457861614,
-      0.005288434039257162,
-      -2.056130746849461,
-      1
-  ],
+      0.3012921352579293, 0, 0.9535318816021398, 0, 0, 1, 0, 0, -0.9535318816021398, 0, 0.3012921352579293, 0, 1.347059457861614,
+      0.005288434039257162, -2.056130746849461, 1,
+    ],
   },
   {
     dimensionType: '2D',
@@ -414,7 +407,7 @@ export const TagsList = [
     },
     style: {
       point: {
-        url: '//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png',
+        url: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
       },
     },
     id: 0,
@@ -436,7 +429,6 @@ export const TagsList = [
 
 export const AddTagData = {
   [ContentType.Text]: {
-    id: 7,
     pointType: 'PointTag',
     dimensionType: '2D',
     position: [-1.9697880985731286, 1.6096369355028362, -2.339700937271118],
@@ -449,7 +441,7 @@ export const AddTagData = {
     style: {
       point: {
         style: 'Default',
-        iconUrl: '//vrlab-static.ljcdn.com/release/web/tagStyle1.30bff6db.png',
+        iconUrl: '//vr-static.realsee-cdn.cn/release/web/tagStyle1.30bff6db.png',
       },
     },
     contentType: 'Text',
@@ -469,7 +461,6 @@ export const AddTagData = {
     },
   },
   [ContentType.ImageText]: {
-    id: 8,
     pointType: 'PointTag',
     dimensionType: '2D',
     position: [-0.8340552724043149, 2.1891417065796084, -2.339700937271118],
@@ -489,7 +480,7 @@ export const AddTagData = {
     style: {
       point: {
         style: 'CustomIcon',
-        iconUrl: '//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png',
+        iconUrl: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
       },
     },
     contentType: 'ImageText',
@@ -509,7 +500,6 @@ export const AddTagData = {
     },
   },
   [ContentType.Audio]: {
-    id: 9,
     pointType: 'PointTag',
     dimensionType: '2D',
     position: [-2.1892900647187052, 1.3567515982674699, 1.0212990045547485],
@@ -521,7 +511,7 @@ export const AddTagData = {
     style: {
       point: {
         style: 'CustomIcon',
-        iconUrl: '//vrlab-static.ljcdn.com/release/web/carTagDotContent.08ace25e.png',
+        iconUrl: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
       },
     },
     contentType: 'Audio',
@@ -541,7 +531,6 @@ export const AddTagData = {
     },
   },
   [ContentType.Marketing]: {
-    id: 10,
     pointType: 'PointTag',
     dimensionType: '2D',
     position: [-1.338475476220061, 0, -0.33318181321254403],
@@ -550,7 +539,7 @@ export const AddTagData = {
       highlightText: '高亮',
       brandTags: [''],
       tags: ['标签1', ''],
-      headerPictureUrl: '//vrlab-static.ljcdn.com/release/web/cardHeader.19ff7aa0.png',
+      headerPictureUrl: '//vr-static.realsee-cdn.cn/release/web/cardHeader.19ff7aa0.png',
       price: {
         value: 0.9385753830250385,
         unit: '元',
@@ -559,7 +548,7 @@ export const AddTagData = {
     style: {
       point: {
         style: 'Default',
-        iconUrl: '//vrlab-static.ljcdn.com/release/web/tagStyle1.30bff6db.png',
+        iconUrl: '//vr-static.realsee-cdn.cn/release/web/tagStyle1.30bff6db.png',
       },
     },
     contentType: 'Marketing',
@@ -579,7 +568,6 @@ export const AddTagData = {
     },
   },
   [ContentType.Link]: {
-    id: 11,
     pointType: 'PointTag',
     dimensionType: '2D',
     position: [-1.333800813934946, 0, -2.2449222652733747],

@@ -6,15 +6,21 @@ import react from '@vitejs/plugin-react'
 const appSrc = path.resolve(process.cwd(), 'src')
 
 // https://vitejs.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const isEnvProduction = mode === 'production'
+  const isEnvDevelopment = mode === 'development'
+
   return {
     base: '/dnalogel/',
     server: {
       host: true,
+      port: 3001,
       open: '/',
-      hmr: {
-        overlay: false,
-      },
+      hmr: isEnvProduction
+        ? false
+        : {
+            overlay: false,
+          },
     },
     build: {
       rollupOptions: {

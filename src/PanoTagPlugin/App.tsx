@@ -2,29 +2,16 @@ import { PanoTagPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
-import PanoTagPluginUse from './PanoTagPluginUse'
+import PanoTagPluginUse from './PluginUse.tsx'
 import { FivePluginInit, parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import '../utils/$five.ts'
 
 const FiveProvider = createFiveProvider({
-  imageOptions: { size: 512 }, // 图片默认分辨率
-  textureOptions: { size: 128 }, // 贴图默认分辨率
+  imageOptions: { size: 1024 }, // 图片默认分辨率
+  textureOptions: { size: 1024 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [
-    [
-      PanoTagPlugin,
-      'panoTagPlugin',
-      {
-        config: {
-          globalConfig: {
-            modelConfig: { autoLookAtEnabled: false },
-            // clickable: false
-          },
-        },
-      },
-    ] as FivePluginInit<typeof PanoTagPlugin>,
-  ],
+  plugins: [[PanoTagPlugin, 'panoTagPlugin', {}] as FivePluginInit<typeof PanoTagPlugin>],
 })
 
 const App: React.FC = () => {

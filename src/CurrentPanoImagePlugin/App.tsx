@@ -20,11 +20,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider
-        initialState={{ mode: 'Floorplan' }}
-        initialWork={parseWork(work)}
-        ref={(ref) => Object.assign(window, { $five: ref?.state.five })}
-      >
+      <FiveProvider initialState={{ mode: 'Floorplan' }} initialWork={parseWork(work)}>
         <FiveCanvas {...size} />
         <Box
           className="plugin-full-screen-container"

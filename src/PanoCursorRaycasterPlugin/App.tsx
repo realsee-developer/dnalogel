@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
+      <FiveProvider initialWork={parseWork(work)}>
         <FiveCanvas {...size} />
         <PluginFullScreenContainer />
         <PanoCursorRaycasterPluginUse />

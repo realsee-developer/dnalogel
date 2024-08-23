@@ -40,13 +40,13 @@ const PluginUse: React.FC = () => {
           data: {
             mediaData: [
               {
-                url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-                videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+                url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
+                videoCoverUrl: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
                 type: 'Video',
               },
               {
-                url: '//vrlab-static.ljcdn.com/release/web/jsl/test.69dacffb.mp4',
-                videoCoverUrl: '//vrlab-static.ljcdn.com/release/web/jsl/test.65720b34.png',
+                url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
+                videoCoverUrl: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
                 type: 'Video',
               },
             ],

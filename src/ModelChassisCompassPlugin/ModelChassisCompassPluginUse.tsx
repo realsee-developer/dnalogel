@@ -22,7 +22,7 @@ const ModelChassisCompassPluginUse: React.FC = () => {
       // 数据载入格式
       // {
       //     north_rad: number,
-      //     fbx_url: '//vrlab-static.ljcdn.com/release/web/v3/dipan3/dipan.FBX'
+      //     fbx_url: '//vr-static.realsee-cdn.cn/release/web/v3/dipan3/dipan.FBX'
       // }
 
       // 载入朝北数据

@@ -38,7 +38,7 @@ const datas: Tag<'Marketing'>['data'][] = [
       value: '100',
       unit: '元',
     },
-    headerPictureUrl: '//vrlab-static.ljcdn.com/release/web/cardHeader.19ff7aa0.png',
+    headerPictureUrl: '//vr-static.realsee-cdn.cn/release/web/cardHeader.19ff7aa0.png',
     highlightText: '了解不多',
   },
   {

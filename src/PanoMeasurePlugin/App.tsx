@@ -7,6 +7,7 @@ import { parseWork } from '@realsee/five'
 import { Box } from '@mui/material'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { PanoMeasureParameterType } from '@realsee/dnalogel/dist'
+import '../utils/$five.ts'
 // import work from './mocks/Wox6RD.json'
 
 const FiveProvider = createFiveProvider({
@@ -26,7 +27,7 @@ const FiveProvider = createFiveProvider({
           allowMeasureType: ['area', 'line'],
           pointSelectorMode: 'auto',
           autoEndConfig: {
-            line: 3
+            line: 3,
           },
         },
         openParams: {
@@ -54,7 +55,7 @@ const FiveProvider = createFiveProvider({
           allowMeasureType: ['line'],
           pointSelectorMode: 'fixed',
           autoEndConfig: {
-            line: 3
+            line: 3,
           },
         },
         openParams: {
@@ -79,7 +80,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider initialWork={parseWork(work)} ref={(ref) => Object.assign(window, { $five: ref?.state.five })}>
+      <FiveProvider initialWork={parseWork(work)}>
         <FiveCanvas {...size} />
         <Box
           className="plugin-full-screen-container"
