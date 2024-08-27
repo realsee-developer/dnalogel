@@ -32,7 +32,9 @@ const PanoTagPluginUse = () => {
           entryFromModel: true,
         },
         unfoldedConfig: {
-          autoUnfold: false,
+          autoUnfold: {
+            strategy: 'MinimumDistance',
+          },
         },
       },
     })
