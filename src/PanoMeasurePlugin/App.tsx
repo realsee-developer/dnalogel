@@ -7,9 +7,6 @@ import { parseWork } from '@realsee/five'
 import { Box } from '@mui/material'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import '../utils/$five.ts'
-import { PanoMeasureParameterType } from '@realsee/dnalogel/dist'
-import '../utils/$five.ts'
-// import work from './mocks/Wox6RD.json'
 
 const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
   useGuideController: true,
