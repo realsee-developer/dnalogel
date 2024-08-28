@@ -30,11 +30,7 @@ const PanoTagPluginUse = () => {
         visibleConfig: {
           // visibleDistance: { max: 1 },
           entryFromModel: true,
-        },
-        unfoldedConfig: {
-          autoUnfold: {
-            strategy: 'MinimumDistance',
-          },
+          visiblePanoIndex: 'current',
         },
       },
     })

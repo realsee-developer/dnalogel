@@ -23,9 +23,13 @@ const App: React.FC = () => {
       <FiveProvider
         initialWork={parseWork(work)}
         initialState={{
-          panoIndex: 3,
-          latitude: 0.031716492836436586,
-          longitude: 3.28539937000811,
+          // panoIndex: 3,
+          // latitude: 0.031716492836436586,
+          // longitude: 3.28539937000811,
+
+          panoIndex: 8,
+          latitude: 0.0645096107262738,
+          longitude: 0.8460359249233026,
         }}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
