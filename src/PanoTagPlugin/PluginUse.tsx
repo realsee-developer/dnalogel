@@ -28,9 +28,7 @@ const PanoTagPluginUse = () => {
         renderType: 'Mesh',
         simulate3D: true,
         visibleConfig: {
-          // visibleDistance: { max: 1 },
           entryFromModel: true,
-          visiblePanoIndex: 'current',
         },
       },
     })

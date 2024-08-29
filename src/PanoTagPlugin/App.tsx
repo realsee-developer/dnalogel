@@ -11,7 +11,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 1024 }, // 图片默认分辨率
   textureOptions: { size: 1024 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[PanoTagPlugin, 'panoTagPlugin', {}] as FivePluginInit<typeof PanoTagPlugin>],
+  plugins: [[PanoTagPlugin, 'panoTagPlugin', { debug: true }] as FivePluginInit<typeof PanoTagPlugin>],
 })
 
 const App: React.FC = () => {
@@ -23,13 +23,13 @@ const App: React.FC = () => {
       <FiveProvider
         initialWork={parseWork(work)}
         initialState={{
-          // panoIndex: 3,
-          // latitude: 0.031716492836436586,
-          // longitude: 3.28539937000811,
+          panoIndex: 3,
+          latitude: 0.031716492836436586,
+          longitude: 3.28539937000811,
 
-          panoIndex: 8,
-          latitude: 0.0645096107262738,
-          longitude: 0.8460359249233026,
+          // panoIndex: 8,
+          // latitude: 0.0645096107262738,
+          // longitude: 0.8460359249233026,
         }}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
