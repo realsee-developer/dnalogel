@@ -1,11 +1,17 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { ButtonGroup, Button } from '@mui/material'
+import { ButtonGroup, Button, Stack } from '@mui/material'
 import type { Sculpt } from '@realsee/dnalogel/dist'
 import { Util } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
+import boxData from './mocks/boxData.json'
 import { useEffect } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
-import * as THREE from 'three'
+import { CustomWork } from '../components/CustomWork'
+
+const defaultCreateStyle = {
+  occlusionVisibility: true,
+  occlusionMode: 'translucence' as const,
+}
 
 export const PanoPluginUse = () => {
   const five = unsafe__useFiveInstance()
@@ -13,7 +19,7 @@ export const PanoPluginUse = () => {
 
   useEffect(() => {
     sculpt.load(data, {
-      occlusionVisibility: false,
+      occlusionVisibility: true,
       canEdit: true,
     })
     sculpt.items.forEach((item) => item.on('click', (...args) => console.info('click', ...args)))
@@ -46,26 +52,33 @@ export const PanoPluginUse = () => {
   return (
     <>
       <FiveModeSwitcher />
-      <ButtonGroup sx={{ position: 'fixed', top: 0 }}>
-        <Button onClick={() => sculpt.createPoint()}>Point</Button>
-        <Button onClick={() => sculpt.createPolyline()}>PolyLine</Button>
-        <Button onClick={() => sculpt.createPolygon()}>Polygon</Button>
-        <Button onClick={() => sculpt.createPrism()}>Prism</Button>
-        <Button onClick={() => sculpt.createRectangle()}>Rectangle</Button>
-        <Button onClick={() => sculpt.createBox()}>Box</Button>
-        <Button onClick={() => sculpt.createCircle()}>Circle</Button>
-        <Button onClick={() => sculpt.createCylinder()}>Cylinder</Button>
-      </ButtonGroup>
-      <ButtonGroup sx={{ position: 'fixed', top: 50 }}>
-        <Button onClick={() => Util.lookPoint(five, new THREE.Vector3(0, 0, 0))}>P000</Button>
-        <Button onClick={() => Util.lookPoint(five, new THREE.Vector3(-4.738885879516602, 2.3911326683585354, 0.1066827454160853))}>
-          P0
-        </Button>
-        <Button onClick={() => Util.lookObject(five, sculpt.items[2])}>P2</Button>
-        <Button onClick={() => Util.lookObject(five, sculpt.items[3])}>P3</Button>
-        <Button onClick={() => Util.lookObject(five, sculpt.items[5])}>P5</Button>
-        <Button onClick={() => Util.lookObject(five, sculpt.items[7])}>P7</Button>
-      </ButtonGroup>
+      <CustomWork
+        onChangeWork={() => {
+          sculpt.clear()
+        }}
+      />
+      <Stack>
+        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical">
+          <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
+          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段【自由】</Button>
+          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'xoz' })}>线段【水平】</Button>
+          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'y' })}>线段【垂直】</Button>
+          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线【自由】</Button>
+          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle, limit: 'xoz' })}>折线【水平】</Button>
+          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle, limit: 'y' })}>折线【垂直】</Button>
+          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形【自由】</Button>
+          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle, limit: 'xoz' })}>多边形【水平】</Button>
+          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle, limit: 'y' })}>多边形【垂直】</Button>
+          <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle })}>长方形</Button>
+          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle })}>长方体</Button>
+          <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
+          <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
+          <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>
+          <Button variant="contained" onClick={() => sculpt.clear()}>
+            清空
+          </Button>
+        </ButtonGroup>
+      </Stack>
     </>
   )
 }

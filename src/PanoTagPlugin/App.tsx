@@ -11,7 +11,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 1024 }, // 图片默认分辨率
   textureOptions: { size: 1024 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[PanoTagPlugin, 'panoTagPlugin', { debug: true }] as FivePluginInit<typeof PanoTagPlugin>],
+  plugins: [[PanoTagPlugin, 'panoTagPlugin', { debug: false }] as FivePluginInit<typeof PanoTagPlugin>],
 })
 
 const App: React.FC = () => {

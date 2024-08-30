@@ -13,7 +13,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 128 }, // 贴图默认分辨率
   plugins: [
-    [PanoTagPlugin, 'panoTagPlugin', { debug: true }],
+    [PanoTagPlugin, 'panoTagPlugin', { debug: false }],
     [Object3DHelperPlugin, 'object3DHelperPlugin'],
   ],
 })
