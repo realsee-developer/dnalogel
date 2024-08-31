@@ -1,5 +1,5 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { ButtonGroup, Button, Stack } from '@mui/material'
+import { ButtonGroup, Button, Stack, Switch } from '@mui/material'
 import type { Sculpt } from '@realsee/dnalogel/dist'
 import { Util } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
 
-const defaultCreateStyle = {
+const defaultCreateStyle: any = {
   occlusionVisibility: true,
   occlusionMode: 'translucence' as const,
 }
@@ -59,6 +59,20 @@ export const PanoPluginUse = () => {
       />
       <Stack>
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical">
+          <Button sx={{ background: 'rgba(255,255,255,0.5)' }} variant="contained">
+            长度显示
+            <Switch
+              onChange={(e) => {
+                sculpt.items.forEach((item) => {
+                  if (item.type !== 'Circle' && item.type !== 'Cylinder') {
+                    const obj = item.children?.[0] as any
+                    obj.setStyle({ lengthEnable: e.target.checked })
+                  }
+                })
+                defaultCreateStyle.lengthEnable = e.target.checked
+              }}
+            />
+          </Button>
           <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段【自由】</Button>
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'xoz' })}>线段【水平】</Button>
