@@ -1,5 +1,5 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { ButtonGroup, Button, Stack, Switch } from '@mui/material'
+import { ButtonGroup, Button, Stack, Switch, Paper } from '@mui/material'
 import type { Sculpt } from '@realsee/dnalogel/dist'
 import { Util } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
@@ -30,6 +30,22 @@ export const PanoPluginUse = () => {
   return (
     <>
       <FiveModeSwitcher modeList={['Mapview', 'Panorama', 'Model']} />
+      <Paper sx={{ position: 'fixed', bottom: 0, right: 150 }}>
+        <Button
+          onClick={() => {
+            five.setState({
+              mode: 'Mapview',
+              offset: five.camera.position.clone(),
+              fov: five.state.fov,
+              distance: 0,
+              latitude: five.state.latitude,
+              longitude: five.state.longitude,
+            })
+          }}
+        >
+          Mapview 当前视角
+        </Button>
+      </Paper>
       <CustomWork
         onChangeWork={() => {
           sculpt.clear()
