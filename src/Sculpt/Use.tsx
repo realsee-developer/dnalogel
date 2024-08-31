@@ -29,7 +29,7 @@ export const PanoPluginUse = () => {
 
   return (
     <>
-      <FiveModeSwitcher />
+      <FiveModeSwitcher modeList={['Mapview', 'Panorama', 'Model']} />
       <CustomWork
         onChangeWork={() => {
           sculpt.clear()
