@@ -30,9 +30,15 @@ const FiveProvider = createFiveProvider({
   ],
 })
 
+// goVEAXLvE4HWVjvT5x
+//
+
+const workCode = (new URLSearchParams(window.location.search).get('workCode') ?? '') as any
+const workType = (new URLSearchParams(window.location.search).get('workType') ?? 'real') as any
+
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const work = useFetchDatas(DATA_TYPES.WORK)
+  const work = useFetchDatas(DATA_TYPES.WORK, workCode, workCode ? workType : undefined)
 
   if (!work) return null
 

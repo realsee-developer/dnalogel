@@ -18,32 +18,10 @@ export const PanoPluginUse = () => {
   const sculpt = five.plugins.Sculpt as Sculpt
 
   useEffect(() => {
-    sculpt.load(data, {
-      occlusionVisibility: true,
-      canEdit: true,
-    })
-    sculpt.items.forEach((item) => item.on('click', (...args) => console.info('click', ...args)))
-    window['blink'] = () => {
-      const item = sculpt.items[4]
-      if (item) {
-        Util.blink(five.scene, {
-          updateRender: () => {
-            five.needsRender = true
-          },
-        })
-      }
-    }
-    window['reblink'] = () => {
-      const item = sculpt.items[3]
-      item.visible = false
-      if (item) {
-        Util.reblink(item, {
-          updateRender: () => {
-            five.needsRender = true
-          },
-        })
-      }
-    }
+    // sculpt.load(data, {
+    //   occlusionVisibility: true,
+    //   canEdit: true,
+    // })
     return () => {
       sculpt.clear()
     }
@@ -58,7 +36,7 @@ export const PanoPluginUse = () => {
         }}
       />
       <Stack>
-        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical">
+        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" variant="contained">
           <Button sx={{ background: 'rgba(255,255,255,0.5)' }} variant="contained">
             长度显示
             <Switch
@@ -72,6 +50,17 @@ export const PanoPluginUse = () => {
                 defaultCreateStyle.lengthEnable = e.target.checked
               }}
             />
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ background: 'rgba(255,255,255,0.5)' }}
+            onClick={() => {
+              Array.from(document.getElementById('LightTagContainer_shgjakdhwakjdhsja')!.children).forEach(
+                (i: any) => (i.style.opacity = '1'),
+              )
+            }}
+          >
+            显示被模型遮挡的距离
           </Button>
           <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段【自由】</Button>
@@ -88,7 +77,7 @@ export const PanoPluginUse = () => {
           <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
           <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
           <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>
-          <Button variant="contained" onClick={() => sculpt.clear()}>
+          <Button variant="outlined" onClick={() => sculpt.clear()}>
             清空
           </Button>
         </ButtonGroup>
