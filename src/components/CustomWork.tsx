@@ -53,8 +53,8 @@ export function CustomWork(props?: { onChangeWork?: () => any }) {
         <ButtonGroup variant="contained">
           <Button onClick={handleOpen}>自定义work</Button>
           <Button onClick={handleReset}>
-            重置
             <RestartAltIcon />
+            重置
           </Button>
         </ButtonGroup>
       </Paper>
