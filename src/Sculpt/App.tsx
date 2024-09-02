@@ -38,7 +38,8 @@ const workType = (new URLSearchParams(window.location.search).get('workType') ??
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const work = useFetchDatas(DATA_TYPES.WORK, workCode, workCode ? workType : undefined)
+  const work =
+    localStorage.getItem(`dnawork-${location.pathname}`) ?? useFetchDatas(DATA_TYPES.WORK, workCode, workCode ? workType : undefined)
 
   if (!work) return null
 

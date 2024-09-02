@@ -30,7 +30,7 @@ export const PanoPluginUse = () => {
   return (
     <>
       <FiveModeSwitcher modeList={['Mapview', 'Panorama', 'Model']} />
-      <Paper sx={{ position: 'fixed', bottom: 0, right: 150 }}>
+      <Paper sx={{ position: 'fixed', bottom: 0, right: 230 }}>
         <Button
           onClick={() => {
             five.setState({
@@ -52,8 +52,8 @@ export const PanoPluginUse = () => {
         }}
       />
       <Stack>
-        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" variant="contained">
-          <Button sx={{ background: 'rgba(255,255,255,0.5)' }} variant="contained">
+        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
+          <Button color="primary" variant="contained">
             长度显示
             <Switch
               onChange={(e) => {
@@ -69,7 +69,7 @@ export const PanoPluginUse = () => {
           </Button>
           <Button
             variant="contained"
-            sx={{ background: 'rgba(255,255,255,0.5)' }}
+            color="primary"
             onClick={() => {
               Array.from(document.getElementById('LightTagContainer_shgjakdhwakjdhsja')!.children).forEach(
                 (i: any) => (i.style.opacity = '1'),
@@ -93,7 +93,7 @@ export const PanoPluginUse = () => {
           <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
           <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
           <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>
-          <Button variant="outlined" onClick={() => sculpt.clear()}>
+          <Button color="error" variant="outlined" onClick={() => sculpt.clear()}>
             清空
           </Button>
         </ButtonGroup>

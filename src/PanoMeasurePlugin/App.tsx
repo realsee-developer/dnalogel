@@ -30,7 +30,7 @@ const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
   },
   pointSelectorConfig: {
     helper: { pointHelper: 'highlight' },
-    virtualPoint: false,
+    actionIfNoModelUnderMouse: 'disable',
   },
 }
 

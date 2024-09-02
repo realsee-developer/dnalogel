@@ -1,4 +1,5 @@
-import { Paper, Button, Modal, Box, TextField } from '@mui/material'
+import { Paper, Button, Modal, Box, TextField, Icon, ButtonGroup } from '@mui/material'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
 import { useState } from 'react'
 
@@ -25,13 +26,37 @@ export function CustomWork(props?: { onChangeWork?: () => any }) {
     setText(five.work?.raw.works[0] ? JSON.stringify(JSON.parse(five.work?.raw.works[0] as string), null, 2) : '')
   }
   const handleClose = () => setOpen(false)
+  const handleReset = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+  const handleApply = () => {
+    if (text) {
+      if (five.currentMode !== 'Panorama') {
+        five.changeMode('Panorama')
+      }
+      five.ready().then(() => {
+        if (text)
+          five.load(text).then(() => {
+            if (props?.onChangeWork) props.onChangeWork()
+            localStorage.clear()
+            localStorage.setItem(`dnawork-${location.pathname}`, text)
+            handleClose()
+          })
+      })
+    }
+  }
 
   return (
     <>
       <Paper sx={{ position: 'fixed', bottom: 0, right: 0 }}>
-        <Button variant="contained" onClick={handleOpen}>
-          自定义work
-        </Button>
+        <ButtonGroup variant="contained">
+          <Button onClick={handleOpen}>自定义work</Button>
+          <Button onClick={handleReset}>
+            重置
+            <RestartAltIcon />
+          </Button>
+        </ButtonGroup>
       </Paper>
 
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -49,24 +74,7 @@ export function CustomWork(props?: { onChangeWork?: () => any }) {
           <Button sx={{ marginTop: '30px', marginRight: '10px' }} variant="outlined" onClick={handleClose}>
             取消
           </Button>
-          <Button
-            sx={{ marginTop: '30px' }}
-            variant="contained"
-            onClick={() => {
-              if (text) {
-                if (five.currentMode !== 'Panorama') {
-                  five.changeMode('Panorama')
-                }
-                five.ready().then(() => {
-                  if (text)
-                    five.load(text).then(() => {
-                      if (props?.onChangeWork) props.onChangeWork()
-                      handleClose()
-                    })
-                })
-              }
-            }}
-          >
+          <Button sx={{ marginTop: '30px' }} variant="contained" onClick={handleApply}>
             应用
           </Button>
         </Box>
