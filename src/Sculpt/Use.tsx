@@ -7,7 +7,6 @@ import boxData from './mocks/boxData.json'
 import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
-import { ActionIfNoModelUnderMouse } from '@realsee/dnalogel/dist/shared-utils/three/PointSelector'
 
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
@@ -17,9 +16,9 @@ const defaultCreateStyle: any = {
 const Use = () => {
   const five = unsafe__useFiveInstance()
   const sculpt = five.plugins.Sculpt as Sculpt
-  const [action, setAction] = useState<ActionIfNoModelUnderMouse>('virtualPoint')
+  const [action, setAction] = useState<string>('virtualPoint')
 
-  const changeAction = (type: ActionIfNoModelUnderMouse) => {
+  const changeAction = (type: string) => {
     Sculpt.modules.pointSelector.actionIfNoModelUnderMouse = type
     setAction(type)
   }
