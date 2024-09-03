@@ -1,4 +1,4 @@
-import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
+import { createFiveProvider, FiveCanvas, unsafe__useFiveInstance } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
 import Use from './Use'
@@ -36,6 +36,21 @@ const FiveProvider = createFiveProvider({
 const workCode = (new URLSearchParams(window.location.search).get('workCode') ?? '') as any
 const workType = (new URLSearchParams(window.location.search).get('workType') ?? 'real') as any
 
+const FiveUseage = () => {
+  const five = unsafe__useFiveInstance()
+
+  React.useEffect(() => {
+    five.models.setMaterial({
+      pointShape: 'CIRCLE',
+      pointSize: 'ATTENUATION',
+      pointBack: 'VISIBLE',
+      pointScale: 0.012,
+      pointMinPixel: 0,
+      pointMaxPixel: 40,
+    })
+  }, [five])
+}
+
 const App: React.FC = () => {
   const size = useWindowDimensions()
   const work =
@@ -44,7 +59,16 @@ const App: React.FC = () => {
   if (!work) return null
 
   return (
-    <FiveProvider initialWork={parseWork(work)} initialState={{ mode: 'Mapview', latitude: 0.78, longitude: 2 }}>
+    <FiveProvider
+      initialOptions={{
+        '3d-tiles': {
+          minLevelOfDetail: 1,
+          maxScreenSpaceError: 1,
+        },
+      }}
+      initialWork={parseWork(work)}
+      initialState={{ mode: 'Mapview', latitude: 0.78, longitude: 2 }}
+    >
       <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
         <FiveCanvas {...size} />
       </div>
