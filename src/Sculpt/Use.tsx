@@ -1,21 +1,28 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { ButtonGroup, Button, Stack, Switch, Paper } from '@mui/material'
-import type { Sculpt } from '@realsee/dnalogel/dist'
+import { ButtonGroup, Button, Stack, Switch, Paper, Radio, RadioGroup, Card, CardContent } from '@mui/material'
+import { Sculpt } from '@realsee/dnalogel/dist'
 import { Util } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
 import boxData from './mocks/boxData.json'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
+import { ActionIfNoModelUnderMouse } from '@realsee/dnalogel/dist/shared-utils/three/PointSelector'
 
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
   occlusionMode: 'translucence' as const,
 }
 
-export const PanoPluginUse = () => {
+const Use = () => {
   const five = unsafe__useFiveInstance()
   const sculpt = five.plugins.Sculpt as Sculpt
+  const [action, setAction] = useState<ActionIfNoModelUnderMouse>('virtualPoint')
+
+  const changeAction = (type: ActionIfNoModelUnderMouse) => {
+    Sculpt.modules.pointSelector.actionIfNoModelUnderMouse = type
+    setAction(type)
+  }
 
   useEffect(() => {
     // sculpt.load(data, {
@@ -30,28 +37,8 @@ export const PanoPluginUse = () => {
   return (
     <>
       <FiveModeSwitcher modeList={['Mapview', 'Panorama', 'Model']} />
-      <Paper sx={{ position: 'fixed', bottom: 0, right: 230 }}>
-        <Button
-          onClick={() => {
-            five.setState({
-              mode: 'Mapview',
-              offset: five.camera.position.clone(),
-              fov: five.state.fov,
-              distance: 0,
-              latitude: five.state.latitude,
-              longitude: five.state.longitude,
-            })
-          }}
-        >
-          Mapview 当前视角
-        </Button>
-      </Paper>
-      <CustomWork
-        onChangeWork={() => {
-          sculpt.clear()
-        }}
-      />
-      <Stack>
+      <CustomWork onChangeWork={() => sculpt.clear()} />
+      <Stack spacing={2}>
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
           <Button color="primary" variant="contained">
             长度显示
@@ -78,6 +65,19 @@ export const PanoPluginUse = () => {
           >
             显示被模型遮挡的距离
           </Button>
+        </ButtonGroup>
+        <ButtonGroup sx={{ width: 'max-content' }} color="inherit" variant="contained">
+          <Button color={action === 'virtualPoint' ? 'primary' : undefined} onClick={() => changeAction('virtualPoint')}>
+            虚拟点
+          </Button>
+          <Button color={action === 'lastPoint' ? 'primary' : undefined} onClick={() => changeAction('lastPoint')}>
+            最新可用点
+          </Button>
+          <Button color={action === 'disable' ? 'primary' : undefined} onClick={() => changeAction('disable')}>
+            禁用
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
           <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段【自由】</Button>
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'xoz' })}>线段【水平】</Button>
@@ -102,4 +102,4 @@ export const PanoPluginUse = () => {
   )
 }
 
-export default PanoPluginUse
+export default Use
