@@ -49,6 +49,8 @@ const FiveUseage = () => {
       pointMaxPixel: 40,
     })
   }, [five])
+
+  return null
 }
 
 const App: React.FC = () => {
@@ -73,6 +75,7 @@ const App: React.FC = () => {
         <FiveCanvas {...size} />
       </div>
       <Use />
+      <FiveUseage />
     </FiveProvider>
   )
 }
