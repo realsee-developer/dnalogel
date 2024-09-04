@@ -1,9 +1,6 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { ButtonGroup, Button, Stack, Switch, Paper, Radio, RadioGroup, Card, CardContent } from '@mui/material'
+import { ButtonGroup, Button, Stack, Switch } from '@mui/material'
 import { Sculpt } from '@realsee/dnalogel/dist'
-import { Util } from '@realsee/dnalogel/dist'
-import data from './mocks/data.json'
-import boxData from './mocks/boxData.json'
 import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
@@ -37,7 +34,7 @@ const Use = () => {
     <>
       <FiveModeSwitcher modeList={['Mapview', 'Panorama', 'Model']} />
       <CustomWork onChangeWork={() => sculpt.clear()} />
-      <Stack spacing={2}>
+      <Stack sx={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'end' }} spacing={1}>
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
           <Button color="primary" variant="contained">
             长度显示
@@ -76,27 +73,27 @@ const Use = () => {
             禁用
           </Button>
         </ButtonGroup>
-        <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
-          <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
-          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段【自由】</Button>
-          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'xoz' })}>线段【水平】</Button>
-          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'y' })}>线段【垂直】</Button>
-          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线【自由】</Button>
-          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle, limit: 'xoz' })}>折线【水平】</Button>
-          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle, limit: 'y' })}>折线【垂直】</Button>
-          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形【自由】</Button>
-          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle, limit: 'xoz' })}>多边形【水平】</Button>
-          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle, limit: 'y' })}>多边形【垂直】</Button>
-          <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle })}>长方形</Button>
-          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle })}>长方体</Button>
-          <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
-          <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
-          <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>
-          <Button color="error" variant="outlined" onClick={() => sculpt.clear()}>
-            清空
-          </Button>
-        </ButtonGroup>
       </Stack>
+      <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
+        <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
+        <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段【自由】</Button>
+        <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'xoz' })}>线段【水平】</Button>
+        <Button onClick={() => sculpt.createline({ ...defaultCreateStyle, limit: 'y' })}>线段【垂直】</Button>
+        <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线【自由】</Button>
+        <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle, limit: 'xoz' })}>折线【水平】</Button>
+        <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle, limit: 'y' })}>折线【垂直】</Button>
+        <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形【自由】</Button>
+        <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle, limit: 'xoz' })}>多边形【水平】</Button>
+        <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle, limit: 'y' })}>多边形【垂直】</Button>
+        <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle })}>长方形</Button>
+        <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle })}>长方体</Button>
+        <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
+        <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
+        <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>
+        <Button color="error" variant="outlined" onClick={() => sculpt.clear()}>
+          清空
+        </Button>
+      </ButtonGroup>
     </>
   )
 }
