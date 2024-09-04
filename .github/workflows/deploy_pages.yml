@@ -14,7 +14,7 @@ jobs:
           node-version: 20
 
       - name: Sleep
-        run: sleep 30s
+        run: sleep 20s
 
       - name: Build
         run: |
