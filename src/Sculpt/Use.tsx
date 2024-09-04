@@ -8,6 +8,7 @@ import { CustomWork } from '../components/CustomWork'
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
   occlusionMode: 'translucence' as const,
+  lengthEnable: true,
 }
 
 const Use = () => {
@@ -39,6 +40,7 @@ const Use = () => {
           <Button color="primary" variant="contained">
             长度显示
             <Switch
+              defaultChecked={true}
               onChange={(e) => {
                 sculpt.items.forEach((item) => {
                   if (item.type !== 'Circle' && item.type !== 'Cylinder') {
