@@ -1,6 +1,7 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { ButtonGroup, Button, Stack, Switch } from '@mui/material'
 import { Sculpt } from '@realsee/dnalogel/dist'
+import data from './mocks/data.json'
 import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
@@ -28,10 +29,10 @@ const Use = () => {
   }
 
   useEffect(() => {
-    // sculpt.load(data, {
-    //   occlusionVisibility: true,
-    //   canEdit: true,
-    // })
+    sculpt.load(data, {
+      occlusionVisibility: true,
+      canEdit: true,
+    })
     return () => {
       sculpt.clear()
     }
@@ -88,7 +89,7 @@ const Use = () => {
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段</Button>
           <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线</Button>
           <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形</Button>
-          {/* <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'vertex' })}>矩形</Button> */}
+          <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'vertex' })}>矩形</Button>
           <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'diagonal' })}>矩形【对角线】</Button>
           <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle })}>长方体</Button>
           <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
