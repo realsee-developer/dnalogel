@@ -29,10 +29,12 @@ const Use = () => {
   }
 
   useEffect(() => {
-    sculpt.load(data, {
-      occlusionVisibility: true,
-      canEdit: true,
-    })
+    if (!location.search) {
+      sculpt.load(data, {
+        occlusionVisibility: true,
+        canEdit: true,
+      })
+    }
     return () => {
       sculpt.clear()
     }
