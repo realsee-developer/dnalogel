@@ -10,6 +10,113 @@ import { PointIntersection } from '@realsee/dnalogel/libs/shared-utils'
 import { PointMesh } from '@realsee/dnalogel/libs/Sculpt/Meshes/Point'
 import { rayOnLine } from '@realsee/dnalogel/libs/Sculpt/utils/three/rayOnLine'
 import * as THREE from 'three'
+import type { PointSelector } from '@realsee/dnalogel/dist/shared-utils/three/PointSelector'
+import type { CreateLimitConfig } from '@realsee/dnalogel/dist/Sculpt/typings/style'
+/**
+ * @description 绘制线段
+ * @param config.limit 限制折线绘制的平面; `xoz` 限制在水平面; `y` 限制垂直面; `none` 不限制；默认 `none`
+ */
+export function createLine(lineMesh: LineMesh, pointSelector: PointSelector, config?: Partial<CreateLimitConfig>) {
+  const container = lineMesh.parent
+  if (!container) return
+
+  const limit = config?.limit ?? 'none'
+
+  const previewLine = new LineMesh(lineMesh.style)
+  container.add(previewLine)
+
+  // 垂直辅助线
+  const verticalLine = new LineMesh({ ...lineMesh.style, dashed: true, lengthEnable: false })
+  container.add(verticalLine)
+
+  console.log('enable')
+  pointSelector.enable()
+
+  const points: THREE.Vector3[] = lineMesh.points.map((p) => p.clone())
+
+  console.log(points)
+
+  // 实时的预览点
+  let previewPoint: THREE.Vector3
+  let planeHelper: THREE.Plane
+
+  let lastIntersection: PointIntersection
+
+  // 选点处理函数
+  const onSelect = (intersection: PointIntersection) => {
+    const point = points.length === 0 ? intersection.point : previewPoint.clone()
+    points.push(point)
+    lineMesh.setPoints(points)
+    if (points.length === 2) {
+      selectEnd()
+    }
+  }
+  // 预览
+  const onPreview = (intersection: PointIntersection | null) => {
+    console.log('onPreview')
+    const clearPreview = () => {
+      previewLine.setPoints([])
+      verticalLine.setPoints([])
+      pointSelector.pointSelectorHelper.magnifier!.render()
+    }
+    if (!points?.length) return clearPreview()
+    if (!intersection) return clearPreview()
+
+    lastIntersection = intersection
+
+    const lastPoint = points.at(-1)!.clone()
+
+    if (limit === 'none') {
+      // 自由选点
+      previewPoint = intersection.point
+      previewLine.setPoints([lastPoint, previewPoint])
+    } else if (limit === 'xoz') {
+      // 水平面选点
+      pointSelector.plane = planeHelper
+      planeHelper = planeHelper ?? new THREE.Plane().setFromNormalAndCoplanarPoint(new THREE.Vector3(0, 1, 0), points[0])
+      previewPoint = planeHelper.projectPoint(intersection.point, new THREE.Vector3())
+      previewLine.setPoints([lastPoint, previewPoint])
+      verticalLine.setPoints([previewPoint, intersection.point])
+    } else if (limit === 'y') {
+      if (!intersection.isVirtual) {
+        // 真实点
+        const line = new THREE.Line3(points[0].clone(), new THREE.Vector3(0, 1, 0).add(points[0]))
+        previewPoint = line.closestPointToPoint(intersection.point, false, new THREE.Vector3())
+        verticalLine.setPoints([previewPoint, intersection.point])
+      } else {
+        // 垂直面选点
+        previewPoint = rayOnLine({
+          raycaster: intersection.raycaster!,
+          line: new THREE.Line3(points[0].clone(), new THREE.Vector3(0, 1, 0).add(points[0])),
+          clampToLine: false,
+        })
+        verticalLine.setPoints([])
+      }
+      previewLine.setPoints([lastPoint, previewPoint])
+      // verticalLine.setPoints([previewPoint, intersection.point])
+    }
+  }
+
+  const selectEnd = () => {
+    pointSelector.off('select', onSelect)
+    pointSelector.off('intersectionUpdate', onPreview)
+    pointSelector.off('disable', cancel)
+    pointSelector.plane = null
+    pointSelector.disable()
+    container?.remove(previewLine, verticalLine)
+  }
+
+  const cancel = () => {
+    selectEnd()
+    if (points.length !== 2) {
+      container?.remove(lineMesh)
+    }
+  }
+
+  pointSelector.on('select', onSelect)
+  pointSelector.on('intersectionUpdate', onPreview)
+  pointSelector.on('disable', cancel)
+}
 
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
@@ -45,20 +152,18 @@ const Use = () => {
       lineWidth: 2,
     }
 
-    const limit = 'none'
+    const previewPointMesh = new PointMesh({ ...style, points: new THREE.Vector3(0, 0, 0), color: 0xffffff })
+    previewPointMesh.visible = false
+    container.add(previewPointMesh)
 
     const previewLine = new LineMesh(style)
     container.add(previewLine)
 
     // 垂直辅助线
-    const verticalLine = new LineMesh({ ...style, dashed: true, lengthEnable: false })
+    const verticalLine = new LineMesh({ ...style, dashed: false, lengthEnable: true })
     container.add(verticalLine)
 
     pointSelector.enable()
-
-    // 实时的预览点
-    let previewPoint: THREE.Vector3
-    let planeHelper: THREE.Plane
 
     // 选点处理函数
     const onSelect = (intersection: PointIntersection) => {
@@ -81,6 +186,8 @@ const Use = () => {
         startLine = {}
 
         pointSelector.disable()
+
+        createLine(verticalLine, pointSelector as any, { limit: 'y' })
       }
     }
     // 预览
@@ -95,17 +202,25 @@ const Use = () => {
         const line = new THREE.Line3(startLine.start, startLine.end)
         const previewPoint = rayOnLine({ raycaster: intersection.raycaster!, line, clampToLine: false })
 
-        const raycaster = new THREE.Raycaster(previewPoint.clone(), new THREE.Vector3(0, -1, 0))
-        raycaster.params.Points!.threshold = 0.02
+        previewPointMesh.position.copy(previewPoint)
+        previewPointMesh.visible = true
 
-        console.log(raycaster.intersectObject(five.model, true))
-        // previewLine.setPoints([previewPoint, previewPoint.clone().add(new THREE.Vector3(0, -10, 0))])
+        verticalLine.setPoints([previewPoint])
 
-        const intersectPoint = raycaster.intersectObject(five.model, true)?.[0]?.point
+        // const raycaster = new THREE.Raycaster(previewPoint.clone(), new THREE.Vector3(0, -1, 0))
+        // raycaster.params.Points!.threshold = 0.02
 
-        if (intersectPoint) {
-          previewLine.setPoints([previewPoint, intersectPoint])
-        }
+        // console.log(raycaster.intersectObject(five.model, true))
+        // // previewLine.setPoints([previewPoint, previewPoint.clone().add(new THREE.Vector3(0, -10, 0))])
+
+        // const intersectPoint = raycaster.intersectObject(five.model, true)?.[0]?.point
+
+        // if (intersectPoint) {
+        //   previewLine.setPoints([previewPoint, intersectPoint])
+        // } else {
+        //   previewPointMesh.visible = false
+        //   previewLine.setPoints([])
+        // }
       }
     }
 
@@ -115,7 +230,6 @@ const Use = () => {
       pointSelector.off('disable', cancel)
       pointSelector.plane = null
       pointSelector.disable()
-      container?.remove(verticalLine)
     }
 
     const cancel = () => {
@@ -195,6 +309,3 @@ const Use = () => {
 }
 
 export default Use
-function withResolvers<T>(): { promise: any; resolve: any; reject: any } {
-  throw new Error('Function not implemented.')
-}
