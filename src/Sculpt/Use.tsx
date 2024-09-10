@@ -5,6 +5,11 @@ import data from './mocks/data.json'
 import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
+import { LineMesh } from '@realsee/dnalogel/libs/Sculpt/Meshes/Line'
+import { PointIntersection } from '@realsee/dnalogel/libs/shared-utils'
+import { PointMesh } from '@realsee/dnalogel/libs/Sculpt/Meshes/Point'
+import { rayOnLine } from '@realsee/dnalogel/libs/Sculpt/utils/three/rayOnLine'
+import * as THREE from 'three'
 
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
@@ -18,6 +23,8 @@ const Use = () => {
   const [action, setAction] = useState<string>('virtualPoint')
   const [limit, setLimit] = useState<string>('none')
 
+  let startLine = {} as any
+
   const changeAction = (type: string) => {
     Sculpt.modules.pointSelector.actionIfNoModelUnderMouse = type
     setAction(type)
@@ -28,39 +35,97 @@ const Use = () => {
     setLimit(limit)
   }
 
-  useEffect(() => {
-    // // if (!location.search) {
-    // sculpt.load(
-    //   {
-    //     items: [
-    //       {
-    //         id: 'CAD5350B-A774-4FBF-A65B-A907189098B4',
-    //         type: 'Prism',
-    //         points: [
-    //           [18.244561110127677, -0.39613474795254733, 21.140529769168346],
-    //           [17.964482484315543, -0.3930613563650639, 20.36342610697618],
-    //           [18.537559488657916, -0.3888567680290834, 20.63284615837892],
-    //           [18.244561110127677, -0.39613474795254733, 21.140529769168346],
-    //         ],
-    //         heightPoint: [18.238304561284103, 0.16892896081462772, 21.14501950177559],
-    //         style: {
-    //           color: 6795114,
-    //           lineWidth: 2,
-    //           lineColor: 11135708,
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     occlusionVisibility: true,
-    //     canEdit: true,
-    //   },
-    // )
-    // // }
-    return () => {
-      sculpt.clear()
+  const yuanzhangdemo = () => {
+    const pointSelector = Sculpt.modules.pointSelector
+    const container = five.scene
+    const style = {
+      ...defaultCreateStyle,
+      color: 0x67af6a,
+      lineColor: 0xa9eadc,
+      lineWidth: 2,
     }
-  }, [five])
+
+    const limit = 'none'
+
+    const previewLine = new LineMesh(style)
+    container.add(previewLine)
+
+    // 垂直辅助线
+    const verticalLine = new LineMesh({ ...style, dashed: true, lengthEnable: false })
+    container.add(verticalLine)
+
+    pointSelector.enable()
+
+    // 实时的预览点
+    let previewPoint: THREE.Vector3
+    let planeHelper: THREE.Plane
+
+    // 选点处理函数
+    const onSelect = (intersection: PointIntersection) => {
+      // const point = points.length === 0 ? intersection.point : previewPoint.clone()
+      if (!startLine.start) {
+        const startPosition = intersection.point.clone()
+        console.log(startPosition)
+        const normal = startPosition.clone().sub(five.camera.position).normalize().multiplyScalar(10)
+        const a = new PointMesh({ points: startPosition, ...style, color: 0xff0000 })
+        a.position.set(startPosition.x, startPosition.y, startPosition.z)
+        container.add(a)
+        container.add(
+          new LineMesh({ points: [five.camera.position.clone(), startPosition.clone().add(normal)], ...style, lengthEnable: false }),
+        )
+        pointSelector.disable()
+
+        startLine.start = five.camera.position.clone()
+        startLine.end = startPosition.clone()
+      } else {
+        startLine = {}
+
+        pointSelector.disable()
+      }
+    }
+    // 预览
+    const onPreview = (intersection: PointIntersection | null) => {
+      const clearPreview = () => {
+        previewLine.setPoints([])
+        verticalLine.setPoints([])
+      }
+      if (!intersection) return clearPreview()
+
+      if (startLine.start) {
+        const line = new THREE.Line3(startLine.start, startLine.end)
+        const previewPoint = rayOnLine({ raycaster: intersection.raycaster!, line, clampToLine: false })
+
+        const raycaster = new THREE.Raycaster(previewPoint.clone(), new THREE.Vector3(0, -1, 0))
+        raycaster.params.Points!.threshold = 0.02
+
+        console.log(raycaster.intersectObject(five.model, true))
+        // previewLine.setPoints([previewPoint, previewPoint.clone().add(new THREE.Vector3(0, -10, 0))])
+
+        const intersectPoint = raycaster.intersectObject(five.model, true)?.[0]?.point
+
+        if (intersectPoint) {
+          previewLine.setPoints([previewPoint, intersectPoint])
+        }
+      }
+    }
+
+    const selectEnd = () => {
+      pointSelector.off('select', onSelect)
+      pointSelector.off('intersectionUpdate', onPreview)
+      pointSelector.off('disable', cancel)
+      pointSelector.plane = null
+      pointSelector.disable()
+      container?.remove(verticalLine)
+    }
+
+    const cancel = () => {
+      selectEnd()
+    }
+
+    pointSelector.on('select', onSelect)
+    pointSelector.on('intersectionUpdate', onPreview)
+    pointSelector.on('disable', cancel)
+  }
 
   return (
     <>
@@ -109,6 +174,7 @@ const Use = () => {
           </Button>
         </ButtonGroup>
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
+          <Button onClick={() => yuanzhangdemo()}>双目</Button>
           <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
           <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段</Button>
           <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线</Button>
@@ -129,3 +195,6 @@ const Use = () => {
 }
 
 export default Use
+function withResolvers<T>(): { promise: any; resolve: any; reject: any } {
+  throw new Error('Function not implemented.')
+}
