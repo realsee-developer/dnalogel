@@ -54,7 +54,6 @@ export function createLine(lineMesh: LineMesh, pointSelector: PointSelector, con
   }
   // 预览
   const onPreview = (intersection: PointIntersection | null) => {
-    console.log('onPreview')
     const clearPreview = () => {
       previewLine.setPoints([])
       verticalLine.setPoints([])
