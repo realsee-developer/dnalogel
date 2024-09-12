@@ -3,7 +3,7 @@ import { PanoMeasurePlugin, PanoMeasurePluginPolylineJson, PanoMeasurePluginPoly
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
 import * as React from 'react'
 import { useEffect } from 'react'
-import { mockMeasureRulerServerData } from './mockData'
+import { mockMeasureRulerServerData } from './mocks/mockData'
 import { Five, Mode } from '@realsee/five'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { BlendingSwitcher } from '../components/BlendingSwitcher'
@@ -15,7 +15,7 @@ const PanoMeasurePluginUsage = () => {
 
   useEffect(() => {
     const container = document.querySelector('.plugin-full-screen-container') as HTMLElement
-    if (container) {
+    if (container && five.getElement()) {
       panoMeasurePluginPC.appendTo(container)
       panoMeasurePluginMobile.appendTo(container)
     }

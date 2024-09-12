@@ -40,7 +40,7 @@ const mobileConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     useNewUI: true,
   },
   editParams: {
-    allowMeasureType: ['area'],
+    allowMeasureType: ['line', 'area'],
     pointSelectorMode: 'fixed',
     autoEndConfig: {
       line: 3,
