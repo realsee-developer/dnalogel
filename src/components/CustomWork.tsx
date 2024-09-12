@@ -28,7 +28,7 @@ export function CustomWork(props?: { onChangeWork?: () => any }) {
   const handleClose = () => setOpen(false)
   const handleReset = () => {
     localStorage.clear()
-    window.location.reload()
+    location.reload()
   }
   const handleApply = () => {
     if (text) {
@@ -42,6 +42,10 @@ export function CustomWork(props?: { onChangeWork?: () => any }) {
             localStorage.clear()
             localStorage.setItem(`dnawork-${location.pathname}`, text)
             handleClose()
+          }).catch((e) => {
+            console.error(e)
+            localStorage.clear()
+            location.reload()
           })
       })
     }
