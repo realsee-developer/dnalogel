@@ -2,7 +2,7 @@ import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { ButtonGroup, Button, Stack, Switch, Paper } from '@mui/material'
 import { Sculpt } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
 import { clearDemo, yuanzhangdemo } from './demo'
@@ -28,6 +28,15 @@ const Use = () => {
     defaultCreateStyle.limit = limit
     setLimit(limit)
   }
+
+  useEffect(() => {
+    if (!five.work?.workCode) {
+      sculpt.load(data, { occlusionVisibility: true, canEdit: true })
+    }
+    return () => {
+      sculpt.clear()
+    }
+  }, [five])
 
   return (
     <>
