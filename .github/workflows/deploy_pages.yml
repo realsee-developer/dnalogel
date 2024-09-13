@@ -23,6 +23,7 @@ jobs:
           mkdir -p _site
           cp -r open-works _site/
           cp -r dist/* _site/
+          cp -r test-report _site/
           touch _site/.nojekyll
 
       - name: Upload artifact
