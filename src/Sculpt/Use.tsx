@@ -32,6 +32,12 @@ const Use = () => {
   useEffect(() => {
     if (!five.work?.workCode) {
       sculpt.load(data, { occlusionVisibility: true, canEdit: true })
+      sculpt.on('click', (e, item) => {
+        item.editor?.enable()
+        const x = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX
+        const y = e instanceof TouchEvent ? e.touches[0].clientY : e.clientY
+        item.showDeleteButton(x, y)
+      })
     }
     return () => {
       sculpt.clear()
