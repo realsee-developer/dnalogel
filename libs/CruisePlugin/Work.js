@@ -1,0 +1,616 @@
+var b = Object.defineProperty, F = Object.defineProperties;
+var E = Object.getOwnPropertyDescriptors;
+var w = Object.getOwnPropertySymbols;
+var D = Object.prototype.hasOwnProperty, C = Object.prototype.propertyIsEnumerable;
+var I = (h, l, t) => l in h ? b(h, l, { enumerable: !0, configurable: !0, writable: !0, value: t }) : h[l] = t, g = (h, l) => {
+  for (var t in l || (l = {}))
+    D.call(l, t) && I(h, t, l[t]);
+  if (w)
+    for (var t of w(l))
+      C.call(l, t) && I(h, t, l[t]);
+  return h;
+}, x = (h, l) => F(h, E(l));
+var k = (h, l, t) => (I(h, typeof l != "symbol" ? l + "" : l, t), t);
+var y = (h, l, t) => new Promise((e, r) => {
+  var i = (n) => {
+    try {
+      m(t.next(n));
+    } catch (o) {
+      r(o);
+    }
+  }, s = (n) => {
+    try {
+      m(t.throw(n));
+    } catch (o) {
+      r(o);
+    }
+  }, m = (n) => n.done ? e(n.value) : Promise.resolve(n.value).then(i, s);
+  m((t = t.apply(h, l)).next());
+});
+import { GuideLinePlugin as K } from "../GuideLinePlugin/index.js";
+import { uuid as S } from "../shared-utils/uuid.js";
+import { coordinatesAngle as L } from "./utils/coordinatesAngle.js";
+import { safeCall as T } from "./utils/safeCall.js";
+import * as U from "three";
+import { sleep as O } from "./utils/sleep.js";
+import { waitFiveLoaded as M } from "../shared-utils/five/fiveLoaded.js";
+import { vectorToCoordinates as A } from "../shared-utils/vectorToCoordinate.js";
+import G from "./BaseController.js";
+import "hammerjs";
+import "three/examples/jsm/renderers/CSS3DRenderer";
+import "@realsee/five/line";
+import "../vendor/three/examples/jsm/lines/LineGeometry.js";
+import "../shared-utils/tag.js";
+import "../shared-utils/three/core/Sphere.js";
+import "animejs";
+import { notNil as Q } from "../shared-utils/isNil.js";
+import "../vendor/@tweenjs/tween/dist/tween.esm.js.js";
+import "../GuideLinePlugin/Controller.js";
+import "../base/BasePluginWithData.js";
+import "../base/BasePlugin.js";
+import "../shared-utils/Subscribe.js";
+import "../shared-utils/Utils/FiveUtil.js";
+import "../shared-utils/Utils/BaseUtil.js";
+import "../shared-utils/Utils/WorkUtil.js";
+import "../shared-utils/five/transformPosition.js";
+import "../shared-utils/five/getFiveModel.js";
+import "../shared-utils/url/absoluteUrl.js";
+import "../shared-utils/equal.js";
+import "../shared-utils/isTruelyObject.js";
+import "../GuideLinePlugin/GuideLineItem/index.js";
+import "../GuideLinePlugin/GuideLineModeItem/index.js";
+import "../shared-utils/log.js";
+import "../GuideLinePlugin/utils/createLineGeometry.js";
+import "../vendor/polyline-normals/index.js";
+import "../vendor/polyline-miter-util/index.js";
+import "../vendor/gl-vec2/add.js";
+import "../vendor/gl-vec2/set.js";
+import "../vendor/gl-vec2/normalize.js";
+import "../vendor/gl-vec2/subtract.js";
+import "../vendor/gl-vec2/dot.js";
+import "../shared-utils/math/intersecting.js";
+import "../shared-utils/five/mode.js";
+import "../shared-utils/three/blink.js";
+import "../shared-utils/util.js";
+import "../shared-utils/animationFrame/BetterTween.js";
+import "../shared-utils/animationFrame/index.js";
+import "../shared-utils/three/loadTexture.js";
+import "../PanoTagPlugin/controller/index.js";
+import "../vendor/object-assign-deep/objectAssignDeep.js";
+import "../shared-utils/positionToVector3.js";
+import "../PanoTagPlugin/utils/tag/tagCheck.js";
+import "../PanoTagPlugin/utils/debounce.js";
+import "../PanoTagPlugin/utils/throttle.js";
+import "../PanoTagPlugin/utils/tag/format.js";
+import "../shared-utils/audio.js";
+import "../shared-utils/dom/resizeObserver.js";
+import "../PanoTagPlugin/controller/TagRender.js";
+import "../PanoTagPlugin/Components/Tag/index.js";
+import "../vendor/svelte/internal/index.js";
+import "../PanoTagPlugin/Components/Tag/TextTag/index.js";
+import "../PanoTagPlugin/Components/Tag/TextTag/TextTag.js";
+import "../PanoTagPlugin/Components/Common/Line/Straight.js";
+import "../vendor/svelte/transition/index.js";
+import "../vendor/svelte/easing/index.js";
+import "../PanoTagPlugin/Components/Common/Shadow.js";
+import "../PanoTagPlugin/Components/Common/Text/FlyMText.js";
+import "../PanoTagPlugin/Components/Common/Text/FlyText.js";
+import "../PanoTagPlugin/utils/search.js";
+import "../PanoTagPlugin/utils/constants.js";
+import "../PanoTagPlugin/Components/Common/Arrow.js";
+import "../PanoTagPlugin/Assets/Icon.js";
+import "../PanoTagPlugin/utils/doUtil.js";
+import "../shared-utils/svelte/resizeObserver.js";
+import "../vendor/resize-observer-polyfill/dist/ResizeObserver.es.js";
+import "../PanoTagPlugin/Components/Tag/TextTag/TextPlaneTag.js";
+import "../PanoTagPlugin/Components/Common/Text/MText.js";
+import "../PanoTagPlugin/utils/px2rem.js";
+import "../PanoTagPlugin/Components/Tag/ImageTextTag.js";
+import "../PanoTagPlugin/Components/Common/Line/Polyline.js";
+import "../PanoTagPlugin/Components/Common/Media.js";
+import "../vendor/svelte-carousel/src/components/Carousel/Carousel.js";
+import "../vendor/svelte-carousel/src/components/Dots/Dots.js";
+import "../vendor/svelte-carousel/src/components/Dot/Dot.js";
+import "../vendor/svelte-carousel/src/components/Arrow/Arrow.js";
+import "../vendor/svelte-carousel/src/direction.js";
+import "../vendor/svelte-carousel/src/components/Progress/Progress.js";
+import "../vendor/svelte-carousel/src/actions/swipeable/swipeable.js";
+import "../vendor/svelte-carousel/src/actions/swipeable/event.js";
+import "../vendor/svelte-carousel/src/utils/event.js";
+import "../vendor/svelte-carousel/src/units.js";
+import "../vendor/svelte-carousel/src/actions/hoverable/hoverable.js";
+import "../vendor/svelte-carousel/src/actions/hoverable/event.js";
+import "../vendor/svelte-carousel/src/actions/tappable/tappable.js";
+import "../vendor/svelte-carousel/src/utils/math.js";
+import "../vendor/svelte-carousel/src/actions/tappable/event.js";
+import "../vendor/svelte-carousel/src/utils/page.js";
+import "../vendor/svelte-carousel/src/utils/clones.js";
+import "../vendor/svelte-carousel/src/utils/object.js";
+import "../vendor/svelte-carousel/src/components/Carousel/createCarousel.js";
+import "../vendor/easy-reactive/src/simply-reactive.js";
+import "../vendor/lodash.get/index.js";
+import "../_commonjsHelpers.js";
+import "../vendor/lodash.clonedeep/index.js";
+import "../vendor/easy-reactive/src/utils/subscription.js";
+import "../vendor/easy-reactive/src/utils/object.js";
+import "../vendor/lodash.isequal/index.js";
+import "../vendor/easy-reactive/src/utils/watcher.js";
+import "../vendor/svelte-carousel/src/utils/lazy.js";
+import "../vendor/svelte-carousel/src/utils/ProgressManager.js";
+import "../vendor/svelte-carousel/src/utils/interval.js";
+import "../PanoTagPlugin/Components/Common/MediaItem.js";
+import "../PanoTagPlugin/Components/Tag/MarketingTag.js";
+import "../PanoTagPlugin/utils/noTypecheck.js";
+import "../PanoTagPlugin/Components/Tag/AudioTag/index.js";
+import "../PanoTagPlugin/Components/Tag/AudioTag/AudioTag.js";
+import "../PanoTagPlugin/Components/Common/Audio.js";
+import "../PanoTagPlugin/utils/audio/SharedAudio.js";
+import "../PanoTagPlugin/Components/Common/Icon/audioIcon.js";
+import "../PanoTagPlugin/Components/Tag/AudioTag/AudioPlaneTag.js";
+import "../PanoTagPlugin/Components/Tag/MediaPlane.js";
+import "../PanoTagPlugin/Components/Tag/LinkTag.js";
+import "../PanoTagPlugin/Components/Common/Icon/Icon.js";
+import "../PanoTagPlugin/utils/getImageInfo.js";
+import "../PanoTagPlugin/Components/Tag/PanoramaTag.js";
+import "../PanoTagPlugin/Components/Tag/CustomTag.js";
+import "../vendor/classnames/index.js";
+import "../PanoTagPlugin/controller/Tag/ModelTag.js";
+import "../shared-utils/three/GLTFLoader.js";
+import "@realsee/five/gltf-loader";
+import "../PanoTagPlugin/utils/planeNormal.js";
+import "../PanoTagPlugin/utils/model/mediaPlane.js";
+import "../shared-utils/three/centerPoint.js";
+import "../shared-utils/three/Quadrangle.js";
+import "../shared-utils/math/pointsIsRectangle.js";
+import "../shared-utils/three/loadVideoTexture.js";
+import "../shared-utils/device.js";
+import "../shared-utils/three/getPositionsByObjectFit.js";
+import "../shared-utils/three/FragmentTransparencyMaterial.js";
+import "../shared-utils/three/getNormal.js";
+import "../PanoTagPlugin/controller/Tag/BaseTag.js";
+import "../PanoTagPlugin/utils/tag/calculateTagConfig.js";
+import "../shared-utils/typescript/entries.js";
+import "../PanoTagPlugin/utils/tag/adaptConfig.js";
+import "../PanoTagPlugin/typings/tag/TagConfig.js";
+import "@realsee/five";
+import "../shared-utils/five/lookPoint.js";
+import "../PanoTagPlugin/utils/tagPosition.js";
+import "../PanoTagPlugin/utils/checkRange.js";
+import "../shared-utils/url/getUrl.js";
+import "../shared-utils/five/getFloorIndex.js";
+import "../shared-utils/safeObj.js";
+import "../PanoTagPlugin/utils/Cache.js";
+import "../shared-utils/three/temp.js";
+import "../PanoTagPlugin/controller/TagUtil.js";
+import "../PanoTagPlugin/tag.config.js";
+import "../PanoTagPlugin/utils/normalPositionToPositions.js";
+import "../vendor/svelte/store/index.js";
+import "../CSS3DRenderPlugin/index.js";
+import "../CSS3DRenderPlugin/Controller.js";
+import "../CSS3DRenderPlugin/utils/three/CSS3DRender.js";
+import "../CSS3DRenderPlugin/utils/three/CSS3DRenderer.js";
+import "../CSS3DRenderPlugin/utils/three/THREEJS_CSS3DRenderer.js";
+import "../CSS3DRenderPlugin/utils/createResizeObserver.js";
+import "../CSS3DRenderPlugin/utils/even.js";
+import "../CSS3DRenderPlugin/utils/three/CSS3DObject.js";
+import "../CSS3DRenderPlugin/utils/three/OpacityMesh.js";
+import "../shared-utils/three/getObjectVisible.js";
+import "../vendor/three/examples/jsm/lines/LineSegmentsGeometry.js";
+import "../vendor/three/build/three.module.js";
+import "../shared-utils/five/vector3ToScreen.js";
+import "../CSS3DRenderPlugin/utils/three/CSS3DScene.js";
+import "../CSS3DRenderPlugin/utils/getAllCSS3DObject.js";
+import "../CSS3DRenderPlugin/utils/three/CSS3DGroup.js";
+import "../CSS3DRenderPlugin/utils/generateBehindFiveElement.js";
+import "../shared-utils/five/fiveModelLoad.js";
+import "../shared-utils/five/FiveDomEvents.js";
+import "../shared-utils/five/calculateThreeMouse.js";
+import "../shared-utils/three/core/Raycaster.js";
+import "../shared-utils/isTouchDevice.js";
+import "../PanoTagPlugin/utils/DebugUtil.js";
+import "../PanoTagPlugin/utils/addDebugPoints.js";
+import "../PanoTagPlugin/controller/Tag/PointTag.js";
+import "../PanoTagPlugin/controller/Tag/PlaneTag.js";
+import "../PanoTagPlugin/Components/TagContainer.js";
+import "../PanoTagPlugin/Components/TagItem.js";
+import "../PanoTagPlugin/Components/Common/TagPoint.js";
+import "../GuideLinePlugin/Components/Tag.js";
+import "../GuideLinePlugin/utils/index.js";
+import "../shared-utils/to.js";
+import "../shared-utils/five/changeMode.js";
+import "../shared-utils/nearlyEqual.js";
+import "./Move.js";
+import "./utils/getFiveStateOnCurve.js";
+import "../shared-utils/formatRad.js";
+import "./Work.js";
+import "./utils/coordinatesToVector.js";
+class Sr extends G {
+  constructor(t, e) {
+    super(t, e);
+    k(this, "state", {
+      visible: !0,
+      enabled: !0,
+      disposed: !1,
+      playing: !1,
+      speed: 1,
+      config: {
+        speedConfig: {
+          rotateSpeed: 1e-3,
+          rotateSpeedUnit: "rad/ms",
+          moveSpeed: 2e-3,
+          moveSpeedUnit: "m/ms"
+        }
+      }
+    });
+    k(this, "privateState", {
+      playing: !1,
+      currentPlayQueue: [],
+      currentPlayKeyframe: null,
+      broke: !1,
+      modeChanging: !1
+    });
+    this.config = e, Object.assign(window, { __WalkPlugin_DEBUG__: this });
+  }
+  /**
+   * @description Load Data and State
+   */
+  load(t, e, r) {
+    return y(this, null, function* () {
+      var a, p;
+      this.clear();
+      const i = this.data ? JSON.parse(JSON.stringify(this.data)) : void 0, s = yield this.formatData(t);
+      this.data = g({ id: s.keyframesId }, s), this.hooks.emit("dataChange", s, i);
+      let m = [], n;
+      const o = this.data.keyframes.filter((f) => f.data.panoIndex !== void 0);
+      o.filter((f, u) => {
+        var d;
+        return f.data.panoIndex !== ((d = o[u - 1]) == null ? void 0 : d.data.panoIndex);
+      }).map((f) => f.data.panoIndex).forEach((f) => {
+        var d, v;
+        const u = (d = this.workUtil.getObserver(f)) == null ? void 0 : d.floorIndex;
+        if (u !== void 0)
+          if (n === u) {
+            const c = m.length - 1;
+            m[c] = [...(v = m[c]) != null ? v : [], f];
+          } else {
+            n = u;
+            const c = m.length;
+            m[c] = [f];
+          }
+      }), !this.GuideLine && ((a = this.config) == null ? void 0 : a.useGuideLine) !== !1 && s.useGuildLine !== !1 && (this.GuideLine = K(this.five, this.config)), (p = this.GuideLine) == null || p.load({ routes: m.map((f) => ({ panoIndexList: f })), config: s.guildPluginOptions }), e ? this.setState(e, { userAction: r }) : (this.setState({ playing: !1 }, { userAction: !1 }), this.handleVisible(this.state.visible), this.handleEnable(this.state.enabled), this.changePlayState(this.state.playing, { userAction: !1 }), this.changeSpeed(this.state.speed)), this.clearPauseData(), console.debug("WORKPLUGIN loaded", s), this.hooks.emit("dataLoaded", s);
+    });
+  }
+  /**
+   * @description If playing, first pause, then play from keyframes index/id
+   * @param {number} options.index play from keyframes index
+   * @param {string} options.id play from keyframes id
+   */
+  playFrom(t) {
+    const { index: e, id: r, userAction: i } = t;
+    this.state.playing && this.setState({ playing: !1 }, { userAction: i }), this.setState({ playing: !0 }, { userAction: i, playFromIndex: e, playFromId: r });
+  }
+  /**
+   * @description Play from first keyframe
+   */
+  playFromStart(t) {
+    return this.playFrom(x(g({}, t), { index: 0 }));
+  }
+  /**
+   * @description Format data
+   */
+  formatData(t) {
+    return y(this, null, function* () {
+      this.five.work || (yield M(this.five));
+      const e = (() => {
+        const r = t;
+        return typeof r == "object" && r !== null && Q(r.version) && r.data ? r.data : r;
+      })();
+      if (e.keyframes)
+        return {
+          keyframesId: S(),
+          keyframes: e.keyframes.map((r, i) => {
+            var n;
+            const s = e.keyframes[i + 1], m = (() => !s || s.start === void 0 || r.end === void 0 ? 0 : s.start - r.end)();
+            return x(g({ id: (n = r.uuid) != null ? n : S(), moveIndex: i, stay: m, index: i }, r), { guildPluginOptions: e.guildPluginOptions });
+          })
+        };
+      if (e.panoIndexList) {
+        let r = [];
+        const { moveEffect: i, moveToFirstPanoEffect: s, moveToFirstPanoDuration: m } = e;
+        return this.privateState.moveToFirstPanoEffect = s, this.privateState.moveToFirstPanoDuration = m, e.panoIndexList.forEach((n, o) => {
+          const a = (() => {
+            var v, c;
+            const p = e.panoIndexList.slice(o).find((P) => P !== n);
+            if (p === void 0)
+              return;
+            const f = this.workUtil.getObserverPosition(n), u = this.workUtil.getObserverPosition(p);
+            if (!u || !f || ((v = this.workUtil.getObserver(n)) == null ? void 0 : v.floorIndex) !== ((c = this.workUtil.getObserver(p)) == null ? void 0 : c.floorIndex))
+              return;
+            const d = new U.Vector3().subVectors(u, f);
+            return A(d.normalize());
+          })();
+          e.moveType === void 0 || e.moveType === "justMove" ? r.push({
+            moveIndex: o,
+            stay: e.stay,
+            data: g({ effect: "Move", panoIndex: n, moveEffect: i }, a != null ? a : {})
+          }) : e.moveType === "moveAndRotate" && (r.push({ moveIndex: o, stay: e.stay, data: { effect: "Move", panoIndex: n, moveEffect: i } }), a && r.push({ moveIndex: o, stay: e.stay, data: g({ effect: "Rotate", panoIndex: n }, a) }));
+        }), {
+          keyframesId: S(),
+          keyframes: r.map((n, o) => g({ id: S(), index: o }, n)),
+          guildPluginOptions: e.guildPluginOptions,
+          useGuildLine: e.useGuildLine
+        };
+      } else
+        throw new Error("format error: data no keyframes or no panoIndexList");
+    });
+  }
+  /**
+   * @description Play | Continue play. if have been paused, continue play from the pause position; if playing, do nothing
+   * @param {number} options.playFromIndex play from keyframes index
+   * @param {string} options.playFromId play from keyframes id
+   */
+  // eslint-disable-next-line complexity
+  handlePlay(t) {
+    return y(this, null, function* () {
+      var u;
+      const { data: e, state: r, privateState: i, hooks: s } = this;
+      if (i.playing || !(e != null && e.keyframes) || (e == null ? void 0 : e.keyframes.length) === 0)
+        return;
+      const m = S();
+      i.playId = m, i.playing = !0, i.broke = !1;
+      const n = e.keyframes, o = this.getPauseData();
+      (t == null ? void 0 : t.notEmitEvent) !== !0 && s.emit("play", { userAction: (u = t == null ? void 0 : t.userAction) != null ? u : !0 });
+      let a = !1;
+      const f = yield (() => y(this, null, function* () {
+        var d, v;
+        if ((t == null ? void 0 : t.playFromIndex) !== void 0)
+          return t.playFromIndex;
+        if ((t == null ? void 0 : t.playFromId) !== void 0)
+          return (d = this.data) == null ? void 0 : d.keyframes.findIndex((c) => c.id === t.playFromId);
+        if (o != null && o.id) {
+          const c = (v = this.data) == null ? void 0 : v.keyframes.find((P) => P.id === o.id);
+          if (o != null && o.fiveState && (yield this.move(o.fiveState, {
+            moveEffect: i.moveToFirstPanoEffect,
+            duration: i.moveToFirstPanoDuration
+          })), c) {
+            if (c.data.effect === "Move")
+              return c.index;
+            if (c.data.effect === "Rotate") {
+              const P = o.duration !== void 0 ? o.duration * (1 - o.playedProgress) : void 0;
+              return yield this.playKeyframe(c, { duration: P }), a = !0, c.index + 1;
+            }
+          }
+        }
+      }))();
+      this.clearPauseData();
+      for (const d of n) {
+        if (i.broke || !r.playing || !i.playing || m !== i.playId)
+          return;
+        if (!(f !== void 0 && d.index < f))
+          try {
+            s.emit("playIndexChange", d.index, d), yield this.playKeyframe(d, {
+              moveEffect: a === !1 ? i.moveToFirstPanoEffect : void 0,
+              duration: a === !1 && typeof i.moveToFirstPanoDuration == "number" ? i.moveToFirstPanoDuration : void 0
+            }), d.stay && (yield O(d.stay)), a === !1 && (a = !0);
+          } catch (v) {
+            return console.error(v), Promise.resolve("broke");
+          }
+      }
+      r.playing && m === i.playId && (this.setState({ playing: !1 }, { userAction: !1 }), s.emit("end"), this.clearPauseData());
+    });
+  }
+  /**
+   * @description: Pause and record pause state
+   */
+  handlePause(t) {
+    var s;
+    const { state: e, privateState: r, hooks: i } = this;
+    e.playing = !1, r.playing !== !1 && (r.playing = !1, (t == null ? void 0 : t.userAction) !== !1 && this.setPauseData(), r.broke || this.forceInteruptUpdateCamera(), (t == null ? void 0 : t.notEmitEvent) !== !0 && i.emit("pause", { userAction: (s = t == null ? void 0 : t.userAction) != null ? s : !0 }));
+  }
+  /**
+   * @description: Change play speed
+   */
+  changeSpeed(t, e = !0) {
+    const { state: r, privateState: i, hooks: s } = this, { currentPlayKeyframe: m } = i;
+    if (s.emit("speedChange", t, { userAction: e }), r.playing && m)
+      try {
+        const n = m.originDuration !== void 0 ? m.originDuration * (1 - this.getProgress()) : void 0, o = this.playKeyframe(m.keyframe, { duration: n });
+        i.currentPlayQueue.push(o);
+      } catch (n) {
+      }
+  }
+  /**
+   * @description Get ratate progress
+   */
+  getProgress() {
+    return this.five.controller.cameraMotion.progress;
+  }
+  /**
+   * @description Set pause data
+   */
+  setPauseData() {
+    var t, e, r;
+    if ((t = this.data) != null && t.id)
+      return this.pauseDataMap.set(this.data.id, {
+        id: (e = this.privateState.currentPlayKeyframe) == null ? void 0 : e.keyframe.id,
+        fiveState: this.five.getCurrentState(),
+        duration: (r = this.privateState.currentPlayKeyframe) == null ? void 0 : r.originDuration,
+        playedProgress: this.getProgress()
+      });
+  }
+  /**
+   * @description: Restore state that before loaded
+   */
+  clear() {
+    this.clearPauseData(), this.privateState.currentPlayKeyframe = null;
+  }
+  /**
+   * @description Play single keyframe
+   */
+  playKeyframe(t, e) {
+    return y(this, null, function* () {
+      var i;
+      const { privateState: r } = this;
+      return ((i = this.privateState.currentPlayKeyframe) == null ? void 0 : i.keyframe.id) !== t.id && (this.privateState.currentPlayKeyframe = { keyframe: t }), r.currentPlayQueue.push(this.getPlayPromise(t, e)), this.actionPromiseQueue();
+    });
+  }
+  /**
+   * @description: getPlayPromise
+   */
+  getPlayPromise(r) {
+    return y(this, arguments, function* (t, e = {}) {
+      var s;
+      const i = t.data;
+      if (e.duration = (s = e.duration) != null ? s : t.start !== void 0 && t.end !== void 0 ? t.end - t.start : void 0, !!i)
+        return new Promise((m, n) => {
+          let o = !1;
+          this.addInterruptListener(() => {
+            if (!o)
+              return this.hooks.emit("broke"), this.privateState.broke = !0, this.setState({ playing: !1 }), o = !0, n(new Error("play is interupted"));
+          });
+          try {
+            if (o)
+              return;
+            const a = () => {
+              m(), o = !0;
+            };
+            switch (i.effect) {
+              case "Move":
+                this.move(i, e).then(a);
+                break;
+              case "Rotate":
+                this.rotate(i, e).then(a);
+                break;
+              default:
+                this.rotate(i, e).then(a);
+            }
+          } catch (a) {
+          }
+        });
+    });
+  }
+  /**
+   * @description Action promise queue in sequence
+   */
+  actionPromiseQueue() {
+    return y(this, null, function* () {
+      const { privateState: t } = this;
+      return new Promise((e, r) => {
+        if (t.currentPlayQueue.length === 0) {
+          e();
+          return;
+        }
+        const i = t.currentPlayQueue.shift();
+        if (!i) {
+          e();
+          return;
+        }
+        i.then(e, r);
+      }).then(() => t.currentPlayQueue.length === 0 ? Promise.resolve() : this.actionPromiseQueue());
+    });
+  }
+  /**
+   * @description Action move keyframe
+   */
+  move(t, e) {
+    return y(this, null, function* () {
+      if (t.mode && t.mode !== this.five.currentMode)
+        yield this.changeMode(t);
+      else if (t.panoIndex !== this.five.panoIndex)
+        yield this.changePano(t, e);
+      else
+        return Promise.resolve();
+    });
+  }
+  /**
+   * @description Action rotate keyframe
+   */
+  rotate(t, e) {
+    return y(this, null, function* () {
+      if (t.mode && t.mode !== this.five.currentMode)
+        yield this.changeMode({ mode: t.mode, panoIndex: t.panoIndex });
+      else if (t.panoIndex && t.panoIndex !== this.five.panoIndex)
+        return yield this.changePano(t, e);
+      yield this.updateCamera(t, e);
+    });
+  }
+  /**
+   * @description Update five camera
+   */
+  updateCamera(r) {
+    return y(this, arguments, function* (t, e = {}) {
+      const { five: i, privateState: s, state: m } = this, n = (() => {
+        var u, d;
+        const p = (u = m.config) == null ? void 0 : u.speedConfig, f = (d = t.rotateSpeed) != null ? d : p == null ? void 0 : p.rotateSpeed;
+        if ((p == null ? void 0 : p.rotateSpeedUnit) === void 0)
+          return f;
+        if (f !== void 0)
+          return p.rotateSpeedUnit === "rad/ms" ? f : f / 1e3;
+      })(), o = (() => {
+        if (e.duration)
+          return e.duration;
+        if (n) {
+          const p = this.five.getCurrentState();
+          return L(p, t) / n;
+        }
+        return 800;
+      })();
+      s.currentPlayKeyframe && (s.currentPlayKeyframe.originDuration = o);
+      const a = this.getSpeededDuration(o);
+      return new Promise((p) => {
+        T(() => i.updateCamera(t, a)), setTimeout(() => p(), a);
+      });
+    });
+  }
+  /**
+   * @description: Change five pano
+   */
+  changePano(t, e) {
+    return y(this, null, function* () {
+      const { five: r, privateState: i, state: s } = this;
+      if (typeof t.panoIndex != "number" || t.panoIndex === r.panoIndex)
+        return;
+      const m = r.getCurrentState().mode !== "Panorama";
+      m && (this.privateState.modeChanging = !0);
+      const n = (() => {
+        var f, u;
+        const a = (f = s.config) == null ? void 0 : f.speedConfig, p = (u = t.moveSpeed) != null ? u : a == null ? void 0 : a.moveSpeed;
+        if ((a == null ? void 0 : a.moveSpeedUnit) === void 0)
+          return p;
+        if (p !== void 0)
+          return a.moveSpeedUnit === "m/ms" ? p : p / 1e3;
+      })(), o = (() => {
+        if (e != null && e.duration)
+          return e.duration;
+        if (n && typeof r.panoIndex == "number" && typeof t.panoIndex == "number") {
+          const a = this.workUtil.getObserverPosition(r.panoIndex), p = this.workUtil.getObserverPosition(t.panoIndex);
+          return a && p ? a.distanceTo(p) / n : 800;
+        }
+        return 800;
+      })();
+      i.currentPlayKeyframe && (i.currentPlayKeyframe.originDuration = o), yield new Promise((a) => {
+        var p, f, u;
+        this.fiveUtil.moveToPano(t.panoIndex, {
+          latitude: t.latitude,
+          longitude: t.longitude,
+          fov: t.fov,
+          duration: this.getSpeededDuration(o),
+          effect: (u = (f = e == null ? void 0 : e.moveEffect) != null ? f : (p = this.state.config) == null ? void 0 : p.moveEffect) != null ? u : t.moveEffect,
+          moveCancelCallback: () => a(),
+          moveEndCallback: () => a()
+        }), m && r.once("panoArrived", () => a());
+      }), m && (this.privateState.modeChanging = !1);
+    });
+  }
+  /**
+   * @description Change five mode
+   */
+  changeMode(t, e) {
+    return y(this, null, function* () {
+      t.mode && t.mode !== this.five.currentMode && (this.privateState.modeChanging = !0, yield this.five.changeMode(t.mode, t, e), this.privateState.modeChanging = !1);
+    });
+  }
+}
+export {
+  Sr as default
+};

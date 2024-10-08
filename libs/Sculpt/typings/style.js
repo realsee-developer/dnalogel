@@ -1,0 +1,7 @@
+const L = 16777215, T = 16777215, _ = 2, E = 0.6;
+export {
+  L as DEFAULT_COLOR,
+  E as DEFAULT_HIGHLIGHT_OPACITY,
+  T as DEFAULT_LINE_COLOR,
+  _ as DEFAULT_LINE_WIDTH
+};
