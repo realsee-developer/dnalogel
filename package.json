@@ -1,0 +1,35 @@
+{
+  "name": "@realsee/dnalogel-examples",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite -m production --port 3000",
+    "dev": "vite -m development",
+    "light-dev": "npm run dev",
+    "build": "tsc && vite build",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
+    "@realsee/dnalogel": "^3.25.5",
+    "@realsee/vapor": "latest",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "three": "0.117.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@realsee/five": "6.1.3",
+    "@types/react": "^17.0.62",
+    "@types/react-dom": "^17.0.20",
+    "@vitejs/plugin-react": "^4.0.3",
+    "glob": "^8.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "5.5.4",
+    "vite": "^4.4.6"
+  }
+}
