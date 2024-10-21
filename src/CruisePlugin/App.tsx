@@ -5,6 +5,7 @@ import { useWindowDimensions } from './useWindowDimensions'
 import CruisePluginUse from './CruisePluginUse'
 import { parseWork } from '@realsee/five'
 import work from '../GuideLinePlugin/mocks/work.json'
+import '../utils/$five.ts'
 
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
@@ -23,7 +24,7 @@ const App: React.FC = () => {
 
   return (
     work && (
-      <FiveProvider initialWork={parseWork(work)} initialState={{ mode: 'Model' }}>
+      <FiveProvider initialWork={parseWork(work)}>
         <FiveCanvas {...size} />
         <CruisePluginUse />
       </FiveProvider>

@@ -20,9 +20,9 @@ import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
 import data from '../GuideLinePlugin/mocks/data.json'
-import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { GuideLinePluginExportType } from '@realsee/dnalogel/dist'
 import { MoveController } from '@realsee/dnalogel/dist'
+import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 export interface State extends SnackbarOrigin {
   open: boolean
@@ -33,7 +33,7 @@ const CruisePluginUse = () => {
   const [visible, setVisible] = useState<boolean>(true)
   const [startIndex, setStartIndex] = useState<number>(0)
   const [currentSpeed, setCurrentSpeed] = useState<number>(1)
-  const [currentGuideLine, setCurrentGuideLine] = useState<number[]>([0, 1, 2, 3, 4])
+  const [currentGuideLine, setCurrentGuideLine] = useState<number[]>([0, 1, 2, 3, 4, 5, 6, 7])
   // 可选的路径
   const [toastMessage, setToastMessage] = useState<string>('')
   const [currentState, setCurrentState] = useState<State>({
@@ -231,19 +231,7 @@ const CruisePluginUse = () => {
       direction="row"
       sx={{ position: 'fixed', top: '10px', left: '10px', width: '100%', backgroundColor: 'transparent', overflow: 'scroll' }}
     >
-      <Paper sx={{ position: 'fixed', bottom: 0 }} style={{ borderRadius: '4px', overflow: 'hidden' }}>
-        <BottomNavigation
-          showLabels
-          value={fiveState.mode}
-          onChange={(_, newValue: Mode) => {
-            setFiveState({ mode: newValue })
-          }}
-        >
-          <BottomNavigationAction label="Panorama" value={Five.Mode.Panorama} />
-          <BottomNavigationAction label="Model" value={Five.Mode.Model} />
-          <BottomNavigationAction label="Mapview" value={Five.Mode.Mapview} />
-        </BottomNavigation>
-      </Paper>
+      <FiveModeSwitcher modeList={['Panorama', 'Mapview', 'Model']} />
       <Box component="span">
         <Stack spacing={1} direction="row" sx={{ backgroundColor: 'transparent' }}>
           <Button variant="contained" onClick={() => handleVisibleChange(!visible)}>
@@ -276,6 +264,18 @@ const CruisePluginUse = () => {
           >
             从头开始
           </Button>
+          <Box>
+            <Button
+              variant="contained"
+              onClick={() => {
+                const speed = currentSpeed > 0.7 ? 0.5 : 1
+                setCurrentSpeed(speed)
+                cruisePlugin.setState({ speed })
+              }}
+            >
+              切换速度
+            </Button>
+          </Box>
           <Box>{renderStartIndexSelect()}</Box>
           <Box>{renderSpeedSelect()}</Box>
         </Stack>
