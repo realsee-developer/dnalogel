@@ -1,0 +1,111 @@
+name: Publish npm package
+on:
+  push:
+    branches: [package]
+jobs:
+  # 检查版本号
+  CheckVersion:
+    runs-on: ubuntu-latest
+    outputs:
+      versionVerified: ${{ steps.versionVerified.outputs.versionVerified }}
+      distTag: ${{ steps.distTag.outputs.distTag }}
+      version: ${{ steps.package.outputs.current-version }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Get package Info
+        id: package
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: Get Dist Tag Form Version
+        id: distTag
+        run: |
+          if echo ${{ steps.package.outputs.current-version }} | grep -; then
+            tag=$(echo ${{ steps.package.outputs.current-version }} | cut -d'-' -f2 | cut -d'.' -f1 )
+            if grep '^[[:digit:]]*$' <<< $tag; then
+              exit 0;
+            else
+              echo "distTag=$tag" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "distTag=latest" >> $GITHUB_OUTPUT
+          fi
+
+      # check whether the version is published
+      - name: Check version is not published
+        id: versionVerified
+        run: |
+          if npm view @realsee/dnalogel versions | grep "'${{ steps.package.outputs.current-version }}'"; then
+            echo "Package version is published"
+            echo "versionVerified=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Output
+        run: |
+          echo "version: ${{ steps.package.outputs.current-version }}"
+          echo "versionVerified: ${{ steps.versionVerified.outputs.versionVerified }}"
+          echo "distTag: ${{ steps.distTag.outputs.distTag }}"
+
+  Publish:
+    runs-on: ubuntu-latest
+    needs: CheckVersion
+    if: needs.CheckVersion.outputs.versionVerified != 'false'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish package
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_LHZ }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_LHZ }}
+        run: |
+          npm publish --tag ${{ needs.CheckVersion.outputs.distTag }} --ignore-scripts
+
+  QYWeChatPush:
+    runs-on: ubuntu-latest
+    needs: [Publish, CheckVersion]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get changelog
+        id: get_changelog
+        run: |
+          changelog_content=$(cat CHANGELOG.md | sed -n -e '/## ${{ needs.CheckVersion.outputs.version }}/,/##/p' | grep -v '##')
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$changelog_content" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo $(cat $GITHUB_OUTPUT)
+
+      - name: QY WeChat Push
+        uses: chf007/action-wechat-work@master
+        env:
+          WECHAT_WORK_BOT_WEBHOOK: ${{secrets.QY_WECHAT_BOT_HOOK}}
+        with:
+          msgtype: markdown
+          content: "## @realsee/dnalogel@${{ needs.CheckVersion.outputs.version }}\n> ${{ steps.get_changelog.outputs.changelog }}"
+
+  Async_cnpm:
+    runs-on: ubuntu-latest
+    needs: Publish
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install -g cnpm
+      - run: cnpm sync @realsee/dnalogel
