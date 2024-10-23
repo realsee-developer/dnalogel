@@ -109,7 +109,7 @@ const Use = () => {
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
           <Button onClick={() => yuanzhangdemo(five)}>双目</Button>
           <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
-          <Button onClick={() => sculpt.createline({ ...defaultCreateStyle })}>线段</Button>
+          <Button onClick={() => sculpt.createLine({ ...defaultCreateStyle })}>线段</Button>
           <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线</Button>
           <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形</Button>
           <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'vertex' })}>矩形</Button>
