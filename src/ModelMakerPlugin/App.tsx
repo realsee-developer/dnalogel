@@ -11,7 +11,7 @@ const FiveProvider = createFiveProvider({
   imageOptions: { size: 512 }, // 图片默认分辨率
   textureOptions: { size: 128 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
-  plugins: [[ModelMakerPlugin, 'modelMakerPlugin', {occlusionVisibility: ['Mapview']}]],
+  plugins: [[ModelMakerPlugin, 'modelMakerPlugin', { occlusionVisibility: ['Mapview'] }]],
 })
 
 const App: React.FC = () => {
@@ -26,6 +26,7 @@ const App: React.FC = () => {
           latitude: 0.33,
           longitude: 2.87,
           panoIndex: 3,
+          mode: 'Mapview',
         }}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
