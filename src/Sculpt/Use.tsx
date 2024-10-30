@@ -34,9 +34,9 @@ const Use = () => {
       sculpt.load(data, { occlusionVisibility: true, canEdit: true })
       sculpt.on('click', (e, item) => {
         item.editor?.enable()
-        const x = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX
-        const y = e instanceof TouchEvent ? e.touches[0].clientY : e.clientY
-        item.showDeleteButton(x, y)
+        // const x = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX
+        // const y = e instanceof TouchEvent ? e.touches[0].clientY : e.clientY
+        // item.showDeleteButton(x, y)
       })
     }
     return () => {
@@ -114,7 +114,8 @@ const Use = () => {
           <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形</Button>
           <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'vertex' })}>矩形</Button>
           <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'diagonal' })}>矩形【对角线】</Button>
-          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle })}>长方体</Button>
+          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle, drawMethod: 'vertex' })}>长方体</Button>
+          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle, drawMethod: 'diagonal' })}>长方体【对角线】</Button>
           <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
           <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
           <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>

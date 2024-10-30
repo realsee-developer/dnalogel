@@ -7,21 +7,28 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Vector3 } from 'three'
 import { ObjectHelperControllers } from '@realsee/dnalogel/dist'
 
-// const vector0 = [2.7818808289123007, -1.4285811161048776, -3.616888414534893]
-// const vector1 = [4.829741729794315, -1.4285811161048776, -3.616888414534893]
-// const vector2 = [4.829741729794315, -0.30950769602726647, -3.616888414534893]
-// const vector3 = [2.7818808289123007, -0.30950769602726647, -3.616888414534893]
+const vector0 = [2.7818808289123007, -1.4285811161048776, -3.616888414534893]
+const vector1 = [4.829741729794315, -1.4285811161048776, -3.616888414534893]
+const vector2 = [4.829741729794315, -0.30950769602726647, -3.616888414534893]
+const vector3 = [2.7818808289123007, -0.30950769602726647, -3.616888414534893]
 
-const vector = [-31.517027396190212, -1.1, -12.16400064558492]
+const vector = [0, 0, 0]
 const geometry = new THREE.SphereGeometry(0.02, 16, 16)
 const material = new THREE.MeshBasicMaterial({ color: 0xffff00 }) // 黄
 const sphere = new THREE.Mesh(geometry, material)
 sphere.position.copy(new THREE.Vector3(...vector))
 
-const vector0 = [-31.517027396190212, -1.1, -12.16400064558492]
-const vector1 = [-31.62489803948697, -1.1, -10.405769510212854]
-const vector2 = [-31.62489803948697, 0.1, -10.405769510212854]
-const vector3 = [-31.517027396190212, 0.1, -12.16400064558492]
+const position = [
+  [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 0.01],
+  [-1.4781933464383068, 0.8696103907729694, -2.339700937271118 + 0.01],
+  [-1.4865722199099451, 2.1293509755511106, -2.3397009372711177 + 0.01],
+  [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
+]
+
+// const vector0 = [-31.517027396190212, -1.1, -12.16400064558492]
+// const vector1 = [-31.62489803948697, -1.1, -10.405769510212854]
+// const vector2 = [-31.62489803948697, 0.1, -10.405769510212854]
+// const vector3 = [-31.517027396190212, 0.1, -12.16400064558492]
 
 const PluginUse: React.FC = () => {
   const five = unsafe__useFiveInstance()
@@ -36,7 +43,7 @@ const PluginUse: React.FC = () => {
           id: '1',
           stickType: 'Plane',
           contentType: 'MediaPlane',
-          position: [vector0, vector1, vector2, vector3],
+          position: position as any,
           data: {
             mediaData: [
               {
@@ -132,7 +139,7 @@ const PluginUse2: React.FC = () => {
       (gltf) => {
         const object = gltf.scene
         objectRef.current = object
-        object.position.copy(new Vector3(...vector))
+        object.position.copy(new Vector3(0, 0, 0))
         window['$object'] = object
         // five.scene.add(sphere)
         five.scene.add(object)
