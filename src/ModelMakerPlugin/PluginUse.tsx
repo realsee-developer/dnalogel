@@ -3,6 +3,7 @@ import { Paper, ButtonGroup, Button } from '@mui/material'
 import React from 'react'
 import { type ModelMakerController } from '@realsee/dnalogel/dist/ModelMakerPlugin/typings'
 import { data } from './mocks/data'
+import { data2 } from './mocks/data2'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 const PluginUse = () => {

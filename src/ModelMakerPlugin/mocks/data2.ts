@@ -1,6 +1,6 @@
 import { ModelMakerPluginType } from '@realsee/dnalogel/dist'
 
-export const data: ModelMakerPluginType.ServerData = {
+export const data2: ModelMakerPluginType.ServerData = {
   list: [
     {
       id: 1,
