@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 import * as React from 'react'
-import { Five, Mode } from '@realsee/five'
-import { MapviewFloorplanPlugin } from '@realsee/dnalogel/dist'
-import { unsafe__useFiveInstance, useFiveModelReadyState, useFiveState } from '@realsee/five/react'
+import { Five, InternalWebGLRenderer, Mode } from '@realsee/five'
+import { GuideLinePluginExportType, MapviewFloorplanPlugin, Util } from '@realsee/dnalogel/dist'
+import { unsafe__useFiveInstance, useFiveEventCallback, useFiveModelReadyState, useFiveState } from '@realsee/five/react'
 import { Paper, BottomNavigation, BottomNavigationAction, ButtonGroup, Button, Slider, FormGroup, Stack } from '@mui/material'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
 import ViewInArIcon from '@mui/icons-material/ViewInAr'
@@ -14,8 +14,9 @@ const PluginUse = () => {
   const fiveModelReadyState = useFiveModelReadyState()
   const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
   const plugin = five.plugins.mapviewFloorplanPlugin as ReturnType<typeof MapviewFloorplanPlugin>
-  Object.assign(window, { five, plugin })
+  const guideLinePlugin = five.plugins.guideLinePlugin as GuideLinePluginExportType
   const floorIndex = React.useRef(0)
+  const fivePuppet = React.useRef<Util.FivePuppet>()
 
   const [isDefaultUnit, setIsDefaultUnit] = React.useState(true)
   const [missingFloorConfigWidth, setMissingFloorConfigWidth] = React.useState(200)
@@ -43,10 +44,71 @@ const PluginUse = () => {
   }, [isDefaultUnit])
 
   React.useEffect(() => {
-    if (!floorplanServerData || JSON.stringify(floorplanServerData) === '{}') return
+    const fiveElement = five.getElement()
+    if (!floorplanServerData || JSON.stringify(floorplanServerData) === '{}' || !fiveElement) return
     plugin.load(floorplanServerData)
-    plugin.appendTo(document.querySelector('.plugin-full-screen-container')!)
+    plugin.appendTo(fiveElement!.parentElement!)
   }, [floorplanServerData])
+
+  // React.useEffect(() => {
+  //   const fiveElement = five.getElement()
+  //   if (!fiveElement) return
+  //   guideLinePlugin.load({
+  //     lines: [
+  //       {
+  //         id: '123',
+  //         pano_group: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  //         panorama_style: {
+  //           visible: true,
+  //           border_color: '#FF0000',
+  //           background_color: '#FFFFFF',
+  //           background_opacity: 0.4,
+  //           border_opacity: 0.4,
+  //           border_width: 0.05,
+  //           background_clip: 'border-box',
+  //           color: '#FFFFFF',
+  //           unit_length: 0.5,
+  //           opacity: 0.8,
+  //           width: 0.5,
+  //         },
+  //         model_style: {
+  //           visible: true,
+  //           background_color: '#FFFFFF',
+  //           background_opacity: 0.6,
+  //           border_color: '#FFFFFF',
+  //           border_opacity: 0.4,
+  //           border_width: 0.05,
+  //           background_clip: 'border-box',
+  //           color: 'green',
+  //           unit_length: 0.5,
+  //           width: 0.5,
+  //         },
+  //       },
+  //     ],
+  //   })
+  //   guideLinePlugin.show()
+  // }, [five])
+
+  // React.useEffect(() => {
+  //   fivePuppet.current = new Util.FivePuppet(five, { zIndex: 11 })
+  //   return () => {
+  //     fivePuppet.current?.destory()
+  //   }
+  // }, [five])
+
+  // useFiveEventCallback('mode.change', ({ mode }) => {
+  //   five.ready().then(() => {
+  //     if (!fivePuppet.current) return
+  //     if (mode === 'Mapview') {
+  //       const guideline = guideLinePlugin.itemMap.get('123')?.modelItem.group.clone()
+  //       if (guideline) {
+  //         fivePuppet.current.scene.add(guideline)
+  //       }
+  //     } else {
+  //       fivePuppet.current.scene.remove(fivePuppet.current.scene.children[0])
+  //     }
+  //   })
+  // })
 
   React.useEffect(() => {
     plugin.changeConfigs({
