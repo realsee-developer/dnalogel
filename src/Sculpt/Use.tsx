@@ -10,7 +10,7 @@ import { clearDemo, yuanzhangdemo } from './demo'
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
   occlusionMode: 'translucence' as const,
-  lengthEnable: true,
+  lengthEnable: false,
 }
 
 const Use = () => {
@@ -69,7 +69,7 @@ const Use = () => {
           <Button color="primary" variant="contained">
             长度显示
             <Switch
-              defaultChecked={true}
+              defaultChecked={false}
               onChange={(e) => {
                 sculpt.items.forEach((item) => {
                   if (item.type !== 'Circle' && item.type !== 'Cylinder') {
