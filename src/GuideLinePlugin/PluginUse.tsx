@@ -44,6 +44,7 @@ const GuideLinePluginUse = () => {
 
   // 重载路径
   useEffect(() => {
+    if (!five.getElement()) return
     if (panoIndexGroup.length === 0) return guideLine.clear()
     // guideLine.load(data as any)
     guideLine.load({

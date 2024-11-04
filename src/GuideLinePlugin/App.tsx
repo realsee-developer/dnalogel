@@ -23,11 +23,11 @@ const App: React.FC = () => {
     work && (
       <FiveProvider
         initialState={{
-          mode: 'Mapview',
+          // mode: 'Mapview',
           distance: 18,
           fov: 80,
-          latitude: 0.9,
-          longitude: 1,
+          latitude: 0.42,
+          longitude: 3.18,
         }}
         initialWork={parseWork(work)}
       >
