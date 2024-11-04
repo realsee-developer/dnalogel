@@ -16,7 +16,7 @@ const FiveProvider = createFiveProvider({
       (five) =>
         new Sculpt(five, {
           point: { color: 0xffffff },
-          line: { lineColor: 0x000000, lineWidth: 2 },
+          line: { lineColor: 0xffffff, lineWidth: 2 },
           polyline: { lineColor: 0x000000, lineWidth: 2 },
           polygon: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
           prism: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
