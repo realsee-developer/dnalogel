@@ -7,6 +7,9 @@ import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { Sculpt } from '@realsee/dnalogel/dist'
 import '../utils/$five.ts'
 
+const lineWidth = 1.5
+const lineOpacity = 0.8
+
 const FiveProvider = createFiveProvider({
   imageOptions: { size: 1024 }, // 图片默认分辨率
   textureOptions: { size: 1024 }, // 贴图默认分辨率
@@ -16,14 +19,14 @@ const FiveProvider = createFiveProvider({
       (five) =>
         new Sculpt(five, {
           point: { color: 0xffffff },
-          line: { lineColor: 0xffffff, lineWidth: 2 },
-          polyline: { lineColor: 0x000000, lineWidth: 2 },
-          polygon: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
-          prism: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
-          rectangle: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
-          circle: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
-          cylinder: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
-          box: { color: 0xffffff, lineColor: 0x000000, lineWidth: 2 },
+          line: { lineColor: 0xffffff, lineWidth },
+          polyline: { lineColor: 0x000000, lineWidth },
+          polygon: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+          prism: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+          rectangle: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+          circle: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+          cylinder: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+          box: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
         }),
       'Sculpt',
     ],
