@@ -26,7 +26,7 @@ const App: React.FC = () => {
           latitude: 0.33,
           longitude: 2.87,
           panoIndex: 3,
-          // mode: 'Mapview',
+          mode: 'Mapview',
         }}
       >
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
