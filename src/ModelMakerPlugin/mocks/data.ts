@@ -47,23 +47,5 @@ export const data: ModelMakerPluginType.ServerData = {
         opacity: 0.4,
       },
     },
-    {
-      id: 4,
-      name: '区域标签',
-      type: 'prism',
-      object_data: {
-        floorIndex: 1,
-        points: [
-          [0, 3, 0],
-          [1, 3, 0],
-          [1, 3, 1],
-          [0, 3, 1],
-        ],
-        height: 3,
-        fixedY: 0.1,
-        color: '#0000ff',
-        opacity: 0.4,
-      },
-    },
   ],
 }
