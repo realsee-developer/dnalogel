@@ -11,7 +11,7 @@ const PluginUse = () => {
   const pluginInstance = five.plugins.modelMakerPlugin as ModelMakerController
 
   React.useEffect(() => {
-    pluginInstance.load(data)
+    pluginInstance.load(data2)
     return () => {
       pluginInstance.dispose()
     }
