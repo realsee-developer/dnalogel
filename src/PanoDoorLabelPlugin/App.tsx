@@ -1,4 +1,4 @@
-import { PanoDoorLabelPlugin } from '@realsee/dnalogel'
+import { PanoDoorLabelPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
 import { useWindowDimensions } from './useWindowDimensions'
@@ -6,6 +6,7 @@ import { parseWork } from '@realsee/five'
 import PanoDoorLabels from './DoorLabels'
 import getInitialParamFromUrl from '../utils/getInitialParamFromUrl'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
+import '../utils/$five.ts'
 
 const defaultPluginParam = {}
 

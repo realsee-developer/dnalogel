@@ -14,6 +14,7 @@ export const data: ModelMakerPluginType.ServerData = {
           [-4.322683971372346, -0.012037871935272133, 0.7562943264963584],
         ],
         color: '#ff00ff',
+        panoIndex: 2,
         opacity: 0.4,
       },
     },
