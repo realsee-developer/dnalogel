@@ -31,12 +31,14 @@ const Use = () => {
 
   useEffect(() => {
     if (!five.work?.workCode) {
-      sculpt.load(data, { occlusionVisibility: true, canEdit: true })
+      sculpt.load(data, { occlusionVisibility: true, defaultAction: false })
       sculpt.on('click', (e, item) => {
-        item.editor?.enable()
-        item.editor?.hooks.on('objectUpdate', () => {
+        item.select({ only: true })
+        item.editor.enable()
+        item.editor.hooks.on('objectUpdate', () => {
           console.info('new Data: ', item.data)
         })
+        return false
         // const x = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX
         // const y = e instanceof TouchEvent ? e.touches[0].clientY : e.clientY
         // item.showDeleteButton(x, y)

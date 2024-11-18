@@ -4,6 +4,7 @@ import React from 'react'
 import { type ModelMakerController } from '@realsee/dnalogel/dist/ModelMakerPlugin/typings'
 import { data } from './mocks/data'
 import { data2 } from './mocks/data2'
+import { data3 } from './mocks/data3'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 const PluginUse = () => {
@@ -21,6 +22,11 @@ const PluginUse = () => {
     <>
       <FiveModeSwitcher modeList={['Panorama', 'Mapview', 'Floorplan']} />
       <Paper sx={{ position: 'fixed', top: '10px', right: '10px', backgroundColor: 'transparent' }}>
+        <ButtonGroup size="large" aria-label="large button group" orientation="vertical">
+          <Button onClick={() => pluginInstance.load(data)}>data1</Button>
+          <Button onClick={() => pluginInstance.load(data2)}>data2</Button>
+          <Button onClick={() => pluginInstance.load(data3)}>data3</Button>
+        </ButtonGroup>
         <ButtonGroup size="large" aria-label="large button group" orientation="vertical">
           <Button onClick={() => pluginInstance?.show()}>show</Button>
           <Button onClick={() => pluginInstance?.hide()}>hide</Button>
