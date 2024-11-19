@@ -5,6 +5,7 @@ import Use from './Use'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { Sculpt } from '@realsee/dnalogel/dist'
+import { OrientationPlugin } from '@realsee/five/plugins'
 import '../utils/$five.ts'
 
 const lineWidth = 1.5
@@ -15,6 +16,7 @@ const FiveProvider = createFiveProvider({
   textureOptions: { size: 1024 }, // 贴图默认分辨率
   onlyRenderIfNeeds: true,
   plugins: [
+    [OrientationPlugin, 'OrientationPlugin'],
     [
       (five) =>
         new Sculpt(five, {

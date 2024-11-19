@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
 import { clearDemo, yuanzhangdemo } from './demo'
+import * as THREE from 'three'
+import { Util } from '@realsee/dnalogel/dist'
 
 const defaultCreateStyle: any = {
   occlusionVisibility: true,
@@ -28,6 +30,30 @@ const Use = () => {
     defaultCreateStyle.limit = limit
     setLimit(limit)
   }
+
+  useEffect(() => {
+    if (!five.getElement()) return
+    const disposers: (() => void)[] = []
+    const wrapper = document.createElement('div')
+    wrapper.style.cssText = 'position: absolute; top: 90px; right: 24px; width: 160px; height: 160px;'
+    if (five.plugins.OrientationPlugin) {
+      const onModelLoaded = () => {
+        five.plugins.OrientationPlugin.enable()
+        five.getElement()!.parentElement!.appendChild(wrapper)
+        five.plugins.OrientationPlugin.appendTo(wrapper)
+      }
+      Util.waitFiveModelLoaded(five).then(() => {
+        onModelLoaded()
+      })
+      disposers.push(() => {
+        if (wrapper.parentNode) wrapper.parentNode.removeChild(wrapper)
+        five.plugins.OrientationPlugin.dispose()
+      })
+    }
+    return () => {
+      disposers.forEach((one) => one())
+    }
+  }, [])
 
   useEffect(() => {
     if (!five.work?.workCode) {
