@@ -394,6 +394,58 @@ export const TagsList = [
     ],
   },
   {
+    id: 'MediaModel',
+    stickType: 'Model',
+    contentType: 'MediaModel',
+    fiveState: {
+      distance: 0,
+      fov: 100,
+      latitude: 0,
+      longitude: 1.5817071602126802,
+      mode: 'Panorama' as Mode,
+      offset: { x: 2.60088, y: 0.0440728, z: -3.06787 } as Vector3,
+      panoIndex: 1,
+    },
+    position: [-1.4006045858954423, 0.005288434039257162, -1.654760281604037],
+    data: {
+      appearance: 'plane',
+      title: null,
+      description: null,
+      mediaData: [
+        {
+          type: 'Image',
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        },
+        {
+          type: 'Image',
+          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
+        },
+      ],
+      targetUrl: null,
+      modelType: 'billboard1',
+      objectFit: 'contain',
+      action: { type: 'iframe', url: '' },
+      type: 'billboard1',
+      modelUrl: 'https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf',
+      defaultImageUrl: 'https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png',
+      previewUrl: 'https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png',
+      iconUrl: 'https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png',
+      size: '540x1500',
+      mediaPosition: [
+        [-0.27, 0.1172, 0.028],
+        [0.27, 0.1172, 0.028],
+        [0.27, 1.6172, 0.028],
+        [-0.27, 1.6172, 0.028],
+      ],
+    },
+    style: { point: { iconType: 'circle' } },
+    config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
+    matrix: [
+      -0.5596409874088015, 0, 0.828735159874432, 0, 0, 1, 0, 0, -0.828735159874432, 0, -0.5596409874088015, 0, 1.1166287008785034,
+      0.005288434039257162, 0.5336379042536049, 1,
+    ],
+  },
+  {
     dimensionType: '2D',
     pointType: 'PointTag',
     contentType: 'Text',
@@ -426,169 +478,3 @@ export const TagsList = [
     },
   },
 ]
-
-export const AddTagData = {
-  [ContentType.Text]: {
-    pointType: 'PointTag',
-    dimensionType: '2D',
-    position: [-1.9697880985731286, 1.6096369355028362, -2.339700937271118],
-    data: {
-      appearance: 'plane',
-      text: '创 建 一  🙋‍♂️ 个 简单🙋‍♂️的文字标签',
-      description:
-        'ldjskladjsla sdjakds sjsadsa sadj sajld sajdk sdajk dsaj dlsad dsa jskal djskald ldjskladjsla sdjakds sjsadsa sadj sajld sajdk sdajk dsaj dlsad dsa jskal djskald ',
-    },
-    style: {
-      point: {
-        style: 'Default',
-        iconUrl: '//vr-static.realsee-cdn.cn/release/web/tagStyle1.30bff6db.png',
-      },
-    },
-    contentType: 'Text',
-    enable: true,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 0.7552481048694407,
-      latitude: -0.4809081527347768,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  [ContentType.ImageText]: {
-    pointType: 'PointTag',
-    dimensionType: '2D',
-    position: [-0.8340552724043149, 2.1891417065796084, -2.339700937271118],
-    data: {
-      text: '图文标签',
-      mediaData: [
-        {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          name: 'magazine-unlock-01-2.3.1336-_1E170DD8392817D3D72576753BB502DA.jpg',
-          videoCoverUrl: '',
-          width: 0,
-          height: 0,
-        },
-      ],
-    },
-    style: {
-      point: {
-        style: 'CustomIcon',
-        iconUrl: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
-      },
-    },
-    contentType: 'ImageText',
-    enable: true,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 0.2330602823720213,
-      latitude: -0.8028895768833848,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  [ContentType.Audio]: {
-    pointType: 'PointTag',
-    dimensionType: '2D',
-    position: [-2.1892900647187052, 1.3567515982674699, 1.0212990045547485],
-    data: {
-      appearance: 'plane',
-      text: 'sadfsdf',
-      audioUrl: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-09-27_11-57-08.mp3',
-    },
-    style: {
-      point: {
-        style: 'CustomIcon',
-        iconUrl: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
-      },
-    },
-    contentType: 'Audio',
-    enable: true,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 1.9245150725093125,
-      latitude: -0.13944516130522125,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  [ContentType.Marketing]: {
-    pointType: 'PointTag',
-    dimensionType: '2D',
-    position: [-1.338475476220061, 0, -0.33318181321254403],
-    data: {
-      title: '回归营销平面标签',
-      highlightText: '高亮',
-      brandTags: [''],
-      tags: ['标签1', ''],
-      headerPictureUrl: '//vr-static.realsee-cdn.cn/release/web/cardHeader.19ff7aa0.png',
-      price: {
-        value: 0.9385753830250385,
-        unit: '元',
-      },
-    },
-    style: {
-      point: {
-        style: 'Default',
-        iconUrl: '//vr-static.realsee-cdn.cn/release/web/tagStyle1.30bff6db.png',
-      },
-    },
-    contentType: 'Marketing',
-    enable: true,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 1.5468060941811406,
-      latitude: 0.3001833216669151,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  [ContentType.Link]: {
-    pointType: 'PointTag',
-    dimensionType: '2D',
-    position: [-1.333800813934946, 0, -2.2449222652733747],
-    data: {
-      text: '回归跳转vr',
-      linkType: 'vr',
-    },
-    contentType: 'Link',
-    enable: true,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 0.4859185812812441,
-      latitude: 0.10616887378249829,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-}
