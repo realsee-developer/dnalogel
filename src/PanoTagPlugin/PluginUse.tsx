@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { unsafe__useFiveInstance, useFiveEventCallback, useFiveState } from '@realsee/five/react'
 import { Five, Mode } from '@realsee/five'
-import { TagsList, AddTagData } from './mocks/mock_data.ts'
+import { TagsList } from './mocks/mock_data.ts'
 import TagsList2 from './mocks/marketingData.ts'
 import TagsList3 from './mocks/mediaModel.ts'
 import TagsList4 from './mocks/textTagData.ts'
