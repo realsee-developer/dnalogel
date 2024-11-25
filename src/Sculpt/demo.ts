@@ -64,7 +64,7 @@ export function createLine(lineMesh: LineMesh, pointSelector: PointSelector, con
 
     lastIntersection = intersection
 
-    const lastPoint = points.at(-1)!.clone()
+    const lastPoint = points[points.length - 1]!.clone()
 
     if (limit === 'none') {
       // 自由选点
