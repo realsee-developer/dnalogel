@@ -44,6 +44,9 @@ const PluginUse: React.FC = () => {
           stickType: 'Plane',
           contentType: 'MediaPlane',
           position: position as any,
+          config: {
+            renderType: 'Dom',
+          },
           data: {
             mediaData: [
               {
@@ -68,7 +71,7 @@ const PluginUse: React.FC = () => {
       return objectRef.current
     } else {
       const tag = panoTagPlugin.getTagById('1')!
-      const object = tag.tag3DContentSvelte?.css3DInstance.css3DObject
+      const object = tag.tag3DContentSvelte?.css3DInstance
       if (object) {
         objectRef.current = object
         return objectRef.current
@@ -104,6 +107,18 @@ const PluginUse: React.FC = () => {
         left: '0',
       }}
     >
+      <button
+        type="button"
+        onClick={() =>
+          object3DHelperPlugin.getObject3DHelper(getObject()!)?.helper.controllers.moveController?.moveByMouse({
+            useFaceNormal: {
+              enable: true,
+            },
+          })
+        }
+      >
+        move
+      </button>
       <button type="button" onClick={() => object3DHelperPlugin.show()}>
         show
       </button>
@@ -237,4 +252,4 @@ const PluginUse2: React.FC = () => {
   )
 }
 
-export default PluginUse2
+export default PluginUse

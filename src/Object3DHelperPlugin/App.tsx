@@ -6,6 +6,7 @@ import { useWindowDimensions } from './useWindowDimensions'
 import { parseWork } from '@realsee/five'
 import PanoSpacialTagPluginUse from './PluginUse'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
+import '../utils/$five.ts'
 
 const FiveProvider = createFiveProvider({
   backgroundColor: 0x000000,

@@ -117,9 +117,10 @@ export const TagsList = [
       mediaData: [
         {
           url: '//vr-static.realsee-cdn.cn/release/web/catCoding.1cd4e989.gif',
-          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          // url: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
-          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
+          type: 'Image',
+        },
+        {
+          url: '//vr-static.realsee-cdn.cn/release/web/catCoding.1cd4e989.gif',
           type: 'Image',
         },
       ],
