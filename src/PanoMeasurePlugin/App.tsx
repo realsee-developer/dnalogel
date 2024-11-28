@@ -14,6 +14,7 @@ const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     useNewUI: true,
   },
   editParams: {
+    pointSelectorMode: 'cursor',
     allowMeasureType: ['area'],
     autoEndConfig: { line: 3 },
   },
