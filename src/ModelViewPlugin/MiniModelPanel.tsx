@@ -2,7 +2,8 @@ import * as React from 'react'
 import { unsafe__useFiveInstance, useFiveModelReadyState, useFiveState } from '@realsee/five/react'
 import { Box, Slider, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import { Five } from '@realsee/five'
-import type { ModelViewPlugin } from '@realsee/dnalogel'
+import type { ModelViewPlugin } from '@realsee/dnalogel/dist'
+import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 
 const MiniModelPanel: React.FC = () => {
   const [fiveState, setFiveState] = useFiveState()
@@ -55,60 +56,64 @@ const MiniModelPanel: React.FC = () => {
     plugin.changeConfigs(config)
   }, [lockedLatitude, lockedLongitude, checkedState, five])
 
-  if (fiveState.mode !== Five.Mode.Panorama) return null
   if (fiveModeReadyState !== 'Loaded') return null
   return (
     <>
-      <FormGroup sx={{ position: 'absolute', left: '20px', top: '20px', width: '200px' }}>
-        <FormControlLabel
-          control={<Switch checked={checkedState.latitude} name="latitude" onChange={handleCheckChange} />}
-          label="锁定俯仰角"
-        />
-        <Slider
-          value={lockedLatitude}
-          disabled={!checkedState.latitude}
-          defaultValue={0}
-          aria-label="Default"
-          valueLabelDisplay="auto"
-          scale={calculateLatitude}
-          onChange={handleLatitudeSliderChange}
-        />
-        <FormControlLabel
-          control={<Switch checked={checkedState.longitude} name="longitude" onChange={handleCheckChange} />}
-          label="锁定水平角"
-        />
-        <Slider
-          value={lockedLongitude}
-          disabled={!checkedState.longitude}
-          defaultValue={0}
-          aria-label="Default"
-          valueLabelDisplay="auto"
-          scale={calculateLongitude}
-          onChange={handleLongitudeSliderChange}
-        />
-        <FormControlLabel
-          control={<Switch name="currentPanoIndex" checked={checkedState.currentPanoIndex} onChange={handleCheckChange} />}
-          label="锁定当前点位"
-        />
-      </FormGroup>
-      <Box
-        onClick={() => setFiveState({ mode: 'Floorplan' })}
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'absolute',
-          top: '60px',
-          right: '20px',
-          padding: '10px', // 注意: 插件内部无法获知 padding 值，如有需要，请务必传入 size
-          width: '500px',
-          height: '500px',
-          boxSizing: 'border-box',
-          backgroundColor: 'rgba(0, 0, 0, .2)',
-          pointerEvents: 'all',
-        }}
-        ref={miniModeRef}
-      />
+      <FiveModeSwitcher></FiveModeSwitcher>
+      {fiveState.mode === Five.Mode.Panorama && (
+        <>
+          <FormGroup sx={{ position: 'absolute', left: '20px', top: '20px', width: '200px' }}>
+            <FormControlLabel
+              control={<Switch checked={checkedState.latitude} name="latitude" onChange={handleCheckChange} />}
+              label="锁定俯仰角"
+            />
+            <Slider
+              value={lockedLatitude}
+              disabled={!checkedState.latitude}
+              defaultValue={0}
+              aria-label="Default"
+              valueLabelDisplay="auto"
+              scale={calculateLatitude}
+              onChange={handleLatitudeSliderChange}
+            />
+            <FormControlLabel
+              control={<Switch checked={checkedState.longitude} name="longitude" onChange={handleCheckChange} />}
+              label="锁定水平角"
+            />
+            <Slider
+              value={lockedLongitude}
+              disabled={!checkedState.longitude}
+              defaultValue={0}
+              aria-label="Default"
+              valueLabelDisplay="auto"
+              scale={calculateLongitude}
+              onChange={handleLongitudeSliderChange}
+            />
+            <FormControlLabel
+              control={<Switch name="currentPanoIndex" checked={checkedState.currentPanoIndex} onChange={handleCheckChange} />}
+              label="锁定当前点位"
+            />
+          </FormGroup>
+          <Box
+            onClick={() => setFiveState({ mode: 'Floorplan' })}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'absolute',
+              top: '60px',
+              right: '20px',
+              padding: '10px', // 注意: 插件内部无法获知 padding 值，如有需要，请务必传入 size
+              width: '500px',
+              height: '500px',
+              boxSizing: 'border-box',
+              backgroundColor: 'rgba(0, 0, 0, .2)',
+              pointerEvents: 'all',
+            }}
+            ref={miniModeRef}
+          />
+        </>
+      )}
     </>
   )
 }
