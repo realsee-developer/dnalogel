@@ -4,6 +4,7 @@ import { Box, Slider, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import { Five } from '@realsee/five'
 import type { ModelViewPlugin } from '@realsee/dnalogel/dist'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
+import { FiveWorkSwitcher } from '../components/FiveWorkSwitcher'
 
 const MiniModelPanel: React.FC = () => {
   const [fiveState, setFiveState] = useFiveState()
@@ -60,6 +61,7 @@ const MiniModelPanel: React.FC = () => {
   return (
     <>
       <FiveModeSwitcher></FiveModeSwitcher>
+      <FiveWorkSwitcher works={[]}></FiveWorkSwitcher>
       {fiveState.mode === Five.Mode.Panorama && (
         <>
           <FormGroup sx={{ position: 'absolute', left: '20px', top: '20px', width: '200px' }}>

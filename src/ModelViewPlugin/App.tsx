@@ -1,10 +1,10 @@
 import { ModelViewPlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
-import { useWindowDimensions } from './useWindowDimensions'
 import { parseWork } from '@realsee/five'
 import MiniModelPanel from './MiniModelPanel'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
+import { useWindowDimensions } from '../utils/useWindowDimensions.ts'
 import '../utils/$five.ts'
 
 const FiveProvider = createFiveProvider({
