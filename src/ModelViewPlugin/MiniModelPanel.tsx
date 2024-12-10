@@ -61,7 +61,7 @@ const MiniModelPanel: React.FC = () => {
   return (
     <>
       <FiveModeSwitcher></FiveModeSwitcher>
-      <FiveWorkSwitcher works={[]}></FiveWorkSwitcher>
+      <FiveWorkSwitcher workCodes={['81gmMq5a7zbF9leWMk', 'test']}></FiveWorkSwitcher>
       {fiveState.mode === Five.Mode.Panorama && (
         <>
           <FormGroup sx={{ position: 'absolute', left: '20px', top: '20px', width: '200px' }}>
