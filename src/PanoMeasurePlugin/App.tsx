@@ -12,11 +12,12 @@ const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
   useGuideController: true,
   useUIController: {
     useNewUI: true,
+    showExit: true,
   },
   editParams: {
     pointSelectorMode: 'cursor',
-    allowMeasureType: ['area'],
-    autoEndConfig: { line: 3 },
+    allowMeasureType: ['line', 'area'],
+    autoEndConfig: { line: null },
   },
   openParams: {
     isMobile: false,
@@ -25,12 +26,12 @@ const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     height: 120,
     scale: 2,
     width: 120,
-    dragEnabled: true,
+    dragEnabled: false,
     autoFixPCPosition: true,
     initialPosition: { left: '35%', top: '20%' },
   },
   pointSelectorConfig: {
-    helper: { pointHelper: 'highlight' },
+    // helper: { pointHelper: 'highlight' },
     actionIfNoModelUnderMouse: 'disable',
   },
 }
@@ -59,7 +60,7 @@ const mobileConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     initialPosition: { left: '35%', top: '20%' },
   },
   pointSelectorConfig: {
-    helper: { pointHelper: 'highlight' },
+    // helper: { pointHelper: 'highlight' },
   },
 }
 

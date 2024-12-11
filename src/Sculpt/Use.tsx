@@ -22,7 +22,7 @@ const Use = () => {
   const [limit, setLimit] = useState<string>('none')
 
   const changeAction = (type: string) => {
-    Sculpt.modules.pointSelector.actionIfNoModelUnderMouse = type
+    Sculpt.modules.pointSelector.actionIfNoIntersection = type
     setAction(type)
   }
 

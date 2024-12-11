@@ -33,7 +33,7 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
-                panoMeasurePluginPC.enable({ mode: 'Edit' })
+                panoMeasurePluginPC.enable()
                 // panoMeasurePluginPC.changeMeasureType('line')
               }}
             >
