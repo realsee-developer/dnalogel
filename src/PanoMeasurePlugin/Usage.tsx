@@ -33,6 +33,7 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
+                panoMeasurePluginPC.disable()
                 panoMeasurePluginPC.enable()
                 // panoMeasurePluginPC.changeMeasureType('line')
               }}
@@ -44,6 +45,7 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
+                panoMeasurePluginMobile.disable()
                 panoMeasurePluginMobile.enable({ mode: 'Edit' })
                 // panoMeasurePluginMobile.changeMeasureType('line')
               }}
@@ -54,6 +56,7 @@ const PanoMeasurePluginUsage = () => {
           </ButtonGroup>
           <Button
             onClick={() => {
+              panoMeasurePluginPC.disable()
               panoMeasurePluginPC.load(mockMeasureRulerServerData)
               panoMeasurePluginPC.enable({ mode: 'View' })
             }}

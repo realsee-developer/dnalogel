@@ -1,12 +1,12 @@
 import { PanoMeasurePlugin } from '@realsee/dnalogel/dist'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import * as React from 'react'
-import { useWindowDimensions } from './useWindowDimensions'
 import PanoMeasurePluginUsage from './Usage'
 import { parseWork } from '@realsee/five'
 import { Box } from '@mui/material'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import '../utils/$five.ts'
+import { useWindowDimensions } from '../utils/useWindowDimensions.ts'
 
 const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
   useGuideController: true,
@@ -28,7 +28,6 @@ const pcConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     width: 120,
     dragEnabled: false,
     autoFixPCPosition: true,
-    initialPosition: { left: '35%', top: '20%' },
   },
   pointSelectorConfig: {
     // helper: { pointHelper: 'highlight' },
@@ -45,7 +44,7 @@ const mobileConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     allowMeasureType: ['line', 'area'],
     pointSelectorMode: 'fixed',
     autoEndConfig: {
-      line: 3,
+      line: 2,
     },
   },
   openParams: {
@@ -57,7 +56,6 @@ const mobileConfig: Parameters<typeof PanoMeasurePlugin>[1] = {
     width: 120,
     dragEnabled: false,
     autoFixPCPosition: false,
-    initialPosition: { left: '35%', top: '20%' },
   },
   pointSelectorConfig: {
     // helper: { pointHelper: 'highlight' },
