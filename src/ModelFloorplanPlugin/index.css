@@ -1,0 +1,12 @@
+.right-slide-btn-group {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 20px;
+  top: 20px;
+}
+
+.right-slide-btn-group button {
+  margin-bottom: 10px;
+  pointer-events: auto;
+}
