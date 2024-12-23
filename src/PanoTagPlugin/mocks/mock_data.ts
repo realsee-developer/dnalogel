@@ -347,6 +347,41 @@ export const TagsList = [
     id: 100,
   },
   {
+    id: 'image1',
+    stickType: 'Plane',
+    contentType: 'MediaPlane',
+    position: [
+      [-2.428574817334936, 0.6853364421941678, 0.9600498679190829],
+      [-3.575266107181009, 0.6873363937611323, 0.9599888117999944],
+      [-3.5741001122479146, 1.355902388717996, 0.9610267986550604],
+      [-2.4274088224018415, 1.3539024371510313, 0.9610878547741487],
+    ],
+    data: {
+      mediaData: [
+        {
+          type: 'Image',
+          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/4da3fa62cf4d62ad1fd6d855b787d4bf.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
+        },
+        {
+          type: 'Image',
+          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/9c7996370dc1964f198e0af723658512.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
+        },
+        {
+          type: 'Image',
+          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/3af412b0bc5011c606a489f3cf643502.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
+        },
+        {
+          type: 'Image',
+          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/b2de6db5f8cf319155a12b9530788e3a.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
+        },
+        {
+          type: 'Image',
+          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/7b1445208077906126e21ea548b31897.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
+        },
+      ],
+    },
+  },
+  {
     id: 'MediaModel',
     stickType: 'Model',
     contentType: 'MediaModel',
