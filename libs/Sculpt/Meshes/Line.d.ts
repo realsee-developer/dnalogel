@@ -1,0 +1,44 @@
+import * as THREE from 'three';
+import { type OcclusionStyle, type LineStyle, type lengthConfig, type DisplayInfoConfig } from '../typings/style';
+import { type AnyPositions } from '../../shared-utils/positionToVector3';
+import { IObject3D } from '../../shared-utils/three/IObject3D';
+import type { PointsData } from '../utils/data';
+import { LightTag } from '../../shared-utils/tag';
+import { LineGeometry } from '../../shared-utils/three/core/LineGeometry';
+import { THREE_Line2 } from '../../shared-utils/three/core/Line2';
+export type LineMeshStyle = LineStyle & {
+    dashed?: boolean;
+} & OcclusionStyle & Partial<lengthConfig> & Partial<DisplayInfoConfig>;
+export type LineData = PointsData;
+export declare class LineMesh extends IObject3D {
+    name: string;
+    type: string;
+    points: THREE.Vector3[];
+    doms: LightTag[];
+    get style(): LineMeshStyle;
+    get lineOpacity(): number;
+    get lineWidth(): number;
+    get color(): THREE.Color;
+    get dashed(): boolean;
+    get occlusionVisibility(): boolean;
+    get occlusionMode(): "translucence" | "depthTest";
+    protected highlighted: boolean;
+    private get five();
+    set geometry(geometry: LineGeometry);
+    get geometry(): LineGeometry;
+    private _geometry;
+    protected line1: THREE_Line2;
+    protected line2: THREE_Line2;
+    private opacityBeforeHighlight;
+    private paramsStyle;
+    private lastRenderDomItem;
+    private _visible;
+    constructor(params?: Partial<LineMeshStyle & LineData>);
+    updateMatrixWorld(force?: boolean): void;
+    setPoints(points: AnyPositions): void;
+    setResolution(width: number, height: number): void;
+    setStyle(params: Partial<LineMeshStyle>): void;
+    highlight(): void;
+    unhighlight(): void;
+    private updateDomItems;
+}
