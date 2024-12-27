@@ -29,6 +29,9 @@ const textTag = {
     description: '描述',
     appearance: 'plane',
   },
+  fiveState: {
+    panoIndex: 3,
+  },
   config: {
     unfoldedConfig: {
       keep: 'folded',
