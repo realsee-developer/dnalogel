@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 3.62.0
+
+- feat(MeasurePlugin): 新版测量插件。
+- feat(Sculpt): 支持设置 item 的高亮色。
+- feat(Sculpt): 绘制矩形时添加了一些吸附效果。
+- feat(Util.PointSelector): 支持设置吸附面/吸附线，按`shift`取消吸附。
+- fix(PanoTagPlugin): 标签支持 five lod。
+- fix(Util.PointSelector): 修复放大镜在 umd 包中的 bug。
+
 ## 3.61.15
 
 - fix(PanoTagPlugin): 标签位于打标签时的位置时，跳过射线检测。

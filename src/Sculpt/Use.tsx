@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
 import { CustomWork } from '../components/CustomWork'
 import { clearDemo, yuanzhangdemo } from './demo'
-import * as THREE from 'three'
 import { Util } from '@realsee/dnalogel/dist'
 
 const defaultCreateStyle: any = {
@@ -139,17 +138,17 @@ const Use = () => {
         </ButtonGroup>
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
           <Button onClick={() => yuanzhangdemo(five)}>双目</Button>
-          <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点</Button>
-          <Button onClick={() => sculpt.createLine({ ...defaultCreateStyle })}>线段</Button>
-          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线</Button>
-          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形</Button>
-          <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'vertex' })}>矩形</Button>
+          <Button onClick={() => sculpt.createPoint({ ...defaultCreateStyle })}>点(Point)</Button>
+          <Button onClick={() => sculpt.createLine({ ...defaultCreateStyle })}>线段(Line)</Button>
+          <Button onClick={() => sculpt.createPolyline({ ...defaultCreateStyle })}>折线(PolyLine)</Button>
+          <Button onClick={() => sculpt.createPolygon({ ...defaultCreateStyle })}>多边形(Polygon)</Button>
+          <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'vertex' })}>矩形(Rectangle)</Button>
           <Button onClick={() => sculpt.createRectangle({ ...defaultCreateStyle, drawMethod: 'diagonal' })}>矩形【对角线】</Button>
-          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle, drawMethod: 'vertex' })}>长方体</Button>
+          <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle, drawMethod: 'vertex' })}>长方体(Box)</Button>
           <Button onClick={() => sculpt.createBox({ ...defaultCreateStyle, drawMethod: 'diagonal' })}>长方体【对角线】</Button>
-          <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱</Button>
-          <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆</Button>
-          <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体</Button>
+          <Button onClick={() => sculpt.createPrism({ ...defaultCreateStyle })}>多棱柱(Prism)</Button>
+          <Button onClick={() => sculpt.createCircle({ ...defaultCreateStyle })}>圆(Circle)</Button>
+          <Button onClick={() => sculpt.createCylinder({ ...defaultCreateStyle })}>圆柱体(Cylinder)</Button>
           <Button
             color="error"
             variant="outlined"
