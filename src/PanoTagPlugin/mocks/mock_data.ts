@@ -495,7 +495,8 @@ export const TagsList = [
     },
     style: {
       point: {
-        url: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
+        url: 'https://cdn.simpleicons.org/android?size=50',
+        ratio: 1,
       },
     },
     id: 0,

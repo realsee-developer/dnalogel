@@ -5,8 +5,10 @@ import Use from './Use'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import { Sculpt } from '@realsee/dnalogel/dist'
+import { createTheme, ThemeProvider } from '@mui/material'
 import { OrientationPlugin } from '@realsee/five/plugins'
 import '../utils/$five.ts'
+import { theme } from '../utils/theme.ts'
 
 const lineWidth = 1.5
 const lineOpacity = 0.8
@@ -66,22 +68,24 @@ const App: React.FC = () => {
   if (!work) return null
 
   return (
-    <FiveProvider
-      initialOptions={{
-        '3d-tiles': {
-          minLevelOfDetail: 1,
-          maxScreenSpaceError: 1,
-        },
-      }}
-      initialWork={parseWork(work)}
-      initialState={{ mode: 'Mapview', latitude: 0.78, longitude: 2 }}
-    >
-      <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
-        <FiveCanvas {...size} />
-      </div>
-      <Use />
-      <FiveUseage />
-    </FiveProvider>
+    <ThemeProvider theme={theme}>
+      <FiveProvider
+        initialOptions={{
+          '3d-tiles': {
+            minLevelOfDetail: 1,
+            maxScreenSpaceError: 1,
+          },
+        }}
+        initialWork={parseWork(work)}
+        initialState={{ mode: 'Mapview', latitude: 0.78, longitude: 2 }}
+      >
+        <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
+          <FiveCanvas {...size} />
+        </div>
+        <Use />
+        <FiveUseage />
+      </FiveProvider>
+    </ThemeProvider>
   )
 }
 
