@@ -495,8 +495,9 @@ export const TagsList = [
     },
     style: {
       point: {
-        url: 'https://cdn.simpleicons.org/android?size=50',
+        url: 'https://cdn.simpleicons.org/android?size=20',
         ratio: 1,
+        bgcolor: '#fff',
       },
     },
     id: 0,
