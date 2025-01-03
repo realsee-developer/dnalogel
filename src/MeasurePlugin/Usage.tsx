@@ -15,6 +15,7 @@ const PanoMeasurePluginUsage = () => {
         <ButtonGroup orientation="vertical" variant="contained" style={{ textTransform: 'initial' }}>
           <Button onClick={() => measurePlugin.measure()}>Start</Button>
           <Button onClick={() => measurePlugin.endMeasure()}>End</Button>
+          <Button onClick={() => measurePlugin.clear()}>Clear</Button>
           <Button onClick={() => measurePlugin.undo()}>Undo</Button>
           <Button onClick={() => measurePlugin.dispose()}>Close</Button>
         </ButtonGroup>
