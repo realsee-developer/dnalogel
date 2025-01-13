@@ -16,7 +16,6 @@ import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { GuideLinePluginType } from '@realsee/dnalogel/dist'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
-import data3 from './mocks/data3.json'
 import data2 from './mocks/data2.json'
 import data from './mocks/data.json'
 
@@ -46,7 +45,6 @@ const GuideLinePluginUse = () => {
   useEffect(() => {
     if (!five.getElement()) return
     if (panoIndexGroup.length === 0) return guideLine.clear()
-    // guideLine.load(data as any)
     guideLine.load({
       lines: [
         {
