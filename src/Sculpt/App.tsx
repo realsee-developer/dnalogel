@@ -4,7 +4,7 @@ import { useWindowDimensions } from './useWindowDimensions'
 import Use from './Use'
 import { parseWork } from '@realsee/five'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
-import { Sculpt } from '@realsee/dnalogel/dist'
+import { SculptPlugin } from '@realsee/dnalogel/dist'
 import { createTheme, ThemeProvider } from '@mui/material'
 import { OrientationPlugin } from '@realsee/five/plugins'
 import '../utils/$five.ts'
@@ -20,19 +20,19 @@ const FiveProvider = createFiveProvider({
   plugins: [
     [OrientationPlugin, 'OrientationPlugin'],
     [
-      (five) =>
-        new Sculpt(five, {
-          point: { color: 0xffffff },
-          line: { lineColor: 0xffffff, lineWidth },
-          polyline: { lineColor: 0x000000, lineWidth },
-          polygon: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
-          prism: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
-          rectangle: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
-          circle: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
-          cylinder: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
-          box: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
-        }),
+      SculptPlugin,
       'Sculpt',
+      {
+        point: { color: 0xffffff },
+        line: { lineColor: 0xffffff, lineWidth },
+        polyline: { lineColor: 0x000000, lineWidth },
+        polygon: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+        prism: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+        rectangle: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+        circle: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+        cylinder: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+        box: { color: 0xffffff, lineColor: 0x000000, lineWidth, lineOpacity },
+      },
     ],
   ],
 })
