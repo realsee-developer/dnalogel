@@ -1,25 +1,15 @@
-import { Box, Paper, ButtonGroup, Button, BottomNavigation, BottomNavigationAction, Popper } from '@mui/material'
-import { PanoMeasurePlugin, PanoMeasurePluginPolylineJson, PanoMeasurePluginPolyline } from '@realsee/dnalogel/dist'
-import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
+import { Paper, ButtonGroup, Button } from '@mui/material'
+import { PanoMeasurePlugin } from '@realsee/dnalogel/dist'
+import { unsafe__useFiveInstance } from '@realsee/five/react'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { mockMeasureRulerServerData } from './mocks/mockData'
-import { Five, Mode } from '@realsee/five'
 import { FiveModeSwitcher } from '../components/FiveModeSwitcher'
-import { BlendingSwitcher } from '../components/BlendingSwitcher'
 
 const PanoMeasurePluginUsage = () => {
   const five = unsafe__useFiveInstance()
   const panoMeasurePluginPC = five.plugins.panoMeasurePluginPC as ReturnType<typeof PanoMeasurePlugin>
   const panoMeasurePluginMobile = five.plugins.panoMeasurePluginMobile as ReturnType<typeof PanoMeasurePlugin>
-
-  useEffect(() => {
-    const container = document.querySelector('.plugin-full-screen-container') as HTMLElement
-    if (container && five.getElement()) {
-      panoMeasurePluginPC.appendTo(container)
-      panoMeasurePluginMobile.appendTo(container)
-    }
-  }, [five])
 
   return (
     <>
@@ -33,6 +23,7 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
+                panoMeasurePluginPC.appendTo(five.getElement()!.parentElement!)
                 panoMeasurePluginPC.disable()
                 panoMeasurePluginPC.enable()
                 // panoMeasurePluginPC.changeMeasureType('line')
@@ -45,6 +36,7 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
+                panoMeasurePluginMobile.appendTo(five.getElement()!.parentElement!)
                 panoMeasurePluginMobile.disable()
                 panoMeasurePluginMobile.enable({ mode: 'Edit' })
                 // panoMeasurePluginMobile.changeMeasureType('line')
