@@ -23,7 +23,6 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
-                panoMeasurePluginPC.appendTo(five.getElement()!.parentElement!)
                 panoMeasurePluginPC.disable()
                 panoMeasurePluginPC.enable()
                 // panoMeasurePluginPC.changeMeasureType('line')
@@ -36,7 +35,6 @@ const PanoMeasurePluginUsage = () => {
           <ButtonGroup variant="contained">
             <Button
               onClick={() => {
-                panoMeasurePluginMobile.appendTo(five.getElement()!.parentElement!)
                 panoMeasurePluginMobile.disable()
                 panoMeasurePluginMobile.enable({ mode: 'Edit' })
                 // panoMeasurePluginMobile.changeMeasureType('line')
