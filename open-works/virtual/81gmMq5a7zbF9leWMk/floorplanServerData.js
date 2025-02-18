@@ -50,8 +50,8 @@ export const floorplanServerData = {
       },
       {
         id: '83d42cfe-a15b-43ca-7128-ec8d465bce61',
-        localName: '客厅',
-        name: '客厅',
+        localName: '客厅e',
+        name: '客厅e',
         position: {
           x: -0.7103069000000032,
           y: 0,

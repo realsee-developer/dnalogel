@@ -127,6 +127,7 @@
             "floor_type": 0,
             "id": "u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb",
             "name": "卧室",
+            "customizedName": "",
             "observer_indexs": [11, 12, 13],
             "path": [
               {

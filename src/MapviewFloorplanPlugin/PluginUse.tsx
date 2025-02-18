@@ -23,12 +23,14 @@ const PluginUse = () => {
   const [missingFloorConfigHeight, setMissingFloorConfigHeight] = React.useState(120)
   const [missingFloorConfigFontSize, setMissingFloorConfigFontSize] = React.useState(14)
 
+
   function toggleUnit() {
     setIsDefaultUnit(!isDefaultUnit)
   }
 
   React.useEffect(() => {
     plugin.changeConfigs({
+      roomNameOtherTypeEnable: false,
       getRoomAreaText(areaSize) {
         return isDefaultUnit ? (areaSize / 1000000).toFixed(1) + '㎡' : (areaSize * 0.000010764).toFixed(1) + 'ft²'
       },
@@ -46,6 +48,8 @@ const PluginUse = () => {
   React.useEffect(() => {
     const fiveElement = five.getElement()
     if (!floorplanServerData || JSON.stringify(floorplanServerData) === '{}' || !fiveElement) return
+
+    console.log('floorplanServerData: ', floorplanServerData)
     plugin.load(floorplanServerData)
     plugin.appendTo(fiveElement!.parentElement!)
   }, [floorplanServerData])
