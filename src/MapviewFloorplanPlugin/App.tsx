@@ -9,6 +9,9 @@ import getInitialParamFromUrl from '../utils/getInitialParamFromUrl'
 import useFetchDatas, { DATA_TYPES } from '../utils/useFetchDatas'
 import '../utils/$five.ts'
 
+import { workData, floorplanData } from './mock/dimensionData'
+
+
 const defaultPluginParam = {
   hoverEnable: true,
   northDesc: 'N',
@@ -30,7 +33,8 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  const work = useFetchDatas(DATA_TYPES.WORK)
+  // const work = useFetchDatas(DATA_TYPES.WORK)
+  const work = workData
 
   return (
     work && (

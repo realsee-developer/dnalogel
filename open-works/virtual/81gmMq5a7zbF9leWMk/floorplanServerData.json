@@ -124,6 +124,10 @@
         "floor_name": "一层",
         "rooms": [
           {
+            "dimension": {
+              "height": 8889,
+              "width": 5300
+            },
             "floor_type": 0,
             "id": "u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb",
             "name": "卧室",
