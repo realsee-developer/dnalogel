@@ -33,8 +33,7 @@ const FiveProvider = createFiveProvider({
 
 const App: React.FC = () => {
   const size = useWindowDimensions()
-  // const work = useFetchDatas(DATA_TYPES.WORK)
-  const work = workData
+  const work = useFetchDatas(DATA_TYPES.WORK)
 
   return (
     work && (
