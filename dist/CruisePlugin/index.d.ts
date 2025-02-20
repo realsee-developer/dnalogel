@@ -1,0 +1,12 @@
+import type { FivePlugin } from '@realsee/five';
+import * as CruisePluginTypes from './typing';
+import type { Config } from './typing';
+import type { MoveConfig as MovePluginConfig } from './Move';
+import WalkController from './Work';
+import MoveController from './Move';
+export declare const CruisePlugin: FivePlugin<Config | undefined, InstanceType<typeof WalkController>>;
+export declare const MovePlugin: FivePlugin<MovePluginConfig | undefined, InstanceType<typeof MoveController>>;
+export { WalkController, MoveController, WalkController as CruisePluginController };
+export type { CruisePluginExportType } from './typing';
+export { CruisePluginTypes };
+export default CruisePlugin;

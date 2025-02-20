@@ -1,0 +1,136 @@
+name: Publish npm package
+
+on:
+  push:
+    branches: [package]
+
+env:
+  NODE_VERSION: 22
+  PACKAGE_NAME: "@realsee/dnalogel"
+
+jobs:
+  validate:
+    name: 验证版本
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.package-info.outputs.version }}
+      dist_tag: ${{ steps.dist-tag.outputs.tag }}
+      is_new_version: ${{ steps.version-check.outputs.is_new }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 获取包信息
+        id: package-info
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: 确定发布标签
+        id: dist-tag
+        run: |
+          VERSION=${{ steps.package-info.outputs.current-version }}
+          if [[ $VERSION =~ "-" ]]; then
+            TAG=$(echo $VERSION | cut -d'-' -f2 | cut -d'.' -f1)
+            if ! [[ $TAG =~ ^[0-9]+$ ]]; then
+              echo "tag=$TAG" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 检查版本是否已发布
+        id: version-check
+        run: |
+          if npm view ${{ env.PACKAGE_NAME }} versions | grep -q "${{ steps.package-info.outputs.current-version }}"; then
+            echo "is_new=false" >> $GITHUB_OUTPUT
+          else
+            echo "is_new=true" >> $GITHUB_OUTPUT
+          fi
+
+  publish:
+    name: 发布包
+    needs: validate
+    if: needs.validate.outputs.is_new_version == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+
+      - name: 发布到 NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm publish --tag ${{ needs.validate.outputs.dist_tag }} --ignore-scripts
+
+      - name: 同步到 CNPM
+        if: success()
+        run: npx cnpm sync ${{ env.PACKAGE_NAME }}
+
+  notify:
+    name: 发送通知
+    needs: [validate, publish]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 获取更新日志
+        id: changelog
+        if: needs.validate.outputs.is_new_version == 'true' && needs.publish.result == 'success'
+        run: |
+          VERSION='${{ needs.validate.outputs.version }}'
+          changelog=$(awk '/^## '"$VERSION"'$/{p=1;next}/^## /{p=0}p' CHANGELOG.md | grep -v '^[[:space:]]*$')
+          if [ -z "$changelog" ]; then
+            changelog="暂无更新说明"
+          fi
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          echo "$changelog" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 生成通知消息
+        id: notification
+        run: |
+          WORKFLOW_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          NPM_URL="https://www.npmjs.com/package/${{ env.PACKAGE_NAME }}/v/${{ needs.validate.outputs.version }}"
+          
+          # 定义谚语数组
+          PROVERBS=(
+            "工欲善其事，必先利其器。"
+            "千里之行，始于足下。"
+            "不积跬步，无以至千里。"
+            "读书破万卷，下笔如有神。"
+            "业精于勤，荒于嬉。"
+            "学而不思则罔，思而不学则殆。"
+            "温故而知新，可以为师矣。"
+            "纸上得来终觉浅，绝知此事要躬行。"
+            "学海无涯苦作舟。"
+            "天道酬勤。"
+          )
+          
+          # 随机选择一条谚语
+          RANDOM_PROVERB=${PROVERBS[$RANDOM % ${#PROVERBS[@]}]}
+          
+          if [[ "${{ needs.validate.result }}" == "failure" ]]; then
+            echo "message=❌ 版本验证失败，[查看日志]($WORKFLOW_URL)" >> $GITHUB_OUTPUT
+          elif [[ "${{ needs.validate.outputs.is_new_version }}" == "false" ]]; then
+            echo "message=⚠️ 版本 ${{ needs.validate.outputs.version }} 已存在，跳过发布" >> $GITHUB_OUTPUT
+          elif [[ "${{ needs.publish.result }}" == "success" ]]; then
+            echo "message=✅ 版本 ${{ needs.validate.outputs.version }} 发布成功！[查看包]($NPM_URL)\n\n更新内容：\n${{ steps.changelog.outputs.content }}\n\n---\n*$RANDOM_PROVERB*" >> $GITHUB_OUTPUT
+          else
+            echo "message=❌ 版本 ${{ needs.validate.outputs.version }} 发布失败，[查看日志]($WORKFLOW_URL)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 发送企业微信通知
+        uses: chf007/action-wechat-work@master
+        env:
+          WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.QY_WECHAT_BOT_HOOK }}
+        with:
+          msgtype: markdown
+          content: ${{ steps.notification.outputs.message }}
