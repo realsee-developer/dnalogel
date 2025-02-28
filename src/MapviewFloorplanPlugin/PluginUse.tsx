@@ -13,7 +13,8 @@ const PluginUse = () => {
     const five = unsafe__useFiveInstance()
     const [fiveState, setFiveState] = useFiveState()
     const fiveModelReadyState = useFiveModelReadyState()
-    const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    // const floorplanServerData = useFetchDatas(DATA_TYPES.FLOOR_PLAN_SERVER_PLUGIN_DATA)
+    const floorplanServerData = floorplanData
     const plugin = five.plugins.mapviewFloorplanPlugin as ReturnType<typeof MapviewFloorplanPlugin>
     const guideLinePlugin = five.plugins.guideLinePlugin as GuideLinePluginExportType
     const floorIndex = React.useRef(0)
@@ -51,88 +52,88 @@ const PluginUse = () => {
         if (!floorplanServerData || JSON.stringify(floorplanServerData) === '{}' || !fiveElement) return
         await plugin.load(floorplanServerData)
         // @ts-ignore
-        plugin.loadItems([[
-            {
-                "type": 62,
-                "x": 33990.7255,
-                "y": 34537.7015,
-                "notes": "",
-                "comment": "",
-                "locked": false,
-                "width": 2851,
-                "height": 2200,
-                "rotateZ": 180,
-                "rotateX": false,
-                "rotateY": false,
-                "area": "u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb",
-                "displayName": "Item-SimpleItem",
-                "id": "u-6b19c1d7-eed0-4ef2-04a2-cfa77088faa0"
-            },
-            {
-                "type": 31,
-                "x": 38715.7691,
-                "y": 33812.7015,
-                "notes": "",
-                "comment": "",
-                "locked": false,
-                "width": 450,
-                "height": 750,
-                "rotateZ": 180,
-                "rotateX": false,
-                "rotateY": false,
-                "area": "u-800df8b4-ac4d-40e4-1a14-30c7fe9365cd",
-                "displayName": "Item-SimpleItem",
-                "id": "u-144d6c05-b3ac-437d-7305-a5ba48c87c18"
-            },
-            {
-                "type": 23,
-                "x": 35552.0966,
-                "y": 41348.7015,
-                "notes": "",
-                "comment": "",
-                "locked": false,
-                "width": 2020,
-                "height": 650,
-                "rotateZ": 0,
-                "rotateX": false,
-                "rotateY": false,
-                "area": "u-11d2fd7e-7de9-4584-3d88-26b2402f44fd",
-                "displayName": "Item-SimpleItem",
-                "id": "u-ce1267aa-bfc8-4196-c3d5-6913c046f9fb"
-            },
-            {
-                "type": 68,
-                "x": 34508.7667,
-                "y": 37643.7015,
-                "notes": "",
-                "comment": "",
-                "locked": false,
-                "width": 2670,
-                "height": 2330,
-                "rotateZ": 180,
-                "rotateX": false,
-                "rotateY": false,
-                "area": "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
-                "displayName": "Item-SimpleItem",
-                "id": "u-7c5bccab-0c21-4afc-511c-dd6bea687b5f"
-            },
-            {
-                "type": 74,
-                "x": 38332.1141,
-                "y": 37930.0709,
-                "notes": "",
-                "comment": "",
-                "locked": false,
-                "width": 1700,
-                "height": 1700,
-                "rotateZ": 90,
-                "rotateX": false,
-                "rotateY": false,
-                "area": "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
-                "displayName": "Item-SimpleItem",
-                "id": "u-5d88b95d-8502-4d41-8e1f-1d3efa2dde90"
-            }
-        ]])
+        // plugin.loadItems([[
+        //     {
+        //         "type": 62,
+        //         "x": 33990.7255,
+        //         "y": 34537.7015,
+        //         "notes": "",
+        //         "comment": "",
+        //         "locked": false,
+        //         "width": 2851,
+        //         "height": 2200,
+        //         "rotateZ": 180,
+        //         "rotateX": false,
+        //         "rotateY": false,
+        //         "area": "u-6a4425b8-b85f-4895-dbb1-2dc7f09646bb",
+        //         "displayName": "Item-SimpleItem",
+        //         "id": "u-6b19c1d7-eed0-4ef2-04a2-cfa77088faa0"
+        //     },
+        //     {
+        //         "type": 31,
+        //         "x": 38715.7691,
+        //         "y": 33812.7015,
+        //         "notes": "",
+        //         "comment": "",
+        //         "locked": false,
+        //         "width": 450,
+        //         "height": 750,
+        //         "rotateZ": 180,
+        //         "rotateX": false,
+        //         "rotateY": false,
+        //         "area": "u-800df8b4-ac4d-40e4-1a14-30c7fe9365cd",
+        //         "displayName": "Item-SimpleItem",
+        //         "id": "u-144d6c05-b3ac-437d-7305-a5ba48c87c18"
+        //     },
+        //     {
+        //         "type": 23,
+        //         "x": 35552.0966,
+        //         "y": 41348.7015,
+        //         "notes": "",
+        //         "comment": "",
+        //         "locked": false,
+        //         "width": 2020,
+        //         "height": 650,
+        //         "rotateZ": 0,
+        //         "rotateX": false,
+        //         "rotateY": false,
+        //         "area": "u-11d2fd7e-7de9-4584-3d88-26b2402f44fd",
+        //         "displayName": "Item-SimpleItem",
+        //         "id": "u-ce1267aa-bfc8-4196-c3d5-6913c046f9fb"
+        //     },
+        //     {
+        //         "type": 68,
+        //         "x": 34508.7667,
+        //         "y": 37643.7015,
+        //         "notes": "",
+        //         "comment": "",
+        //         "locked": false,
+        //         "width": 2670,
+        //         "height": 2330,
+        //         "rotateZ": 180,
+        //         "rotateX": false,
+        //         "rotateY": false,
+        //         "area": "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
+        //         "displayName": "Item-SimpleItem",
+        //         "id": "u-7c5bccab-0c21-4afc-511c-dd6bea687b5f"
+        //     },
+        //     {
+        //         "type": 74,
+        //         "x": 38332.1141,
+        //         "y": 37930.0709,
+        //         "notes": "",
+        //         "comment": "",
+        //         "locked": false,
+        //         "width": 1700,
+        //         "height": 1700,
+        //         "rotateZ": 90,
+        //         "rotateX": false,
+        //         "rotateY": false,
+        //         "area": "u-7654185f-3853-4aa0-b2dc-ae40bf304d7f",
+        //         "displayName": "Item-SimpleItem",
+        //         "id": "u-5d88b95d-8502-4d41-8e1f-1d3efa2dde90"
+        //     }
+        // ]])
         plugin.appendTo(fiveElement!.parentElement!)
     }, [floorplanServerData])
 
