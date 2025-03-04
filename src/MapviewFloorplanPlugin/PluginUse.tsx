@@ -31,6 +31,7 @@ const PluginUse = () => {
 
     React.useEffect(() => {
         plugin.changeConfigs({
+            roomNameOtherTypeEnable: false,
             roomDimensionEnable: true,
             getRoomAreaText(areaSize) {
                 return isDefaultUnit ? (areaSize / 1000000).toFixed(1) + '㎡' : (areaSize * 0.000010764).toFixed(1) + 'ft²'
