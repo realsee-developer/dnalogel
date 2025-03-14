@@ -25,14 +25,6 @@ export const TagsList = [
         },
       ],
     },
-    style: {
-      point: {
-        url: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
-        bgcolor: '#00ffcc',
-        bgopacity: 0.8,
-        size: 'XL',
-      },
-    },
     id: 1,
     fiveState: {
       mode: 'Panorama' as Mode,

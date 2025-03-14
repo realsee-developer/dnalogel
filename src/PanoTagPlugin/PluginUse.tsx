@@ -26,7 +26,7 @@ const PanoTagPluginUse = () => {
       tagList: list,
       globalConfig: {
         renderType: 'Mesh',
-        simulate3D: true,
+        // simulate3D: true,
         visibleConfig: {
           entryFromModel: true,
         },
