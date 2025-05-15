@@ -1,0 +1,55 @@
+import * as THREE from 'three';
+import { type OcclusionStyle, type LineStyle, type LengthConfig, type DisplayInfoConfig, type Color } from '../typings/style';
+import { type AnyPositions } from '../../shared-utils/positionToVector3';
+import { IObject3D } from '../../shared-utils/three/IObject3D';
+import type { PointsData } from '../utils/data';
+import { LightTag } from '../../shared-utils/tag';
+import { LineGeometry } from '../../shared-utils/three/core/LineGeometry';
+import { THREE_Line2 } from '../../shared-utils/three/core/Line2';
+import { type RenderDomObjectType } from '../utils/renderDom';
+export type LineMeshStyle = LineStyle & {
+    dashed?: boolean;
+} & OcclusionStyle & Partial<LengthConfig> & Partial<DisplayInfoConfig>;
+export type LineData = PointsData;
+export declare class LineMesh extends IObject3D implements RenderDomObjectType {
+    name: string;
+    type: string;
+    object?: THREE.Object3D;
+    points: THREE.Vector3[];
+    doms: LightTag[];
+    get style(): LineMeshStyle;
+    get lineOpacity(): number;
+    get lineWidth(): number;
+    get color(): THREE.Color;
+    get dashed(): boolean;
+    get occlusionVisibility(): boolean;
+    get occlusionMode(): "depthTest" | "translucence";
+    protected highlighted: boolean;
+    private get five();
+    set geometry(geometry: LineGeometry);
+    get geometry(): LineGeometry;
+    private _geometry;
+    protected line1: THREE_Line2;
+    protected line2: THREE_Line2;
+    private opacityBeforeHighlight;
+    private colorBeforeHighlight;
+    private paramsStyle;
+    private lastRenderDomItem;
+    private lastFOV;
+    constructor(params?: Partial<LineMeshStyle & LineData>);
+    updateMatrixWorld(force?: boolean): void;
+    setPoints(points: AnyPositions): void;
+    setResolution(width: number, height: number): void;
+    setStyle(params: Partial<LineMeshStyle>): void;
+    highlight(params?: {
+        color?: Color;
+    }): void;
+    unhighlight(): void;
+    _onAdded: () => void;
+    _onRemoved: () => void;
+    _onShowed: () => void;
+    _onHidden: () => void;
+    private updateDomItems;
+    private onCameraUpdate;
+    private onPanoArrived;
+}
