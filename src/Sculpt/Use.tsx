@@ -1,5 +1,5 @@
 import { unsafe__useFiveInstance } from '@realsee/five/react'
-import { ButtonGroup, Button, Stack, Switch, Paper } from '@mui/material'
+import { ButtonGroup, Button, Stack, Switch, Paper, Typography, Slider, Box } from '@mui/material'
 import { Sculpt } from '@realsee/dnalogel/dist'
 import data from './mocks/data.json'
 import { useEffect, useState } from 'react'
@@ -19,6 +19,9 @@ const Use = () => {
   const sculpt = five.plugins.Sculpt as Sculpt
   const [action, setAction] = useState<string>('virtualPoint')
   const [limit, setLimit] = useState<string>('none')
+  const [magnifierEnabled, setMagnifierEnabled] = useState<boolean>(true)
+  const [magnifierScale, setMagnifierScale] = useState<number>(2.5)
+  const [magnifierSize, setMagnifierSize] = useState<number>(200)
 
   const changeAction = (type: string) => {
     Sculpt.modules.pointSelector.actionIfNoIntersection = type
@@ -29,6 +32,60 @@ const Use = () => {
     defaultCreateStyle.limit = limit
     setLimit(limit)
   }
+
+  // 更新放大镜配置
+  const updateMagnifierConfig = () => {
+    const pointSelector = Sculpt.modules.pointSelector
+    if (pointSelector && pointSelector.pointSelectorHelper) {
+      const magnifier = pointSelector.pointSelectorHelper.magnifier
+      const helper = pointSelector.pointSelectorHelper
+
+      if (magnifier) {
+        if (!magnifierEnabled) {
+          // 禁用放大镜时，彻底清除所有效果
+          magnifier.clear() // 清除画布内容
+          magnifier.disable() // 禁用并隐藏
+
+          // 额外确保画布完全隐藏
+          const canvas = magnifier.canvas
+          if (canvas) {
+            canvas.style.visibility = 'hidden'
+            canvas.style.display = 'none'
+            // 清除任何可能的渲染内容
+            const context = canvas.getContext('2d')
+            if (context) {
+              context.clearRect(0, 0, canvas.width, canvas.height)
+            }
+            // 移除canvas从DOM中，确保彻底隐藏
+            if (canvas.parentNode) {
+              canvas.parentNode.removeChild(canvas)
+            }
+          }
+        } else {
+          magnifier.enable()
+
+          // 恢复画布显示
+          const canvas = magnifier.canvas
+          if (canvas) {
+            canvas.style.display = 'block'
+            canvas.style.visibility = 'visible'
+          }
+
+          // 使用正确的方法更新放大镜配置
+          if ('updateScale' in magnifier && typeof magnifier.updateScale === 'function') {
+            magnifier.updateScale(magnifierScale)
+          }
+          if ('updateSize' in magnifier && typeof magnifier.updateSize === 'function') {
+            magnifier.updateSize(magnifierSize)
+          }
+        }
+      }
+    }
+  }
+
+  useEffect(() => {
+    updateMagnifierConfig()
+  }, [magnifierEnabled, magnifierScale, magnifierSize])
 
   useEffect(() => {
     if (!five.getElement()) return
@@ -94,6 +151,43 @@ const Use = () => {
         </Button>
       </Paper>
       <CustomWork onChangeWork={() => sculpt.clear()} />
+
+      {/* 放大镜配置面板 */}
+      <Paper sx={{ position: 'fixed', top: 20, right: 20, p: 2, width: 280 }}>
+        <Typography variant="h6" gutterBottom>
+          放大镜配置
+        </Typography>
+
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="body2">启用放大镜</Typography>
+          <Switch checked={magnifierEnabled} onChange={(e) => setMagnifierEnabled(e.target.checked)} />
+        </Box>
+
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="body2">放大倍数: {magnifierScale}x</Typography>
+          <Slider
+            value={magnifierScale}
+            onChange={(_, value) => setMagnifierScale(value as number)}
+            min={1}
+            max={5}
+            step={0.1}
+            disabled={!magnifierEnabled}
+          />
+        </Box>
+
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="body2">放大镜大小: {magnifierSize}px</Typography>
+          <Slider
+            value={magnifierSize}
+            onChange={(_, value) => setMagnifierSize(value as number)}
+            min={100}
+            max={400}
+            step={10}
+            disabled={!magnifierEnabled}
+          />
+        </Box>
+      </Paper>
+
       <Stack sx={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'end' }} spacing={1}>
         <ButtonGroup sx={{ width: 'max-content' }} orientation="vertical" color="inherit" variant="contained">
           <Button color="primary" variant="contained">
