@@ -22,6 +22,7 @@ const Use = () => {
   const [magnifierEnabled, setMagnifierEnabled] = useState<boolean>(true)
   const [magnifierScale, setMagnifierScale] = useState<number>(2.5)
   const [magnifierSize, setMagnifierSize] = useState<number>(200)
+  const [hideCursorCircle, setHideCursorCircle] = useState<boolean>(false)
 
   const changeAction = (type: string) => {
     Sculpt.modules.pointSelector.actionIfNoIntersection = type
@@ -83,9 +84,87 @@ const Use = () => {
     }
   }
 
+  // 更新圆圈显示配置
+  const updateCursorCircleConfig = () => {
+    const pointSelector = Sculpt.modules.pointSelector
+    if (pointSelector && pointSelector.pointSelectorHelper) {
+      const helper = pointSelector.pointSelectorHelper
+      const pointHelper = helper.pointHelper
+
+      if (pointHelper) {
+        if (hideCursorCircle) {
+          // 彻底隐藏圆圈效果的所有组件
+          pointHelper.visible = false
+
+          // 隐藏所有子对象
+          if (pointHelper.children) {
+            pointHelper.children.forEach((child) => {
+              child.visible = false
+            })
+          }
+
+          // 如果是PointHelper，还需要隐藏各个mesh
+          if ('planeMesh' in pointHelper) {
+            const ph = pointHelper as any
+            ph.planeMesh && (ph.planeMesh.visible = false)
+            ph.lineMesh && (ph.lineMesh.visible = false)
+            ph.ballMesh && (ph.ballMesh.visible = false)
+            ph.borderMesh && (ph.borderMesh.visible = false)
+          }
+
+          // 如果是PointHelper2，也隐藏各个mesh
+          if ('ringMesh' in pointHelper) {
+            const ph2 = pointHelper as any
+            ph2.planeMesh && (ph2.planeMesh.visible = false)
+            ph2.ringMesh && (ph2.ringMesh.visible = false)
+            ph2.lineMesh && (ph2.lineMesh.visible = false)
+            ph2.ballMesh && (ph2.ballMesh.visible = false)
+            ph2.cssBallMesh && (ph2.cssBallMesh.visible = false)
+            ph2.crossline && (ph2.crossline.visible = false)
+          }
+        } else {
+          // 显示圆圈效果
+          pointHelper.visible = true
+
+          // 显示所有子对象
+          if (pointHelper.children) {
+            pointHelper.children.forEach((child) => {
+              child.visible = true
+            })
+          }
+
+          // 如果是PointHelper，恢复各个mesh
+          if ('planeMesh' in pointHelper) {
+            const ph = pointHelper as any
+            ph.planeMesh && (ph.planeMesh.visible = true)
+            ph.lineMesh && (ph.lineMesh.visible = true)
+            ph.ballMesh && (ph.ballMesh.visible = true)
+            ph.borderMesh && (ph.borderMesh.visible = true)
+          }
+
+          // 如果是PointHelper2，也恢复各个mesh
+          if ('ringMesh' in pointHelper) {
+            const ph2 = pointHelper as any
+            ph2.planeMesh && (ph2.planeMesh.visible = true)
+            ph2.ringMesh && (ph2.ringMesh.visible = true)
+            ph2.lineMesh && (ph2.lineMesh.visible = true)
+            ph2.ballMesh && (ph2.ballMesh.visible = true)
+            ph2.cssBallMesh && (ph2.cssBallMesh.visible = true)
+            ph2.crossline && (ph2.crossline.visible = true)
+          }
+        }
+        five.needsRender = true
+      }
+    }
+  }
+
   useEffect(() => {
     updateMagnifierConfig()
   }, [magnifierEnabled, magnifierScale, magnifierSize])
+
+  useEffect(() => {
+    updateCursorCircleConfig()
+  }, [hideCursorCircle])
 
   useEffect(() => {
     if (!five.getElement()) return
@@ -152,11 +231,16 @@ const Use = () => {
       </Paper>
       <CustomWork onChangeWork={() => sculpt.clear()} />
 
-      {/* 放大镜配置面板 */}
+      {/* 放大镜和光标配置面板 */}
       <Paper sx={{ position: 'fixed', top: 20, right: 20, p: 2, width: 280 }}>
         <Typography variant="h6" gutterBottom>
-          放大镜配置
+          光标和放大镜配置
         </Typography>
+
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="body2">隐藏光标圆圈效果</Typography>
+          <Switch checked={hideCursorCircle} onChange={(e) => setHideCursorCircle(e.target.checked)} />
+        </Box>
 
         <Box sx={{ mb: 2 }}>
           <Typography variant="body2">启用放大镜</Typography>

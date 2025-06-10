@@ -46,6 +46,7 @@ const FiveProvider = createFiveProvider({
             borderWidth: 2,
             borderColor: '#ffffff',
           },
+          hideCursorCircle: false, // 默认显示圆圈效果
         },
       },
     ],
