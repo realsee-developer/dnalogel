@@ -40,6 +40,8 @@ const PluginUse = () => {
           <Button onClick={() => pluginInstance?.disable()}>disable</Button>
           <Button onClick={() => pluginInstance?.enable()}>enable</Button>
           <Button onClick={() => pluginInstance.load(data)}>load</Button>
+          <Button onClick={() => pluginInstance.playBoxAnimation(2).then(() => alert('done!'))}>Animate</Button>
+          <Button onClick={() => pluginInstance.forceFinishBoxAnimation()}>STOP Animation</Button>
         </ButtonGroup>
         
         <Box sx={{ width: '100%', mt: 2 }}>
