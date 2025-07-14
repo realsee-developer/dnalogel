@@ -18,7 +18,7 @@ const ModelEntryDoorGuidePluginUse: React.FC = () => {
       if (!modelEntryDoorGuidePluginServerData || JSON.stringify(modelEntryDoorGuidePluginServerData) === '{}') return
 
       const pluginData = {
-        fbx_url: '//vrlab-image4.ljcdn.com/release/web/entryDoorMini/Anim_Door1.fbx',
+        fbx_url: '//vr-public.realsee-cdn.cn/release/web/entryDoorMini/Anim_Door1.fbx',
         position: modelEntryDoorGuidePluginServerData?.position,
         rad: modelEntryDoorGuidePluginServerData?.rad,
       }
