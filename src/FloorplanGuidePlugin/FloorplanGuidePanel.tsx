@@ -13,6 +13,7 @@ const FloorplanGuidePanel: React.FC = () => {
   const [roomLabelsEnabled, setRoomLabelsEnabled] = React.useState<boolean>(false)
   const [roomNameEnabled, setRoomNameEnabled] = React.useState<boolean>(true)
   const [roomAreaEnabled, setRoomAreaEnabled] = React.useState<boolean>(true)
+  const [compassEnabled, setCompassEnabled] = React.useState<boolean>(false)
   const five = unsafe__useFiveInstance()
   const floorplanGuidePlugin = five.plugins.floorplanGuidePlugin
 
@@ -24,9 +25,11 @@ const FloorplanGuidePanel: React.FC = () => {
       roomLabelsEnable: roomLabelsEnabled,
       roomNameEnable: roomNameEnabled,
       roomAreaEnable: roomAreaEnabled,
+      compassEnable: compassEnabled,
+      northDesc: '北',
       getRoomAreaText: (size) => (size / 1000000).toFixed(1) + '㎡'
     })
-  }, [roomLabelsEnabled, roomNameEnabled, roomAreaEnabled])
+  }, [roomLabelsEnabled, roomNameEnabled, roomAreaEnabled, compassEnabled])
 
   React.useEffect(() => {
     if (!floorplanGuidePanelRef.current || fiveState.mode !== Five.Mode.Panorama) return
@@ -89,6 +92,14 @@ const FloorplanGuidePanel: React.FC = () => {
                 </Button>
               </>
             )}
+            
+            <Button 
+              variant={compassEnabled ? "contained" : "outlined"}
+              size="small"
+              onClick={() => setCompassEnabled(!compassEnabled)}
+            >
+              {compassEnabled ? '隐藏指北针' : '显示指北针'}
+            </Button>
           </Stack>
         </Paper>
       )}
@@ -107,8 +118,9 @@ const FloorplanGuidePanel: React.FC = () => {
           height: '100%',
           backgroundColor: 'rgba(0, 0, 0, .2)',
         }}
-        ref={floorplanGuidePanelRef}
-      />
+      >
+        <div style={{ height: 400, width: 400 }} ref={floorplanGuidePanelRef} />
+      </Box>
     </>
   )
 }
