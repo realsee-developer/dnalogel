@@ -34,7 +34,6 @@ const FloorplanGuidePanel: React.FC = () => {
 
   return (
     <Box
-      onClick={() => setFiveState({ mode: Five.Mode.Floorplan })}
       sx={{
         display: `${visible ? 'flex' : 'none'}`,
         justifyContent: 'center',
