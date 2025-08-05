@@ -101,6 +101,7 @@ export const floorplanData1 = {
         "floor_datas": [{
             "floor_index": 0,
             "floor_name": "一层",
+            "is_has_wall": true,
             "rooms": [{
                 "id": "area_6",
                 "name": "其他",
@@ -3540,6 +3541,7 @@ export const floorplanData = {
         "floor_datas": [{
             "floor_index": 0,
             "floor_name": "1F",
+            "is_has_wall": true,
             "rooms": [{
                 "id": "area_6",
                 "name": "其他",

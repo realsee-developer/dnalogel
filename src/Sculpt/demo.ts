@@ -44,7 +44,8 @@ export function createLine(lineMesh: LineMesh, pointSelector: PointSelector, con
   let lastIntersection: PointIntersection
 
   // 选点处理函数
-  const onSelect = (intersection: PointIntersection) => {
+  const onSelect = (intersection?: PointIntersection | null | undefined) => {
+    if (!intersection) return
     const point = points.length === 0 ? intersection.point : previewPoint.clone()
     points.push(point)
     lineMesh.setPoints(points)
@@ -53,7 +54,7 @@ export function createLine(lineMesh: LineMesh, pointSelector: PointSelector, con
     }
   }
   // 预览
-  const onPreview = (intersection: PointIntersection | null) => {
+  const onPreview = (intersection?: PointIntersection | null | undefined) => {
     const clearPreview = () => {
       previewLine.setPoints([])
       verticalLine.setPoints([])
@@ -149,7 +150,8 @@ export const yuanzhangdemo = (five: Five) => {
   pointSelector.enable()
 
   // 选点处理函数
-  const onSelect = (intersection: PointIntersection) => {
+  const onSelect = (intersection?: PointIntersection | null | undefined) => {
+    if (!intersection) return
     // const point = points.length === 0 ? intersection.point : previewPoint.clone()
     if (!startLine.start) {
       const startPosition = intersection.point.clone()
@@ -183,7 +185,7 @@ export const yuanzhangdemo = (five: Five) => {
     }
   }
   // 预览
-  const onPreview = (intersection: PointIntersection | null) => {
+  const onPreview = (intersection?: PointIntersection | null | undefined) => {
     const clearPreview = () => {
       previewLine.setPoints([])
       verticalLine.setPoints([])
