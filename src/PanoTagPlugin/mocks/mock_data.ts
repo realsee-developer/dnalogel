@@ -3,516 +3,807 @@ import { Mode } from '@realsee/five'
 import { Vector3 } from 'three'
 export const TagsList = [
   {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'ImageText',
-    enable: true,
-    position: [-1.3311771624715265, 0, -0.8947385152744657],
-    data: {
-      text: '2D图文标签哈哈哈哈哈',
-      mediaData: [
-        {
-          url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
-          type: 'Image',
-        },
-        {
-          url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
-          type: 'Image',
-        },
-        {
-          url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
-          type: 'Image',
-        },
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8374842940598678,
+          0.23664385864216705,
+          -0.7300714787896644
       ],
-    },
-    id: 1,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-    },
-  },
-  // {
-  //   dimensionType: '3D',
-  //   pointType: 'PlaneTag',
-  //   contentType: 'MediaPlane',
-  //   enable: true,
-  //   position: [
-  //     [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
-  //     [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805],
-  //     [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
-  //     [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805],
-  //   ],
-  //   data: {
-  //     mediaData: [
-  //       {
-  //         url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
-  //         videoCoverUrl: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //       {
-  //         url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
-  //         videoCoverUrl: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
-  //         type: 'Video',
-  //       },
-  //     ],
-  //   },
-  //   fiveState: {
-  //     mode: 'Panorama' as Mode,
-  //     panoIndex: 3,
-  //     longitude: 2.706451797307377,
-  //     latitude: 0.05631416156432678,
-  //     fov: 95,
-  //     offset: {
-  //       x: -0.618914008140564,
-  //       y: 1.1130503593145502,
-  //       z: -1.6621500253677368,
-  //     } as Vector3,
-  //     distance: 0,
-  //   },
-  // },
-  {
-    dimensionType: '3D',
-    pointType: 'PlaneTag',
-    contentType: 'MediaPlane',
-    enable: true,
-    position: [
-      [-4.344637059045372, 0.8661640292431658, -2.339700937271118 + 0.01],
-      [-1.4781933464383068, 0.8696103907729694, -2.339700937271118 + 0.01],
-      [-1.4865722199099451, 2.1293509755511106, -2.3397009372711177 + 0.01],
-      [-4.343575500347607, 2.1145151110093137, -2.3397009372711177 + 0.01],
-    ],
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-    },
-    data: {
-      mediaData: [
-        {
-          // url: 'http://10.33.192.249:81/local/uwork/vrcustomer/XINGZHEN/jXrqvOgEU8l4ZH4m7O/2f3031fadbbaab2ea7a631df854be567.jpg',
-          url: 'http://vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
-          // url: '//test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_TECH/gmYwV9YON6Hz0avsvo/2022-11-15_18-32-46.jpg',
-          // url: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
-          // url: '//vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/Vxn65erkq7cBbNWtVx/2023-03-14_15-55-31.jpeg?imageMogr2/thumbnail/750x%3E/quality/70',
-          type: 'Image',
-        },
-      ],
-    },
-  },
-  {
-    dimensionType: '3D',
-    pointType: 'PlaneTag',
-    contentType: 'MediaPlane',
-    enable: true,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-    },
-    position: [
-      [-0.16450234208682218, 1.2079436283327727, -2.3397009372711186],
-      [0.4534614669340434, 1.2009985563997523, -2.3397009372711186],
-      [0.4588598077301688, 1.9071464262166917, -2.339700937271118],
-      [-0.16094619454331782, 1.9098602633949615, -2.3397009372711186],
-    ],
-    data: {
-      mediaData: [
-        {
-          url: '//vr-static.realsee-cdn.cn/release/web/catCoding.1cd4e989.gif',
-          type: 'Image',
-        },
-        {
-          url: '//vr-static.realsee-cdn.cn/release/web/catCoding.1cd4e989.gif',
-          type: 'Image',
-        },
-      ],
-    },
-  },
-  {
-    dimensionType: '3D',
-    pointType: 'PlaneTag',
-    contentType: 'MediaPlane',
-    enable: true,
-    position: [
-      [-1.9866843325110417, 2.220446049250313e-16, 0.37528638936879805 + 0.01],
-      [-0.9866843325110417, 2.220446049250313e-16, 0.37528638936879805 + 0.01],
-      [-1.9866843325110417, 1.220446049250313e-16, 0.37528638936879805 + 0.01],
-      [-0.9866843325110417, 1.220446049250313e-16, 0.37528638936879805 + 0.01],
-    ],
-    data: {
-      mediaData: [
-        {
-          // url: '//vr-static.realsee-cdn.cn/release/web/arrow.c5d028e4.png',
-          url: '//vr-static.realsee-cdn.cn/release/web/jsl/test.65720b34.png',
-          type: 'Image',
-        },
-      ],
-    },
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 3,
-      longitude: 2.706451797307377,
-      latitude: 0.05631416156432678,
-      fov: 95,
-      offset: {
-        x: -0.618914008140564,
-        y: 1.1130503593145502,
-        z: -1.6621500253677368,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Marketing',
-    enable: true,
-    position: [-2.6990631227056436, 0.018038999289274438, -0.3673991100072416],
-    data: {
-      title: '2D营销标签',
-      brandTags: ['品牌名称'],
-      tags: ['标签描述', '标签描述'],
-      headerPictureUrl: '//vr-static.realsee-cdn.cn/release/web/cardHeader.19ff7aa0.png',
-      highlightText: '立即查看',
-      price: {
-        value: '20.30',
-        unit: '元起',
+      "id": 0,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/front.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(182, 59, 59, 0.8), rgba(182, 59, 59, 0.9))",
+              "bgopacity": 1,
+              "animation": {
+                duration: 600,
+                loop: true,
+                loopInterval: 800,
+                timing: 'linear',
+                elements: [
+                  {
+                    selector: '.front-1',
+                    properties: {
+                      scale: [1, 0.5],
+                      opacity: [1, 0],
+                      translateY: [0, -5.5],
+                    },
+                  },
+                  {
+                    selector: '.front-2',
+                    properties: {
+                      translateY: [0, -5.5],
+                    },
+                  },
+                  {
+                    selector: '.front-3',
+                    properties: {
+                      scale: [0.5, 1],
+                      opacity: [0, 1],
+                      translateY: [0, -5.5],
+                    },
+                  },
+                ],
+              },
+          }
       },
-    },
-    style: {
-      point: {
-        iconUrl: '//vr-static.realsee-cdn.cn/release/web/carTagDotContent.08ace25e.png',
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0,
+          "longitude": 0,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.837351253220655,
+          0.23821199445070373,
+          -0.7850167998943645
+      ],
+      "id": 1,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/front2.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(255, 171, 97, 0.8), rgba(255, 171, 97, 0.9))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateY: [0, -4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
       },
-    },
-    id: 3,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 1.4711282761387834,
-      latitude: 0.020969743131104737,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0,
+          "longitude": 0,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
   },
   {
-    dimensionType: '3D',
-    pointType: 'PointTag',
-    contentType: 'Text',
-    enable: true,
-    normal: [-2.6990631227056436, 0.018038999289274438, -0.3673991100072416],
-    position: [0.927103332208612, 0.8445514464586326, -0.6591370084540737],
-    data: {
-      text: '3D文本标签哈哈',
-    },
-    id: 4,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 5.493428678855368,
-      latitude: -0.10500571410520228,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '3D',
-    pointType: 'PointTag',
-    contentType: 'Text',
-    enable: true,
-    normal: [-2.6990631227056436, 0.018038999289274438, -0.3673991100072416],
-    position: [0.927103332208612, 0.8545514464586326, -0.6591370084540737],
-    data: {
-      text: '3D文本标签2',
-    },
-    id: 44,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 5.493428678855368,
-      latitude: -0.10500571410520228,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Audio',
-    // "position": [
-    //     0.17501044773948682,
-    //     1.1010380993204227,
-    //     -2.339700937271118
-    // ],
-    position: [-2.1892900647187052, 1.5567515982674699, 1.0212990045547485],
-    data: {
-      appearance: 'plane',
-      audioUrl: '//vr-static.realsee-cdn.cn/release/web/test.145da774.m4a',
-      text: 'test.m4a',
-    },
-    id: 51,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 6.151207373723298,
-      latitude: -0.24015893081017836,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Audio',
-    // "position": [
-    //     0.17501044773948682,
-    //     1.1010380993204227,
-    //     -2.339700937271118
-    // ],
-    position: [-2.1892900647187052, 1.6567515982674699, 1.0212990045547485],
-    data: {
-      appearance: 'plane',
-      audioUrl: '//vr-static.realsee-cdn.cn/release/web/Bling.678be963.mp3',
-      text: '2D音频标签标题标题标题标标题标题标题标题标题标题标题标题标题标题标题标标题标题',
-    },
-    id: 5,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 6.151207373723298,
-      latitude: -0.24015893081017836,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Link',
-    enable: true,
-    position: [-0.8070892936181384, 1.1621840046490304, 1.0212990045547485],
-    data: {
-      linkType: 'vr',
-      text: '2D跳转标签',
-    },
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-    },
-    id: 6,
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Panorama',
-    enable: true,
-    position: [-0.8070892936181384, 0.1, 1.0212990045547485],
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-    },
-    data: {
-      mediaData: [
-        {
-          type: 'Image',
-
-          // url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-          thumbnail:
-            'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8371571842356624,
+          0.24400553000233768,
+          -0.8629463865936334
       ],
-    },
-    id: 100,
-  },
-  {
-    id: 'image1',
-    stickType: 'Plane',
-    contentType: 'MediaPlane',
-    position: [
-      [-2.428574817334936, 0.6853364421941678, 0.9600498679190829],
-      [-3.575266107181009, 0.6873363937611323, 0.9599888117999944],
-      [-3.5741001122479146, 1.355902388717996, 0.9610267986550604],
-      [-2.4274088224018415, 1.3539024371510313, 0.9610878547741487],
-    ],
-    data: {
-      mediaData: [
-        {
-          type: 'Image',
-          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/4da3fa62cf4d62ad1fd6d855b787d4bf.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
-        },
-        {
-          type: 'Image',
-          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/9c7996370dc1964f198e0af723658512.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
-        },
-        {
-          type: 'Image',
-          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/3af412b0bc5011c606a489f3cf643502.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
-        },
-        {
-          type: 'Image',
-          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/b2de6db5f8cf319155a12b9530788e3a.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
-        },
-        {
-          type: 'Image',
-          url: 'https://vr-image-4.realsee-cdn.cn/release/uwork/vrcustomer/R_R1123RRR/VxnJgW5w6eHBbaOtVx/7b1445208077906126e21ea548b31897.jpg?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1?imageMogr2/thumbnail/1920x>/quality/70/ignore-error/1',
-        },
-      ],
-    },
-  },
-  {
-    id: 'MediaModel',
-    stickType: 'Model',
-    contentType: 'MediaModel',
-    fiveState: {
-      distance: 0,
-      fov: 100,
-      latitude: 0,
-      longitude: 1.5817071602126802,
-      mode: 'Panorama' as Mode,
-      offset: { x: 2.60088, y: 0.0440728, z: -3.06787 } as Vector3,
-      panoIndex: 1,
-    },
-    position: [-1.4006045858954423, 0.005288434039257162, -1.654760281604037],
-    data: {
-      appearance: 'plane',
-      title: null,
-      description: null,
-      mediaData: [
-        {
-          type: 'Video',
-          url: '//videos.pexels.com/video-files/3015527/3015527-sd_640_360_24fps.mp4',
-        },
-      ],
-      targetUrl: null,
-      modelType: 'billboard1',
-      objectFit: 'contain',
-      action: { type: 'iframe', url: '' },
-      type: 'billboard1',
-      modelUrl: 'https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf',
-      defaultImageUrl: 'https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png',
-      previewUrl: 'https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png',
-      iconUrl: 'https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png',
-      size: '540x1500',
-      mediaPosition: [
-        [-0.27, 0.1172, 0.028],
-        [0.27, 0.1172, 0.028],
-        [0.27, 1.6172, 0.028],
-        [-0.27, 1.6172, 0.028],
-      ],
-    },
-    style: { point: { iconType: 'circle' } },
-    config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
-    matrix: [
-      0.3012921352579293, 0, 0.9535318816021398, 0, 0, 1, 0, 0, -0.9535318816021398, 0, 0.3012921352579293, 0, 1.347059457861614,
-      0.005288434039257162, -2.056130746849461, 1,
-    ],
-  },
-  {
-    id: 'MediaModel',
-    stickType: 'Model',
-    contentType: 'MediaModel',
-    fiveState: {
-      distance: 0,
-      fov: 100,
-      latitude: 0,
-      longitude: 1.5817071602126802,
-      mode: 'Panorama' as Mode,
-      offset: { x: 2.60088, y: 0.0440728, z: -3.06787 } as Vector3,
-      panoIndex: 1,
-    },
-    position: [-1.4006045858954423, 0.005288434039257162, -1.654760281604037],
-    data: {
-      appearance: 'plane',
-      title: null,
-      description: null,
-      mediaData: [
-        {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
-        {
-          type: 'Image',
-          url: 'https://test-vr-public.realsee-cdn.cn/test/uwork/vrcustomer/REALSEE_YUNYING/wmJkr0bkJ6FdngbtXx/2023-02-23_15-22-16.png',
-        },
-      ],
-      targetUrl: null,
-      modelType: 'billboard1',
-      objectFit: 'contain',
-      action: { type: 'iframe', url: '' },
-      type: 'billboard1',
-      modelUrl: 'https://vrlab-public.ljcdn.com/common/file/web/1787333b-7ee1-44ce-ba48-ed7d43b8d406.gltf',
-      defaultImageUrl: 'https://vrlab-public.ljcdn.com/common/file/web/262e33a5-a975-45ad-9821-1f658bd0e87a.png',
-      previewUrl: 'https://vrlab-public.ljcdn.com/common/file/web/430987ac-4518-49ca-ae9a-3477526cd909.png',
-      iconUrl: 'https://vrlab-public.ljcdn.com/common/file/web/ef5ee840-eb42-416c-9ce6-15e25a643e6e.png',
-      size: '540x1500',
-      mediaPosition: [
-        [-0.27, 0.1172, 0.028],
-        [0.27, 0.1172, 0.028],
-        [0.27, 1.6172, 0.028],
-        [-0.27, 1.6172, 0.028],
-      ],
-    },
-    style: { point: { iconType: 'circle' } },
-    config: { visibleConfig: { visiblePanoIndex: 'all' }, unfoldedConfig: { autoUnfold: { enable: false } } },
-    matrix: [
-      -0.5596409874088015, 0, 0.828735159874432, 0, 0, 1, 0, 0, -0.828735159874432, 0, -0.5596409874088015, 0, 1.1166287008785034,
-      0.005288434039257162, 0.5336379042536049, 1,
-    ],
-  },
-  {
-    dimensionType: '2D',
-    pointType: 'PointTag',
-    contentType: 'Text',
-    enable: true,
-    position: [-2.0543282763294135, 0.3319934118281651, -2.2450259661695933],
-    data: {
-      appearance: 'plane',
-      text: '这 是 一 个 文本标签🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️，它有很长的标题标题标题标题标题标题标题标题标题标题标题标题标题',
-      description:
-        '收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦收到会尽快垃圾袋索拉卡鲸打卡拉萨金卡到拉萨金卡老大洒基卡拉多撒金卡溜达鸡撒溜达鸡算啦',
-    },
-    style: {
-      point: {
-        url: 'https://cdn.simpleicons.org/android?size=20',
-        ratio: 1,
-        bgcolor: '#fff',
+      "id": 2,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/front3.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateY: [0, -4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
       },
-    },
-    id: 0,
-    fiveState: {
-      mode: 'Panorama' as Mode,
-      panoIndex: 0,
-      longitude: 0.6087052772120609,
-      latitude: -0.0392156862745098,
-      fov: 95,
-      offset: {
-        x: 0.09141919761896133,
-        y: 1.1138173893692536,
-        z: -0.08654399961233139,
-      } as Vector3,
-      distance: 0,
-    },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
   },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8368972859175102,
+          0.24652212105270935,
+          -0.9706295691554911
+      ],
+      "id": 3,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/back.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 600,
+                loop: true,
+                loopInterval: 800,
+                timing: 'linear',
+                elements: [
+                  {
+                    selector: '.back-1',
+                    properties: {
+                      scale: [1, 0.5],
+                      opacity: [1, 0],
+                      translateY: [0, 5.5],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.back-2',
+                    properties: {
+                      translateY: [0, 5.5],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.back-3',
+                    properties: {
+                      scale: [0.5, 1],
+                      opacity: [0, 1],
+                      translateY: [0, 5.5],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8365608977402795,
+          0.24562986709849724,
+          -1.112632189601319
+      ],
+      "id": 4,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/back2.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateY: [0, 4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8357050346611057,
+          0.24480448481672928,
+          -1.251759978483392
+      ],
+      "id": 5,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/back3.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateY: [0, 4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8376741960312374,
+          0.13620991658492346,
+          -0.7138220332620768
+      ],
+      "id": 6,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/left.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 600,
+                loop: true,
+                loopInterval: 800,
+                timing: 'linear',
+                elements: [
+                  {
+                    selector: '.left-1',
+                    properties: {
+                      scale: [1, 0.5],
+                      opacity: [1, 0],
+                      translateX: [0, -7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.left-2',
+                    properties: {
+                      translateX: [0, -7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.left-3',
+                    properties: {
+                      scale: [0.5, 1],
+                      opacity: [0, 1],
+                      translateX: [0, -7],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8375332086371772,
+          0.13929719200925175,
+          -0.7711466117078192
+      ],
+      "id": 7,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/left2.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateX: [0, -4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8373537418232007,
+          0.14052663792111664,
+          -0.8458266430148125
+      ],
+      "id": 8,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/left3.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateX: [0, -4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8370623868554664,
+          0.14247708321749677,
+          -0.9670945690578343
+      ],
+      "id": 9,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/right.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 600,
+                loop: true,
+                loopInterval: 800,
+                timing: 'linear',
+                elements: [
+                  {
+                    selector: '.right-1',
+                    properties: {
+                      scale: [1, 0.5],
+                      opacity: [1, 0],
+                      translateX: [0, 7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.right-2',
+                    properties: {
+                      translateX: [0, 7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.right-3',
+                    properties: {
+                      scale: [0.5, 1],
+                      opacity: [0, 1],
+                      translateX: [0, 7],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8367516748850193,
+          0.13647199304685123,
+          -1.1015389264135815
+      ],
+      "id": 10,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/right2.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 800,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateX: [0, 2, -1, 2, 0],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8363611230263629,
+          0.1195119655546905,
+          -1.2764896006473656
+      ],
+      "id": 11,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/right3.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 1200,
+                loop: true,
+                loopInterval: 300,
+                timing: 'ease-in-out',
+                elements: [
+                  {
+                    properties: {
+                      translateX: [0, 4, 0],
+                      opacity: [1, 0.4, 1],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.1001814882032668,
+          "longitude": 6.257051005909164,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8377680263494852,
+          0.042984495724858,
+          -0.6944391637812837
+      ],
+      "id": 12,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/up.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 600,
+                loop: true,
+                loopInterval: 800,
+                timing: 'linear',
+                elements: [
+                  {
+                    selector: '.up-1',
+                    properties: {
+                      scale: [1, 0.5],
+                      opacity: [1, 0],
+                      translateY: [0, -7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.up-2',
+                    properties: {
+                      translateY: [0, -7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.up-3',
+                    properties: {
+                      scale: [0.5, 1],
+                      opacity: [0, 1],
+                      translateY: [0, -7],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.09147005444646102,
+          "longitude": 0.11760435571687423,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  },
+  {
+      "dimensionType": "2D",
+      "pointType": "PointTag",
+      "contentType": "Text",
+      "position": [
+          -0.8372774263145665,
+          0.02397105715309901,
+          -0.9517194087781629
+      ],
+      "id": 13,
+      "data": {},
+      "style": {
+          "point": {
+              "url": "http://localhost:3000/public/tag/icons/v1/down.svg",
+              "width": 24,
+              "scale": 1,
+              "bgcolor": "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))",
+              "bgopacity": 1,
+              animation: {
+                duration: 600,
+                loop: true,
+                loopInterval: 800,
+                timing: 'linear',
+                elements: [
+                  {
+                    selector: '.down-1',
+                    properties: {
+                      scale: [1, 0.5],
+                      opacity: [1, 0],
+                      translateY: [0, 7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.down-2',
+                    properties: {
+                      translateY: [0, 7],
+                    },
+                    delay: 0,
+                  },
+                  {
+                    selector: '.down-3',
+                    properties: {
+                      scale: [0.5, 1],
+                      opacity: [0, 1],
+                      translateY: [0, 7],
+                    },
+                    delay: 0,
+                  },
+                ],
+              },
+          }
+      },
+      "fiveState": {
+          "distance": 0,
+          "fov": 90,
+          "latitude": 0.09147005444646102,
+          "longitude": 0.11760435571687423,
+          "mode": "Panorama",
+          "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+          },
+          "panoIndex": 0,
+          "workCode": "wxA5LEAbKbTq1BvFYx"
+      }
+  }
 ]
