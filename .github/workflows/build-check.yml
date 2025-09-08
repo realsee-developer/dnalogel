@@ -1,0 +1,68 @@
+name: Build check
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: main
+jobs:
+  # 检查版本号
+  CheckVersion:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.package.outputs.version }}
+      versionCheck1: ${{ steps.check1.outputs.versionCheck1 }}
+      versionCheck2: ${{ steps.check2.outputs.versionCheck2 }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get package Info
+        id: package
+        uses: EndBug/version-check@v2
+        with:
+          file-name: ./plugins/package.json
+
+      - name: Check package version
+        id: check1
+        if: steps.package.outputs.changed == 'false'
+        run: |
+          echo "Package version is exited"
+          echo "versionCheck1=false" >> $GITHUB_OUTPUT
+
+      - name: Check version is release
+        id: check2
+        if: contains(steps.package.outputs.version, '-')
+        run: |
+          echo "Package version is not valid"
+          echo "versionCheck2=false" >> $GITHUB_OUTPUT
+
+      - name: Output
+        run: |
+          echo "version: ${{ steps.package.outputs.version }}"
+          echo "versionCheck1: ${{ steps.check1.outputs.versionCheck1 }}"
+          echo "versionCheck2: ${{ steps.check2.outputs.versionCheck2 }}"
+
+  # 构建
+  Build:
+    runs-on: ubuntu-latest
+    needs: CheckVersion
+    if: needs.CheckVersion.outputs.versionCheck1 != 'false' && needs.CheckVersion.outputs.versionCheck2 != 'false'
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: npm run build
