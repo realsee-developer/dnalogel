@@ -12,8 +12,8 @@ import getQueryValueByName from './getQueryValueByName'
 Object.assign(window, { THREE })
 
 // 根据不同的 query 参数，获取不同版本的数据
-const DEFAULT_RENDER_CODE = '81gmMq5a7zbF9leWMk'
-const DEFAULT_SPACE_TYPE = 'virtual'
+const DEFAULT_RENDER_CODE = '80o024DE2xyva3j5BE'
+const DEFAULT_SPACE_TYPE = 'real'
 
 const renderCodeFromQuery = getQueryValueByName('renderCode')
 const spaceTypeFromQuery = getQueryValueByName('spaceType')
