@@ -1,0 +1,1 @@
+const l=()=>{var n;let r=window.location.search;if(!r)return{};r.slice(-1)==="/"&&(r=r.slice(0,-1));const a=(n=r.slice(1))==null?void 0:n.split("&");let t={};return a?(a.forEach(s=>{const e=s.split("=");if(e[0]!=="renderCode"&&e[0]!=="spaceType"){let i={};try{i[e[0]]=JSON.parse(e[1])}catch{i[e[0]]=e[1]}Object.assign(t,i)}}),console.info("__debug__: ",t),t):{}};export{l as g};

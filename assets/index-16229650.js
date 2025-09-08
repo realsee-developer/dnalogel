@@ -1,0 +1,1 @@
+import{c as u,_ as n}from"./createTheme-a7bd8e9d.js";import{j as l,r as o}from"./index-85b64ddc.js";const a=["value"],r=o.createContext();function i(t){let{value:e}=t,s=u(t,a);return l.jsx(r.Provider,n({value:e??!0},s))}const p=()=>{const t=o.useContext(r);return t??!1};export{i as R,p as u};

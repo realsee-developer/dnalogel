@@ -1,0 +1,1 @@
+import{r as n}from"./index-85b64ddc.js";import{w as r,l as s}from"./createTheme-a7bd8e9d.js";function o(e){return Object.keys(e).length===0}function m(e=null){const t=n.useContext(r);return!t||o(t)?e:t}const u=s();function h(e=u){return m(e)}export{m as a,h as u};

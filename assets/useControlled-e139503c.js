@@ -1,0 +1,1 @@
+import{r as t}from"./index-85b64ddc.js";function m(e){return e&&e.ownerDocument||document}function d({controlled:e,default:u,name:l,state:f="value"}){const{current:n}=t.useRef(e!==void 0),[o,a]=t.useState(u),r=n?e:o,s=t.useCallback(c=>{n||a(c)},[]);return[r,s]}export{m as o,d as u};

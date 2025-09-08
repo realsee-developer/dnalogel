@@ -1,0 +1,1 @@
+import"./Point-d3172315.js";const o=window.requestAnimationFrame||(n=>setTimeout(n,16)),a=window.cancelAnimationFrame||clearTimeout;function l(n,t=0){t<=0?o(n):o(()=>l(n,t-1))}function f(n,t=60){let e=-1,c=0,u=-1;const m=1e3/t;function r(i){u===-1&&(u=i),e=o(r),!(i-c<m)&&(c=i,n==null||n(i-u))}return e=o(r),function(){a(e)}}export{l as T,f as l};
