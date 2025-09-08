@@ -1,5 +1,5 @@
 // import { FLOOR_PLAN_ATTACHED_TO, GuideLinePlugin, MapviewFloorplanPlugin } from '@realsee/dnalogel/dist'
-import { FLOOR_PLAN_ATTACHED_TO, GuideLinePlugin, MapviewFloorplanPlugin } from '../../../plugins/dist'
+import { FLOOR_PLAN_ATTACHED_TO, GuideLinePlugin, MapviewFloorplanPlugin } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'
 import * as React from 'react'
