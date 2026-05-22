@@ -1,0 +1,30 @@
+declare const _default: ({
+    type: number;
+    description: string;
+    href: string;
+    width: number;
+    height: number;
+    tag: string;
+    direction: number;
+    keywords: string[];
+    themes: string[];
+    label: boolean;
+    svgWidth?: undefined;
+    svgHeight?: undefined;
+    svg?: undefined;
+} | {
+    type: number;
+    description: string;
+    href: string;
+    width: number;
+    height: number;
+    tag: string;
+    direction: number;
+    keywords: string[];
+    themes: string[];
+    label: boolean;
+    svgWidth: number;
+    svgHeight: number;
+    svg: string;
+})[];
+export default _default;
