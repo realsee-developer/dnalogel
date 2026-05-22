@@ -1,0 +1,11 @@
+import type { Five } from '@realsee/five';
+import DigitalPerformancePluginController from './controller';
+export { DigitalHuman } from './core/DigitalHuman';
+export { DigitalPlayground } from './core/DigitalPlayground';
+export { DigitalStateMachine } from './core/DigitalStateMachine';
+export * from './controller';
+export * from './typings';
+export type DigitalPerformancePluginExportInterface = InstanceType<typeof DigitalPerformancePluginController>;
+export type DigitalPerformancePluginParamsInterface = ConstructorParameters<typeof DigitalPerformancePluginController>[1];
+export declare const DigitalPerformancePlugin: (five: Five, params?: DigitalPerformancePluginParamsInterface) => DigitalPerformancePluginController;
+export default DigitalPerformancePlugin;

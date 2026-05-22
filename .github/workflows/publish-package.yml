@@ -1,0 +1,335 @@
+name: Publish npm package
+
+on:
+  push:
+    branches: [package]
+    paths:
+      - 'package.json'
+      - 'CHANGELOG.md'
+
+env:
+  NODE_VERSION: 18
+  PACKAGE_NAME: "@realsee/dnalogel"
+
+jobs:
+  validate:
+    name: 验证版本
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      version: ${{ steps.package-info.outputs.current-version }}
+      dist_tag: ${{ steps.dist-tag.outputs.tag }}
+      is_new_version: ${{ steps.version-check.outputs.is_new }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+
+      - name: 获取包信息
+        id: package-info
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: 确定发布标签
+        id: dist-tag
+        run: |
+          VERSION="${{ steps.package-info.outputs.current-version }}"
+          if [[ -z "$VERSION" ]]; then
+            echo "错误：无法获取版本号"
+            exit 1
+          fi
+          
+          if [[ $VERSION =~ "-" ]]; then
+            # 提取预发布标识符（alpha、beta、rc等）
+            TAG=$(echo "$VERSION" | cut -d'-' -f2 | cut -d'.' -f1)
+            if [[ -z "$TAG" ]]; then
+              echo "错误：无法解析预发布标签"
+              exit 1
+            fi
+            echo "tag=$TAG" >> $GITHUB_OUTPUT
+          else
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "处理的版本号: $VERSION"
+          echo "发布标签: ${TAG:-latest}"
+
+      - name: 检查版本是否已发布
+        id: version-check
+        run: |
+          VERSION="${{ steps.package-info.outputs.current-version }}"
+          if [[ -z "$VERSION" ]]; then
+            echo "错误：版本号为空"
+            exit 1
+          fi
+          
+          # 添加重试机制
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            if npm view "${{ env.PACKAGE_NAME }}@$VERSION" version &>/dev/null; then
+              echo "is_new=false" >> $GITHUB_OUTPUT
+              echo "版本 $VERSION 已存在，跳过发布"
+              exit 0
+            else
+              # 如果是最后一次尝试，确认版本不存在
+              if [ $RETRY_COUNT -eq $((MAX_RETRIES-1)) ]; then
+                echo "is_new=true" >> $GITHUB_OUTPUT
+                echo "版本 $VERSION 未发布，将进行发布"
+                exit 0
+              fi
+            fi
+            
+            RETRY_COUNT=$((RETRY_COUNT+1))
+            echo "重试检查版本 ($RETRY_COUNT/$MAX_RETRIES)..."
+            sleep 2
+          done
+
+  publish:
+    name: 发布包
+    needs: validate
+    if: needs.validate.outputs.is_new_version == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+
+      - name: 发布到 NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: |
+          echo "准备发布版本 ${{ needs.validate.outputs.version }} 到 NPM，标签: ${{ needs.validate.outputs.dist_tag }}"
+          npm publish --tag ${{ needs.validate.outputs.dist_tag }} --ignore-scripts
+
+      - name: 同步到 CNPM
+        if: success()
+        run: |
+          echo "同步包 ${{ env.PACKAGE_NAME }} 到 CNPM"
+          npx cnpm sync ${{ env.PACKAGE_NAME }} || (echo "同步失败，重试..." && sleep 5 && npx cnpm sync ${{ env.PACKAGE_NAME }})
+
+  notify:
+    name: 发送通知
+    needs: [validate, publish]
+    runs-on: ubuntu-latest
+    if: always()
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 获取更新日志
+        id: changelog
+        if: needs.validate.outputs.is_new_version == 'true' && needs.publish.result == 'success'
+        shell: /usr/bin/bash {0}
+        run: |
+          # 移除 -e 选项，防止任何命令失败就退出
+          
+          # 添加调试信息
+          echo "========== 调试信息 =========="
+          echo "检查常用命令是否可用:"
+          which sed && echo "sed: 可用" || echo "sed: 不可用"
+          which grep && echo "grep: 可用" || echo "grep: 不可用"
+          which awk && echo "awk: 可用" || echo "awk: 不可用"
+          
+          echo "GITHUB_OUTPUT 文件路径: $GITHUB_OUTPUT"
+          echo "=============================="
+          
+          # 首先设置默认消息到输出文件
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          echo "暂无详细更新说明" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # 检查文件是否存在
+          if [ ! -f "CHANGELOG.md" ]; then
+            echo "CHANGELOG.md 文件不存在，使用默认内容"
+            exit 0
+          fi
+          
+          VERSION="${{ needs.validate.outputs.version }}"
+          echo "处理版本: $VERSION"
+          
+          # 转义版本号中的特殊字符，防止正则表达式问题
+          ESCAPED_VERSION=$(echo "$VERSION" | sed 's/\./\\./g' | sed 's/\+/\\+/g' | sed 's/\*/\\*/g' | sed 's/\[/\\[/g' | sed 's/\]/\\]/g' | sed 's/\^/\\^/g' | sed 's/\$/\\$/g' | sed 's/\-/\\-/g')
+          echo "转义后的版本号: $ESCAPED_VERSION"
+          
+          # 显示文件内容前几行用于调试
+          echo "CHANGELOG.md 文件前10行:"
+          head -10 CHANGELOG.md || echo "无法读取文件"
+          echo "=============================="
+          
+          # 检查是否包含版本标记 - 直接使用字符串比较而不是正则
+          VERSION_MARKER="## $VERSION"
+          if grep -F "## $VERSION" CHANGELOG.md; then
+            echo "找到版本 $VERSION 的标记"
+            
+            # 提取内容 - 多种方法尝试，任何方法失败都不会中断
+            echo "尝试提取更新日志内容..."
+            
+            # 方法1: 使用sed并确保正则表达式安全
+            changelog_content=$(sed -n -e "/## $ESCAPED_VERSION/,/## /p" CHANGELOG.md | sed '1d;$d' || echo "")
+            
+            # 如果内容为空，尝试方法2
+            if [ -z "$(echo "$changelog_content" | tr -d '[:space:]')" ]; then
+              echo "方法1失败，尝试方法2..."
+              # 方法2: 使用固定字符串匹配，避免正则表达式
+              changelog_content=$(grep -F -A 100 "## $VERSION" CHANGELOG.md || echo "")
+              if [ -n "$changelog_content" ]; then
+                next_version=$(grep -F -A 1 "## $VERSION" CHANGELOG.md | grep -F "## " | grep -v "## $VERSION" || echo "")
+                if [ -n "$next_version" ]; then
+                  # 如果找到下一个版本标记，提取到下一个版本之前的内容
+                  end_line=$(grep -F -n "$next_version" CHANGELOG.md | head -1 | cut -d':' -f1)
+                  start_line=$(grep -F -n "## $VERSION" CHANGELOG.md | head -1 | cut -d':' -f1)
+                  start_line=$((start_line + 1))
+                  end_line=$((end_line - 1))
+                  if [ $start_line -le $end_line ]; then
+                    changelog_content=$(sed -n "${start_line},${end_line}p" CHANGELOG.md)
+                  fi
+                else
+                  # 如果没有找到下一个版本，提取到文件末尾
+                  start_line=$(grep -F -n "## $VERSION" CHANGELOG.md | head -1 | cut -d':' -f1)
+                  start_line=$((start_line + 1))
+                  changelog_content=$(tail -n +$start_line CHANGELOG.md)
+                fi
+              fi
+            fi
+            
+            # 如果内容仍为空，尝试方法3
+            if [ -z "$(echo "$changelog_content" | tr -d '[:space:]')" ]; then
+              echo "方法2失败，尝试方法3..."
+              # 方法3: 最基本的提取，按行处理，避免正则匹配
+              in_section=0
+              temp_file=$(mktemp)
+              while IFS= read -r line; do
+                if [ "$line" = "## $VERSION" ]; then
+                  in_section=1
+                  continue
+                elif [[ "$line" == \#\#* ]] && [ $in_section -eq 1 ]; then
+                  break
+                elif [ $in_section -eq 1 ]; then
+                  echo "$line" >> "$temp_file"
+                fi
+              done < CHANGELOG.md
+              changelog_content=$(cat "$temp_file")
+              rm -f "$temp_file"
+            fi
+            
+            if [ -n "$(echo "$changelog_content" | tr -d '[:space:]')" ]; then
+              # 覆盖之前的默认输出
+              echo "成功提取内容，更新输出..."
+              echo "content<<EOF" > $GITHUB_OUTPUT
+              echo "$changelog_content" >> $GITHUB_OUTPUT
+              echo "EOF" >> $GITHUB_OUTPUT
+              echo "成功提取版本 $VERSION 的更新日志"
+            else
+              echo "无法提取版本 $VERSION 的更新日志，使用默认内容"
+            fi
+          else
+            echo "在CHANGELOG.md中未找到版本 $VERSION 的标记，使用默认内容"
+            echo "尝试搜索内容:"
+            grep "##" CHANGELOG.md | head -5 || echo "未找到任何版本标记"
+          fi
+          
+          # 确认 GITHUB_OUTPUT 的内容
+          echo "GITHUB_OUTPUT 中的内容:"
+          cat $GITHUB_OUTPUT || echo "无法读取 GITHUB_OUTPUT"
+
+      - name: 获取名言
+        id: get-proverb
+        run: |
+          # 检查curl是否可用
+          if command -v curl &> /dev/null; then
+            echo "使用curl获取在线名言"
+            # 尝试从API获取
+            quote=$(curl -s --connect-timeout 3 'https://v1.hitokoto.cn/?c=i&encode=text' || echo "")
+          else
+            echo "curl命令不可用，直接使用本地名言"
+            quote=""
+          fi
+          
+          # 如果API调用失败或curl不可用，使用本地数组
+          if [ -z "$quote" ]; then
+            # 定义谚语数组
+            PROVERBS=(
+              "工欲善其事，必先利其器。"
+              "千里之行，始于足下。"
+              "不积跬步，无以至千里。"
+              "读书破万卷，下笔如有神。"
+              "业精于勤，荒于嬉。"
+              "学而不思则罔，思而不学则殆。"
+              "温故而知新，可以为师矣。"
+              "纸上得来终觉浅，绝知此事要躬行。"
+              "学海无涯苦作舟。"
+              "天道酬勤。"
+            )
+            
+            # 随机选择一条谚语
+            # 保证随机机制在不同环境都能工作
+            if [ -n "$RANDOM" ]; then
+              # bash内置$RANDOM可用
+              RANDOM_INDEX=$((RANDOM % ${#PROVERBS[@]}))
+            else
+              # 使用日期秒数作为随机源
+              RANDOM_INDEX=$(($(date +%s) % ${#PROVERBS[@]}))
+            fi
+            
+            quote="${PROVERBS[$RANDOM_INDEX]}"
+            echo "使用本地谚语：$quote"
+          else
+            echo "使用API获取的名言：$quote"
+          fi
+          
+          # 保存输出
+          echo "quote=$quote" >> $GITHUB_OUTPUT
+
+      - name: 生成通知消息
+        id: notification
+        run: |
+          WORKFLOW_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          VERSION="${{ needs.validate.outputs.version }}"
+          NPM_URL="https://www.npmjs.com/package/${{ env.PACKAGE_NAME }}/v/$VERSION"
+          
+          # 生成通知消息
+          echo "message<<EOF" >> $GITHUB_OUTPUT
+          
+          if [[ "${{ needs.validate.result }}" == "failure" ]]; then
+            echo "❌ 版本验证失败，[查看日志]($WORKFLOW_URL)" >> $GITHUB_OUTPUT
+          elif [[ "${{ needs.validate.outputs.is_new_version }}" == "false" ]]; then
+            echo "⚠️ 版本 $VERSION 已存在，跳过发布" >> $GITHUB_OUTPUT
+          elif [[ "${{ needs.publish.result }}" == "success" ]]; then
+            echo "✅ 版本 $VERSION 发布成功！[查看包]($NPM_URL)" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "更新内容：" >> $GITHUB_OUTPUT
+            echo "${{ steps.changelog.outputs.content }}" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "---" >> $GITHUB_OUTPUT
+            echo "*${{ steps.get-proverb.outputs.quote }}*" >> $GITHUB_OUTPUT
+          elif [[ "${{ needs.publish.result }}" == "skipped" ]]; then
+            echo "⏭️ 跳过发布流程" >> $GITHUB_OUTPUT
+          else
+            echo "❌ 版本 $VERSION 发布失败，[查看日志]($WORKFLOW_URL)" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 发送企业微信通知
+        uses: chf007/action-wechat-work@master
+        env:
+          WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.QY_WECHAT_BOT_HOOK }}
+        with:
+          msgtype: markdown
+          content: ${{ steps.notification.outputs.message }}

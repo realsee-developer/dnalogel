@@ -1,0 +1,10 @@
+import type { Five } from '@realsee/five';
+import Controller from './Controller';
+import type * as GuideLinePluginType from './typing';
+import * as GuideLineItem from './GuideLineItem';
+import * as GuideLineModeItem from './GuideLineModeItem';
+export declare const GuideLinePlugin: (five: Five, config?: ConstructorParameters<typeof Controller>[1]) => Controller;
+export type { GuideLinePluginExportType } from './typing';
+export type { GuideLinePluginType };
+export default GuideLinePlugin;
+export { GuideLineItem, GuideLineModeItem };
