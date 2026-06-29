@@ -1,0 +1,46 @@
+{
+  "_signature": "FEor9awmTIhuP6esN94fGJQ9gWr/7XYS4kW5MGVeFlt5LbTPqNMiz8VbcFs3TRSL7TX/gSz60xfWoxUfiifx0yQMl8ArfVfUUvO+A45shn6K2DITGIWE4Vf2evnjVVinK4WFeGrBZ/t7ILZRYFiMjU3op4Z2tW8EUN3eZM0wJb8=",
+  "allow_hosts": [
+      "*"
+  ],
+  "base_url": "//vr-public.realsee-cdn.cn",
+  "basic_code": "80aoO5MVl8xBJDNBzr",
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMzCCAhsCCQDYAS/7ATZRmTANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMC\nQ04xEDAOBgNVBAgMB0JlaWppbmcxEDAOBgNVBAcMB0JlaWppbmcxFDASBgNVBAoM\nC2xpYW5qaWEuY29tMRAwDgYDVQQLDAdSZWFsc2VlMREwDwYDVQQDDAhIYXJkd2Fy\nZTElMCMGCSqGSIb3DQEJARYWbml1aGFpcWluZ0BsaWFuamlhLmNvbTAeFw0yMTA5\nMTAwNTIwMDBaFw0zMTA5MDgwNTIwMDBaMIGmMQswCQYDVQQGEwJDTjEQMA4GA1UE\nCAwHQmVpSmluZzEQMA4GA1UEBwwHQmVpSmluZzEQMA4GA1UECgwHUmVhbHNlZTEZ\nMBcGA1UECwwQUmVhbHNlZUFwcEdldHdheTEgMB4GA1UEAwwXYXBwLWdhdGV3YXku\ncmVhbHNlZS5jb20xJDAiBgkqhkiG9w0BCQEWFWRldmVsb3BlckByZWFsc2VlLmNv\nbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAuv/y3Ezsy/wh3LCA8vomPbgI\nSO9iO5kyR+oAetklD+epMU6J/ZbvTDEomZxuS5iyyKGBupzAh2ZFLIy7tsE71Vx1\nIIvT7Kdyq66lMU4YzdrpKUcxv7oOQnO8DA1orKluNa4jkyXBywHKs/Q+20LVc+RD\ngKXqFGJUdo8mAxEScs0CAwEAATANBgkqhkiG9w0BAQsFAAOCAgEAkMxsU4VLPd4J\n0rElBNBIyqPtvnlTs6VkhIK0l4oM58wtDKc1uG9UPSX5j29NguZM6LOe0jCsU2Vg\nEpUseMWQjx4o2yBg7MokQyjWc1zu6PppKhQ+RqHQy/biJ2zsIMpX3oMASXffvnW5\nn4Bjyo1JdDJiLm1fLvLlVVxQoraJD+rtpqWDEYixGVREUo5OIL5Y5dVjkHG2r9RQ\nQuu3yEiyr9gAW8yhz3YR6/sJ6boyGK8NC0v8Jih7NnCdT+9ML+3jn3P5F3TeXdSf\nVeYIm5oWAOTe3AjjKP8ARMb2RYACjg80/AcowD/dvRRjbwQmyucUNug2pXJynXpD\nNfx1IBmUmzSAT1Z5yNuY/f3VRBJvmIQ6Jpmef+g0/wUJpyS4SObguItyYlFPLqRH\nK1oKqNX/uV0GWWEQl6Lml986TzlHxc4ljtHBhjzlKYIYYZLWWipk4JiB8hxJcTK+\ncrgvclEQSxFlmAyoqxYFClrOOsPqZJdBhDTvoUWnnWuJLQt7DLHpyInp+S75Gg3o\n0zgHpt9m26B3YbjQGYMQlYmhl2VLQa+Ey0W8UZQXLcTvoRT4p+8crqr6cNNsxCyZ\nm08vBbEMIMvhBeLQvpM75oaMBmelegipFl2eelxVIHdGJWoyJSZQUdXN0uSidhZp\nI7AIgzhqK1Ku/IXK0OSXJonn+/9X/VI=\n-----END CERTIFICATE-----",
+  "create_time": "2024-08-29 12:28:36",
+  "device_type": 9,
+  "expire_at": "1825080124000",
+  "from_type": "aerophoto",
+  "initial": {
+      "distance": 69.07951583204992,
+      "fov": 60,
+      "heading": 0,
+      "latitude": 0.7853981633974483,
+      "longitude": 2.0554630431845955,
+      "mode": "Mapview",
+      "offset": {
+          "x": 19.965750943000963,
+          "y": 0.9826568712900752,
+          "z": 26.12662430452817
+      },
+      "panoIndex": 0,
+      "pano_index": 0,
+      "workCode": "1D4z1YJMb8hQ8kKsWx"
+  },
+  "is_active": true,
+  "model": {
+      "layers": [
+          {
+              "name": "aerophoto",
+              "tileset_url": "https://vrlab-public.ljcdn.com/release/aerophoto/911dae35bcae3e9a5a1aaafcd9f4ac6f/mesh/82b4ea13422c813b46d832c49f28eb13/tileset.json",
+              "tileset_url_checksum": "5431a892a8de0e068659d32140d041ca",
+              "type": "mesh",
+              "up_axis": "Z"
+          }
+      ]
+  },
+  "name": "室外汽车",
+  "picture_url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/1D4z1YJMb8hQ8kKsWx/2024-08-29_14-04-20.image/png",
+  "project_id": "aerophoto-7AGzV3Yw0ew2Xe6Q",
+  "resource_code": "1D4z1YJMb8hQ8kKsWx",
+  "title_picture_url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/REALSEE_TECH/1D4z1YJMb8hQ8kKsWx/2024-08-29_14-04-20.image/png"
+}
