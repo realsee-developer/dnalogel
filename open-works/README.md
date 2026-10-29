@@ -38,3 +38,9 @@ import { work, floorplanServerData, modelRoomLabels } from 'https://cdn.skypack.
 | 81w1MyAQybVcNa97ME | 有   | 无         | 无               | 无         | 无       |
 | 816lPVZQkQDF5XOpPo | 有   | 无         | 无               | 无         | 无       |
 | pWLy9ndnVL73Xqja   | 有   | 无         | 无               | 无         | 无       |
+
+## License / 许可证
+
+This embedded package is made available under the Realsee SDK License Agreement, last updated 2026-09-22. See [LICENSE](LICENSE). The parent repository's PolyForm license does not apply to this separately licensed package. Third-party materials retain their respective rights. Earlier copies retain the permissions validly granted for those copies.
+
+本目录使用 2026-09-22 版《Realsee SDK License Agreement》，详见 [LICENSE](LICENSE)。父仓库的 PolyForm 许可不适用于本目录。第三方材料保留各自权利，旧副本此前已有效取得的授权继续适用。

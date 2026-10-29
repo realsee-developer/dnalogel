@@ -5,3 +5,5 @@ Realsee SDKs, third-party components, datasets, model weights, scans, photograph
 Earlier copies released under MIT, GNU GPL or another license retain their applicable permissions. Changing this repository's current license or consolidating its Git history does not revoke prior grants or copies held by others.
 
 Required Notice: Copyright (c) 2026 BEIKE REALSEE TECHNOLOGY (HK) LIMITED.
+
+The embedded open-works/ package is separately made available under the Realsee SDK License Agreement dated 2026-09-22; see open-works/LICENSE. The parent example-code PolyForm license does not apply to that directory.
