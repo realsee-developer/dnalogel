@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // import React, { useEffect } from 'react'
 // import ReactDOM from 'react-dom'
 // import { createFiveProvider, FiveCanvas, unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'

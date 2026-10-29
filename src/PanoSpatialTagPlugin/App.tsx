@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { PanoSpatialTagPlugin } from '@realsee/dnalogel'
 import { ModelViewPlugin } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'

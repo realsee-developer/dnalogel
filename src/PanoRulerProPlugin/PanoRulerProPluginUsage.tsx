@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { Box, Button, Paper } from '@mui/material'
 import { PanoRulerProPlugin } from '@realsee/dnalogel'
 import { unsafe__useFiveInstance, useFiveEventCallback, useFiveModelReadyState } from '@realsee/five/react'

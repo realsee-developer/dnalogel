@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import * as React from 'react'
 import { PaintBrush, PaintBrushTypeEnum } from '@realsee/dnalogel'
 import { Box, Button, Paper } from '@mui/material'

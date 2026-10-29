@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import * as React from 'react'
 import { Box, Button, ButtonGroup, Paper } from '@mui/material'
 import { unsafe__useFiveInstance } from '@realsee/five/react'

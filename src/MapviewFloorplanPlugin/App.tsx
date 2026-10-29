@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // import { FLOOR_PLAN_ATTACHED_TO, GuideLinePlugin, MapviewFloorplanPlugin } from '@realsee/dnalogel/dist'
 import { FLOOR_PLAN_ATTACHED_TO, GuideLinePlugin, MapviewFloorplanPlugin } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'

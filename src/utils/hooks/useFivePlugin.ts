@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 
 export function useFivePlugin<T extends (...args: any) => any>(name: string) {

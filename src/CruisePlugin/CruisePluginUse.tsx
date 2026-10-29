@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'

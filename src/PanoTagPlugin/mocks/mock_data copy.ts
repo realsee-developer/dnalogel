@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { ContentType } from '@realsee/dnalogel/dist'
 import { Mode } from '@realsee/five'
 import { Vector3 } from 'three'

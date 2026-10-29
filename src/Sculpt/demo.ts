@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { Sculpt } from '@realsee/dnalogel/dist'
 import { LineMesh } from '@realsee/dnalogel/libs/Sculpt/Meshes/Line'
 import { PointIntersection } from '@realsee/dnalogel/libs/shared-utils'

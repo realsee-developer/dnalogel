@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 if (typeof window !== 'undefined') {
   Object.defineProperty(window, '$five', {
     get: () => {

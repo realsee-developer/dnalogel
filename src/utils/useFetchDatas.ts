@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 /**
  * 此文件为如视官方提供的 mock 数据
  * 此文件的所有数据仅用作如视能力展示调试

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import path from 'path'
 import glob from 'glob'
 import { defineConfig } from 'vite'

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 /* eslint-disable react/jsx-curly-brace-presence */
 import type { PipelinePlugin } from '@realsee/dnalogel/dist'
 import * as React from 'react'

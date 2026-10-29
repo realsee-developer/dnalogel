@@ -36,5 +36,6 @@
     "prettier": "^3.2.5",
     "typescript": "5.5.4",
     "vite": "^4.4.6"
-  }
+  },
+  "license": "PolyForm-Noncommercial-1.0.0"
 }

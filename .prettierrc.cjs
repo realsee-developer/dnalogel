@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 module.exports = {
   semi: false, // 句末不使用分号
   trailingComma: 'all', // 多行时尽可能打印尾随逗号

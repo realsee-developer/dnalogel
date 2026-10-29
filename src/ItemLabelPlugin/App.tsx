@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { ItemLabelPlugin, ITEM_LABEL_PLUGIN_DISPLAY_STRATEGY_TYPE } from '@realsee/dnalogel'
 import { createFiveProvider, FiveCanvas } from '@realsee/five/react'
 import { parseWork } from '@realsee/five'

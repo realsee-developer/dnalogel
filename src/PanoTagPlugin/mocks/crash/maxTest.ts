@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 const position = [-0.8070892936181384, 0.1, 1.022]
 const positionInRoom = [-3.2823034210867634, 1.3613521164225948, 3.952892543879894]
 

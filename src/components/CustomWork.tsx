@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { Paper, Button, Modal, Box, TextField, Icon, ButtonGroup } from '@mui/material'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'

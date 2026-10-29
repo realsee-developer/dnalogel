@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { ModelMakerPluginType } from '@realsee/dnalogel/dist'
 
 export const data2: ModelMakerPluginType.ServerData = {

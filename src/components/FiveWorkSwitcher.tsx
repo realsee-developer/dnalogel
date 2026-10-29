@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { Container, FormControlLabel, Paper, Radio, RadioGroup } from '@mui/material'
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { useState } from 'react'

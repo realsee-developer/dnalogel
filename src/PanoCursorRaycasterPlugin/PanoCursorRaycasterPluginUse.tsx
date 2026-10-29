@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import * as React from 'react'
 import { BottomNavigation, BottomNavigationAction, Box, Paper, ButtonGroup, Button } from '@mui/material'
 import { Five, Mode } from '@realsee/five'

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { unsafe__useFiveInstance } from '@realsee/five/react'
 import { ButtonGroup, Button, Stack, Switch, Paper, Typography, Slider, Box } from '@mui/material'
 import { Sculpt } from '@realsee/dnalogel/dist'

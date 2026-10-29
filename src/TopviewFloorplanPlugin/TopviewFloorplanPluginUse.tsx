@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 /* eslint-disable react/jsx-curly-brace-presence */
 import * as React from 'react'
 import { Five, Mode } from '@realsee/five'

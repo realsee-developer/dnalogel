@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 import { unsafe__useFiveInstance, useFiveState } from '@realsee/five/react'
 import { Five, Mode } from '@realsee/five'
 import { ContentType } from '@realsee/dnalogel/dist'

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 export const ImageExamplePoints = [
   { x: -0.16450234208682218, y: 1.2079436283327727, z: -2.3397009372711186 },
   { x: 0.4534614669340434, y: 1.2009985563997523, z: -2.3397009372711186 },
