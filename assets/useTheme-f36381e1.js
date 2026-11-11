@@ -1,0 +1,1 @@
+import{r as n}from"./useFetchDatas-caaf4f32.js";import{x as r,l as s}from"./createTheme-09cece09.js";function o(e){return Object.keys(e).length===0}function m(e=null){const t=n.useContext(r);return!t||o(t)?e:t}const u=s();function h(e=u){return m(e)}export{h as a,m as u};
